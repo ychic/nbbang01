@@ -18,13 +18,23 @@ public class IndexController {
 		return "admin";
 	}
 	
-	//로그인,로그아웃
+	//로그인,로그아웃,회원가입
 	@RequestMapping("/login.do")
 	public String login() {
-		return "login/Login.tiles";
+		return "auth/login/Login";
 	}
-	
-	
+	@RequestMapping("/register.do")
+	public String register() {
+		return "auth/register/Register";
+	}
+	@RequestMapping("/registerTwo.do")
+	public String registerTwo() {
+		return "auth/register/RegisterTwo";
+	}
+	@RequestMapping("/registerThree.do")
+	public String registerThree() {
+		return "auth/register/RegisterThree";
+	}
 	
 	
 	//파티원

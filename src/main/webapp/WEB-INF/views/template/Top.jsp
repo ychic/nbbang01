@@ -131,7 +131,7 @@
 									    <a onclick="location.href='recommandBbs.do'">추천게시판</a>
 									  </div>
 								</li>
-								<li class="login_menu" style="float:right"><a id="login" href="<c:url value='/login.do'/>">로그인</a></li>
+								<li class="login_menu" style="float:right"><a id="login" href="<c:url value='/auth/login.do'/>">로그인</a></li>
 								<li class="guide_menu" style="float:right"><a id="guide" href="<c:url value='/guide.do'/>">가이드</a></li>
 								
 							</ul>							
