@@ -111,7 +111,7 @@
 		<!--header 영역-->
 		<header>
 			<div id="nino-navbar">
-			   <a class="navbar-brand" href="<c:url value="/first.do"/>">Nbbang</a>
+			   <a class="navbar-brand" href="<c:url value="/index.do"/>">Nbbang</a>
 			   <a id="loginFirst" href="<c:url value='/login.do'/>">로그인</a>
 			</div>
 		</header>
