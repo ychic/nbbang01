@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- 원페이지 대문 -->
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -29,36 +30,54 @@
 <!--스타일 영역-->
 <style type="text/css">
 	 *{
-	 	margin:0; padding:0
+	 	margin:0; padding:0;
 	 }
 	 ul li{
-	 	list-style:none
+	 	list-style:none;
 	 }
 	 #wrap{
 	 	width:100%; height:3900px; position:absolute;  margin:0 auto;
 	 }
-	 
-	 #nino-navbar {
-		background: rgba(241, 114, 114, 0.96);
-		border: none;
-		border-radius: 0;
-		width:100%;
+	 #first-navbar-logo {
+	 	width:100px;
 	 	height:50px;
+	 	position: absolute;
+	 	margin-left:80px;
+	 	margin-top:15px;
 	 	font-family: 'Montserrat', sans-serif;
 	    font-size: 20px;
 	    font-weight: 700;
+	    text-align:center;
+	 	background-color:rgba(241, 114, 114, 0.96); 
+	 	border-radius: 40px;
+	 	line-height: 50px;
+		z-index: 1;
 	 }
-	 .navbar-brand {
-		color: #fff;
-		padding-left:200px;
+	 #first-navbar-login {
+	 	width:100px;
+	 	height:50px;
+	 	position: absolute;
+	 	margin-left:1300px;
+	 	margin-top:15px;
+	 	font-family: 'Montserrat', sans-serif;
+	    font-size: 20px;
+	    font-weight: 700;
+	 	background-color:rgba(241, 114, 114, 0.96); 
+	 	text-align:center;
+	 	border-radius: 40px;
+	 	line-height: 50px;
+	 	z-index: 1;
 	 }
-	 #loginFirst {
-		width:20%;
-		float:right;
-		padding-right:200px;
-		padding-top:9px;
+	 .contents{
+	 	position: relative;
 	 }
-	
+	 .contents > img{
+	 	width:100%;
+	 	height:800px; border:0;
+	 }
+	 .contents > img:hover {
+	    opacity: 0.63;
+     }
 	/*button영역*/
 	 .circle{
 	 	position:fixed; 
@@ -105,27 +124,35 @@
 	   
  });
 </script>
-<!--콘텐츠 -->
+
  <body>
   <div id ="wrap">
-		<!--header 영역-->
-		<header>
-			<div id="nino-navbar">
-			   <a class="navbar-brand" href="<c:url value="/index.do"/>">Nbbang</a>
-			   <a id="loginFirst" href="<c:url value='/login.do'/>">로그인</a>
-			</div>
-		</header>
-
 	<div class="onepage">
-		<div id="contents1" style="width:100%; height:800px; border:0;"></div>
-		<div id="contents2" style="background-color:#363636; width:100%; height:800px; border:0;"></div>
-		<div id="contents3" style="background-color:#212121; width:100%; height:800px; border:0;"></div>
-		<div id="contents4" style="background-color:#0A0A0A; width:100%; height:800px; border:0;"></div>
-		<div id="contents5" style="background-color:#000000; width:100%; height:800px; border:0;"></div>
+		<div id="contents1" class="contents">
+			<div id="first-navbar-logo">
+				<a href="<c:url value="/index.do"/>">Nbbang</a>
+			</div>
+			<div id="first-navbar-login">
+				<a href="<c:url value='/login.do'/>">로그인</a>
+			</div>
+			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first01.jpg"/>
+		</div>
+		<div id="contents2" class="contents">
+			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first02.jpg"/>
+		</div>
+		<div id="contents3" class="contents">
+			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first03.jpg"/>
+		</div>
+		<div id="contents4" class="contents">
+			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first04.jpg"/>
+		</div>
+		<div id="contents5" class="contents">
+			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first05.jpg"/>
+		</div>
 		
 		<!--버튼영역-->
-			<div class="circle">
-			  <nav>
+		<div class="circle">
+			 <nav>
 			     <div id="circle1">
 				  <a href="#contents1">
 				   <img src="<%=request.getContextPath()%>/resources/first/img/circle1.png" width="33" height="35" border="0" alt="#"></a>
@@ -148,7 +175,7 @@
 				  <a href="#contents5"><img src="<%=request.getContextPath()%>/resources/first/img/circle5.png" width="33" height="35" border="0" alt="#"></a>
 				  </div>
 			  </nav>
-			</div>
+		</div>
 	</div>
 	
 		<!--footer-->

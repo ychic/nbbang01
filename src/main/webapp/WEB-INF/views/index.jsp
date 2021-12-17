@@ -6,9 +6,9 @@
 <jsp:include page="/WEB-INF/views/template/Top.jsp"/>
 <!-- 상단메뉴 끝 -->
 		
+		<!-- carousel 영역 -->
 			<section id="nino-slider" class="carousel slide container" data-ride="carousel">
 				
-				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
 						<h2 class="nino-sectionHeading">

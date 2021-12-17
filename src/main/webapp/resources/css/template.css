@@ -43,7 +43,7 @@ a {
 			transition: all .3s ease-in-out;
 }
 a:hover {
-	color: #666;
+	/*color: #666;*/
 	text-decoration: none;
 }
 a:active {

@@ -42,12 +42,10 @@
 	  border: none;
 	  cursor: pointer;
 	}
-	
 	.dropdown {
 	  position: relative;
 	  display: inline-block;
 	}
-	
 	.dropdown-content {
 	  display: none;
 	  position: absolute;
@@ -57,23 +55,19 @@
 	  z-index: 1;
 	  border-radius: 15px;
 	}
-	
 	.dropdown-content a {
 	  color: black;
 	  padding: 12px 16px;
 	  text-decoration: none;
 	  display: block;
 	}
-	
 	.dropdown-content a:hover {
 		background-color: #95e1d3;
 		border-radius: 15px;
 	}
-	
 	.dropdown:hover .dropdown-content {
 	  display: block;
 	}
-	
 	.dropdown:hover .dropbtn {
 	  color: #fce38a;
 	  border-color: #fce38a;
@@ -117,7 +111,7 @@
 									  </div>
 								</li>
 								<li class="dropdown">
-									<a class="dropbtn" onclick="location.href='schedule.do'">My</a>
+									<a class="dropbtn" onclick="location.href='managing.do'">My</a>
 									  <div class="dropdown-content">
 									    <a onclick="location.href='mySub.do'">my구독</a>
 									    <a onclick="location.href='mySchedule.do'">my스케쥴</a>
