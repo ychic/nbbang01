@@ -107,7 +107,7 @@
 									<a class="dropbtn" onclick="location.href='party.do'">파티</a>
 									  <div class="dropdown-content">
 									    <a onclick="location.href='partyBbs.do'">파티원 구하기</a>
-									    <a href="#">채팅</a>
+									    <a onclick="location.href='partyChat.do'">채팅</a>
 									  </div>
 								</li>
 								<li class="dropdown">
