@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+	</div>
+</header>
 <div class="container">
 	<div class="page-header">
 		<h1>PartyBbs.jsp <small>파티원구하는 게시판</small></h1>

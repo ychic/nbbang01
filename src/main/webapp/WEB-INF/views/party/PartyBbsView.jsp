@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+	</div>
+</header>
 <div class="container">
 	<div class="page-header">
 		<h1>PartyBbsView.jsp <small>게시판 상세</small></h1>
