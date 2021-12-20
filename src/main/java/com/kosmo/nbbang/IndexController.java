@@ -46,6 +46,11 @@ public class IndexController {
 	public String partyBbs() {
 		return "party/PartyBbs.tiles";
 	}
+	//파티원 상세
+	@RequestMapping("/partyBbsView.do")
+	public String partyBbsView() {
+		return "party/PartyBbsView.tiles";
+	}
 	
 	
 	
