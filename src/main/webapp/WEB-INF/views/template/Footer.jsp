@@ -2,7 +2,19 @@
     pageEncoding="UTF-8"%>
 <!-- Footer
     ================================================== -->
+    <footer id="footer">
+        <div class="container">
+        	<div class="row">
+        		<div class="col-md-4 col-sm-6">
+        		</div>
+        	</div>
+			<div class="nino-copyright">Copyright &copy; 2021 <a style="color:black;">Nbbang.com</a>. All Rights Reserved. <br/> by 강현수 | 김수연 | 김준형 | 김형태 | 박재현 | 정윤식 | 최주원 | 황태환</div>
+        </div>
+    </footer><!--푸터수정버전-->
     
+    
+    <!--푸터수정 전-->
+    <!-- 
     <footer id="footer">
         <div class="container">
         	<div class="row">
@@ -89,7 +101,7 @@
         	</div>
 			<div class="nino-copyright">Copyright &copy; 2016 <a target="_blank" href="http://www.ninodezign.com/" title="Ninodezign.com - Top quality open source resources for web developer and web designer">Ninodezign.com</a>. All Rights Reserved. <br/> MoGo free PSD template by <a href="https://www.behance.net/laaqiq">Laaqiq</a></div>
         </div>
-    </footer><!--/#footer-->
+    </footer> --><!--/#footer-->
 
     <!-- Search Form - Display when click magnify icon in menu
     ================================================== -->

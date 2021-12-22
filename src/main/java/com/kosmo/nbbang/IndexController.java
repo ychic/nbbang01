@@ -15,18 +15,17 @@ public class IndexController {
 	public String handlerMapping() {
 		return "index.tiles";
 	}
-	//관리자 첫 화면
-	@RequestMapping("/admin.do")
-	public String admin() {
-		return "admin";
-	}
-	
 	
 	
 	//로그인
 	@RequestMapping("/login.do")
 	public String login() {
 		return "auth/login/Login";
+	}
+	//찾기
+	@RequestMapping("/findmember.do")
+	public String findmember() {
+		return "auth/login/FindMember";
 	}
 	//회원가입
 	@RequestMapping("/signup.do")
@@ -94,15 +93,27 @@ public class IndexController {
 	}
 	
 	
-	
-	
-	
 	//가이드
 	@RequestMapping("/guide.do")
 	public String guide() {
 		return "guide/GuideMain.tiles";
 	}
 	
+	
+	//===============admin
+	//관리자 첫 화면
+	@RequestMapping("/admin.do")
+	public String admin() {
+		return "admin/AdminMain";
+	}
+	@RequestMapping("/adminmember.do")
+	public String adminMember() {
+		return "admin/AdminMember";
+	}
+	@RequestMapping("/adminparty.do")
+	public String adminParty() {
+		return "admin/AdminParty";
+	}
 	
 	
 }//IndexController

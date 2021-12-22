@@ -32,7 +32,7 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/prettyPhoto.css" />
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/unslider.css" />
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/template.css" />
-	
+	<script src="<c:url value="/resources/js/JQuery_js/jquery-3.6.0.min.js"/>"></script>
 </head>
 <style>
 	.dropbtn {
@@ -76,7 +76,30 @@
 	.guide_menu, .login_menu{
 		float:right;
 	}
-</style>
+</style> 
+
+<!-- modal 시작 -->
+<div class="modal" id="small-modal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">로그아웃 확인창</h5>
+					<span aria-hidden="true"></span>
+			</div>
+			<div class="modal-body">
+				<p>정말 로그아웃 하시겠습니까?</p>
+			</div>
+			<div class="modal-footer">
+				<a href="<c:url value='memberlogout.do'/>">
+					<button type="button" id="savebutton" class="btn btn-primary">로그아웃</button>
+				</a>
+				<button type="button" id="closebutton" class="btn btn-secondary"
+					data-bs-dismiss="small-modal" >취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- modal 끝 -->
 <body data-target="#nino-navbar" data-spy="scroll">
 
 	<!-- Header
@@ -95,9 +118,13 @@
 							<span class="icon-bar"></span>
 						</button>
 						<a class="navbar-brand" href="<c:url value="/index.do"/>" >Nbbang</a>
+						<a class="navbar-brand" href="#" >${isLoginMessage}</a>
 					</div>
 					
+					
 					<!-- Collect the nav links, forms, and other content for toggling -->
+					<c:if test="${not empty sessionScope.email}" var="isLogin">
+			
 					<div class="nino-menuItem pull-right">
 						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
 							<ul class="nav navbar-nav">
@@ -125,17 +152,41 @@
 									    <a onclick="location.href='recommandBbs.do'">추천게시판</a>
 									  </div>
 								</li>
-								<li class="login_menu" style="float:right"><a id="login" href="<c:url value='/auth/login.do'/>">로그인</a></li>
-								<li class="guide_menu" style="float:right"><a id="guide" href="<c:url value='/guide.do'/>">가이드</a></li>
-								
+								<li class="login_menu" style="float:right">
+									<a id="memberlogout" >로그아웃</a></li>
+								<li class="guide_menu" style="float:right">
+									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a></li>
 							</ul>							
 						</div><!-- /.navbar-collapse -->
+						
+						
 						<ul class="nino-iconsGroup nav navbar-nav">
-							
 							<li><a href="#" class="nino-search"><i class="mdi mdi-magnify nino-icon"></i></a></li>
 						</ul>
 					</div>
+					</c:if>
+					<c:if test="${not isLogin }">
+					로그인부터 하세요${sessionScope.email}${sessionScope.password}
+					</c:if>
+					
 				</div><!-- /.container-fluid -->
 			</nav>
 			
+			
+	<script>
 		
+		$(function(){
+			
+			$('#memberlogout').on('click',function(){
+				$('#small-modal').css('display','block');
+			});
+			
+			
+			$('#closebutton').on('click',function(){
+				$('#small-modal').css('display','none');
+			});
+			
+		});
+		
+	
+	</script>

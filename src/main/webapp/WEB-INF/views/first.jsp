@@ -7,7 +7,7 @@
 <html lang="ko">
  <head>
   <meta charset="UTF-8">
-  <title>nbbangOnePage</title>
+  <title>Nbbang | The new Wave of Subscription</title>
   
   	<!-- css -->
 	<link href="<%=request.getContextPath()%>/resources/loginmodal/assets/css/bootstrap.css" rel="stylesheet" />
@@ -68,6 +68,26 @@
 	 	line-height: 50px;
 	 	z-index: 1;
 	 }
+	 #inner-word{
+	 	position: absolute;
+	 	z-index: 1;
+	 	text-align:center;
+	 	width:100%;
+	 	display:block;
+	 	top: 50%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+	 }
+	 h3{
+	 	color:#fff;
+	 	font-size: 40px;
+	 	font-weight:bold;
+	 }
+	 h4{
+	 	color:#fff;
+	 	font-size: 25px;
+	 	font-weight:bold;
+	 }
 	 .contents{
 	 	position: relative;
 	 }
@@ -92,27 +112,11 @@
 	 #circle4{margin-top:13px;}
 	 #circle5{margin-top:13px;}
 	
-	/*푸터영역*/
 	#footer{ 
-		width:100%; 
-		height:100px; 
-		background: rgba(241, 114, 114, 0.96);
-		color:#fff;
+		background: #f8f8f8;
+		color:#999999;
 	}
-	#company{
-		font-size:15px; 
-		font-weight:bold; 
-		text-align:left; 
-		margin-left:700px;
-	}
-	#companyInfo{
-		text-align:center; 
-		margin-left:450px; 
-		margin-top:13px; 
-		font-size:12px; 
-		font-weight:800; 
-		padding-bottom:2px; 
-	}
+	
 </style>
 <script type="text/javascript">
  
@@ -129,24 +133,44 @@
   <div id ="wrap">
 	<div class="onepage">
 		<div id="contents1" class="contents">
+			<div id="inner-word">
+				<h3>세상의 수많은 구독 서비스들을 손쉽게 관리하세요.</h3>
+				<h4>이체 일정 및 알림 설정으로 잊지말고 챙기세요.</h4>
+			</div>
 			<div id="first-navbar-logo">
 				<a href="<c:url value="/index.do"/>">Nbbang</a>
 			</div>
 			<div id="first-navbar-login">
 				<a href="<c:url value='/login.do'/>">로그인</a>
 			</div>
-			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first01.jpg"/>
+			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first06.jpg"/>
 		</div>
 		<div id="contents2" class="contents">
+			<div id="inner-word">
+				<h3>구독료가 부담이신가요? 엔빵에서 구독료를 나눠낼 친구를 찾으세요.</h3>
+				<h4>매달 나가는 구독료를 아껴도 충분히 즐길 수 있습니다.</h4>
+			</div>
 			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first02.jpg"/>
 		</div>
 		<div id="contents3" class="contents">
+			<div id="inner-word">
+				<h3>요즘 유행하는 드라마,영화가 궁금하시다고요? 추천 기능으로 정보를 얻으세요.</h3>
+				<h4>엔빵 회원들이 추천하는 작품도 감상하세요.</h4>
+			</div>
 			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first03.jpg"/>
 		</div>
 		<div id="contents4" class="contents">
+			<div id="inner-word">
+				<h3>세상의 수많은 구독 서비스들을 손쉽게 관리하세요.</h3>
+				<h4>이체 일정 및 알림 설정으로 잊지말고 챙기세요.</h4>
+			</div>
 			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first04.jpg"/>
 		</div>
 		<div id="contents5" class="contents">
+			<div id="inner-word">
+				<h3>구독료가 부담이신가요? 엔빵에서 구독료를 나눠낼 친구를 찾으세요.</h3>
+				<h4>매달 나가는 구독료를 아껴도 충분히 즐길 수 있습니다.</h4>
+			</div>
 			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first05.jpg"/>
 		</div>
 		
@@ -179,11 +203,20 @@
 	</div>
 	
 		<!--footer-->
-		<div id="footer">
-			<span id="company">주식회사 엔빵</span></br>
-			<span id="companyInfo">대표: 강현수,김수연,김준형,김형태,박재현,정윤식,최주원,황태환 | 주소: 서울시 금천구 가산동 426-5 월드메르디앙 2차 413호</span></br>
-			<span id="companyInfo">통신 판매번호: 2021-서울금천-03031 | 사업자 등록번호: 108-22-10101 | 제휴 문의: kosmo@nbbang.com</span></br>
-		</div>
+		<footer id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-6"></div>
+				</div>
+				<div class="nino-copyright">
+					Copyright &copy; 2021 <a style="color:black;">Nbbang.com</a>.
+					All Rights Reserved. <br /> by 강현수 | 김수연 | 김준형 | 김형태 | 박재현 | 정윤식 |
+					최주원 | 황태환
+				</div>
+			</div>
+		</footer>
+		<!--푸터수정버전-->
+
 	</div>
  </body>
 </html>

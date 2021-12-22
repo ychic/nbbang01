@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>로그인</title>
+  	<title>회원정보 찾기</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
@@ -13,8 +13,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/first/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="<c:url value="/resources/js/JQuery_js/jquery-3.6.0.min.js"/>"></script>
 	<!-- font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,6 +59,24 @@
 	 }
 </style>
 
+<!-- modal 시작 -->
+<div class="modal" id="small-modal">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">이메일 찾기</h5>
+					<span aria-hidden="true"></span>
+			</div>
+			<div class="modal-body">
+				<p>당신의 이메일 주소는 ${findMemberEmail} 입니다.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="okbutton" class="btn btn-secondary" data-bs-dismiss="small-modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- modal 끝 -->
 
 <body class="img js-fullheight" style="background-image: url(resources/login/images/bg.jpg);">
 	<div class="contents">
@@ -73,40 +91,28 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Login</h2>
+					<h2 class="heading-section">Find your E-mail</h2>
 				</div>
 			</div>
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
+					
 						<span>${errorMessage}</span>
+						
 						<!-- 로그인 영역 -->
-						<form action="<c:url value='/memberlogin.do'/>" class="signin-form">
+						<form action="#" class="signin-form">
 							<div class="form-group">
-								<input type="text" class="form-control" name="email"
-									placeholder="example@google.com" required>
+								<input type="text" class="form-control" name="name" placeholder="이름" required>
 							</div>
 							<div class="form-group">
-								<input id="password-field" type="password" class="form-control"
-									name="password" placeholder="비밀번호" required> <span
-									toggle="#password-field"
-									class="fa fa-fw fa-eye field-icon toggle-password"></span>
+								<input type="text" class="form-control"
+									name="tel" placeholder="전화번호" required>
 							</div>
 							<div class="form-group">
-								<button type="submit"
-									class="form-control btn btn-primary submit px-3">로그인</button>
-							</div>
-							<div class="form-group d-md-flex">
-								<div class="w-50">
-									<label class="checkbox-wrap checkbox-primary">Remember
-										Me <input type="checkbox" checked> <span
-										class="checkmark"></span>
-									</label>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="<c:url value='/findmember.do'/>" style="color: #fff">비밀번호를 잊으셨나요?</a>
-								</div>
+								<button type="submit" id="btnFind"
+									class="form-control btn btn-primary submit px-3">찾 기</button>
 							</div>
 						</form>
 						
@@ -118,20 +124,34 @@
 								<a href="#" class="px-2 py-2 ml-md-1 rounded"><span
 								class="ion-logo-twitter mr-2"></span> Goolge</a>
 						</div>
-						<!-- 소셜 로그인 아래 아이콘으로 대체 가능 -->
-						<!-- 
-				          <p class="social-media d-flex justify-content-center">
-							<a href="#" class="social-icon google d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a>
-							<a href="#" class="social-icon facebook d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-							<a href="#" class="social-icon twitter d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-						  </p>
-						   -->
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
+	
+	<script>
+		
+		$(function(){
+			
+			$('#btnFind').on('click',function(){
+				
+				//만약 일치하는 정보가 있다면 아래 코드 실행 (모달창 띄움)
+				$('#small-modal').css('display','block');
+				
+				//없다면 모달 띄우지 말고 페이지에 없다는 알림 
+			});
+			
+			
+			$('#okbutton').on('click',function(){
+				$('#small-modal').css('display','none');
+			});
+			
+		});
+		
+	
+	</script>
 </body>
 </html>
 
