@@ -50,6 +50,11 @@ public class IndexController {
 	public String partyBbsView() {
 		return "party/PartyBbsView.tiles";
 	}
+	//파티 채팅
+	@RequestMapping("/partyChat.do")
+	public String partyChat() {
+		return "party/PartyChat.tiles";
+	}
 	
 	
 	

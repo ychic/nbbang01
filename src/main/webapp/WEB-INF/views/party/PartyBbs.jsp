@@ -4,7 +4,7 @@
 </header>
 <div class="container">
 	<div class="page-header">
-		<h1>PartyBbs.jsp <small>파티원구하는 게시판</small></h1>
+		<h1>PartyBbs.jsp <small>수정 테스트 파티원구하는 게시판</small></h1>
 	</div>
 
 	<fieldset style="width: 100%; padding: 0px 20px;">
