@@ -20,6 +20,7 @@ public class IndexController {
 	//로그인
 	@RequestMapping("/login.do")
 	public String login() {
+	
 		return "auth/login/Login";
 	}
 	//찾기
