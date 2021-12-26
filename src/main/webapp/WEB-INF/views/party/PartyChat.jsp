@@ -53,7 +53,7 @@
 				</div>
 				<div class="col-md-9">
 					<h4>1. Middle aligned media</h4>					
-					<h4>Middle aligned media</h4>
+					<h4>Middle aligned mediaa</h4>
 				</div>
 			</div>
 			<div class="col-md-12">
