@@ -8,4 +8,4 @@
 &lt;Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxIdle="20" maxTotal="20" name="a?" username="db이름" password="db비번" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:xe"&gt;
 추가하시면 JNDI오류 해결될것입니다
 # nbbang01/src/main/resources/admin/resource/jndi.properties
-jndiname = 
+jndiname = a?
