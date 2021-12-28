@@ -28,6 +28,9 @@ public class LoginNoutController {
 			model.addAllAttributes(map);
 			model.addAttribute("isLoginMessage", map.get("email")+"님 환영합니다 :)");
 			return "index";	
+		} else if("admin".equals(map.get("email")) && "1234".equals(map.get("password"))) {
+			model.addAllAttributes(map);
+			return "admin/AdminMain";	
 		}
 		else {
 			model.addAttribute("errorMessage", "이메일과 비밀번호가 일치하지 않습니다.");

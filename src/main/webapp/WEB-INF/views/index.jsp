@@ -680,7 +680,7 @@
     <!-- Unique Design
     ================================================== -->
     
-    <section id="nino-uniqueDesign">
+    <!--<section id="nino-uniqueDesign">
     	<div class="container">
     		<h2 class="nino-sectionHeading">
 				<span class="nino-subHeading">For all devices</span>
@@ -693,7 +693,7 @@
 				</div>
 			</div>
     	</div>
-    </section><!--/#nino-uniqueDesign-->
+    </section>/#nino-uniqueDesign-->
 
     <!-- What We Do
     ================================================== -->
@@ -701,12 +701,9 @@
     <section id="nino-whatWeDo">
     	<div class="container">
     		<h2 class="nino-sectionHeading">
-				<span class="nino-subHeading">Service</span>
-				what we do
+				<span class="nino-subHeading">Guide</span>
+				HOW TO USE
 			</h2>
-			<p class="nino-sectionDesc">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-			</p>
 			<div class="sectionContent">
 				<div class="row">
 					<div class="col-md-6">
@@ -722,7 +719,7 @@
 										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 											<i class="mdi mdi-chevron-up nino-icon arrow"></i>
 											<i class="mdi mdi-camera nino-icon"></i> 
-											Photography
+											자주묻는질문1
 										</a>
 									</h4>
 								</div>
@@ -738,7 +735,7 @@
 										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 											<i class="mdi mdi-chevron-up nino-icon arrow"></i>
 											<i class="mdi mdi-owl nino-icon"></i> 
-											creativity
+											자주묻는질문2
 										</a>
 									</h4>
 								</div>
@@ -754,7 +751,7 @@
 										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 											<i class="mdi mdi-chevron-up nino-icon arrow"></i>
 											<i class="mdi mdi-laptop-mac nino-icon"></i> 
-											web design
+											자주묻는질문3
 										</a>
 									</h4>
 								</div>

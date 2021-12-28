@@ -46,7 +46,41 @@ var myPieChart2 = new Chart(ctx, {
     labels: ["여성", "남성"],
     datasets: [{
       data: [70, 30],
-      backgroundColor: ['#9561e2', '#f66d9b'],
+      backgroundColor: ['#36b9cc', '#5a5c69'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+
+
+// Pie Chart Example3-ott
+var ctx = document.getElementById("myPieChart3");
+var myPieChart3 = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["왓챠", "티빙", "디즈니", "웨이브", "넷플릭스", "라프텔"],
+    datasets: [{
+      data: [5,20,30,10,30,5],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'],
       hoverBackgroundColor: ['#2e59d9', '#17a673'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],

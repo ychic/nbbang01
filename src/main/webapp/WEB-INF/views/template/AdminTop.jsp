@@ -68,24 +68,21 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>구독서비스</span>
+                    <span>채팅</span>
                 </a>
             </li>
-
+			
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>게시판</span>
+                    <span>신고</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">게시판 관리:</h6>
-                        <a class="collapse-item" href="<c:url value='/adminparty.do'/>">파티원</a>
-                        <a class="collapse-item" href="register.html">추천</a>
-                        <a class="collapse-item" href="forgot-password.html">채팅</a>
-                        <a class="collapse-item" href="blank.html">신고</a>
+                        <h6 class="collapse-header">신고 관리:</h6>
+                        <a class="collapse-item" href="<c:url value='/adminWarning.do'/>">회원 및 게시물</a>
                     </div>
                 </div>
             </li>

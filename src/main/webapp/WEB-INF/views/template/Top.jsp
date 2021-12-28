@@ -120,7 +120,6 @@
 							<span class="icon-bar"></span>
 						</button>
 						<a class="navbar-brand" href="<c:url value="/index.do"/>" >Nbbang</a>
-						<a class="navbar-brand" href="#" >${isLoginMessage}</a>
 					</div>
 					
 					
@@ -160,6 +159,7 @@
 								<li class="guide_menu" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a></li>
 							</ul>							
+							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif;">${isLoginMessage}</a>
 						</div><!-- /.navbar-collapse -->
 						
 						

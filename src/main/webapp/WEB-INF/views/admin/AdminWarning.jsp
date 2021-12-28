@@ -64,7 +64,7 @@
                                             <td>$320,800</td>
                                             <td>$320,800</td>
                                             <td>0</td>
-                                            <td><a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
+                                            <td><a href="<c:url value='/stopMember.do'/>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>Garrett Winters</td>
@@ -77,7 +77,7 @@
                                             <td>$170,750</td>
                                             <td>$320,800</td>
                                             <td>0</td>
-                                            <td><a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
+                                            <td><a href="<c:url value='/stopMember.do'/> class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
