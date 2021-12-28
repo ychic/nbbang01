@@ -125,10 +125,10 @@ public class IndexController {
 	public String admin() {
 		return "admin/AdminMain";
 	}
-	@RequestMapping("/adminmember.do")
+	/*@RequestMapping("/adminmember.do")
 	public String adminMember() {
 		return "admin/AdminMember";
-	}
+	}*/
 	@RequestMapping("/adminWarning.do")
 	public String adminParty() {
 		return "admin/AdminWarning";
