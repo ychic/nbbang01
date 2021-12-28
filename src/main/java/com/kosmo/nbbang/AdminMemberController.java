@@ -16,6 +16,14 @@ public class AdminMemberController {
 	@RequestMapping("/adminmember.do")
 	public String adminMember(Model model) {
 		List<AdminMemberDTO> list = adminMemberService.selectAllMember();
+		for(AdminMemberDTO dto : list) {
+			System.out.println(dto.getEmail());
+			System.out.println(dto.getAuthority());
+			System.out.println(dto.getNickname());
+			System.out.println(dto.getName());
+			System.out.println(dto.getRegistdate());
+			System.out.println(dto.getTel());
+		}
 		return "admin/AdminMember";
 	}
 }

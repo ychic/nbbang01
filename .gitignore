@@ -52,7 +52,6 @@ buildNumber.properties
 .classpath
 
 #security
-root-context.xml
-configuration.xml
+.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven
