@@ -145,6 +145,8 @@
 									    <a onclick="location.href='mySchedule.do'">my스케쥴</a>
 									    <a onclick="location.href='myReport.do'">my리포트</a>
 									    <a onclick="location.href='myParty.do'">my파티</a>
+									    <a onclick="location.href='myAccounts.do'">내 계좌 조회</a>
+									    <a onclick="location.href='databaseTest.do'">db test용</a>
 									  </div>
 								</li>
 								<li class="dropdown">

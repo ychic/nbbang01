@@ -84,6 +84,16 @@ public class IndexController {
 	public String myReport() {
 		return "schedule/MyReport.tiles";
 	}
+	//내 계좌조회
+	@RequestMapping("/myAccounts.do")
+	public String myAccounts() {
+		return "schedule/MyAccounts.tiles";
+	}
+	//db test
+	@RequestMapping("/databaseTest.do")
+	public String databaseTest() {
+		return "schedule/DBTest.tiles";
+	}
 	
 	
 	
@@ -132,6 +142,10 @@ public class IndexController {
 	@RequestMapping("/adminWarning.do")
 	public String adminParty() {
 		return "admin/AdminWarning";
+	}
+	@RequestMapping("/adminOneByOne.do")
+	public String adminOneByOne() {
+		return "admin/AdminOneByOne";
 	}
 	
 	

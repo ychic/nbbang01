@@ -1,0 +1,45 @@
+
+	# DB 연결
+	
+	1. cmd에서  username: NBBANG , password: NBBANG 로 새 계정 만들기
+		> sqlplus system/kosmo1234
+		> CREATE USER NBBANG IDENTIFIED BY NBBANG;
+		> GRANT CONNECT,RESOURCE TO NBBANG;
+		> CONN NBBANG/NBBANG  : 잘 생성됐는지 확인
+		
+		
+	
+	2. Servers의 엔빵 서버 
+		- context.xml : <Context> 안에 아래 코드 추가
+		
+		<ResourceLink global="maven"
+	 					name="maven"
+	 					type="javax.sql.DataSource"/>
+	 					
+	 	- server.xml : <GlobalNamingResources> 안에 아래 코드 추가
+	 	
+	 	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxIdle="20" maxTotal="20" name="maven" password="NBBANG" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="NBBANG"/>
+	 	
+	 
+	 
+	 3. DB 연결 확인 
+	 	- 상단바 my메뉴 -> db test 클릭 -> 링크 두개 각각 클릭해서 jdbc,jndi 연결됐는지 확인 (연결 성공 떠야함)
+		 3-1. 안되시는 분들은 git에 현수님이 추가한 readme확인
+		 3-2. properties로 추후에 수정
+	 
+	 
+	 
+	 4. 현수님이 카톡방에 올린 nbbang.sql 저장 -> 본인 오라클에 계정 연동해 놓고 CREATE TABLE하기 
+	 	4-1. 본인이 필요한 테이블만 CREATE하고 점차 영역 넓히기.. 혹시 모르니..
+	 
+	 
+	 5. 테이블에 데이터 추가시 TableData  파일에 꼭 추가하여 공유하기 
+	 
+	 
+	 
+	<아래는 수정해서 push함>
+	- pom.xml : JDBC 라이브러리 추가 완료
+	- root-context : 빈 추가 완료(jdbc/jndi)
+	
+	
+	
