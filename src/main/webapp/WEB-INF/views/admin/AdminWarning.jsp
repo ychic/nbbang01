@@ -54,30 +54,30 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <td>1</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                            <td>0</td>
+                                            <td>KIM@naver.com</td>
+                                            <td>KIM</td>
+                                            <td>킴캡짱</td>
+                                            <td>1992-09-01</td>
+                                            <td>남자</td>
+                                            <td>010-1111-1111</td>
+                                            <td>Direct</td>
+                                            <td>넷플릭스,밀리의 서재</td>
+                                            <td>2021-12-02</td>
+                                            <td>3</td>
                                             <td><a href="<c:url value='/stopMember.do'/>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                            <td>$170,750</td>
-                                            <td>$320,800</td>
-                                            <td>0</td>
-                                            <td><a href="<c:url value='/stopMember.do'/> class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
+                                            <td>KIM@naver.com</td>
+                                            <td>KIM</td>
+                                            <td>킴캡짱</td>
+                                            <td>1992-09-01</td>
+                                            <td>남자</td>
+                                            <td>010-1111-1111</td>
+                                            <td>Direct</td>
+                                            <td>넷플릭스,밀리의 서재</td>
+                                            <td>2021-12-02</td>
+                                            <td>3</td>
+                                            <td><a href="<c:url value='/stopMember.do'/>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
