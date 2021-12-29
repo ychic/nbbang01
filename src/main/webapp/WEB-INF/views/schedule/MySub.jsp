@@ -3,6 +3,7 @@
 
 </div>
 </header>
+
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>	
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/isotope.pkgd.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.prettyPhoto.js"></script>
@@ -13,245 +14,287 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/unslider-min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/template.js"></script>
 	
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
-<script>
-		//생년월일 달력
-		$(function(){
-			 var date = new Date();
-			 $("#datepicker").datepicker({
-				dateFormat:"yy년 mm월 dd일",
-				showOtherMonths: true,
-				monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-		        showMonthAfterYear: true,
-		        yearSuffix: '년',
-				buttonImage: "resources/images/calendar.png",
-				buttonText:"생년월일 선택",
-				showOn:"both",
-				buttonImageOnly:true,
-				changeMonth: true,
-			    changeYear: true,
-			    showButtonPanel: true
-			});	
-			$('.ui-datepicker-trigger').css({height:'30px', cursor: 'Pointer'});
-		});
-		
-</script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<!-- jQuery사용을 위한 라이브러리 임베딩-->
+	<!-- 1]다운받은  .js파일 임베디드 -->
+	<!--  
+	<script src="<c:url value="/js/jquery-3.6.0.min.js"/>"></script>
+	-->
+	<!-- 2]CDN(Content Deliver Network)주소 사용 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<!--  
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+-->
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="row">
+				<div class="col-sm-12"></div>
+				<div class="col-sm-10">
+					<div class="list-group">
+					   <a href="#" class="list-group-item active">Folder</a>
+					   
+					   <a href="#" class="list-group-item">
+					   
+					   <form id="frmFldrName">
+					   <input type="text" name="folderName" style="border: none; width: 110px;" placeholder="New" >
+					   <span class="glyphicon glyphicon-plus" id="btnNwFldr" aria-hidden="true" style="padding-left: 40px"></span>
+					   </form>
+					   </a>
+					   
+					   <!--  sample data--> 
+					   
+					   <a href="#" class="list-group-item" id="dFolder1">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span>Game</span><span class="badge bg-primary rounded-pill">14</span></a>
+					   
+						   <a href="#" class="list-group-item" style="background-color: silver">
+							   <div class="row">
+							   	 <div class="col-sm-4" style="background-color: blue;"><button type="button" class="btn btn-primary">완료</button></div>
+							   	 <div class="col-sm-4" style="background-color: gold;"><button type="button" class="btn btn-danger">삭제</button></div>
+							   	 <div class="col-sm-4" style="background-color: lime;"><button type="button" class="btn btn-warning">수정</button></div>
+							   </div>
+							  
+						   </a>
+					   
+					   		
+					   <a href="#" class="list-group-item" id="dFolder2" style="width: ">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span>Watch</span><span class="badge bg-primary rounded-pill">3</span></a>
+					   <a href="#" class="list-group-item" id="dFolder3">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span>Life</span><span class="badge bg-primary rounded-pill">7</span></a>
+					   <!-- ----------folderOption -->
+					   <a href="#" class="list-group-item" id="hidFldr1" style="visibility: hidden;">
+					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span id="firF">new1</span><span class="badge bg-primary rounded-pill">0</span></a>
+					   
+					   <a href="#" class="list-group-item" id="hidFldr2" style="visibility: hidden;">
+					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span id="secF">new1</span><span class="badge bg-primary rounded-pill">0</span></a>
+					   		
+					   <a href="#" class="list-group-item" id="hidFldr3" style="visibility: hidden;">
+					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span id="thrF">new1</span><span class="badge bg-primary rounded-pill">0</span></a>
+					   		
+					   <a href="#" class="list-group-item" id="hidFldr4" style="visibility: hidden;">
+					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span id="forF">new1</span><span class="badge bg-primary rounded-pill">0</span></a>
+					   		
+					   <a href="#" class="list-group-item" id="hidFldr5" style="visibility: hidden;">
+					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		<span id="fifF">new1</span><span class="badge bg-primary rounded-pill">0</span></a>
+					   
+					   <script>
+							//function fnNwFldr() {
+								//visible	
+							//return console.log("ok");
+							//}
+							var fCount=0;
+							if(fCount<5){
+								$('#btnNwFldr').click(function(){
+									$.ajax({
+										url:"<c:url value='/mysub/Newfolder.do'/>",
+										type:"post",
+										dataType:"text",
+										data:$('#frmFldrName').serialize(),
+										success:function(data){
+											console.log('서버로부터 받은 데이터:',data);
+											switch(fCount){
+											case 0:
+												$('#hidFldr1').css('visibility','visible'); fCount++;
+												$('#firF').text(data);
+												break;
+											case 1:
+												$('#hidFldr2').css('visibility','visible'); fCount++;
+												$('#secF').text(data);
+												break;
+											case 2:
+												$('#hidFldr3').css('visibility','visible'); fCount++;
+												$('#thrF').text(data);
+												break;
+											case 3:
+												$('#hidFldr4').css('visibility','visible'); fCount++;
+												$('#forF').text(data);
+												break;
+											case 4:
+												$('#hidFldr5').css('visibility','visible'); fCount++;
+												$('#fifF').text(data);
+												break;
+											default: alert( '폴더수가 최대입니다' );
+											}
+										},
+										error:function(){
+											console.log('에러:',error.responseText);
+										}
+									});
+								});
+							}
+							else{
+								 alert( '폴더수가 최대입니다' );
+							}
+						</script>
+					   <!--  sample data
+					   <a href="#" class="list-group-item">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		Game<span class="badge bg-primary rounded-pill">14</span></a>
+					   <a href="#" class="list-group-item">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		Watch & Listen<span class="badge bg-primary rounded-pill">3</span></a>
+					   <a href="#" class="list-group-item">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		Life<span class="badge bg-primary rounded-pill">7</span></a>
+					   	-->
 
-<!-- https://codepen.io/blcveen/pen/jwMdrX -->
-<div id="viewport">
-  <!-- Sidebar -->
-  <div id="sidebar">
-    <header>
-      <a href="#">Folders</a>
-    </header>
-    <ul class="nav">
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-view-dashboard"></i> Watch
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-link"></i> Game
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-widgets"></i> Movie
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-calendar"></i> Music
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-info-outline"></i> life
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-settings"></i> Services
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-comment-more"></i> New
-        </a>
-      </li>
-    </ul>
-  </div>
-  <!-- Content -->
-  <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
-            </a>
-          </li>
-          <li>
-			          	<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">New</button>
-			
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="exampleModalLabel">New</h4>
-			      </div>
-			      <div class="modal-body">
-			        <form>
-			          <div class="form-group">
-			            <img src="..." alt="alt:로고이미지" class="img-thumbnail">
-			          </div>
-			          <div class="form-group">
-			            <label for="recipient-name" class="control-label">구독서비스명</label>
-			            <input type="text" class="form-control" id="recipient-name">
-			          </div>
-			          <div class="form-group">
-			            <label for="recipient-name" class="control-label">월 구독료</label>
-			            <input type="text" class="form-control" id="recipient-name">
-			          </div>
-			          
-			          <div class="form-group">
-			            <label for="message-text" class="control-label">메모</label>
-			            <textarea class="form-control" id="message-text"></textarea>
-			          </div>
-			           
-			        </form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-			        <button type="button" class="btn btn-primary">등록</button>
-			      </div>
-			    </div>
-			  </div>
+					   		<!--  
+					   <c:if test="">
+					   		<a href="#" class="list-group-item">
+					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   		new1<span class="badge bg-primary rounded-pill">0</span></a>
+					   </c:if>	-->
+
+					</div>
+				</div>
 			</div>
-          
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container-fluid">
-      <h1>Netflix</h1>
-      <p>
-        넷플릭스 
-        <code>#watch</code>.
-      </p>
-    </div>
-    <div class="container-fluid">
-      <h1>SpoTV</h1>
-      <p>
-        스포티비 
-        <code>#watch</code>.
-      </p>
-    </div>
-    <div class="container-fluid">
-      <h1>Watcha</h1>
-      <p>
-        왓챠 
-        <code>#watch</code>.
-      </p>
-    </div>
-    <div class="container-fluid">
-      <h1>Disney</h1>
-      <p>
-        디즈니 
-        <code>#watch</code>.
-      </p>
-    </div>
-  </div>
+		</div>
+		<div class="col-sm-9">
+			<div class="row">
+				<div class="col-sm-12 col-md-offset-11">
+				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub" style="background-color:#95E1D3;"><strong>+ New</strong></button>
+				<!-- 사용자 등록 Modal -->
+				<div class="modal fade" id="mdlNwSub" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
+				  	  <div class="modal-dialog">  
+		<!--		    <div class="modal-content">   -->
+						<div class="row">
+					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" ><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+					        <h3>Auto</h3></button>
+					        <button type="button" class=" mdlbtnManual col-md-6 btn-lg" ><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+					        <h3>Manual</h3></button>
+				      	</div>
+		<!--		    </div>-->
+					  </div>   
+				</div>
+				
+				</div>
+				<div class="col-sm-12">
+					<div class="row">
+						<table class="table table-hover" >
+						  <thead>
+						    <tr>
+						      <th class="col-sm-2" scope="col" >폴더 밸류(월)</th>
+						      <th class="col-sm-3" scope="col" >ex 120,000원</th>
+						      <th class="col-sm-3" scope="col" ></th>
+						      <th class="col-sm-3" scope="col" ></th>
+						      <th class="col-sm-1" scope="col" ></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr class="table-active">
+						      <td>로고</td>
+						      <td>서비스 명</td>
+						      <td>결제일</td>
+						      <td>결제 금액</td>
+						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+						    </tr>
+						    <tr>
+						      <td>로고</td>
+						      <td>서비스 명</td>
+						      <td>결제일</td>
+						      <td>결제 금액</td>
+						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+						    </tr>
+						    <tr>
+						      <td>로고</td>
+						      <td>서비스 명</td>
+						      <td>결제일</td>
+						      <td>결제 금액</td>
+						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+						    </tr>
+						  </tbody>
+						</table>
+						<!--  
+						<div class="col-sm-12" id="item_1" style="border: solid orange 1px">item_1</div>
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
-<style>
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
-
-body {
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+<script>
+function fnDelete(){
+	console.log('클릭');
 }
 
-/* Toggle Styles */
-
-#viewport {
-  padding-left: 250px;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-#content {
-  width: 100%;
-  position: relative;
-  margin-right: 0;
-}
-
-/* Sidebar Styles */
-
-#sidebar {
-  z-index: 1000;
-  position: fixed;
-  left: 250px;
-  width: 250px;
-  height: 100%;
-  margin-left: -250px;
-  overflow-y: auto;
-  background: #37474F;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-#sidebar header {
-  background-color: #263238;
-  font-size: 20px;
-  line-height: 52px;
-  text-align: center;
-}
-
-#sidebar header a {
-  color: #fff;
-  display: block;
-  text-decoration: none;
-}
-
-#sidebar header a:hover {
-  color: #fff;
-}
-
-#sidebar .nav{
-  
-}
-
-#sidebar .nav a{
-  background: none;
-  border-bottom: 1px solid #455A64;
-  color: #CFD8DC;
-  font-size: 14px;
-  padding: 16px 24px;
-}
-
-#sidebar .nav a:hover{
-  background: none;
-  color: #ECEFF1;
-}
-
-#sidebar .nav a i{
-  margin-right: 16px;
-}
-
-/*Modal Style*/
-
-</style>
+	//데이트피커
+	$( "#datepicker" ).datepicker();
+	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	//폴더옵션호버
+	$('#hidFldr1,#hidFldr2,#hidFldr3,#hidFldr4,#hidFldr5').hover(
+		function() {
+			$( this ).append( $( '<span class="glyphicon glyphicon-option-horizontal folderOption" aria-hidden="true" style="padding-left: 15px; color:aqua;"></span>' ) );
+		}, function() {
+			$( this ).find( "span" ).last().remove();
+	});
+	$('#dFolder1,#dFolder2,#dFolder3').hover(
+		function() {
+			$( this ).append( $( '<span class="glyphicon glyphicon-option-horizontal folderOption" aria-hidden="true" style="padding-left: 15px; color:aqua;"></span>' ) );
+		}, function() {
+			$( this ).find( "span" ).last().remove();
+	});
 	
-
+	/* $('.glyphicon-option-horizontal').click(function(){
+		console.log('클릭');
+		alert('수정하시겠습니까?');
+	}); */
+	
+	$(document).on("click",".folderOption",function(event){
+		console.log("클릭");
+		$(this).append($('<button type="button" class="btn btn-danger">Danger</button>')).off("click");
+		//미리 아이템 만들어놓고 보이기로 해야함.
+		//$('.folderOption').off("click");
+		//$( this ).off();
+	});
+	
+</script>
+<style>
+	#mdlNwSub{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+	.mdlbtnAuto{
+		width:300px;
+		height:300px;
+		font-style:black;
+		background-color: white;
+		border: none;
+	}
+	.mdlbtnManual{
+		width:300px;
+		height:300px;
+		font-style:black;
+		background-color: white;
+		border: none;
+	}
+	.mdlbtnAuto:hover{
+		background-color: #1CBFDB;
+		color: red;
+	}
+	.mdlbtnManual:hover{
+		background-color: gold;
+		color: red;
+	}
+	
+	
+</style>

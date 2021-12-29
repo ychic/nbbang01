@@ -58,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" onclick="location.href='adminmember.do'" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-folder"></i>
                     <span>회원정보</span>
                 </a>
             </li>
@@ -67,11 +67,18 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fas fa-fw fa-folder"></i>
                     <span>채팅</span>
                 </a>
             </li>
-			
+			<!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" onclick="location.href='adminOneByOne.do'" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities" >
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>1:1 문의</span>
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
