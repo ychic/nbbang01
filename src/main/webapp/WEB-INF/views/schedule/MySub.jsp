@@ -46,17 +46,29 @@
 					   </form>
 					   </a>
 					   
-					   <!--  sample data-->
-					   <a href="#" class="list-group-item">
+					   <!--  sample data--> 
+					   
+					   <a href="#" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   		Game<span class="badge bg-primary rounded-pill">14</span></a>
-					   <a href="#" class="list-group-item">
+					   		<span>Game</span><span class="badge bg-primary rounded-pill">14</span></a>
+					   
+						   <a href="#" class="list-group-item" style="background-color: silver">
+							   <div class="row">
+							   	 <div class="col-sm-4" style="background-color: blue;"><button type="button" class="btn btn-primary">완료</button></div>
+							   	 <div class="col-sm-4" style="background-color: gold;"><button type="button" class="btn btn-danger">삭제</button></div>
+							   	 <div class="col-sm-4" style="background-color: lime;"><button type="button" class="btn btn-warning">수정</button></div>
+							   </div>
+							  
+						   </a>
+					   
+					   		
+					   <a href="#" class="list-group-item" id="dFolder2" style="width: ">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   		Watch & Listen<span class="badge bg-primary rounded-pill">3</span></a>
-					   <a href="#" class="list-group-item">
+					   		<span>Watch</span><span class="badge bg-primary rounded-pill">3</span></a>
+					   <a href="#" class="list-group-item" id="dFolder3">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   		Life<span class="badge bg-primary rounded-pill">7</span></a>
-					   <!-- ---------- -->
+					   		<span>Life</span><span class="badge bg-primary rounded-pill">7</span></a>
+					   <!-- ----------folderOption -->
 					   <a href="#" class="list-group-item" id="hidFldr1" style="visibility: hidden;">
 					   		<span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
 					   		<span id="firF">new1</span><span class="badge bg-primary rounded-pill">0</span></a>
@@ -153,43 +165,18 @@
 			<div class="row">
 				<div class="col-sm-12 col-md-offset-11">
 				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub" style="background-color:#95E1D3;"><strong>+ New</strong></button>
-				<!-- Modal -->
+				<!-- 사용자 등록 Modal -->
 				<div class="modal fade" id="mdlNwSub" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="mdlNwSubLabel">구독 서비스 등록</h4>
-				      </div>
-				      <div class="modal-body">
-					      	<form>
-					          <div class="form-group">
-					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" id="subLogo">
-					          </div>
-					          <div class="form-group">
-					            <label for="recipient-name" class="control-label">구독서비스명</label>
-					            <input type="text" class="form-control" id="subName">
-					          </div>
-					          <div class="form-group">
-					            <label for="recipient-name" class="control-label">다음 결제일</label>
-					            <input type="text" class="form-control" id="datepicker">
-					          </div>
-					          <div class="form-group">
-					            <label for="recipient-name" class="control-label">월 구독료</label>
-					            <input type="text" class="form-control" id="subPay">
-					          </div>
-					          <div class="form-group">
-					            <label for="message-text" class="control-label">메모</label>
-					            <textarea class="form-control" id="subMemo"></textarea>
-					          </div>
-					        </form>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				        <button type="button" class="btn btn-primary">등록</button>
-				      </div>
-				    </div>
-				  </div>
+				  	  <div class="modal-dialog">  
+		<!--		    <div class="modal-content">   -->
+						<div class="row">
+					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" ><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+					        <h3>Auto</h3></button>
+					        <button type="button" class=" mdlbtnManual col-md-6 btn-lg" ><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+					        <h3>Manual</h3></button>
+				      	</div>
+		<!--		    </div>-->
+					  </div>   
 				</div>
 				
 				</div>
@@ -240,6 +227,74 @@
 </div>
 
 <script>
+function fnDelete(){
+	console.log('클릭');
+}
+
+	//데이트피커
 	$( "#datepicker" ).datepicker();
 	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	//폴더옵션호버
+	$('#hidFldr1,#hidFldr2,#hidFldr3,#hidFldr4,#hidFldr5').hover(
+		function() {
+			$( this ).append( $( '<span class="glyphicon glyphicon-option-horizontal folderOption" aria-hidden="true" style="padding-left: 15px; color:aqua;"></span>' ) );
+		}, function() {
+			$( this ).find( "span" ).last().remove();
+	});
+	$('#dFolder1,#dFolder2,#dFolder3').hover(
+		function() {
+			$( this ).append( $( '<span class="glyphicon glyphicon-option-horizontal folderOption" aria-hidden="true" style="padding-left: 15px; color:aqua;"></span>' ) );
+		}, function() {
+			$( this ).find( "span" ).last().remove();
+	});
+	
+	/* $('.glyphicon-option-horizontal').click(function(){
+		console.log('클릭');
+		alert('수정하시겠습니까?');
+	}); */
+	
+	$(document).on("click",".folderOption",function(event){
+		console.log("클릭");
+		$(this).append($('<button type="button" class="btn btn-danger">Danger</button>')).off("click");
+		//미리 아이템 만들어놓고 보이기로 해야함.
+		//$('.folderOption').off("click");
+		//$( this ).off();
+	});
+	
 </script>
+<style>
+	#mdlNwSub{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+	.mdlbtnAuto{
+		width:300px;
+		height:300px;
+		font-style:black;
+		background-color: white;
+		border: none;
+	}
+	.mdlbtnManual{
+		width:300px;
+		height:300px;
+		font-style:black;
+		background-color: white;
+		border: none;
+	}
+	.mdlbtnAuto:hover{
+		background-color: #1CBFDB;
+		color: red;
+	}
+	.mdlbtnManual:hover{
+		background-color: gold;
+		color: red;
+	}
+	
+	
+</style>
