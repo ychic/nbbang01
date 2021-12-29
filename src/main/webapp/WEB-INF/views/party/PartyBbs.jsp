@@ -98,7 +98,7 @@
 				<td class="text-center col-md-1.5">3</td>
 				<td class="text-left"><a href="<c:url value='/partyBbsView.do'/>" style="color: black;">테스트 제목</a></td>
 				<td class="text-center">n인당 0원</td>
-				<td class="text-center">테스트 이름</td>											
+				<td class="text-center">이길동</td>											
 				<td class="text-center col-md-1">0</td>
 				<td class="text-center">2021-12-20</td>
 			</tr>
@@ -106,7 +106,7 @@
 				<td class="text-center col-md-1.5">2</td>
 				<td class="text-left"><a href="<c:url value='/partyBbsView.do'/>" style="color: black;">테스트 제목</a></td>
 				<td class="text-center">n인당 0원</td>
-				<td class="text-center">테스트 이름</td>											
+				<td class="text-center">박길동</td>											
 				<td class="text-center col-md-1" style="color: black;">0</td>
 				<td class="text-center">2021-12-20</td>
 			</tr>
@@ -114,7 +114,7 @@
 				<td class="text-center col-md-1.5">1</td>
 				<td class="text-left"><a href="<c:url value='/partyBbsView.do'/>" style="color: black;">테스트 제목</a></td>
 				<td class="text-center">n인당 0원</td>
-				<td class="text-center">테스트 이름</td>											
+				<td class="text-center">최길동</td>											
 				<td class="text-center col-md-1">0</td>
 				<td class="text-center">2021-12-20</td>
 			</tr>

@@ -13,7 +13,7 @@
 <div class="container" style="width: 750px; color: black">
 	<br>
 	<div>내가 현재 참여중인 파티</div>
-	<div>파티 이름(링크), 파티방장, OTT구분, 멤버십구분, 모집인원, 결제금액, 파티가입일(?)-확정, 파티종료일(?)-수동종료(?)</div>
+	<div>파티 이름(링크), 파티방장, OTT구분, 멤버십구분, 모집인원, 결제금액, 파티가입일(?)-확정, 파티종료일(?)-수동종료</div>
 	<div style="width: 100%; text-decoration: none; padding-bottom: 23px; position: relative; float: left;">
 		<div>
 			<div style="display: inline-block; float: left; padding-left:10px;">
