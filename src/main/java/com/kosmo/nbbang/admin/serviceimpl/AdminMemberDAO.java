@@ -1,10 +1,12 @@
-package com.kosmo.nbbang;
+package com.kosmo.nbbang.admin.serviceimpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class AdminMemberDAO {
@@ -12,8 +14,12 @@ public class AdminMemberDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public List<AdminMemberDTO> selectAllMember() {
-		return template.selectList("selectAllMember");
+	public int getTotalRowCount(Map map) {		
+		return template.selectOne("getTotalRowCount", map);
+	}
+
+	public List selectAllMember(Map map) {		
+		return template.selectList("selectAllMember", map);
 	}
 
 	

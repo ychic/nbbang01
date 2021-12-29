@@ -1,4 +1,4 @@
-package com.kosmo.nbbang;
+package com.kosmo.nbbang.admin.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
