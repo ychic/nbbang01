@@ -7,7 +7,20 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
-	<context:property-placeholder location="classpath:admin/resource/jndi.properties"/>	
+	<context:property-placeholder location="classpath:admin/resource/jndi.properties"/>
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 스프링의 JDBC사용(커넥션 풀 미 사용) -->
+	<!-- DataSource using Spring JDBC -->
+	<bean id="datasourceByJDBC"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="SPRING" />
+		<property name="password" value="SPRING" />
+	</bean>	
 	
 	<!-- 스프링의 JNDI사용(커넥션 풀 사용) -->
 	<!-- DataSource using Spring JNDI -->
