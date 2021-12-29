@@ -24,6 +24,7 @@ public class AdminMemberController {
 			System.out.println(dto.getRegistdate());
 			System.out.println(dto.getTel());
 		}
+		model.addAttribute("list", list);
 		return "admin/AdminMember";
 	}
 }
