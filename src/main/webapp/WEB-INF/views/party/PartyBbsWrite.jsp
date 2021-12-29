@@ -16,14 +16,14 @@
    					</div>		
 		   		</div>
 			</div>
-         	
+
 			<div>
             	<label>파티 제목</label>
             	<div>
                		<input style="width: 100%;" type="text" name="title" placeholder=" 제목을 입력하세요">
             	</div>
          	</div>
-         	
+
          	<div>
             	<label>파티 인원</label>
             	<div>
@@ -37,31 +37,31 @@
 					</select>
             	</div>
          	</div>
-         	
+
          	<div>
             	<label>결제 금액</label>
             	<div>
                		<input style="width: 100%;" type="text" name="price" placeholder=" 결제 금액을 입력하세요">
             	</div>
          	</div>
-         	
+
          	<div>
             	<label>멤버십 종류</label>
             	<div>
                		<input style="width: 100%;" type="text" name="membership" placeholder=" 멤버십 종류를 입력하세요">
             	</div>
          	</div>
-         	
+
          	<div>
             	<label>내용</label>
             	<div>
                		<textarea cols="50" rows="20" style="width: 100%; resize:none;" name="content" placeholder=" 내용을 입력하세요"></textarea>
             	</div>
          	</div>
-         	
+
          	<div class="button" style="text-align: right; padding-right: 15px;">
         		<button type="submit">완료</button>
    			</div>
-   			
+
 	</form>
-</div>
+</div> 

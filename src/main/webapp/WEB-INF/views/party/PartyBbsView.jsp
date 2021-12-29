@@ -36,6 +36,7 @@
 		테스트 내용<br>
 		테스트 내용<br>
 		테스트 내용<br>
+		테스트 내용
 	</div>
 	<div style="padding-top:5px; padding-left:10px; width: 100%; float: left; color: #868e96;">조회수 1</div>
 	<div style="padding-left:10px; padding-right:15px; width: 100%; text-align: right;"><button>대화하기</button></div>
