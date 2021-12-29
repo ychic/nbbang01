@@ -49,12 +49,6 @@ public class IndexController {
 	}
 	
 	//파티원 상세
-	@RequestMapping("/partyBbsWrite.do")
-	public String partyBbsWrite() {
-		return "party/PartyBbsWrite.tiles";
-	}
-	
-	//파티원 상세
 	@RequestMapping("/partyBbsView.do")
 	public String partyBbsView() {
 		return "party/PartyBbsView.tiles";
