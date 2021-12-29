@@ -56,7 +56,11 @@ public class IndexController {
 	public String partyChat() {
 		return "party/PartyChat.tiles";
 	}
-	
+	//파티원 게시판 글작성
+	@RequestMapping("/partyBbsWrite.do")
+	public String partyBbsWrite() {
+	   return "party/PartyBbsWrite.tiles";
+	}
 	
 	
 	//구독 메인
