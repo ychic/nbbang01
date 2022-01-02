@@ -132,16 +132,14 @@
 								<!-- <li><a id="home" href="<c:url value='/index.do'/>">Home <span class="sr-only">(current)</span></a></li> -->
 								<li><a id="admin" href="<c:url value='/admin.do'/>">admin</a></li>
 								<li class="dropdown">
-									<a class="dropbtn" onclick="location.href='party.do'">파티</a>
+									<a class="dropbtn" onclick="location.href='partyBbs.do'">파티</a>
 									  <div class="dropdown-content">
-									    <a onclick="location.href='partyBbs.do'">파티원 구하기</a>
 									    <a onclick="location.href='partyChat.do'">채팅</a>
 									  </div>
 								</li>
 								<li class="dropdown">
-									<a class="dropbtn" onclick="location.href='managing.do'">My</a>
+									<a class="dropbtn" onclick="location.href='mySub.do'">My</a>
 									  <div class="dropdown-content">
-									    <a onclick="location.href='mySub.do'">my구독</a>
 									    <a onclick="location.href='mySchedule.do'">my스케쥴</a>
 									    <a onclick="location.href='myReport.do'">my리포트</a>
 									    <a onclick="location.href='myParty.do'">my파티</a>

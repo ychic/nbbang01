@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!-- 
 <div class="container" style="width: 750px; color: black">
 	<div class="page-header">
 		<h1>MyParty.jsp <small>내 파티</small></h1>
@@ -8,7 +10,9 @@
 		<legend>내가 참여중인 파티</legend>
 	</fieldset>
 </div>
-</div>
+ -->
+ 
+	</div>
 </header>
 <div class="container" style="width: 750px; color: black">
 	<br>
