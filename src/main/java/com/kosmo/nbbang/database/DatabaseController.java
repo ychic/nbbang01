@@ -23,7 +23,7 @@ public class DatabaseController {
 	
 	@RequestMapping("/Database/JDBConnection.do")
 	public String jdbc(Model model) throws SQLException {
-		
+				
 		//주입받은 객체로 getConnection()
 		Connection conn = jdbc.getConnection();
 		
