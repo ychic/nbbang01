@@ -236,7 +236,7 @@
 				  	  <div class="modal-dialog">  
 		<!--		    <div class="modal-content">   -->
 						<div class="row modal-backdrop">
-					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg"  ><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" onclick = "location.href = 'myAccounts.do'" ><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
 					        <h3>Auto</h3></button>
 					        <button type="button" class=" mdlbtnManual col-md-6 btn-lg" data-toggle="modal" data-dismiss="modal" data-target="#mdlNwSub2" ><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
 					        <h3>Manual</h3></button>
@@ -303,23 +303,23 @@
 						  <tbody>
 						    <tr class="table-active">
 						      <td>로고</td>
-						      <td>서비스 명</td>
-						      <td>결제일</td>
-						      <td>결제 금액</td>
+						      <td>넷플릭스</td>
+						      <td>3일</td>
+						      <td>14900원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 						    </tr>
 						    <tr>
 						      <td>로고</td>
-						      <td>서비스 명</td>
-						      <td>결제일</td>
-						      <td>결제 금액</td>
+						      <td>쿠팡</td>
+						      <td>5일</td>
+						      <td>2900원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 						    </tr>
 						    <tr>
 						      <td>로고</td>
-						      <td>서비스 명</td>
-						      <td>결제일</td>
-						      <td>결제 금액</td>
+						      <td>리디북스</td>
+						      <td>1일</td>
+						      <td>10000원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 						    </tr>
 						  </tbody>

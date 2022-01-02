@@ -36,7 +36,7 @@
 			</ul>
 		</div>
 		<div class="col-md-6">
-			<h2>사이트 이용자 가입 서비스 TOP10</h2>
+			<h2>좋아요 수가 많은 리뷰들</h2>
 			<ul>
 				<li>a</li>
 				<li>a</li>
@@ -51,7 +51,7 @@
 			</ul>
 		</div>
 		<div class="col-md-6">
-			<h2>사이트 이용자 가입 서비스 TOP10</h2>
+			<h2>'길동짱'님의 취향과 리뷰!</h2>
 			<ul>
 				<li>a</li>
 				<li>a</li>
@@ -66,7 +66,7 @@
 			</ul>
 		</div>
 		<div class="col-md-6">
-			<h2>사이트 이용자 가입 서비스 TOP10</h2>
+			<h2>영화/예능/드라마 TOP10</h2>
 			<ul>
 				<li>a</li>
 				<li>a</li>
