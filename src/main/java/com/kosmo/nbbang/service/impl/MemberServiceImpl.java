@@ -16,8 +16,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao;
 	
 	@Override
-	public boolean isLogin(Map map) {
-		
+	public int isLogin(Map map) {		
 		return dao.isLogin(map);
 	}//isLogin
 

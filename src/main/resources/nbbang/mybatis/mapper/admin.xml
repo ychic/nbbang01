@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="admin.mybatis.mapper.admin">
+<mapper namespace="nbbang.mybatis.mapper.admin">
 	<select id="selectAllMember" parameterType="Map" resultType="adminMember">
 		SELECT * FROM 
 		(SELECT T.*,ROWNUM R FROM (SELECT * FROM member ORDER BY registdate DESC) T) 

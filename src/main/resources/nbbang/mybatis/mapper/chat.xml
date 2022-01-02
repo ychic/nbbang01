@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="admin.mybatis.mapper.chat">
+<mapper namespace="nbbang.mybatis.mapper.chat">
 	<select id="getMyChat" parameterType="String" resultType="chat">
 		SELECT * FROM chat WHERE chatpartnerid = #{email} or email = #{email}
 	</select>

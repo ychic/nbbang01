@@ -10,37 +10,17 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDAO {
+public class MemberDAO {	
 	
+	@Autowired
+	private SqlSessionTemplate template;
 	
-	
-	private static SqlSessionFactory sqlMapper;
-	static {
-		try {
-			
-			String resource = "nbbang/mybatis/configuration.xml";
-			Reader reader = Resources.getResourceAsReader(resource);
-			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}//static
-	
-	
-	
-	
-	
-	public boolean isLogin(Map map) {
-		//스프링 지원 마이바티스 api 미사용시
-		SqlSession session = sqlMapper.openSession();
-		int count = session.selectOne("memberIsLogin", map);
-		session.close();
-		
-		return count==1?true:false;
+	public int isLogin(Map map) {		
+		return template.selectOne("memberIsLogin", map);
 	}//isLogin
 }//MemberDAO

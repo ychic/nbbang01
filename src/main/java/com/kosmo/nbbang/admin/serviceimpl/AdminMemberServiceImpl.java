@@ -42,8 +42,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		// 글 전체 목록 얻기
 		List lists = dao.selectAllMember(map);
 		String pagingString = PagingUtil.pagingAdminMember(totalRecordCount, pageSize, blockPage, nowPage,
-				req.getContextPath() + "/adminmember.do?");		 
-		// Lombok사용시
+				req.getContextPath() + "/adminmember.do?");		
+		//Lombok사용시
 		return ListPagingData.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString).totalRecordCount(totalRecordCount).build();
 	}
 

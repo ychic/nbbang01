@@ -28,12 +28,12 @@ public class LoginNoutController {
 	
 	@RequestMapping("/memberlogin.do")
 	public String process(@RequestParam Map map, Model model,SessionStatus status) {
-		
-		boolean flag = memberService.isLogin(map);
+		System.out.println(map.get("email"));
+		int flag = memberService.isLogin(map);
 		
 		model.addAttribute("email",map.get("email"));
 		
-		if(!flag) {
+		if(flag == 0) {
 			//회원이 아닐경우 저장된 데이터 삭제
 			status.setComplete();
 			model.addAttribute("NotMember","아이디와 비밀번호가 일치하지 않습니다.");

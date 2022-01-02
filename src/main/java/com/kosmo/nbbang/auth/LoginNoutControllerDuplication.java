@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 
-@SessionAttributes({"email","password"})
-@Controller
-public class LoginNoutController {
-	
+/*@SessionAttributes({"email","password"})
+@Controller*/
+public class LoginNoutControllerDuplication {
+	/*
 	//로그인 처리
 	@RequestMapping("/memberlogin.do")
 	public String login(@RequestParam Map map,Model model) {
@@ -49,7 +49,7 @@ public class LoginNoutController {
 		
 		return "first";
 	}
-	
+	*/
 	
 	
 	
