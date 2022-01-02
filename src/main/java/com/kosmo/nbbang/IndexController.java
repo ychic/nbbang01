@@ -154,6 +154,10 @@ public class IndexController {
 	public String adminOneByOne() {
 		return "admin/AdminOneByOne";
 	}
+	@RequestMapping("/adminChat.do")
+	public String adminChat() {
+		return "admin/AdminChat";
+	}
 	
 	
 }//IndexController
