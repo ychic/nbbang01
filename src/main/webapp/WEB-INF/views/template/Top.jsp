@@ -123,7 +123,7 @@
 					</div>
 					
 					
-					<!-- Collect the nav links, forms, and other content for toggling -->
+					<!-- 로그인 성공시 -->
 					<c:if test="${not empty sessionScope.email}" var="isLogin">
 			
 					<div class="nino-menuItem pull-right">
@@ -161,7 +161,13 @@
 								<li class="guide_menu" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a></li>
 							</ul>							
-							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif;">${isLoginMessage}</a>
+							
+							
+							
+							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${sessionScope.email} 님</a>
+							
+							
+							
 						</div><!-- /.navbar-collapse -->
 						
 						
@@ -170,8 +176,9 @@
 						</ul>
 					</div>
 					</c:if>
+					
 					<c:if test="${not isLogin }">
-					로그인부터 하세요${sessionScope.email}${sessionScope.password}
+					로그인부터 하세요
 					</c:if>
 					
 				</div><!-- /.container-fluid -->

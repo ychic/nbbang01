@@ -2,49 +2,125 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	</div>
 </header>
-<!-- css가 안먹고 크기 조절이 안됨... -->
+
+<style>
+.account-title{
+	width:500px;
+	font-family: 'Jua', sans-serif;
+	font-size: 25px;
+	font-weight: 500;
+	margin:50px auto 20px auto;
+}
+
+.account-container{
+	width:500px;
+	height:800px;
+	margin:0 auto 50px auto;
+	border:none 1px #A1A1A1;
+	border-radius:20px;
+	overflow: auto;
+	background-color:#95e1d3;
+}
+.account-new{
+	width:300px;
+	height:100px;
+	border:dashed 3px #A1A1A1;
+	border-radius:20px;
+	text-align:center;
+	line-height:100px;
+	margin:50px auto 0px auto;
+	background-color:#fff;
+}
+.account-new-word{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+}
+.account-card{
+	width:300px;
+	height:185px;
+	border:solid 2px #A1A1A1;
+	border-radius:20px;
+	text-align:center;
+	line-height:100px;
+	margin:50px auto 0px auto;
+	background-color:#fff;
+}
+
+/* 광고 영역 */
+.ad_one, .ad_two{
+	background-color:red;
+	width: 188.5px;
+	height:377px;
+	display: inline-block;
+	position: fixed;
+	top:150px;
+	background-size: cover;
+	background-position: center;
+	background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+	animation: ad_one_ani 16s infinite;
+}
+
+.ad_one{
+	left:30px;
+}
+
+.ad_two{
+	right:30px;
+}
+
+@keyframes ad_one_ani {
+	33%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")}
+	66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
+	100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
+}
+
+
+</style>
+
+<!-- 광고 1 -->
+<div class="ad_one">
+	
+</div>
+
+<!-- 본문 -->
 <div class="container">
 
-	<div class="row">
-        <div class="col-2">
-          <p>Card</p>
-          
-			<div class="card mb-3">
-			  <h3 class="card-header">Card header</h3>
-				  <div class="card-body">
-				    <h5 class="card-title">Special title treatment</h5>
-				    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-				  </div>
-				  <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-				    <rect width="100%" height="100%" fill="#868e96"></rect>
-				    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-				  </svg>
-				  <div class="card-body">
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item">Cras justo odio</li>
-				    <li class="list-group-item">Dapibus ac facilisis in</li>
-				    <li class="list-group-item">Vestibulum at eros</li>
-				  </ul>
-				  <div class="card-body">
-				    <a href="#" class="card-link">Card link</a>
-				    <a href="#" class="card-link">Another link</a>
-				  </div>
-				  <div class="card-footer text-muted">
-				    2 days ago
-				  </div>
-				</div>
-				<div class="card">
-				  <div class="card-body">
-				    <h4 class="card-title">Card title</h4>
-				    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="card-link">Card link</a>
-				    <a href="#" class="card-link">Another link</a>
-				  </div>
-			</div>
-			
+	<c:if test="${not empty sessionScope.email}" var="isLogin">
+		<div class="account-title">
+		'<span style="color:#f38181">${sessionScope.email}</span>' 님의 계좌 조회
+		</div>
+	</c:if>
+
+	<div class="account-container" id="accountContainer">
+		<div class="account-new">
+			<span class="account-new-word">
+				<a href="javascript:createCardDiv()">
+				<img src="<%=request.getContextPath()%>/resources/account/plus-icon.png"/></a>
+				계좌 등록
+			</span>
 		</div>
 	</div>
+	
 </div>
+
+<!-- 광고 2 -->
+<div class="ad_two">
+	
+</div>
+
+<script>
+	//동적 div
+	function createCardDiv(){
+		var accountContainer = document.getElementById("accountContainer");
+		var accoundCard = `<div class="account-card" id="accoundCard">
+								<span class="account-new-word">카드1</span>
+							</div>`
+		
+		accountContainer.innerHTML += accoundCard;
+		accountContainer.appendChild(accoundCard);
+		
+		
+	}
+
+</script>
