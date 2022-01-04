@@ -20,20 +20,22 @@
 	 	
 	 	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxIdle="20" maxTotal="20" name="maven" password="NBBANG" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="NBBANG"/>
 	 	
+	 3. /nbbang01/src/main/resources/nbbang/resources/jndi.properties
+	 	jndi = 2.context에서 설정한 이름
+	 	개인적으로 nbbang이나 nbbang01로 통일했으면 합니다 
 	 
-	 
-	 3. DB 연결 확인 
+	 4. DB 연결 확인 
 	 	- 상단바 my메뉴 -> db test 클릭 -> 링크 두개 각각 클릭해서 jdbc,jndi 연결됐는지 확인 (연결 성공 떠야함)
-		 3-1. 안되시는 분들은 git에 현수님이 추가한 readme확인
-		 3-2. properties로 추후에 수정
+		 4-1. 안되시는 분들은 git에 현수님이 추가한 readme확인
+		 4-2. properties로 추후에 수정
 	 
 	 
 	 
-	 4. 현수님이 카톡방에 올린 nbbang.sql 저장 -> 본인 오라클에 계정 연동해 놓고 CREATE TABLE하기 
-	 	4-1. 본인이 필요한 테이블만 CREATE하고 점차 영역 넓히기.. 혹시 모르니..
+	 5. 현수님이 카톡방에 올린 nbbang.sql 저장 -> 본인 오라클에 계정 연동해 놓고 CREATE TABLE하기 
+	 	5-1. 본인이 필요한 테이블만 CREATE하고 점차 영역 넓히기.. 혹시 모르니..
 	 
 	 
-	 5. 테이블에 데이터 추가시 TableData  파일에 꼭 추가하여 공유하기 
+	 6. 테이블에 데이터 추가시 TableData  파일에 꼭 추가하여 공유하기 
 	 
 	 
 	 
