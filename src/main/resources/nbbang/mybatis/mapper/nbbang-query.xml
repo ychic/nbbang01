@@ -10,5 +10,7 @@
 	<select id="memberIsLogin" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM member WHERE email=#{email} AND password=#{password}
 	</select>
-
+	<select id="findEmail" parameterType="Map" resultType="String">
+		SELECT email FROM member WHERE name=#{name} AND tel=#{tel}
+	</select>
 </mapper>

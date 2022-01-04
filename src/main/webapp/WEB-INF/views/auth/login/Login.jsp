@@ -86,26 +86,31 @@
 					</c:if>	
 						
 						<!-- 로그인 영역 -->
-						<form action="<c:url value='/memberlogin.do'/>" class="signin-form">
+						<form action="<c:url value='/memberlogin.do'/>" class="signin-form" method="post">
+						
 							<div class="form-group">
 								<input type="text" class="form-control" name="email"
 									placeholder="example@google.com" required>
 							</div>
+						
 							<div class="form-group">
 								<input id="password-field" type="password" class="form-control"
 									name="password" placeholder="비밀번호" required> <span
 									toggle="#password-field"
 									class="fa fa-fw fa-eye field-icon toggle-password"></span>
 							</div>
+							
+							
 							<div class="form-group">
 								<button type="submit"
 									class="form-control btn btn-primary submit px-3">로그인</button>
 							</div>
+							
+							
 							<div class="form-group d-md-flex">
 								<div class="w-50">
 									<label class="checkbox-wrap checkbox-primary">Remember
-										Me <input type="checkbox" checked> <span
-										class="checkmark"></span>
+										Me <input type="checkbox" checked> <span class="checkmark"></span>
 									</label>
 								</div>
 								<div class="w-50 text-md-right">

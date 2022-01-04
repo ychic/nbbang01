@@ -57,21 +57,21 @@
 	 .contents{
 	 	position: relative;
 	 }
+	 
 </style>
 
 <!-- modal 시작 -->
-<div class="modal" id="small-modal">
+<div class="modal" id="small-modal" style="font-family:'Jua', sans-serif;">
 	<div class="modal-dialog modal-md" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">이메일 찾기</h5>
 					<span aria-hidden="true"></span>
 			</div>
-			<div class="modal-body">
-				<p>당신의 이메일 주소는 ${findMemberEmail} 입니다.</p>
+			<div class="modal-body" id="modal-body">
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="okbutton" class="btn btn-secondary" data-bs-dismiss="small-modal">확인</button>
+				<button type="button" id="okbutton" class="btn btn-primary" data-bs-dismiss="small-modal">확인</button>
 			</div>
 		</div>
 	</div>
@@ -99,22 +99,26 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 					
-						<span>${errorMessage}</span>
+						<span id="errorMessage">${errorMessage}</span>
 						
 						<!-- 로그인 영역 -->
-						<form action="#" class="signin-form">
+						<form action="#" id="frm" class="signin-form" method="post">
 							<div class="form-group">
-								<input type="text" class="form-control" name="name" placeholder="이름" required>
+								<input type="text" class="form-control" id="name" name="name" placeholder="이름" required>
 							</div>
+							<span style="font-family:'Jua', sans-serif;">
+								<img src="<%=request.getContextPath()%>/resources/images/nbbang/find_email_warning.png" style="width:24px;height:24px;"/>
+								 010-1234-5678 형식으로 입력해 주세요.
+							</span>
 							<div class="form-group">
-								<input type="text" class="form-control"
-									name="tel" placeholder="전화번호" required>
-							</div>
-							<div class="form-group">
-								<button type="submit" id="btnFind"
-									class="form-control btn btn-primary submit px-3">찾 기</button>
+								<input type="text" class="form-control" id="tel" name="tel" placeholder="010-1234-5678" required>
 							</div>
 						</form>
+							<div class="form-group">
+								<button type="submit" id="btnFind" style="z-index:1"
+									class="form-control btn btn-primary submit px-3">찾 기</button>
+							</div>
+						
 						
 						<!-- 소셜 로그인 영역 -->
 						<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
@@ -132,20 +136,38 @@
 	</section>
 	
 	<script>
-		
 		$(function(){
-			
-			$('#btnFind').on('click',function(){
+			$('#btnFind').click(function(){
+				var name = $('#name').val();
+				var tel = $('#tel').val();
+				console.log(name,tel)
 				
-				//만약 일치하는 정보가 있다면 아래 코드 실행 (모달창 띄움)
-				$('#small-modal').css('display','block');
-				
-				//없다면 모달 띄우지 말고 페이지에 없다는 알림 
-			});
-			
-			
-			$('#okbutton').on('click',function(){
-				$('#small-modal').css('display','none');
+				$.ajax({
+					url:"<c:url value="/findEmail.do"/>",
+					type:"POST",
+					dataType:'text',
+					data:{name,tel},
+					success:function(data){
+						$('#small-modal').css('display','block');
+						console.log(data)
+						if(data==''){
+							$('#modal-body').html("이름과 전화번호를 다시 확인해 주세요.");
+						}
+						else{
+							$('#modal-body').html("당신의 이메일은 [ "+data+" ] 입니다.");	
+						}
+						
+						$('#okbutton').on('click',function(){
+							$('#small-modal').css('display','none');
+						});
+					 	
+					},
+					error:function(error){
+						console.log('%O',error);
+						console.log('에러:',error.responseText);
+					}			
+					
+				});
 			});
 			
 		});

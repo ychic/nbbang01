@@ -23,4 +23,8 @@ public class MemberDAO {
 	public int isLogin(Map map) {		
 		return template.selectOne("memberIsLogin", map);
 	}//isLogin
+
+	public String findEmail(Map map) {
+		return template.selectOne("findEmail", map);
+	}
 }//MemberDAO

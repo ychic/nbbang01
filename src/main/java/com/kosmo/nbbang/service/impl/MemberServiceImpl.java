@@ -20,6 +20,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.isLogin(map);
 	}//isLogin
 
+	public String findEmail(Map map) {
+		return dao.findEmail(map);
+	}
+
 	
 	
 }

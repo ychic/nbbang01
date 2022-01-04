@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -28,10 +29,12 @@ public class LoginNoutController {
 	
 	@RequestMapping("/memberlogin.do")
 	public String process(@RequestParam Map map, Model model,SessionStatus status) {
-		System.out.println(map.get("email"));
+		
 		int flag = memberService.isLogin(map);
 		
 		model.addAttribute("email",map.get("email"));
+		//닉네임 불러오기
+		//System.out.println("nickname"+map.get("nickname"));
 		
 		if(flag == 0) {
 			//회원이 아닐경우 저장된 데이터 삭제
@@ -50,39 +53,24 @@ public class LoginNoutController {
 		return "first";
 	}
 	
-	
-	
-	
-	
-	/*
-	//로그인 처리
-	@RequestMapping("/memberlogin.do")
-	public String login(@RequestParam Map map,Model model) {
-		if("KIM".equals(map.get("email")) && "1234".equals(map.get("password"))) {
-			model.addAllAttributes(map);
-			model.addAttribute("isLoginMessage", map.get("email")+"님 환영합니다 :)");
-			return "index";	
-		} else if("admin".equals(map.get("email")) && "1234".equals(map.get("password"))) {
-			model.addAllAttributes(map);
-			return "admin/AdminMain";	
-		}
-		else {
-			model.addAttribute("errorMessage", "이메일과 비밀번호가 일치하지 않습니다.");
-			return "auth/login/Login";	
-		}
-	}
-	
-	//로그아웃
-	@RequestMapping("/memberlogout.do")
-	public String logout(SessionStatus status) {
+	@RequestMapping("/findEmail.do")
+	public @ResponseBody String findEmail(@RequestParam Map map,Model model,SessionStatus status) {
+		String result = memberService.findEmail(map);
 		
-		status.setComplete();
+		System.out.println("결과 :"+result);
+		System.out.println("받은 email: "+map.get("email"));
 		
-		return "first";
+		model.addAttribute("findMemberEmail",result);
+		
+		if(result==null) {
+			status.setComplete();
+			return null;
+		}
+		
+		return result;
 	}
 	
 	
-	*/
 	
 	
 }
