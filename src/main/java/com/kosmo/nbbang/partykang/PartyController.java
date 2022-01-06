@@ -27,16 +27,18 @@ public class PartyController {
 	public String partyChat(@ModelAttribute("email") String email,Model model) {
 		System.out.println("이메일:"+email);
 		List<PartyChatDTO> chatList = partyService.getMyChat(email);
+		String myNickName = partyService.getNickName(email);
 		Map map = new HashMap();		
 		for(PartyChatDTO dto : chatList) {
 			System.out.println(dto.getChatno());
 			System.out.println(dto.getPartyno());
 			System.out.println(dto.getChatpartnerid());
 			System.out.println(dto.getEmail());
-			String member = partyService.getNickName(dto.getChatpartnerid());
-			System.out.println(member);
-			map.put(dto.getChatpartnerid(), member);
+			String partner = partyService.getNickName(!email.equals(dto.getChatpartnerid()) ? dto.getChatpartnerid() : dto.getEmail());
+			System.out.println(partner);
+			map.put(dto.getChatpartnerid(), partner);
 		}
+		model.addAttribute("myNickName", myNickName);
 		model.addAttribute("nickname", map);
 		model.addAttribute("chatList", chatList);
 		return "party/PartyChat.tiles";

@@ -1,4 +1,4 @@
-package com.kosmo.nbbang.admin.service;
+package com.kosmo.nbbang.service;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import lombok.Setter;
 /*@Getter
 @Setter
 @Builder*/
-public class ListPagingData<T> {
+public class MemberListPaging<T> {
 	// 레코드 목록
 	private List<T> lists;
 	// 페이징 관련 데이타
@@ -19,8 +19,8 @@ public class ListPagingData<T> {
 	private int nowPage;
 	private String pagingString;	
 	
-	public ListPagingData() {}
-	public ListPagingData(List<T> lists, int totalRecordCount, int pageSize, int blockPage, int nowPage,
+	public MemberListPaging() {}
+	public MemberListPaging(List<T> lists, int totalRecordCount, int pageSize, int blockPage, int nowPage,
 			String pagingString) {
 		super();
 		this.lists = lists;
@@ -112,8 +112,8 @@ public class ListPagingData<T> {
 			return this;
 		}
 		
-		public ListPagingData<T> build() {			
-			return new ListPagingData<T>(lists, totalRecordCount, pageSize, blockPage, nowPage, pagingString);
+		public MemberListPaging<T> build() {			
+			return new MemberListPaging<T>(lists, totalRecordCount, pageSize, blockPage, nowPage, pagingString);
 		}
 	}
 }

@@ -2,6 +2,7 @@ package com.kosmo.nbbang.service.impl;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -26,5 +27,13 @@ public class MemberDAO {
 
 	public String findEmail(Map map) {
 		return template.selectOne("findEmail", map);
+	}
+
+	public int getTotalRowCount(Map map) {		
+		return template.selectOne("getTotalRowCount", map);
+	}
+
+	public List selectAllMember(Map map) {		
+		return template.selectList("selectAllMember", map);
 	}
 }//MemberDAO

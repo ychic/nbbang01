@@ -1,4 +1,4 @@
-package com.kosmo.nbbang.admin.service;
+package com.kosmo.nbbang.service;
 
 public class PagingUtil {
 
@@ -95,7 +95,7 @@ public class PagingUtil {
 		return pagingStr;
 	}
 
-	public static String pagingAdminMember(int totalRecordCount, int pageSize, int blockPage, int nowPage,
+	public static String pagingMemberList(int totalRecordCount, int pageSize, int blockPage, int nowPage,
 			String page) {
 
 		String pagingStr = "<div id=\"dataTable_wapper\"\r\n"
