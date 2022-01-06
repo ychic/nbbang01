@@ -12,27 +12,30 @@
 </script>
 <div class="container" style="height: 730px; padding-top: 25px;">
 	<div class="row">
-		<h1>구독 추천 메인페이지<a class="btn btn-primary" href="#" role="button" style="margin-left: 5px;"> 게시판으로 </a></h1>
+		<h1>
+			구독 추천 메인페이지
+			<small>
+				<a class="btn btn-primary" href='<c:url value="/recommandBbs.do"/>' role="button" style="margin-left: 5px; margin-bottom: 9px;"> 추천게시판 </a>
+			</small>
+			<small>
+				<a class="btn btn-info" href='<c:url value="/freeBbs.do"/>' role="button" style="margin-left: 5px; margin-bottom: 9px;"> 자유게시판 </a>
+			</small>
+		</h1>
 		<p>
 			ㅇㄴㅁㅇㅁㄴ
 			
 		</p>
+		
+		
 	</div>
 	<!-- Example row of columns -->
 	<div class="row">
 		<div class="col-md-6">
 			<h2>사이트 이용자 가입 서비스 TOP10</h2>
 			<ul>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
+				<c:forEach items="${subs}" var="sub" varStatus="loop" end="9">
+					<li>${loop.count}.${sub.key}<li>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="col-md-6">
