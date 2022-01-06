@@ -29,6 +29,7 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 -->
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-3">
@@ -232,7 +233,7 @@
 				<div class="col-sm-12 col-md-offset-11">
 				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub1" style="background-color:#95E1D3;"><strong>+ New</strong></button>
 				<!-- 사용자 등록 Modal -->
-				<div class="modal fade" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
+				<div class="modal" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
 				  	  <div class="modal-dialog">  
 		<!--		    <div class="modal-content">   -->
 						<div class="row modal-backdrop">
@@ -247,7 +248,7 @@
 				</div>
 				
 				<!-- Modal -->
-				<div class="modal fade" id="mdlNwSub2" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
+				<div class="modal" id="mdlNwSub2" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
 				      <div class="modal-header">
@@ -261,7 +262,28 @@
 					          </div>
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">구독서비스명</label>
-					            <input type="text" class="form-control" id="subName">
+					            <input type="text" class="form-control" id="subName" style="width:450px;display: inline-block;">
+					            
+					            <!-- 구독 리스트 클릭 버튼 -->
+					            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn" style="width:24px;height:24px;display: inline-block;"/>
+					            
+					            
+					            
+					            
+					            
+					            <!-- 구독 리스트 -->
+					            <div class="list-group" id="subListTest"> 
+									<a href="#" class="list-group-item" id="subListName">
+									넷플릭스
+									<button type="button" id="btnSeeMore" >더보기</button>
+									</a>
+									<a href="#" class="list-group-item list-group-item-action">티빙</a>
+								</div> 
+								
+								
+								
+								
+								
 					          </div>
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">다음 결제일</label>
@@ -334,289 +356,352 @@
 	</div>
 </div>
 
+
+
+<!-- 구독 서비스 상세보기 Modal -->
+<div class="modal" id="modalSeeMore" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" id="modalSeeMoreClose" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="mdlNwSubLabel">NETFLIX</h4>
+			</div>
+			<div class="modal-body">
+				모달 바디
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="modalSeeMoreDefault" class="btn btn-default" data-dismiss="modal">돌아가기</button>
+				<button type="button" id="modalSeeMorePrimary" class="btn btn-primary">구독하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
 <script>
 	//데이트피커
-	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	$("#datepicker").datepicker();
+	$("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
 	// 생성폴더 옵션아이템 호버:보이기/숨기기
-	$('#dFolder2').hover(
-		function() {
-			$('#hvDotDFolder2').css("visibility","visible");
-			
-		}, function() {
-			$('#hvDotDFolder2').css( "visibility","hidden" );
+	$('#dFolder2').hover(function() {
+		$('#hvDotDFolder2').css("visibility", "visible");
+
+	}, function() {
+		$('#hvDotDFolder2').css("visibility", "hidden");
 	});
-	$('#dFolder3').hover(
-		function() {
-			$('#hvDotDFolder3').css("visibility","visible");
-		}, function() {
-			$('#hvDotDFolder3').css( "visibility","hidden" );
+	$('#dFolder3').hover(function() {
+		$('#hvDotDFolder3').css("visibility", "visible");
+	}, function() {
+		$('#hvDotDFolder3').css("visibility", "hidden");
 	});
-	$('#hidFldr1').hover(
-		function() {
-			$('#hvDotHFolder1').css("visibility","visible");
-		}, function() {
-			$('#hvDotHFolder1').css( "visibility","hidden" );
+	$('#hidFldr1').hover(function() {
+		$('#hvDotHFolder1').css("visibility", "visible");
+	}, function() {
+		$('#hvDotHFolder1').css("visibility", "hidden");
 	});
-	$('#hidFldr2').hover(
-		function() {
-			$('#hvDotHFolder2').css("visibility","visible");
-		}, function() {
-			$('#hvDotHFolder2').css( "visibility","hidden" );
+	$('#hidFldr2').hover(function() {
+		$('#hvDotHFolder2').css("visibility", "visible");
+	}, function() {
+		$('#hvDotHFolder2').css("visibility", "hidden");
 	});
-	$('#hidFldr3').hover(
-		function() {
-			$('#hvDotHFolder3').css("visibility","visible");
-		}, function() {
-			$('#hvDotHFolder3').css( "visibility","hidden" );
+	$('#hidFldr3').hover(function() {
+		$('#hvDotHFolder3').css("visibility", "visible");
+	}, function() {
+		$('#hvDotHFolder3').css("visibility", "hidden");
 	});
-	$('#hidFldr4').hover(
-		function() {
-			$('#hvDotHFolder4').css("visibility","visible");
-		}, function() {
-			$('#hvDotHFolder4').css( "visibility","hidden" );
+	$('#hidFldr4').hover(function() {
+		$('#hvDotHFolder4').css("visibility", "visible");
+	}, function() {
+		$('#hvDotHFolder4').css("visibility", "hidden");
 	});
-	$('#hidFldr5').hover(
-		function() {
-			$('#hvDotHFolder5').css("visibility","visible");
-		}, function() {
-			$('#hvDotHFolder5').css( "visibility","hidden" );
+	$('#hidFldr5').hover(function() {
+		$('#hvDotHFolder5').css("visibility", "visible");
+	}, function() {
+		$('#hvDotHFolder5').css("visibility", "hidden");
 	});
 	//
-	$('#hvDotDFolder2').click(function(){
+	$('#hvDotDFolder2').click(function() {
 		$('#btnDFolder2').toggle();
 	});
-	$('#hvDotDFolder3').click(function(){
+	$('#hvDotDFolder3').click(function() {
 		$('#btnDFolder3').toggle();
 	});
-	$('#hvDotHFolder1').click(function(){
+	$('#hvDotHFolder1').click(function() {
 		$('#btnHidFldr1').toggle();
 	});
-	$('#hvDotHFolder2').click(function(){
+	$('#hvDotHFolder2').click(function() {
 		$('#btnHidFldr2').toggle();
 	});
-	$('#hvDotHFolder3').click(function(){
+	$('#hvDotHFolder3').click(function() {
 		$('#btnHidFldr3').toggle();
 	});
-	$('#hvDotHFolder4').click(function(){
+	$('#hvDotHFolder4').click(function() {
 		$('#btnHidFldr4').toggle();
 	});
-	$('#hvDotHFolder5').click(function(){
+	$('#hvDotHFolder5').click(function() {
 		$('#btnHidFldr5').toggle();
 	});
-	
+
 	//1번 폴더명수정
-	 	//2) span태그(기존이름)가 사라지고 input태그가 생긴다. (그와 동시에 커서도 input태그에)
-	$('#btnEdit1').click(function(){
-		$('#dfdn1').css("display","none");
-		$('#inp1').css("display","inline");
+	//2) span태그(기존이름)가 사라지고 input태그가 생긴다. (그와 동시에 커서도 input태그에)
+	$('#btnEdit1').click(function() {
+		$('#dfdn1').css("display", "none");
+		$('#inp1').css("display", "inline");
 		$('#inp1').focus();
 	});//$('#btnEdit1').click
-		
-		//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp1')을 누르면
-	$('#btnComp1').click(function(){
+
+	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp1')을 누르면
+	$('#btnComp1').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder1.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname1').serialize(),
-			success:function(data2){
+			url : "<c:url value='/mysub/EditFolder1.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname1').serialize(),
+			success : function(data2) {
 				// input태그는 사라진다.
-				$('#inp1').css("display","none");
+				$('#inp1').css("display", "none");
 				// span태그를 보인다
-				$('#dfdn1').css("display","inline");
+				$('#dfdn1').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력 
-				console.log('서버로부터 받은 데이터:',data2);
+				console.log('서버로부터 받은 데이터:', data2);
 				$('#dfdn1').html(data2);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//1번 폴더명 수정 끝
 	//
 	//2번 폴더명수정
-	 	//2) span태그(기존이름)가 사라지고 input태그가 생긴다. (그와 동시에 커서도 input태그에)
-	$('#btnEdit2').click(function(){
-		$('#dfdn2').css("display","none");
-		$('#inp2').css("display","inline");
+	//2) span태그(기존이름)가 사라지고 input태그가 생긴다. (그와 동시에 커서도 input태그에)
+	$('#btnEdit2').click(function() {
+		$('#dfdn2').css("display", "none");
+		$('#inp2').css("display", "inline");
 		$('#inp2').focus();
 	});//$('#btnEdit1').click
-		
-		//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp2')을 누르면
-	$('#btnComp2').click(function(){
+
+	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp2')을 누르면
+	$('#btnComp2').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder2.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname2').serialize(),
-			success:function(data3){
+			url : "<c:url value='/mysub/EditFolder2.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname2').serialize(),
+			success : function(data3) {
 				// input태그는 사라진다.
-				$('#inp2').css("display","none");
+				$('#inp2').css("display", "none");
 				// span태그를 보인다
-				$('#dfdn2').css("display","inline");
+				$('#dfdn2').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력
-				console.log('서버로부터 받은 데이터:',data3);
+				console.log('서버로부터 받은 데이터:', data3);
 				$('#dfdn2').text(data3);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//2번 폴더명수정 끝
 	//
 	//3번 폴더명수정
- 	//2) span태그(기존이름)가 사라지고 input태그가 생긴다. (그와 동시에 커서도 input태그에)
-	$('#btnEdit3').click(function(){
-		$('#firF').css("display","none");
-		$('#inp3').css("display","inline");
+	//2) span태그(기존이름)가 사라지고 input태그가 생긴다. (그와 동시에 커서도 input태그에)
+	$('#btnEdit3').click(function() {
+		$('#firF').css("display", "none");
+		$('#inp3').css("display", "inline");
 		$('#inp3').focus();
 	});//$('#btnEdit3').click
-		
-		//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp3')을 누르면
-	$('#btnComp3').click(function(){
+
+	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp3')을 누르면
+	$('#btnComp3').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder3.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname3').serialize(),
-			success:function(data4){
+			url : "<c:url value='/mysub/EditFolder3.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname3').serialize(),
+			success : function(data4) {
 				// input태그는 사라진다.
-				$('#inp3').css("display","none");
+				$('#inp3').css("display", "none");
 				// span태그를 보인다
-				$('#firF').css("display","inline");
+				$('#firF').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력
-				console.log('서버로부터 받은 데이터:',data4);
+				console.log('서버로부터 받은 데이터:', data4);
 				$('#firF').text(data4);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//3번 폴더명수정 끝
 	//
 	//4번 폴더명수정
-	$('#btnEdit4').click(function(){
-		$('#secF').css("display","none");
-		$('#inp4').css("display","inline");
+	$('#btnEdit4').click(function() {
+		$('#secF').css("display", "none");
+		$('#inp4').css("display", "inline");
 		$('#inp4').focus();
 	});//$('#btnEdit4').click
-		
+
 	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp3')을 누르면
-	$('#btnComp4').click(function(){
+	$('#btnComp4').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder4.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname4').serialize(),
-			success:function(data5){
+			url : "<c:url value='/mysub/EditFolder4.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname4').serialize(),
+			success : function(data5) {
 				// input태그는 사라진다.
-				$('#inp4').css("display","none");
+				$('#inp4').css("display", "none");
 				// span태그를 보인다
-				$('#secF').css("display","inline");
+				$('#secF').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력
-				console.log('서버로부터 받은 데이터:',data5);
+				console.log('서버로부터 받은 데이터:', data5);
 				$('#secF').text(data5);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//4번 폴더명수정 끝
 	//
 	//5번 폴더명수정
-	$('#btnEdit5').click(function(){
-		$('#thrF').css("display","none");
-		$('#inp5').css("display","inline");
+	$('#btnEdit5').click(function() {
+		$('#thrF').css("display", "none");
+		$('#inp5').css("display", "inline");
 		$('#inp5').focus();
 	});//$('#btnEdit5').click
-		
+
 	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp3')을 누르면
-	$('#btnComp5').click(function(){
+	$('#btnComp5').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder5.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname5').serialize(),
-			success:function(data6){
+			url : "<c:url value='/mysub/EditFolder5.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname5').serialize(),
+			success : function(data6) {
 				// input태그는 사라진다.
-				$('#inp5').css("display","none");
+				$('#inp5').css("display", "none");
 				// span태그를 보인다
-				$('#thrF').css("display","inline");
+				$('#thrF').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력
-				console.log('서버로부터 받은 데이터:',data6);
+				console.log('서버로부터 받은 데이터:', data6);
 				$('#thrF').text(data6);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//5번 폴더명수정 끝
 	//
 	//6번 폴더명수정
-	$('#btnEdit6').click(function(){
-		$('#forF').css("display","none");
-		$('#inp6').css("display","inline");
+	$('#btnEdit6').click(function() {
+		$('#forF').css("display", "none");
+		$('#inp6').css("display", "inline");
 		$('#inp6').focus();
 	});//$('#btnEdit6').click
-		
+
 	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp3')을 누르면
-	$('#btnComp6').click(function(){
+	$('#btnComp6').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder6.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname6').serialize(),
-			success:function(data7){
+			url : "<c:url value='/mysub/EditFolder6.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname6').serialize(),
+			success : function(data7) {
 				// input태그는 사라진다.
-				$('#inp6').css("display","none");
+				$('#inp6').css("display", "none");
 				// span태그를 보인다
-				$('#forF').css("display","inline");
+				$('#forF').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력
-				console.log('서버로부터 받은 데이터:',data7);
+				console.log('서버로부터 받은 데이터:', data7);
 				$('#forF').text(data7);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//6번 폴더명수정 끝
 	//
 	//6번 폴더명수정
-	$('#btnEdit7').click(function(){
-		$('#fifF').css("display","none");
-		$('#inp7').css("display","inline");
+	$('#btnEdit7').click(function() {
+		$('#fifF').css("display", "none");
+		$('#inp7').css("display", "inline");
 		$('#inp7').focus();
 	});//$('#btnEdit7').click
-		
+
 	//3) inpuit태그에 사용자가 브라우저에서 입력 후 완료버튼('#btnComp3')을 누르면
-	$('#btnComp7').click(function(){
+	$('#btnComp7').click(function() {
 		//4) ajax로 서버에 요청. 서버에서 변경된 data를 브라우저로 전송해준다
 		$.ajax({
-			url:"<c:url value='/mysub/EditFolder7.do'/>",
-			type:"post",
-			dataType:"text",
-			data:$('#frmEditname7').serialize(),
-			success:function(data8){
+			url : "<c:url value='/mysub/EditFolder7.do'/>",
+			type : "post",
+			dataType : "text",
+			data : $('#frmEditname7').serialize(),
+			success : function(data8) {
 				// input태그는 사라진다.
-				$('#inp7').css("display","none");
+				$('#inp7').css("display", "none");
 				// span태그를 보인다
-				$('#fifF').css("display","inline");
+				$('#fifF').css("display", "inline");
 				//5) 응답받은 data를 span태그에 출력
-				console.log('서버로부터 받은 데이터:',data8);
+				console.log('서버로부터 받은 데이터:', data8);
 				$('#fifF').text(data8);
 			},
-			error:function(){
-				console.log('에러:',error.responseText);
+			error : function() {
+				console.log('에러:', error.responseText);
 			}
 		});
 	});//7번 폴더명수정 끝
+
+	//구독 목록
+	var subListbtn = false;
+	
+	$('#subListbtn').click(function() {
+		if (!subListbtn) {
+			$('#subListTest').css("display", "block");
+			subListbtn = true;
+		} else{
+			$('#subListTest').css("display", "none");
+			subListbtn = false;
+		}
+	});//
+	
+	//상세페이지 모달
+	var modalSeeMorebtn = false;
+	
+	$('#btnSeeMore').click(function(){
+		if(!modalSeeMorebtn){
+			$('#modalSeeMore').css("display", "block");
+			modalSeeMorebtn = true;
+		}
+	});
+	$('#modalSeeMoreDefault').click(function(){
+		if(modalSeeMorebtn){
+			$('#modalSeeMore').css("display", "none");
+			modalSeeMorebtn = false;
+		}
+	});
+	$('#modalSeeMorePrimary').click(function(){
+		if(modalSeeMorebtn){
+			$('#modalSeeMore').css("display", "none");
+			modalSeeMorebtn = false;
+		}
+	});
+	$('#modalSeeMoreClose').click(function(){
+		if(modalSeeMorebtn){
+			$('#modalSeeMore').css("display", "none");
+			modalSeeMorebtn = false;
+		}
+	});
+	
+	
 </script>
 <style>
 	#mdlNwSub1{
@@ -651,6 +736,26 @@
 		background-color: gold;
 		color: red;
 	}
-	
-	
+	#subListName{
+		background-color:rgba(241, 114, 114, 0.96);
+		color:#fff;
+	}
+	#btnSeeMore{
+		float: right;
+		background-color:#95E1D3;
+		border:none;
+		color:#fff;
+		padding:2px 10px;
+		border-radius: 10px;
+		z-index:1;
+	}
+	#modalSeeMore{
+		z-index:1050;
+		top: 140px;
+	}
+	#subListTest{
+		display:none; 
+		position: absolute;
+		width:544px;
+	}
 </style>
