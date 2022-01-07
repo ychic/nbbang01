@@ -110,10 +110,12 @@ public class IndexController {
 		return "recommand/RecommandMain.tiles";
 	}
 	//추천 게시판
+	/*
 	@RequestMapping("/recommandBbs.do")
 	public String recommandBbs() {
 		return "recommand/RecommandBbs.tiles";
 	}
+	*/
 	//자유 게시판
 	@RequestMapping("/freeBbs.do")
 	public String freeBbs() {
