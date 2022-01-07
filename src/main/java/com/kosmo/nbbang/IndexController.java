@@ -104,11 +104,11 @@ public class IndexController {
 	
 	
 	
-	//추천 메인
+	/*//추천 메인
 	@RequestMapping("/recommand.do")
 	public String recommand() {
 		return "recommand/RecommandMain.tiles";
-	}
+	}*/
 	//추천 게시판
 	/*
 	@RequestMapping("/recommandBbs.do")

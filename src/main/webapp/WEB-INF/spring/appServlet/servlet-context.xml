@@ -48,5 +48,15 @@
 		<beans:property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</beans:bean>
-
+	
+	<!-- 웹 소켓: 먼저 pom.xml에 라이브러리 추가 -->
+	<!-- 웹소켓 서버용 빈 등록 -->
+	<beans:bean id="chatServer"
+		class="com.kosmo.nbbang.partykang.WebSocketServer"></beans:bean>
+	<!-- 웹소켓 서버와 클라이언트에서 접속하는 path와 매핑:엔드포인트 설정 -->
+	<websocket:handlers allowed-origins="*">
+		<websocket:mapping handler="chatServer"
+			path="/chat-ws.do" />
+	</websocket:handlers>
+	
 </beans:beans>

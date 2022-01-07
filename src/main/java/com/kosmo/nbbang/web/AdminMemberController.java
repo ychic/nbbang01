@@ -1,4 +1,4 @@
-package com.kosmo.nbbang.admin;
+package com.kosmo.nbbang.web;
 
 import java.util.List;
 import java.util.Map;
@@ -11,16 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kosmo.nbbang.admin.service.AdminMemberDTO;
-import com.kosmo.nbbang.admin.service.ListPagingData;
-import com.kosmo.nbbang.admin.serviceimpl.AdminMemberServiceImpl;
+import com.kosmo.nbbang.service.MemberDTO;
+import com.kosmo.nbbang.service.MemberListPaging;
+import com.kosmo.nbbang.service.impl.MemberServiceImpl;
+
 
 
 @Controller
 public class AdminMemberController {
 
 	@Autowired
-	private AdminMemberServiceImpl adminMemberService;
+	private MemberServiceImpl memberService;
 	
 	@RequestMapping("/adminmember.do")
 	public String adminMember(
@@ -28,7 +29,7 @@ public class AdminMemberController {
 			@RequestParam(required = false,defaultValue = "1") int nowPage,
 	        HttpServletRequest req,//페이징에 사용할 컨텍스트 루트 경로 얻기용
 			Model model) {
-		ListPagingData<AdminMemberDTO> listPagingData = adminMemberService.selectAllMember(map, req, nowPage);
+		MemberListPaging<MemberDTO> listPagingData = memberService.selectAllMember(map, req, nowPage);
 		/*for(AdminMemberDTO dto : list) {
 			System.out.println(dto.getEmail());
 			System.out.println(dto.getAuthority());

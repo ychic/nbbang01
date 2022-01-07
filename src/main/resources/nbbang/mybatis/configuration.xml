@@ -32,7 +32,7 @@
 	<!-- 클래스 별칭 설정 -->	
 	  
 	<typeAliases>
-		<typeAlias type="com.kosmo.nbbang.admin.service.AdminMemberDTO" alias="adminMember"/>
+		<typeAlias type="com.kosmo.nbbang.service.MemberDTO" alias="member"/>
 		<typeAlias type="com.kosmo.nbbang.partykang.service.PartyChatDTO" alias="chat"/>		
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
