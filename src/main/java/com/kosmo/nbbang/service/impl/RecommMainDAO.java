@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo.nbbang.service.RecommDTO;
+
 @Repository
 public class RecommMainDAO {
 	
@@ -14,6 +16,10 @@ public class RecommMainDAO {
 
 	public List<String> getUserSubService() {
 		return template.selectList("getUserSubService");
+	}
+
+	public List<RecommDTO> getReview() {
+		return template.selectList("getReview");
 	}
 
 }

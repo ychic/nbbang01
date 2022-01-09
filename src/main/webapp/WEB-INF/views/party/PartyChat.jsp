@@ -93,7 +93,7 @@ $(function(){
 	$('a').click(
 			function(e) {
 				e.preventDefault();				
-				wsocket = new WebSocket("ws://localhost:8080<c:url value="/chat-ws.do"/>?partyno="+$(this).get(0).id);
+				wsocket = new WebSocket("ws://localhost:9575<c:url value="/chat-ws.do"/>?partyno="+$(this).get(0).id);
 				console.log('wsocket:', wsocket);
 				//서버와 연결된 웹 소켓에 이벤트 등록
 				wsocket.onopen = open;
