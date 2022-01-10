@@ -8,9 +8,11 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.kosmo.nbbang.hwang.service.ussrDTO;
 
+@Repository
 public class ussrDAO {
 	
 	@Resource(name = "sqlSessionFactory")

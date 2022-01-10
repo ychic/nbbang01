@@ -17,12 +17,12 @@ import com.kosmo.nbbang.hwang.service.PagingUtil;
 import com.kosmo.nbbang.hwang.service.ussrDTO;
 import com.kosmo.nbbang.hwang.service.ussrService;
 
-@Transactional
+//@Transactional
 @Service("ussrService")
 public class ussrServiceImpl implements ussrService {
 
 	// ussrDAO주입]
-	@Resource(name = "ussrDAO")
+	@Autowired
 	private ussrDAO dao;
 
 	@Autowired
@@ -70,9 +70,9 @@ public class ussrServiceImpl implements ussrService {
 		return affected;
 	}
 	
-	@Autowired
-	private TransactionTemplate transactionTemplate;
-	
+	//@Autowired
+	//private TransactionTemplate transactionTemplate;
+	/*
 	@Override
 	public int delete(Map map) {
 		int affected=0;
@@ -90,6 +90,6 @@ public class ussrServiceImpl implements ussrService {
 	@Override
 	public int update(Map map) {		
 		return dao.update(map);
-	}
+	}*/
 
 }
