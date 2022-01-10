@@ -33,6 +33,11 @@ public class IndexController {
 	public String register() {
 		return "auth/register/SignUp";
 	}
+	//신고하기
+	@RequestMapping("/reportPage.do")
+	public String reportPage() {
+		return "report/Report.tiles";
+	}
 	
 	
 	
@@ -119,6 +124,23 @@ public class IndexController {
 	@RequestMapping("/guide.do")
 	public String guide() {
 		return "guide/GuideMain.tiles";
+	}
+	//1:1문의
+	@RequestMapping("/oneByOneBbsList.do")
+	public String oneByOneBbsList() {
+		return "guide/onebyoneqna/OneByOneBbsList.tiles";
+	}
+	@RequestMapping("/oneByOneBbsWrite.do")
+	public String oneByOneBbsWrite() {
+		return "guide/onebyoneqna/OneByOneBbsWrite.tiles";
+	}
+	@RequestMapping("/oneByOneBbsModify.do")
+	public String oneByOneBbsModify() {
+		return "guide/onebyoneqna/OneByOneBbsModify.tiles";
+	}
+	@RequestMapping("/oneByOneBbsView.do")
+	public String oneByOneBbsView() {
+		return "guide/onebyoneqna/OoneByOneBbsView.tiles";
 	}
 	
 	

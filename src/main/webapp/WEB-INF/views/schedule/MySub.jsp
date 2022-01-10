@@ -269,44 +269,56 @@
 					            
 					            
 					            
-					            <!-- 구독 리스트 -->
+					             <!-- 구독 리스트 -->
 					            <div class="list-group" id="subListKsy"> 
 					            	<!-- 미디어 리스트 -->
+					            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">넷플릭스</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">닌텐도 스위치</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">닌텐도스위치</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">디즈니+</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">멜론</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">벅스</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">스포티비 나우</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">유튜브 프리미엄</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">스포티비나우</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">아이클라우드</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">유튜브프리미엄</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">애플뮤직</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">왓챠</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">웨이브</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">티빙</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">플로</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">플레이스테이션</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<!-- 라이프 스타일 리스트 -->
+									<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">카카오이모티콘+</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">꾸까</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">네이버+</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">더반찬</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">런드리고</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">스타벅스</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">쏘카</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">와이즐리</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">월간과자</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">위클리 셔츠</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">청소연구소</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">쿠까</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">잡플래닛</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">쿠팡와우</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">필리</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">하비인더박스</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">해피문데이</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<!-- 렉쳐 리스트 -->
+									<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">bbc 사이언스</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">뉴닉</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">리디셀렉트</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">밀리의 서재</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">매경e신문</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">빅이슈</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">업피티</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">예스24북클럽</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">윌라</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">조인스 프라임</span><button type="button" class="btnSeeMore" >더보기</button></a>
 									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">퍼블리</span><button type="button" class="btnSeeMore" >더보기</button></a>
-									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">피렌체의 식탁</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<a href="#" class="list-group-item subServiceList"><span class="subListSpan">핀즐</span><button type="button" class="btnSeeMore" >더보기</button></a>
+									<!-- 기타 리스트 -->
+									<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+									<a href="#" class="list-group-item subServiceListSelf"><span>직접 입력하기</span></a>
+									
 								</div> 
 								
 								
@@ -740,13 +752,28 @@
 		}
 	});
 	
-	//구독 리스트 선택값 넘기기
+	//직접입력하기 클릭시, 데이터 넘지기 않고 모달창만 닫히도록
+	//subServiceListSelf
+	$('.subServiceListSelf').click(function(){
+		$('#subListKsy').css("display", "none");
+	});
 	
-	$('.subServiceList').click(function(){
+	//구독 리스트 선택값 넘기기
+	var subObject = {
+			'넷플릭스' : '24,000원',
+			'닌텐도스위치' : '23,000원',
+			'디즈니+' : '22,000원'
+	};
+	
+	$('.subServiceList').click(function(e){
 		$('#subName').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay').val(item);
+			}
+		});
     	$('#subListKsy').css("display", "none");
     });
-	
 	
 </script>
 <style>

@@ -135,6 +135,7 @@
 									<a class="dropbtn" onclick="location.href='partyBbs.do'">파티</a>
 									  <div class="dropdown-content">
 									    <a onclick="location.href='partyChat.do'">채팅</a>
+									    <a onclick="location.href='reportPage.do'">신고test</a>
 									  </div>
 								</li>
 								<li class="dropdown">
@@ -156,8 +157,12 @@
 								</li>
 								<li class="login_menu" style="float:right">
 									<a id="memberlogout" >로그아웃</a></li>
-								<li class="guide_menu" style="float:right">
-									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a></li>
+								<li class="guide_menu dropdown" style="float:right">
+									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a>
+									<div class="dropdown-content">
+									    <a onclick="location.href='oneByOneBbsList.do'">1:1문의</a>
+									  </div>
+								</li>
 							</ul>							
 							
 							
