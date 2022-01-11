@@ -30,7 +30,7 @@
 	</div>
 	<!-- Example row of columns -->
 	<div class="row">
-		<div class="col-md-6" style="padding: 0;">
+		<div class="col-md-4" style="padding: 0;">
 			<h2>사이트 이용자 가입 서비스 TOP10</h2>
 			<ul style="color: black;">
 				<c:forEach items="${subs}" var="sub" varStatus="loop" end="9">
@@ -38,7 +38,15 @@
 				</c:forEach>
 			</ul>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4" style="padding-top: 5px;">
+			<h2>영화/예능/드라마 TOP10</h2>
+			<ul style="color: black;">
+				<c:forEach items="${ottContent}" var="content" varStatus="loop" end="9">
+					<li>${loop.count}.${content}<li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="col-md-4">
 			<h2>좋아요 수가 많은 글</h2>
 			<ul>				
 				<c:forEach items="${reviews}" var="review" varStatus="loop">
@@ -46,6 +54,7 @@
 				</c:forEach>
 			</ul>
 		</div>
+		<!-- 
 		<div class="col-md-6" style="padding: 5px 0 0 0;">
 			<h2>${nickname}님의 취향에 따른 추천 리뷰!</h2>
 			<ul>
@@ -61,20 +70,6 @@
 				<li>a</li>
 			</ul>
 		</div>
-		<div class="col-md-6" style="padding-top: 5px;">
-			<h2>영화/예능/드라마 TOP10</h2>
-			<ul>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-				<li>a</li>
-			</ul>
-		</div>
+		-->		
 	</div>
 </div>
