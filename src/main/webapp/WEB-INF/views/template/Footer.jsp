@@ -8,7 +8,7 @@
         		<div class="col-md-4 col-sm-6">
         		</div>
         	</div>
-			<div class="nino-copyright">Copyright &copy; 2021 <a style="color:black;">Nbbang.com</a>. All Rights Reserved. <br/> by 강현수 | 김수연 | 김준형 | 김형태 | 박재현 | 정윤식 | 최주원 | 황태환</div>
+			<div class="nino-copyright">Copyright &copy; 2021 <a style="color:black;">Nbbang.com</a>. All Rights Reserved. <br/> by 강현수 | 김수연 | 김준형 | 김형태 | 박재현 | 정윤식 | 최주원 | 황태환 | 김혜란</div>
         </div>
     </footer><!--푸터수정버전-->
     

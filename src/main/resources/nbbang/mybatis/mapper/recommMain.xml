@@ -10,7 +10,8 @@
 		SELECT ussr.USSRNO, ussr.USSRTITLE, ussr.USSRCONTENT, ussr.USSRPOSTDATE, 
 		ussr.USSRORIGINFILENAMES, ussr.USSRREALFILENAMES, ussr.USSRCATEGORYNAME, 
 		ussr.EMAIL, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno=ussr.ussrno) count_ 
-		FROM (SELECT b.*, ROWNUM R FROM (SELECT * FROM ussrbbs WHERE ussrpostdate > SYSDATE - 1) b) ussr 
+		FROM (SELECT b.*, ROWNUM R FROM (SELECT * FROM ussrbbs 
+		WHERE ussrpostdate > SYSDATE - 1 <!--  AND ub.ussrcategoryname != 'free' -->) b) ussr 
 		WHERE R BETWEEN 1 AND 10 ORDER BY count_ DESC
 	</select>
 </mapper>
