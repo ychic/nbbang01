@@ -16,7 +16,7 @@
 
 <div class="container">
    <div>
-      <form id="myform" class="form-horizontal" method="post"   enctype="multipart/form-data" action="#">
+      <form id="myform" class="form-horizontal" method="post"   enctype="multipart/form-data" action="<c:url value='/recommandWrite.do'/>">
          <div class="form-group">
             <label class="col-sm-2 control-label">작성자</label>
             <div class="col-sm-4">
