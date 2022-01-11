@@ -10,16 +10,17 @@
 <script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
 
 <style>
-.reportTitle{
-	font-size:50px;
-	font-family:'Nanum Gothic', sans-serif;
-	padding-bottom:30px;
-}
-#myform{
-	width:90%;
-	padding-bottom:30px;
-}
+	.reportTitle{
+		font-size:50px;
+		font-family:'Nanum Gothic', sans-serif;
+		padding-bottom:30px;
+	}
+	#myform{
+		width:90%;
+		padding-bottom:30px;
+	}
 </style>
+
 <div class="container">
 	<div class="reportTitle">
 	신고 페이지
@@ -29,7 +30,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label">ID</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="name" value="${sessionScope.email}" placeholder="이름을 입력하세요">
+               <input type="text" class="form-control" name="name" value="${sessionScope.email}">
             </div>
          </div>
          <div class="form-group">
@@ -48,22 +49,16 @@
                </select>
             </div>
           </div>
-          <!-- <div class="form-group">
-            <label class="col-sm-2 control-label">신고 주제</label>
-            <div class="col-sm-4">
-               <select class="form-control">
-                 <option>서비스오류</option>
-                 <option>기능추가</option>
-                 <option>회원신고</option>
-               </select>
-            </div>
-          </div> -->
+          
          <div class="form-group">
-            <label class="col-sm-2 control-label">제목</label>
+            <label class="col-sm-2" style="padding-left:108px">신고사유</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="reop_title" placeholder="제목을 입력하세요">
+               <input type="radio" class="custom-radio" name="repo_reason" checked>광고
+               <input type="radio" class="custom-radio" name="repo_reason">욕설/비방
+               <input type="radio" class="custom-radio" name="repo_reason">기타
             </div>
          </div>
+         
          
          <div class="form-group">
             <label class="col-sm-2 control-label">내용</label>
@@ -78,7 +73,7 @@
          
          <div class="form-group" >
             <div class="col-sm-offset-2 col-sm-4">
-               <button class="btn btn-warning">신고하기</button>
+               <button class="btn btn-warning" id="repo_send">신고하기</button>
             </div>
          </div>
       </form>

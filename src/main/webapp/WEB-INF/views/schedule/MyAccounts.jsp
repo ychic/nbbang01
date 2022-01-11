@@ -122,5 +122,31 @@
 		
 		
 	}
+	
+	//계좌 인증을 위한 본인 인증, 계좌 추가 요청하는 ajax 
+	//실행 되면 url을 주는데 윤식님이 주심 
+	//콜백 url 
+	$("#getAjax").on('click',function(){
+          console.log("Ajax 수행")
+          console.log('타겟 요청','<c:url value="/auth/AuthToken.do"/>')
+          $.ajax({
+               url: '<c:url value="/auth/AuthToken.do"/>',
+               type: 'GET',
+               dataType: 'json',
+               success:function(data){
+                       // url을 담고 있음
+                       console.log(data.location);
+                       //
+                       var tmpWindow=window.open(data.location,"",'_blank,width=900,height=880,menubar=false')
+               },
+               error:function(e){
+                       console.log(e)
+               }
+                                 
+           })
+                                    
+     })
+	
+	
 
 </script>

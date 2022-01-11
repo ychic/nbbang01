@@ -29,12 +29,14 @@ public class LoginNoutController {
 	
 	@RequestMapping("/memberlogin.do")
 	public String process(@RequestParam Map map, Model model,SessionStatus status) {
-		
+		String nickname = memberService.getNickname(map);
 		int flag = memberService.isLogin(map);
 		
 		model.addAttribute("email",map.get("email"));
+		model.addAttribute("nickname",nickname);
 		//닉네임 불러오기
-		//System.out.println("nickname"+map.get("nickname"));
+		System.out.println(nickname);
+		System.out.println("nickname"+map.get("nickname"));
 		
 		if(flag == 0) {
 			//회원이 아닐경우 저장된 데이터 삭제
@@ -56,9 +58,6 @@ public class LoginNoutController {
 	@RequestMapping("/findEmail.do")
 	public @ResponseBody String findEmail(@RequestParam Map map,Model model,SessionStatus status) {
 		String result = memberService.findEmail(map);
-		
-		System.out.println("결과 :"+result);
-		System.out.println("받은 email: "+map.get("email"));
 		
 		model.addAttribute("findMemberEmail",result);
 		
