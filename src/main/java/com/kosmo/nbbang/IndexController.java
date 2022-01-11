@@ -33,6 +33,11 @@ public class IndexController {
 	public String register() {
 		return "auth/register/SignUp";
 	}
+	//신고하기
+	@RequestMapping("/reportPage.do")
+	public String reportPage() {
+		return "report/Report.tiles";
+	}
 	
 	
 	
@@ -42,28 +47,12 @@ public class IndexController {
 		return "party/PartyMain.tiles";
 	}
 	
-	//파티원 게시판
-	@RequestMapping("/partyBbs.do")
-	public String partyBbs() {
-		return "party/PartyBbs.tiles";
-	}
-	
-	//파티원 상세
-	@RequestMapping("/partyBbsView.do")
-	public String partyBbsView() {
-		return "party/PartyBbsView.tiles";
-	}
 	/*
 	//파티 채팅
 	@RequestMapping("/partyChat.do")
 	public String partyChat() {
 		return "party/PartyChat.tiles";
 	}*/
-	//파티원 게시판 글작성
-	@RequestMapping("/partyBbsWrite.do")
-	public String partyBbsWrite() {
-	   return "party/PartyBbsWrite.tiles";
-	}
 	
 	
 	//구독 메인
@@ -110,10 +99,12 @@ public class IndexController {
 		return "recommand/RecommandMain.tiles";
 	}*/
 	//추천 게시판
+	/*
 	@RequestMapping("/recommandBbs.do")
 	public String recommandBbs() {
 		return "recommand/RecommandBbs.tiles";
 	}
+	*/
 	//자유 게시판
 	@RequestMapping("/freeBbs.do")
 	public String freeBbs() {
@@ -133,6 +124,23 @@ public class IndexController {
 	@RequestMapping("/guide.do")
 	public String guide() {
 		return "guide/GuideMain.tiles";
+	}
+	//1:1문의
+	@RequestMapping("/oneByOneBbsList.do")
+	public String oneByOneBbsList() {
+		return "guide/onebyoneqna/OneByOneBbsList.tiles";
+	}
+	@RequestMapping("/oneByOneBbsWrite.do")
+	public String oneByOneBbsWrite() {
+		return "guide/onebyoneqna/OneByOneBbsWrite.tiles";
+	}
+	@RequestMapping("/oneByOneBbsModify.do")
+	public String oneByOneBbsModify() {
+		return "guide/onebyoneqna/OneByOneBbsModify.tiles";
+	}
+	@RequestMapping("/oneByOneBbsView.do")
+	public String oneByOneBbsView() {
+		return "guide/onebyoneqna/OoneByOneBbsView.tiles";
 	}
 	
 	

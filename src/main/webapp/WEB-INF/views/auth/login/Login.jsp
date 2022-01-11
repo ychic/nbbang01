@@ -89,7 +89,7 @@
 						<form action="<c:url value='/memberlogin.do'/>" class="signin-form" method="post">
 						
 							<div class="form-group">
-								<input type="text" class="form-control" name="email"
+								<input type="text" class="form-control" name="email" value="${email}"
 									placeholder="example@google.com" required>
 							</div>
 						
