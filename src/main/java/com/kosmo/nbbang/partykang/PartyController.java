@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import com.kosmo.nbbang.partykang.service.PartyChatDTO;
 import com.kosmo.nbbang.partykang.serviceimpl.PartyServiceImpl;
 
