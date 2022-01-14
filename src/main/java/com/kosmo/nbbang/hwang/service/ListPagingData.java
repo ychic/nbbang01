@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /* 페이징 관련 데이터와 레코드 목록 저장하는 클래스*/
-
+/*
 //Lombok사용시
 @Getter
 @Setter
@@ -22,7 +22,8 @@ public class ListPagingData<T> {
 	private int nowPage;
 	private String pagingString;
 }
-/*
+*/
+
 //Lombok미 사용시
 public class ListPagingData<T> {
 	//레코드 목록
@@ -71,4 +72,4 @@ public class ListPagingData<T> {
 	public void setPagingString(String pagingString) {
 		this.pagingString = pagingString;
 	}	
-}*/
+}

@@ -137,10 +137,12 @@ public class IndexController {
 		return "guide/GuideMain.tiles";
 	}
 	//1:1문의
+	/*
 	@RequestMapping("/oneByOneBbsList.do")
 	public String oneByOneBbsList() {
 		return "guide/onebyoneqna/OneByOneBbsList.tiles";
 	}
+	*/
 	@RequestMapping("/oneByOneBbsWrite.do")
 	public String oneByOneBbsWrite() {
 		return "guide/onebyoneqna/OneByOneBbsWrite.tiles";
@@ -149,18 +151,22 @@ public class IndexController {
 	public String oneByOneBbsModify() {
 		return "guide/onebyoneqna/OneByOneBbsModify.tiles";
 	}
+	/*
 	@RequestMapping("/oneByOneBbsView.do")
 	public String oneByOneBbsView() {
 		return "guide/onebyoneqna/OoneByOneBbsView.tiles";
 	}
+	*/
 	
 	
 	//===============admin
 	//관리자 첫 화면
+	/*
 	@RequestMapping("/admin.do")
 	public String admin() {
 		return "admin/AdminMain";
 	}
+	*/
 	/*@RequestMapping("/adminmember.do")
 	public String adminMember() {
 		return "admin/AdminMember";
@@ -169,10 +175,12 @@ public class IndexController {
 	public String adminParty() {
 		return "admin/AdminWarning";
 	}
+	/*
 	@RequestMapping("/adminOneByOne.do")
 	public String adminOneByOne() {
 		return "admin/AdminOneByOne";
 	}
+	*/
 	@RequestMapping("/adminChat.do")
 	public String adminChat() {
 		return "admin/AdminChat";

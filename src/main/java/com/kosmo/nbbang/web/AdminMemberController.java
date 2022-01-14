@@ -40,4 +40,24 @@ public class AdminMemberController {
 		model.addAttribute("listPagingData", listPagingData);
 		return "admin/AdminMember";
 	}
+	
+	//admin진입시 메인에 닉네임뿌리기(admin각 페이지마다 로직 추가해야 함)
+	@RequestMapping("/admin.do")
+	public String adminMain(
+							@RequestParam Map map,//검색 파라미터 및 페이징용 키값 저장용
+							@RequestParam(required = false,defaultValue = "1") int nowPage,
+					        HttpServletRequest req,//페이징에 사용할 컨텍스트 루트 경로 얻기용
+							Model model) {
+		MemberListPaging<MemberDTO> listPagingData = memberService.selectAllMember(map, req, nowPage);
+		/*for(AdminMemberDTO dto : list) {
+			System.out.println(dto.getEmail());
+			System.out.println(dto.getAuthority());
+			System.out.println(dto.getNickname());
+			System.out.println(dto.getName());
+			System.out.println(dto.getRegistdate());
+			System.out.println(dto.getTel());
+		}*/
+		model.addAttribute("listPagingData", listPagingData);
+		return "admin/AdminMain";
+	}
 }

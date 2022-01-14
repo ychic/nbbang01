@@ -39,37 +39,37 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>NickName</th>
+                                            <th>No</th>
+                                            <th>E-mail</th>
                                             <th>Title</th>
-                                            <th>Where</th>
-                                            <th>신고수</th>
+                                            <th>PostDate</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                             <th>바로가기</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>으르렁</td>
-                                            <td>넷플릭스 나눠볼사람 구해요</td>
-                                            <td>파티원게시판</td>
-                                            <td>25</td>
-                                            <td><a href="#" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a></td>
-                                            <td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>
-                                            <td><a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info-circle"></i> </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon2</td>
-                                            <td>으르렁2</td>
-                                            <td>넷플릭스 나눠볼사람 구해요~~~~~~~~</td>
-                                            <td>파티원게시판</td>
-                                            <td>25</td>
-                                            <td><a href="#" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a></td>
-                                            <td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>
-                                            <td><a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info-circle"></i> </a></td>
-                                        </tr>
+	                                    <c:if test="${empty listPagingData.lists }" var="isEmpty">
+											<tr>
+												<td colspan="12">등록된 게시물이 없어요</td>
+											</tr>
+										</c:if>
+										<c:if test="${not isEmpty }">
+	                                    	<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
+	                                        <tr>
+	                                            <td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
+	                                            <td>${item.email }</td>
+	                                            <td>${item.inqtitle }</td>
+	                                            <td>${item.inqpostdate }</td>
+	                                            <td><a href="#" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a></td>
+	                                            <td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>
+	                                            <td><a href="<c:url value='/oneByOneBbsView.do?no=${item.inqno}&nowPage='/> <c:out value="${param.nowPage }" default="1"/>"  class="btn btn-info btn-circle btn-sm">
+	                                            	<i class="fas fa-info-circle"></i> 
+	                                            	</a>
+	                                            </td>
+	                                        </tr>
+	                                        </c:forEach>
+										</c:if>
                                     </tbody>
                                 </table>
                              </div>
@@ -82,20 +82,19 @@
                                 			</div>
                                 		
                                 		</div>
+                                		
+                                		<c:if test="${listPagingData.lists.size() !=0 }">
                                 		<div class="col-sm-12 col-md-7">
                                 			<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                				<ul class="pagination">
+                                				<ul>
                                 					<li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                					<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                					<li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                					<li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                					<li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                					<li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                					<li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+                                					<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">${listPagingData.pagingString}</a></li>
                                 					<li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                                				 
                                 				</ul>
                                 			</div>
                                 		</div>
+                                		</c:if>
                                 	</div>
                                 </div><!-- 페이지네이션 끝 -->
                                 

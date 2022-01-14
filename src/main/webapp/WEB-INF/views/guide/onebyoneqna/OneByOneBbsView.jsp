@@ -30,38 +30,40 @@ input#inbt {background-color:#ee7beb;
 
  <body>
 
-    <fieldset>글 상세보기 페이지
-	 
-          
-				<form> 
-				<h3 id="hsbj">제목</h3> 
-				<input type="text" id="subject" name="subject"><br/>
-				</form>
+    <fieldset>view페이지
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th class="col-md-2 text-center">번호</th>
+						<td>${record.inqno}</td>
+					</tr>
+					<tr>
+						<th class="text-center">제목</th>
+						<td>${record.inqtitle}</td>
+					</tr>
+					<tr>
+						<th class="text-center">작성자</th>
+						<td>${record.email}</td>
+					</tr>
+					<tr>
+						<th class="text-center">등록일</th>
+						<td>${record.inqpostdate}</td>
+					</tr>
+					<tr>
+						<th class="text-center" colspan="2">내용</th>
+					</tr>
+					<tr>
+						<td colspan="2">${record.inqcontent}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="location.href='OBOlist.do">목록</button>
+		</div>
 
-				<form> 
-				<h3 id="hname">작성자</h3> 
-				<input type="text" id="name"  name="subject"><br/>
-				</form>
-           
-
-	    <form>
-
-		    <textarea name="content" id="txtarea" rows="4" cols="100"
-			 placeholder="내용을 입력하세요.">
- 
-			</textarea>
-		</form>
-
-
-       <p> 
-          <input type="button" id="inbt" value="목록" 
-		  onclick="location.href='oneByOneBbsList.do'"/>
-        
-          <input type="button" id="inbt" value="수정" 
-		  onclick="location.href='oneByOneBbsModify.do'"/>
-		  
-          <input type="button" id="inbt" value="삭제" onclick=""/>
-       </p>
 
 
 </fieldset>

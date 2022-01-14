@@ -36,6 +36,7 @@
 		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrDTO" alias="ussrDTO"/>
 		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrCommentDTO" alias="ussrCommentDTO"/>
 		<typeAlias type="com.kosmo.nbbang.service.RecommDTO" alias="recomm"/>
+		<typeAlias type="com.kosmo.nbbang.service.InquiryBbsDTO" alias="inquiryBbsDTO"/>
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
 	
@@ -51,6 +52,7 @@
 		<mapper resource="nbbang/mybatis/mapper/ussrcomment.xml" />
 		<mapper resource="nbbang/mybatis/mapper/ussrdynamicsql.xml" />	
 		<mapper resource="nbbang/mybatis/mapper/recommMain.xml"/>
+		<mapper resource="nbbang/mybatis/mapper/inquirybbs.xml"/>
 
 	</mappers>	
 </configuration>

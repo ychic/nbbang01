@@ -748,8 +748,9 @@
 	
 	//상세페이지 모달
 	/*
-		애플뮤직/카카오/잡플래닛/월간과자/더 반찬 사진 추가
+		
 		ott서비스 인당 가격별로 나눠야하나?
+		위클리셔츠 삭제 다른거 추가
 	*/
 	var modalSeeMorebtn = false;
 	var subObjectInfo = [
@@ -761,24 +762,24 @@
 			['SpoTV Now','<%=request.getContextPath()%>/resources/images_sub/media/001_spotvnow.jpg','9,000원','SPOTV NOW는 SPOTV의 OTT 서비스이다. 주로 스포츠 콘텐츠를 중심으로 제공하고 있으며 카카오, 네이버, 페이스북을 포함해서 회원가입을 해야 이용이 가능하다. 스포티비 중계를 실시간 생중계 시청을 할 수 있는 플랫폼이다.','https://www.spotv.net/main.asp'],
 			['iCloud','<%=request.getContextPath()%>/resources/images_sub/media/009_icloud.png','1,000원','iCloud는 자동으로 사진, 파일, 메모, 암호 및 기타 데이터를 클라우드에 안전하게 저장하고 모든 기기에 최신 상태로 유지하는 Apple의 서비스입니다. iCloud를 사용하여 iPhone, iPad 또는 iPod touch를 백업할 수도 있습니다.','https://www.icloud.com/'],
 			['Youtube Premium','<%=request.getContextPath()%>/resources/images_sub/media/002_youtube.png','10,000원','YouTube Premium에 가입하면 동영상 오버레이 광고를 포함해 동영상 재생 전과 중간에 나오는 광고로 끊기거나 방해받지 않고 수백만 개의 동영상을 감상할 수 있습니다. ... 동영상과 재생목록을 오프라인 저장하여 인터넷에 연결되어 있지 않아도 오프라인으로 시청할 수 있습니다.','https://www.youtube.com/premium'],
-			['Apple Music','<%=request.getContextPath()%>/resources/images_sub/media/005_disney.png','9,000원','무손실 오디오로 스트리밍하는 8천5백만 곡 이상의 음악. 추가 비용은 제로. 즐겨 듣는 음악 다운로드. 오프라인에서 재생. 3개월 무료 체험으로 Apple Music을 시작해 보세요.','https://www.apple.com/kr/apple-music/'],
+			['Apple Music','<%=request.getContextPath()%>/resources/images_sub/media/015_AppleMusic.png','9,000원','무손실 오디오로 스트리밍하는 8천5백만 곡 이상의 음악. 추가 비용은 제로. 즐겨 듣는 음악 다운로드. 오프라인에서 재생. 3개월 무료 체험으로 Apple Music을 시작해 보세요.','https://www.apple.com/kr/apple-music/'],
 			['Watcha','<%=request.getContextPath()%>/resources/images_sub/media/004_watcha.png','8,000원','왓챠는 모두의 다름이 인정받고 개인의 취향이 존중받는, 더 다양한 세상을 만드는 회사입니다. 모든 영화, 드라마, 다큐멘터리, 애니메이션을 언제 어디서나 최고의 화질로 무제한 감상하세요.','https://watcha.com/'],
 			['Wavve','<%=request.getContextPath()%>/resources/images_sub/media/007_wave.png','8,000원','웨이브 (wavve) 재미의 파도를타다! 웨이브(WAVVE)는 푹과 OKSUSU가 설립·통합되어 SK텔레콤과 지상파 방송3사가 합작 운영하는 인터넷 기반 OTT 서비스이다. 현재 JTBC 계열사 채널들에 한하여 실시간 방송을 중계하지 않는다.','https://www.wavve.com/index.html'],
 			['Tving','<%=request.getContextPath()%>/resources/images_sub/media/006_tving.png','8,000원','티빙(TVING)은 CJ ENM으로부터 독립하여 2020년 10월 1일 설립된 CJ 계열의 OTT 회사이다. TVING은 CJ ENM, JTBC를 포함한 인기 채널의 실시간TV, 방송 다시보기,국내외 영화 및 디지털콘텐츠 뿐만 아니라 키즈, 커머스 등 다양한 콘텐츠를 제공하고 있습니다. 또한, 모바일, PC와 스마트TV까지 다양한 환경에서 서비스를 자유롭게 이용할 수 있습니다.','https://www.tving.com/'],
 			['Flo','<%=request.getContextPath()%>/resources/images_sub/media/008_flo.png','7,000원','플로는 이용자가 인기 차트에서 탈피해 자신만의 음악 취향을 발견할 수 있도록 돕습니다. 이용자들의 감상 음악 리스트와 좋아요 이력 등을 바탕으로 새로운 음악을 끊임없이 추천합니다. 데이터가 축적돼 이용하면 할수록 내 취향에 맞는 음악을 발견할 확률이 높아집니다.','https://www.music-flo.com/'],
 			['Playstation','<%=request.getContextPath()%>/resources/images_sub/media/012_playstation.jpg','4,000원','소니 인터랙티브 엔터테인먼트의 콘솔 게임기 브랜드이며, 저장된 게임 진행 내역이 모두 콘솔에 저장되어 언제든 게임을 재설치하면 그만둔 부분부터 다시 플레이할 수 있습니다. ','https://www.playstation.com/ko-kr/'],
 			
-			['카카오 이모티콘+','<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_disney.png','2,500원','갖고 싶던 수많은 이모티콘을 마음껏 즐겨요! 인기 아이템부터 최신 아이템까지 다양한 이모티콘을 마음껏 톡 해보세요! 자동 추천기능으로 더 빠르게! 센스는 타이밍! 메시지를 톡에 입력하면 자동으로 이모티콘을 추천해드려요! 두근두근 랜덤 이모티콘 추천기능으로 즐거움까지!','https://e.kakao.com/plus_info'],
+			['카카오 이모티콘+','<%=request.getContextPath()%>/resources/images_sub/lifestyle/014_kakaoplus.jpg','2,500원','갖고 싶던 수많은 이모티콘을 마음껏 즐겨요! 인기 아이템부터 최신 아이템까지 다양한 이모티콘을 마음껏 톡 해보세요! 자동 추천기능으로 더 빠르게! 센스는 타이밍! 메시지를 톡에 입력하면 자동으로 이모티콘을 추천해드려요! 두근두근 랜덤 이모티콘 추천기능으로 즐거움까지!','https://e.kakao.com/plus_info'],
 			['꾸까','<%=request.getContextPath()%>/resources/images_sub/lifestyle/007_kukka.png','18,000원','꾸까(kukka)는 꽃이 주는 행복을 누구나 누릴 수 있도록, 일상에서 쉽게 꽃을 즐기는 문화를 꿈꾸는 플라워테크 스타트업입니다. 플라워 커머스 "꾸까"는 국내 최초로 꽃 정기구독 서비스를 선보여 2주 간격으로 직접 디자인하고 생산한 꽃을 주기적으로 배송하고 있습니다. 꽃을 안정적이고 저렴하게 공급하고, 주기적인 수요를 통해 일상에서 쉽게 꽃을 즐기는 문화를 만들어가고 있습니다.','https://kukka.kr'],
 			['네이버+','<%=request.getContextPath()%>/resources/images_sub/lifestyle/008_naverplus.png','5,000원','네이버플러스 멤버십은 네이버에서 2020년 6월 출시한 구독형 서비스입니다. 네이버 멤버십 회원에 가입하면 네이버페이 결제액의 최대 5%까지 적립받을 수 있고(My단골, 특가할인 등과 중복 적용) 또한 티빙 방송 무제한 이용권, 웹툰 49개, 영화 1편 할인 쿠폰, 시리즈온 영화 무제한 이용권, SPOTV NOW, 콘텐츠 체험팩 6종에서 하나를 선택하여 이용할 수 있습니다.','https://nid.naver.com/membership/join'],
-			['더 반찬','<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_disney.png','28,000원','더 반찬은 매번 다른 메뉴를 정기 구독할 수 있는 서비스입니다. 넉넉하고 푸짐한 양, 한달 내 원하는 날짜에 무료배송, 셰프의 손으로 직접 요리, 깨끗한 위생의 원칙을 지켜 반찬 정기 구독 서비스를 시행하고 있습니다.','https://www.thebanchan.co.kr/main/initMain.action'],
+			['더 반찬','<%=request.getContextPath()%>/resources/images_sub/lifestyle/016_thebanchan.jpg','28,000원','더 반찬은 매번 다른 메뉴를 정기 구독할 수 있는 서비스입니다. 넉넉하고 푸짐한 양, 한달 내 원하는 날짜에 무료배송, 셰프의 손으로 직접 요리, 깨끗한 위생의 원칙을 지켜 반찬 정기 구독 서비스를 시행하고 있습니다.','https://www.thebanchan.co.kr/main/initMain.action'],
 			['런드리고','<%=request.getContextPath()%>/resources/images_sub/lifestyle/003_laundrygo.png','65,000원','런드리고는 자체 개발한 스마트 빨래 수거함(런드렛)에 세탁물을 담아 당일 밤 12시까지 맡기면, 익일 밤 12시까지 하루 만에 완료해 다시 문 앞에 배송해주는 모바일 세탁 서비스입니다. 천연 세제와 스마트팩토리로 완성하는 세탁퀄리티, 비대면 한밤배송 서비스와 합리적인 가격을 제공하고 있습니다.','https://www.laundrygo.com/brand'],
 			['SOCAR','<%=request.getContextPath()%>/resources/images_sub/lifestyle/009_socar.png','3,000원','쏘카는 자동차라는 수단을 넘어 이동에 대한 사람들의 오랜 바람을 다시 떠올립니다. 내가 원할 때, 어디서나, 편리하고 안전하게 이동하고 싶다는 마음. 우리는 차를 소유하며 당연하게 여겨온 불편함과 비효율을 줄이고, 기술과 데이터로 더 나은 이동 방식을 제시하겠습니다.','https://www.socar.kr/company'],
 			['Wisely','<%=request.getContextPath()%>/resources/images_sub/lifestyle/006_wisely.png','9,000원','국내 1위 면도기 구독 서비스! 와이즐리컴퍼니는 면도기 브랜드 "WISELY" 이후, 스킨케어 브랜드 "OPENWORK", 두피케어 브랜드 "HEADWORKS", 그리고 건강기능식품 브랜드 "HABITUAL" 을 출시하여 다양한 생활 소비재 시장에서 좋은 제품을 정직한 가격에 전하고 있습니다.','https://wisely.wiselycompany.com/'],
-			['월간 과자','<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_disney.png','10,000원','월간과자는 롯데제과가 지난해 6월 업계 최초로 선보인 과자 구독 서비스로, 월 9900원 또는 1만9800원을 내면 과자가 담긴 박스가 집으로 배송된다. 롯데제과 공식 온라인몰에서도 유통기한이 3개월여 남은 제품의 유통기한을 밝히고 최대 70%까지 할인 판매 중이다.','https://lottesweetmall.com/product/detail_subscribe.html?product_no=499'],
+			['월간 과자','<%=request.getContextPath()%>/resources/images_sub/lifestyle/017_monthlysnack.png','10,000원','월간과자는 롯데제과가 지난해 6월 업계 최초로 선보인 과자 구독 서비스로, 월 9900원 또는 1만9800원을 내면 과자가 담긴 박스가 집으로 배송된다. 롯데제과 공식 온라인몰에서도 유통기한이 3개월여 남은 제품의 유통기한을 밝히고 최대 70%까지 할인 판매 중이다.','https://lottesweetmall.com/product/detail_subscribe.html?product_no=499'],
 			['위클리 셔츠','<%=request.getContextPath()%>/resources/images_sub/lifestyle/011_weeklyshirts.png','50,000원','위클리셔츠는 지난 해 10월 “입기만 하면 되는 셔츠”라는 슬로건을 내걸고 야심차게 출범한 스타트업 기업이다. 위클리셔츠를 이용하는 방법은 간단하다. 원하는 셔츠 스타일과 일주일에 받고 싶은 셔츠의 양을 선택한 뒤, 주문을 하고 결제를 하면 지정한 장소로 셔츠를 배송해준다.',''],
-			['잡플래닛','<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_disney.png','12,000원','대기업에서부터 스타트업까지! 기업의 복지 및 급여, 승진기회 및 가능성, 업무와 삶의 균형, 사내문화, 경영진, 총 만족도, 베스트 연봉정보 등 후기를 통한 살아있는 정보를 얻을 수 있는 서비스입니다. 월간 구독으로 모든 정보를 열람할 수 있습니다.','https://www.jobplanet.co.kr/welcome/index'],
-			['쿠팡 와우','<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_disney.png','4,000원','와우 멤버십 회원은 쿠팡 내 무제한 무료 배송·반품과 자정까지 신선식품을 주문하면 다음날 새벽에 받아볼 수 있는 "로켓프레시", "로켓직구" 무료배송, 온라인동영상서비스(OTT) "쿠팡플레이" 등 서비스를 사용할 수 있다. 인상된 멤버십 가격은 지난달 30일부터 신규 회원에게 적용된다.','https://www.coupang.com/'],
+			['잡플래닛','<%=request.getContextPath()%>/resources/images_sub/lifestyle/015_jobplanet.jpg','12,000원','대기업에서부터 스타트업까지! 기업의 복지 및 급여, 승진기회 및 가능성, 업무와 삶의 균형, 사내문화, 경영진, 총 만족도, 베스트 연봉정보 등 후기를 통한 살아있는 정보를 얻을 수 있는 서비스입니다. 월간 구독으로 모든 정보를 열람할 수 있습니다.','https://www.jobplanet.co.kr/welcome/index'],
+			['쿠팡 와우','<%=request.getContextPath()%>/resources/images_sub/lifestyle/018_coupang.png','4,000원','와우 멤버십 회원은 쿠팡 내 무제한 무료 배송·반품과 자정까지 신선식품을 주문하면 다음날 새벽에 받아볼 수 있는 "로켓프레시", "로켓직구" 무료배송, 온라인동영상서비스(OTT) "쿠팡플레이" 등 서비스를 사용할 수 있다. 인상된 멤버십 가격은 지난달 30일부터 신규 회원에게 적용된다.','https://www.coupang.com/'],
 			['Pilly','<%=request.getContextPath()%>/resources/images_sub/lifestyle/004_pilly2.png','14,000원','맞춤영양제 정기구독 서비스 필리를 운영중인 케어위드는 <모두가 건강한 삶을 유지하도록 돕는다.>는 비전을 가지고 출발한 헬스케어 스타트업입니다. 필리의 일은 "영양제 판매"가 아닌 올바른 영양성분 섭취를 통해 건강한 생활을 유지할 수 있도록 돕는 것입니다. 필리는 이런 어려움을 해소하기 위해 영양성분을 추천하고, 용량이 넘치거나 부족하지 않도록 믿을 수 있는 제품을 만들고, 섭취 관리 서비스 "필리케어"를 제공합니다.','https://pilly.kr/'],
 			['Hobby in the Box','<%=request.getContextPath()%>/resources/images_sub/lifestyle/011_hobbyinthebox.png','40,000원','인터넷에 떠도는 수많은 취미들,나도 한 번쯤 해보고 싶은데 배워보기에도, 재료를 사러가기에도 시간이 부담된다면,혹은 아직 내가 어떤걸 좋아하는 지 몰라 찾고싶다면,취미 정기배송 와 함께 하세요.매월 새로운 취미가 집에서 바로 즐길 수 있도록 구성되어 배송됩니다.세상의 흥미로운 취미들을 연구하고 선별하고 소개하고 전달할게요.','https://hobbyinthebox.co.kr/'],
 			['해피 문데이','<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_happymoonday.png','7,000원','해피문데이는 여성건강을 생각한 유기농 생리대와 탐폰을 만들고 배송합니다.','https://happymoonday.com/'],
@@ -792,7 +793,7 @@
 			['윌라','<%=request.getContextPath()%>/resources/images_sub/lecture/016_willa.png','10,000원','전문 성우들의 목소리로 책을 들을 수 있는 구독 서비스. 정기 구독으로 다양한 오디오북을 즐길 수 있습니다.','https://www.welaaa.com/'],
 			['조인스 프라임','<%=request.getContextPath()%>/resources/images_sub/lecture/018_joinsprime.png','10,000원','저렴한 정액제 요금으로 신문과 잡지를 무제한 열람할 수 있는 서비스입니다.','https://www.joins.com/'],
 			['퍼블리','<%=request.getContextPath()%>/resources/images_sub/lecture/024_publy.png','10,000원','퍼블리는 누구나 쉽게 커리어를 학습하고 관리할 수 있도록 돕고, 더 많은 기회와 더 좋은 네트워크를 경험하는 "커리어 풀솔루션" 서비스를 제공하는 플랫폼입니다.','https://publy.co/'],
-			['핀즐','<%=request.getContextPath()%>/resources/images_sub/lifestyle/012_pinzle.png','20,000원','핀즐은 국내 최다 해외 아티스트를 보유한 국내 유일 글로벌 아트 에이전시입니다. 삶과 예술에 대한 아티스트 인터뷰와 지면으로만 만날 수 있었던 콘텐츠까지, 바야흐로 그림을 정기구독하는 시대입니다.','https://pinzle.net/']
+			['핀즐','<%=request.getContextPath()%>/resources/images_sub/lecture/033_pinzle.png','20,000원','핀즐은 국내 최다 해외 아티스트를 보유한 국내 유일 글로벌 아트 에이전시입니다. 삶과 예술에 대한 아티스트 인터뷰와 지면으로만 만날 수 있었던 콘텐츠까지, 바야흐로 그림을 정기구독하는 시대입니다.','https://pinzle.net/']
 			
 	];
 	

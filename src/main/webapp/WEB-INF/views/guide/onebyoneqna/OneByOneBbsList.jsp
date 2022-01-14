@@ -93,7 +93,7 @@ input#insubmit {background-color:#ee7beb;
 
 <div id="wrap">
     <table>
-    <!-- 해드부 -->
+    <!-- 해드부 
 <caption id="captionHead">
 				<h1>1:1 문의하기</h1>
  <h3>nbbang 서비스 이용 시 불편사항이나 문의사항을 보내주시면<br><br> 
@@ -101,7 +101,7 @@ input#insubmit {background-color:#ee7beb;
  </h3>
 
 </caption>
- 
+ -->
 
        <!-- //검색 폼 영역 -->
          <colgroup>
@@ -117,138 +117,63 @@ input#insubmit {background-color:#ee7beb;
             <th>번호</th>
             <th>제목</th>
             <th>작성일</th>
-            <th>작성자</th>
-            <th>조회</th>  
+            <th>작성자</th> 
          </tr>
         </thead>
  
     <!-- 버텀부 -->
     <tbody>
-        <tr>
-            <td class="tdNo">1</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.12.12</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">66</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">2</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.11.19</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">46</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">3</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.11.11</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">35</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">4</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.08.31</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">7</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">5</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.08.24</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">11</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">6</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.07.29</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">20</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">7</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.06.22</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">21</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">8</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.05.30</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">34</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">9</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.04.26</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">14</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">10</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.04.12</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">12</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">11</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.04.01</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">19</td>
-         </tr>
-		 <tr>
-            <td class="tdNo">12</td>
-            <td class="tdTitle"><a href="#">문의입니다.</a> </td>
-            <td class="tdDate"> 2012.03.15</td>
-            <td class="tdName">홍길동</td>
-            <td class="tdCount">22</td>
-         </tr>
+				<c:if test="${empty listPagingData.lists}" var="isEmpty">
+					<tr>
+						<td colspan="4">등록된 게시물이 없어요</td>
+					</tr>
+				</c:if>
+			
+            <c:if test="${not isEmpty}">
+					<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
+						<tr>
+							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>			
+							
+							<td class="text-left"><a href="<c:url value="/oneByOneBbsView.do?inqno=${item.inqno}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">
+								${item.inqtitle }</a> <span class="badge">${item.commentCount }</span></td>
+							<td>${item.email }</td>
+							<td>${item.inqpostdate }</td>
+						</tr>
+					</c:forEach>
+			</c:if>
+			
      </tbody>
-     
-     <!--버텀부-->
-     <tfoot>
-        <tr>
-            <td colspan="5" class="tdFoot"> ◀&nbsp;&nbsp;
-            <a href="#"> <b>1</b></a>&nbsp;&nbsp;
-            <a href="#"> 2</a>&nbsp;&nbsp;
-            <a href="#"> 3</a>&nbsp;&nbsp;
-            <a href="#"> 4</a>&nbsp;&nbsp;
-            <a href="#"> 5</a>&nbsp;&nbsp;
-            &nbsp;&nbsp;▶&nbsp;&nbsp;&nbsp;
-        </tr>
-		
-     </tfoot>
-
 	 </table>
+	<a class="btn btn-default pull-right"
+			href="<c:url value='/oneByOneBbsWrite.do'/>">글쓰기</a>
 
-
-	 <!-- 검색 폼 영역 -->
-       <div id="search">
-       <form name="searchForm" action="" method="get">
-       <p>
-           <select name="searchType">
-               <option value="ALL">전체검색</option>
-               <option value="SUBJECT">제목</option>
-               <option value="WRITER">작성자</option>
-               <option value="CONTENTS">내용</option>
-           </select>
-
-           <input type="text" name="searchText" value="" />
-           <input type="submit" id="insubmit" value="검색" />
-       </p>
-       </form>
-	   </div>
-
-	 <!--버튼영역-->
-	 <div id="writebt">
-    <input type="button" id="inbt" value="글쓰기" 
-	onclick="location.href='oneByOneBbsWrite.do'" />
-    </div>
+	 <!-- 페이징 -->
+	<c:if test="${listPagingData.lists.size() !=0 }">
+		<div class="row">
+			<div class="col-md-12 text-center">${listPagingData.pagingString}</div>
+		</div>
+	</c:if>
+	<!-- 검색용 UI -->
+	<div class="row">
+		<div class="text-center">
+			<form class="form-inline" method="post"
+				action="<c:url value='/OBOList.do'/>">
+				<div class="form-group">
+				
+					<!-- searchColumn /searchWord 의 파라미터로 넘어감 -->
+					<select name="searchColumn" class="form-control">
+						<option value="title">제목</option>
+						<option value="name">작성자</option>
+						<option value="content">내용</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" name="searchWord" class="form-control" />
+				</div>
+				<button type="submit" class="btn btn-primary">검색</button>
+			</form>
+		</div>
+	</div>
 </div>
 
 	
