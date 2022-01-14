@@ -44,9 +44,13 @@
 		<mapper resource="nbbang/mybatis/mapper/admin.xml" />
 		<mapper resource="nbbang/mybatis/mapper/chat.xml" />
 		<mapper resource="nbbang/mybatis/mapper/nbbang-query.xml" />
+
+		<mapper resource="nbbang/mybatis/mapper/signup.xml" />
+
 		<mapper resource="nbbang/mybatis/mapper/ussr.xml" />
 		<mapper resource="nbbang/mybatis/mapper/ussrcomment.xml" />
 		<mapper resource="nbbang/mybatis/mapper/ussrdynamicsql.xml" />	
 		<mapper resource="nbbang/mybatis/mapper/recommMain.xml"/>
+
 	</mappers>	
 </configuration>

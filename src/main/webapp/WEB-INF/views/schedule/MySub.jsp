@@ -15,6 +15,10 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/template.js"></script>
 	
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<!--sortable()적용해보려고 가져왔-->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/first/style.css">
+	
+	
 	<!-- jQuery사용을 위한 라이브러리 임베딩-->
 	<!-- 1]다운받은  .js파일 임베디드 -->
 	<!--  
@@ -23,6 +27,9 @@
 	<!-- 2]CDN(Content Deliver Network)주소 사용 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<!-- sortable()적용해보려고 가져왔는데 주석풀면 다른기능(호버, 수연님구현셀렉 안보임)
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	  -->
 <!--  
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/popper.js"></script>
@@ -352,6 +359,17 @@
 				</div>
 				<div class="col-sm-12">
 					<div class="row">
+					<!-- sortable적용 
+					<ul id="sortable">
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					</ul>
+					-->
 						<table class="table table-hover" >
 						  <thead>
 						    <tr>
@@ -362,35 +380,40 @@
 						      <th class="col-sm-1" scope="col" ></th>
 						    </tr>
 						  </thead>
-						  <tbody>
-						    <tr class="table-active">
+						  <tbody id="sortable">
+						  <!-- class="table-active" 아래tr에서 삭제한상태 -->
+						    <tr class="ui-state-default">
 						      <td>로고</td>
 						      <td>넷플릭스</td>
 						      <td>3일</td>
 						      <td>14900원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 						    </tr>
-						    <tr>
+						  
+						    <tr class="ui-state-default">
 						      <td>로고</td>
 						      <td>쿠팡</td>
 						      <td>5일</td>
 						      <td>2900원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 						    </tr>
-						    <tr>
+		  
+						    <tr class="ui-state-default">
 						      <td>로고</td>
 						      <td>리디북스</td>
 						      <td>1일</td>
 						      <td>10000원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-						    </tr>
+						    </tr>		
 						  </tbody>
 						</table>
+						
 						<!--  
 						<div class="col-sm-12" id="item_1" style="border: solid orange 1px">item_1</div>
 						-->
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -429,6 +452,9 @@
 
 
 <script>
+	//sortable 적용해보기
+	$( "#sortable" ).sortable();
+
 	//데이트피커
 	$("#datepicker").datepicker();
 	$("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
@@ -955,4 +981,9 @@
 		color:#fff;
 		border-radius: 10px;
 	}
+	
+	/*	sortable 적용해보기	*/
+	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  	#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  	#sortable li span { position: absolute; margin-left: -1.3em; }
 </style>
