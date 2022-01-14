@@ -5,7 +5,7 @@
 <!-- 상단메뉴 시작 -->	
 <!--<jsp:include page="/WEB-INF/views/template/Top.jsp"/>-->
 <!-- 상단메뉴 끝 -->
-		
+	
 		<!-- carousel 영역 -->
 			<section id="nino-slider" class="carousel slide container" data-ride="carousel">
 				
@@ -13,30 +13,30 @@
 					<div class="item active">
 						<h2 class="nino-sectionHeading">
 							<span class="nino-subHeading">한달에 구독료 얼마가 나가지?</span>
-							궁금하다면 <br><span style="color:#40E0D0;">n빵</span> 하자!
+							궁금하다면 <br><span style="color:#FF69B4;">n빵</span> 하자!
 						</h2>
-						<a href="<c:url value='/schedule.do'/>" class="nino-btn">내 구독 보기</a>
+						<a href="<c:url value='/mySub.do'/>" class="nino-btn">내 구독 관리 하기!</a>
 					</div>
 					<div class="item">
 						<h2 class="nino-sectionHeading">
 							<span class="nino-subHeading">다른 사람들은 어떤 걸 구독하지?</span>
-							알고싶다면 <br><span style="color:#95e1d3;">n빵</span> 하자!
+							알고싶다면 <br><span style="color:#EBFF82;">n빵</span> 하자!
 						</h2>
-						<a href="<c:url value='/recommand.do'/>" class="nino-btn">추천게시판 보기</a>
+						<a href="<c:url value='/recommandList.do'/>" class="nino-btn">추천게시판 보기</a>
 					</div>
 					<div class="item">
 						<h2 class="nino-sectionHeading">
 							<span class="nino-subHeading">구독료 공유할 사람은 없을까?</span>
 							찾고싶다면 <br><span style="color:#00FFFF;">n빵</span> 하자!
 						</h2>
-						<a href="<c:url value='/party.do'/>" class="nino-btn">파티게시판 보기</a>
+						<a href="<c:url value='/partyBbs.do'/>" class="nino-btn">파티게시판 보기</a>
 					</div>
 					<div class="item">
 						<h2 class="nino-sectionHeading">
 							<span class="nino-subHeading">구독 일정이 너무 복잡해!</span>
 							깔끔하게 <br><span style="color:#8B4513;">n빵</span> 하자!
 						</h2>
-						<a href="<c:url value='/schedule.do'/>" class="nino-btn">내 스케쥴 보기</a>
+						<a href="<c:url value='/mySchedule.do'/>" class="nino-btn">내 스케쥴 보기</a>
 					</div>
 				</div>
 
@@ -76,7 +76,7 @@
 				<span class="nino-subHeading">What we do</span>
 				세상의 많은 구독 서비스를 누려 보세요
 			</h2>
-			<!-- <p class="nino-sectionDesc">세상의 많은 구독 서비스를 누려 보세요 </p> -->
+			<p class="nino-sectionDesc">엔빵은 구독서비스들을 세 가지로 분류하여 관리합니다. </p>
 			<div class="sectionContent">
 				<div class="row nino-hoverEffect">
 					<div class="col-md-4 col-sm-4">
@@ -86,6 +86,7 @@
 									<i class="mdi mdi-account-multiple nino-icon"></i>
 									Lecture
 								</span>
+								
 								<img src="<%=request.getContextPath()%>/resources/images/story/img-1.jpg" alt="">
 							</a>
 						</div>
@@ -121,13 +122,15 @@
 		<div class="container">
 		<h2 class="nino-sectionHeading"></h2>
 			<h2 class="nino-sectionHeading">
+			<p class="nino-sectionDesc">이미지를 누르면 해당 사이트로 이동합니다.</p>
 				<span class="nino-subHeading">Lecture</span>
+				
 			</h2>
 			<div class="sectionContent">
 				<div class="row nino-hoverEffect">
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" href="#">
+							<a class="overlay" href="https://www.millie.co.kr/company/company.html" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									밀리의 서재
@@ -138,7 +141,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay" href="https://publy.co/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									퍼블리
@@ -149,7 +152,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://publy.co/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									뉴닉
@@ -160,7 +163,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.welaaa.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									윌라
@@ -171,7 +174,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay" href="https://bigissue.kr/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									빅이슈
@@ -182,12 +185,12 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay" href="http://m.yes24.com/BookClub/Main" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
-									업피티
+									예스24 북클럽
 								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/013_uppity.png" alt="">
+								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/020_yes24.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -201,7 +204,7 @@
 				<div class="row nino-hoverEffect">
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" href="#">
+							<a class="overlay"  href="https://select.ridibooks.com/home" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									리디셀렉트
@@ -212,7 +215,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://digital.mk.co.kr/intro/intro.php" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									매경e신문
@@ -223,7 +226,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=283947105" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									BBC사이언스
@@ -234,7 +237,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.joins.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									조인스프라임
@@ -245,12 +248,12 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://pinzle.net/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
-									피렌체의 식탁
+									핀즐
 								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/012_pirenze.png" alt="">
+								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/033_pinzle.jpeg" alt="">
 							</a>
 						</div>
 					</div>
@@ -280,29 +283,29 @@
 				<div class="row nino-hoverEffect">
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" href="#">
+							<a class="overlay"  href="https://www.coupang.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
-									스타벅스
+									쿠팡 와우
 								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/001_starbucks.jpg" alt="">
+								<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/018_coupang.jpg" alt="">
 							</a>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.jobplanet.co.kr/welcome/index" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
-									청소연구소
+									잡플래닛
 								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/002_cleaning.png" alt="">
+								<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/015_jobplanet.jpg" alt="">
 							</a>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.laundrygo.com/brand" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									런드리고
@@ -313,7 +316,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://pilly.kr/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									필리
@@ -324,7 +327,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://happymoonday.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									해피문데이
@@ -335,7 +338,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://wisely.wiselycompany.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									와이즐리
@@ -354,7 +357,7 @@
 				<div class="row nino-hoverEffect">
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" href="#">
+							<a class="overlay"  href="https://kukka.kr" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									꾸까
@@ -365,7 +368,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://nid.naver.com/membership/join" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									네이버플러스
@@ -376,7 +379,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.socar.kr/company" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									쏘카
@@ -387,7 +390,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://hobbyinthebox.co.kr/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									하비인더박스
@@ -398,12 +401,12 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://e.kakao.com/plus_info" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
-									위클리셔츠
+									카카오 이모티콘+
 								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/011_weeklyshirts.png" alt="">
+								<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/014_kakaoplus.jpg" alt="">
 							</a>
 						</div>
 					</div>
@@ -433,7 +436,7 @@
 				<div class="row nino-hoverEffect">
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" href="#">
+							<a class="overlay"  href="https://www.spotv.net/main.asp" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									스포티비
@@ -444,7 +447,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.youtube.com/premium" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									유튜브프리미엄
@@ -455,7 +458,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.netflix.com/kr/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									넷플릭스
@@ -466,7 +469,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.wavve.com/index.html" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									웨이브
@@ -477,7 +480,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.tving.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									티빙
@@ -488,7 +491,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.disneyplus.com/ko-kr" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									디즈니
@@ -507,7 +510,7 @@
 				<div class="row nino-hoverEffect">
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" href="#">
+							<a class="overlay"  href="https://watcha.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									왓챠
@@ -518,7 +521,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.nintendo.co.kr/hardware/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									닌텐도
@@ -529,7 +532,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.melon.com/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									멜론
@@ -540,7 +543,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://music.bugs.co.kr/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									벅스
@@ -551,7 +554,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay"  href="https://www.playstation.com/ko-kr/" target="_blank">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									플레이스테이션
@@ -562,7 +565,7 @@
 					</div>
 					<div class="col-md-2 col-sm-2">
 						<div class="item">
-							<a class="overlay" >
+							<a class="overlay">
 								<span class="content" style="font-family: 'Jua', sans-serif;">
 									<i class="mdi mdi-airplay nino-icon"></i>
 									n빵에는 많은 미디어 서비스들이 준비되어 있습니다.</br> 구경 가실래요?
@@ -716,16 +719,17 @@
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="headingOne">
 									<h4 class="panel-title">
-										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 											<i class="mdi mdi-chevron-up nino-icon arrow"></i>
 											<i class="mdi mdi-camera nino-icon"></i> 
-											자주묻는질문1
+											파티 매칭시 비용은 어떻게 송금되나요?
 										</a>
 									</h4>
 								</div>
 								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+									<div class="panel-body" style="font-style:normal; font-size:15px; font-weight:bold;">
+										파티원은 매 달 귀찮게 송금하지 않아도 돼요.</br> 엔빵에 등록된 카드를 통해 요금이 매 달 자동 결제됩니다.</br>
+										파티장은 매 달 귀찮게 송금해달라고 하지 않아도 돼요.</br> 피클플러스가 등록된 계좌로 매 달 자동 정산된 금액을 보내줍니다.
 									</div>
 								</div>
 							</div>
@@ -735,29 +739,31 @@
 										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 											<i class="mdi mdi-chevron-up nino-icon arrow"></i>
 											<i class="mdi mdi-owl nino-icon"></i> 
-											자주묻는질문2
+											안심하고 계좌를 등록해도 되나요?
 										</a>
 									</h4>
 								</div>
 								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+									<div class="panel-body" style="font-style:normal; font-size:15px; font-weight:bold;">
+										네, 그럼요. 엔빵은 뛰어난 보안의 금융결제원과 함께합니다. </br>
+										안전한 계정 공유 생활, 엔빵과 함께하세요.
 									</div>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="headingThree">
 									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										<a class="collapsed mainQnA" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 											<i class="mdi mdi-chevron-up nino-icon arrow"></i>
 											<i class="mdi mdi-laptop-mac nino-icon"></i> 
-											자주묻는질문3
+											엔빵의 구독서비스 관리는 어떻게 진행되나요?
 										</a>
 									</h4>
 								</div>
 								<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+									<div class="panel-body" style="font-style:normal; font-size:15px; font-weight:bold;">
+										엔빵에는 사용자가 계좌 등록을 통해 본인 명의의 계좌를 등록하시면,</br> 구독 서비스와의 거래 내역을 자동으로 인식하는 기술이 있습니다.</br>
+										이 기술을 통해 사용자의 구독 중인 서비스의 금액,</br> 날짜를 알 수 있고 스케쥴에 저장하며, 매달 잊지 않도록 알려 주는 시스템입니다.
 									</div>
 								</div>
 							</div>
@@ -781,8 +787,8 @@
 								<i class="mdi mdi-comment-multiple-outline nino-icon"></i>
 							</div>
 							<div>
-								<p class="quote">"리뷰 1"</p>
-								<span class="name">닉넴1</span>
+								<p class="quote">"엔빵을 이용하고 나서 정확한 나의 한 달 구독료를 알게 됐어요."</p>
+								<span class="name">코딩천재</span>
 							</div>
 						</div>
 					</li>
@@ -792,8 +798,8 @@
 								<i class="mdi mdi-wechat nino-icon"></i>	
 							</div>
 							<div>
-								<p class="quote">"리뷰 2"</p>
-								<span class="name">닉넴2</span>
+								<p class="quote">"엔빵 덕분에 쓸데없는 지출이 줄어서 여웃돈이 생겼어요.</br>구독 스케쥴러로 공과금까지 한번에 정리할 수 있어서 편리해요."</p>
+								<span class="name">파주불주먹</span>
 							</div>
 						</div>
 					</li>
@@ -803,8 +809,8 @@
 								<i class="mdi mdi-message-text-outline nino-icon"></i>
 							</div>
 							<div>
-								<p class="quote">"리뷰 3"</p>
-								<span class="name">닉넴3</span>
+								<p class="quote">"OTT서비스마다 색깔이 달라서 전부 이용해보고 싶었는데 비용이 고민이었어요.</br>엔빵 덕분에 저렴하게 모든 서비스를 이용중이에요."</p>
+								<span class="name">1조귀요미</span>
 							</div>
 						</div>
 					</li>

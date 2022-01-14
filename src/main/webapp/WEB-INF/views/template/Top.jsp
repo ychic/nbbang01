@@ -160,7 +160,7 @@
 								<li class="guide_menu dropdown" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a>
 									<div class="dropdown-content">
-									    <a onclick="location.href='oneByOneBbsList.do'">1:1문의</a>
+									    <a onclick="location.href='OBOList.do'">1:1문의</a>
 									  </div>
 								</li>
 							</ul>							

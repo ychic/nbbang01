@@ -31,18 +31,18 @@ public class LoginNoutController {
 	public String process(@RequestParam Map map, Model model,SessionStatus status) {
 		String nickname = memberService.getNickname(map);
 		int flag = memberService.isLogin(map);
-		
 		model.addAttribute("email",map.get("email"));
 		model.addAttribute("nickname",nickname);
-		//닉네임 불러오기
-		System.out.println(nickname);
-		System.out.println("nickname"+map.get("nickname"));
 		
 		if(flag == 0) {
 			//회원이 아닐경우 저장된 데이터 삭제
 			status.setComplete();
 			model.addAttribute("NotMember","아이디와 비밀번호가 일치하지 않습니다.");
 			return "auth/login/Login";
+		} else if(map.get("email").equals("nbbang@nbbang.com")) {
+			//관리자 로그인
+			model.addAttribute("nickname",nickname);
+			return "admin/AdminMain";
 		}
 		return "index";
 	}

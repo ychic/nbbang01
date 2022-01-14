@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 쿼리문 작성 페이지 -->
+  
+<mapper namespace="nbbang.mybatis.mapper.inquirybbs">
+
+	<resultMap type="inquiryBbsDTO" id="inquiryBbsDTOResult">
+	
+		<result column="inqno" property="inqno"/>
+		<result column="inqtitle" property="inqtitle"/>
+		<result column="inqcontent" property="inqcontent"/>
+		<result column="inqpostdate" property="inqpostdate"/>
+		<result column="inqoriginfilenames" property="inqoriginfilenames"/>
+		<result column="inqrealfilenames" property="inqrealfilenames"/>
+		<result column="email" property="email"/>
+		<result column="commentCount" property="commentCount"/>
+		 
+	</resultMap>
+
+	<insert id="inquiryBbsInsert" parameterType="Map" >
+		INSERT INTO inquirybbs VALUES(SEQ_inquirybbs_inqno.NEXTVAL,#{inqtitle},#{inqcontent},SYSDATE,
+		#{inqoriginfilenames, jdbcType=VARCHAR},#{inqrealfilenames, jdbcType=VARCHAR},#{email})
+	</insert>
+	
+	<select id="inquirySelectList" parameterType="Map" resultType="inquiryBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*,ROWNUM R FROM
+			(SELECT i.*,m.nickname,(SELECT COUNT(*) FROM inquirycomment WHERE inqno=i.inqno) as commentCount 
+			FROM inquirybbs i JOIN member m ON m.email=i.email 
+			<if test="searchWord !=null">
+				WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+			</if>
+			ORDER BY inqno DESC) T) 
+		WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="inquiryTotalRowCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM inquirybbs i JOIN member m ON m.email=i.email
+		<if test="searchWord != null">
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	<select id="inquirySelectOne" parameterType="Map" resultMap="inquiryBbsDTOResult">
+		SELECT i.*,m.name FROM member m JOIN inquirybbs i ON m.email=i.email WHERE inqno=#{inqno}	
+	</select>
+	
+</mapper>
