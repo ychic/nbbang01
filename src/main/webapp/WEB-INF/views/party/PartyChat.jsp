@@ -20,7 +20,7 @@
 			style="overflow: auto; height: 457px;">
 			<c:if test="${not empty chatList}" var="emptyList">
 				<c:forEach items="${chatList}" var="item">
-					<li><a id="${item.partyno}">${nickname.get(item.chatpartnerid)}님과 채팅중입니다</a></li>
+					<li><a id="p_${item.partyno}_${item.chatno}">${pnickname.get(item.chatpartnerid)}님과 채팅중입니다</a></li>
 				</c:forEach>
 			</c:if>
 			<c:if test="${!emptyList}">
@@ -90,10 +90,10 @@ $(function(){
 	//닉 네임 저장용
 	var nickname;
 	//입장버튼 클릭시 ]-서버와 연결된 웹소켓 클라이언트 생성
-	$('a').click(
-			function(e) {
+	$('body > div.container > div.row > ul > li > a').click(
+			function(e) {				
 				e.preventDefault();				
-				wsocket = new WebSocket("ws://localhost:9575<c:url value="/chat-ws.do"/>?partyno="+$(this).get(0).id);
+				wsocket = new WebSocket("ws://localhost:9575<c:url value='/chat-ws.do'/>?chatno="+$(this).get(0).id.split('_')[2]);
 				console.log('wsocket:', wsocket);
 				//서버와 연결된 웹 소켓에 이벤트 등록
 				wsocket.onopen = open;

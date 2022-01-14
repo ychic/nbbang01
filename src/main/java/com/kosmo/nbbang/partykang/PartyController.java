@@ -36,8 +36,8 @@ public class PartyController {
 			System.out.println(partner);
 			map.put(dto.getChatpartnerid(), partner);
 		}
-		model.addAttribute("myNickName", myNickName);
-		model.addAttribute("nickname", map);
+		model.addAttribute("nickname", myNickName);
+		model.addAttribute("pnickname", map);
 		model.addAttribute("chatList", chatList);
 		return "party/PartyChat.tiles";
 	}
