@@ -44,5 +44,6 @@
 		<mapper resource="nbbang/mybatis/mapper/chat.xml" />
 		<mapper resource="nbbang/mybatis/mapper/partybbs.xml" />
 		<mapper resource="nbbang/mybatis/mapper/nbbang-query.xml" />
+		<mapper resource="nbbang/mybatis/mapper/signup.xml" />
 	</mappers>	
 </configuration>
