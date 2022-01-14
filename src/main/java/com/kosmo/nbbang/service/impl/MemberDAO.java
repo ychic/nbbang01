@@ -15,6 +15,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class MemberDAO {	
 	
@@ -24,6 +25,9 @@ public class MemberDAO {
 	public int isLogin(Map map) {		
 		return template.selectOne("memberIsLogin", map);
 	}//isLogin
+	public String getNickname(Map map) {
+		return template.selectOne("getNickname", map);
+	}
 
 	public String findEmail(Map map) {
 		return template.selectOne("findEmail", map);
@@ -36,4 +40,5 @@ public class MemberDAO {
 	public List selectAllMember(Map map) {		
 		return template.selectList("selectAllMember", map);
 	}
+	
 }//MemberDAO

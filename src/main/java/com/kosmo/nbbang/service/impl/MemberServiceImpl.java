@@ -26,6 +26,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.isLogin(map);
 	}// isLogin
 
+	public String getNickname(Map map) {
+		return dao.getNickname(map);
+	}
+	
 	public String findEmail(Map map) {
 		return dao.findEmail(map);
 	}
@@ -58,4 +62,5 @@ public class MemberServiceImpl implements MemberService {
 				.totalRecordCount(totalRecordCount).build();
 	}
 
+	
 }

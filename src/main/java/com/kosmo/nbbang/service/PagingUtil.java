@@ -116,7 +116,7 @@ public class PagingUtil {
 		int intTemp = ((nowPage - 1) / blockPage) * blockPage + 1;
 
 		// 처음 및 이전을 위한 로직
-		if (intTemp >= 1) {
+		if (intTemp != 1) {
 			pagingStr += "<li class=\"paginate_button page-item previous\"\r\n"
 					+ "													id=\"dataTable_previous\"><a href=\"" + page
 					+ "nowPage=" + (intTemp - blockPage) + "\"\r\n"
