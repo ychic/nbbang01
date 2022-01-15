@@ -61,10 +61,30 @@ input#inbt {background-color:#ee7beb;
 		</div>
 		
 		<div class="col-sm-offset-2 col-sm-4">
-			<button class="btn btn-info" onclick="location.href='OBOlist.do">목록</button>
+			<button class="btn btn-info" onclick="javascript:isList();">목록</button>
 		</div>
-
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isUpdate();">수정</button>
+		</div>
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isDelete();">삭제</button>
+		</div>
+		<!-- 삭제시 뜨는 얼럿창  -->
 
 
 </fieldset>
-  
+<script>
+	function isList(){
+		location.replace("<c:url value="/OBOList.do?nowPage=${param.nowPage}"/>");
+		
+	}
+	function isUpdate(){
+		location.replace("<c:url value="/OBOupdate.do?inqno=${record.inqno}"/>");
+	
+	}
+	function isDelete(){
+		if(confirm("정말로 삭제 하시겠습니까?")){
+			location.replace("<c:url value="/OBODelete.do?inqno=${record.inqno}"/>");
+		}
+	}
+</script>

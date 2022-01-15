@@ -29,35 +29,45 @@ input#inbt {background-color:#ee7beb;
 
  <body>
 
-    <fieldset>글 수정 페이지
-          
-				<form> 
-				<h3 id="hsbj">제목</h3> 
-				<input type="text" id="subject" name="subject"><br/>
-				</form>
+    <fieldset>
+		글 수정 페이지
 
-				<form> 
-				<h3 id="hname">작성자</h3> 
-				<input type="text" id="name"  name="subject"><br/>
-				</form>
-           
-
-	    <form>
-
-		    <textarea name="content" id="txtarea" rows="4" cols="100"
-			 />
- 
-			</textarea>
+		<form class="form-horizontal" method="post"  action="<c:url value='/OBOupdate.do?inqno=${record.inqno}'/>">
+		<div class="form-group">
+            <label class="col-sm-2 control-label">제목</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="inqtitle" value="${record.inqtitle}">
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">작성자</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">내용</label>
+            <div class="col-sm-10">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <textarea class="summernote" name="inqcontent">${record.inqcontent}</textarea>  
+                  </div>
+               </div>
+            </div>
+         </div>
+		
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-4">
+					<button class="btn btn-info" onclick="submit()">수정</button>
+				</div>
+			</div>
 		</form>
+		
+				<div class="col-sm-offset-2 col-sm-4">
+					<button class="btn btn-info" onclick="location.href='oneByOneBbsView.do">취소</button>
+				</div>
 
 
-       <p> 
-          <input type="button" id="inbt" value="목록" 
-		  onclick="location.href='oneByOneBbsList.do'"/>
-
-          <input type="button" id="inbt" value="글수정" onclick="location.href='oneByOneBbsView.do'"/>
-       </p>
 
 
-</fieldset>
-  
+	</fieldset>

@@ -34,7 +34,6 @@ public class OneByOneController {
 //	         System.out.println(entry.getKey()+"-"+entry.getValue());
 //	      }
 		int affected = inquiryBbsService.insert(map);
-		System.out.println("affected입력처리: "+affected);
 		
 		return "guide/onebyoneqna/OneByOneBbsView.tiles";
 	}
@@ -70,14 +69,32 @@ public class OneByOneController {
 	public String OBOview(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 		InquiryBbsDTO record = inquiryBbsService.inqSelectOne(map);
 		
-//		for(Map.Entry<String, String> entry : map.entrySet()) {
-//	         System.out.println(entry.getKey()+"-"+entry.getValue());
-//	      }
-		
 		record.setInqcontent(record.getInqcontent().replace("\r\n", "<br/>"));
 		model.addAttribute("record", record);
 		
 		return "guide/onebyoneqna/OneByOneBbsView.tiles";
+	}
+	
+	//삭제
+	@RequestMapping("/OBODelete.do")
+	public String OBODelete(@RequestParam Map map) {
+		inquiryBbsService.delete(map);
+		
+		return "guide/onebyoneqna/OneByOneBbsList.tiles";
+	}
+	
+	//수정
+	@RequestMapping("/OBOupdate.do")
+	public String OBOupdate(@ModelAttribute("email") String email,@RequestParam Map map,Model model,HttpServletRequest req) {
+		if(req.getMethod().equals("GET")) {
+			InquiryBbsDTO record = inquiryBbsService.inqSelectOne(map);
+			record.setInqcontent(record.getInqcontent().replace("\r\n", "<br/>"));
+			model.addAttribute("record", record);
+			return "guide/onebyoneqna/OneByOneBbsModify.tiles";
+		}
+		inquiryBbsService.update(map);
+
+		return "forward:/oneByOneBbsView.do";
 	}
 	
 	

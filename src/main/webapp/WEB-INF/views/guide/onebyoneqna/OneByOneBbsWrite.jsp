@@ -121,10 +121,18 @@ input#inbt {
 		</form>
 		
 				<div class="col-sm-offset-2 col-sm-4">
-					<button class="btn btn-info" onclick="location.href='OBOlist.do">목록</button>
+					<button class="btn btn-info" onclick="javascript:isList();">목록</button>
 				</div>
 
 
 
 
 	</fieldset>
+<script>
+	//페이징 추가해야됨
+	function isList(){
+		location.replace("<c:url value="/OBOList.do"/>");
+		
+	}
+	
+</script>
