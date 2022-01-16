@@ -10,6 +10,8 @@ public class JoinFormCommand {
 	private String gender;
 	private String birthdate;
 	private String[] preference;
+	
+	
 	//게터&세터
 	public String getName() {
 		return name;
@@ -59,6 +61,5 @@ public class JoinFormCommand {
 	public void setPreference(String[] preference) {
 		this.preference = preference;
 	}
-	
 	
 }
