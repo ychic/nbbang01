@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JoinDAO {
+public class FolderDAO {
 	
 	@Autowired
 	private SqlSessionFactory sqlMapper;
@@ -17,12 +17,11 @@ public class JoinDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public int memberInsert(Map map) {
+	public int insert(Map map) {
 		SqlSession session = sqlMapper.openSession();
-		int affected = session.insert("memberInsert", map);
+		int affected = session.insert("folderInsert", map);
 		session.commit();
 		session.close();
 		return affected;
 	}
-
 }

@@ -2,20 +2,39 @@ package com.kosmo.nbbang.mysub;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kosmo.nbbang.park.service.FolderService;
+
+@SessionAttributes({"email"})
 @Controller
 public class NewfolderController {
 	
+	//서비스 주입받기
+	@Resource(name="folderService")
+	private FolderService folderService;
+	
 	@RequestMapping(value="/mysub/Newfolder.do", produces = "text/plain; charset=UTF-8")
-	public @ResponseBody String folder(@RequestParam Map map) {
+	public @ResponseBody String folder(@RequestParam Map map,@ModelAttribute(value = "email") String email) {
 		//String folderName=map.get("folderName");
-		return map.get("folderName").toString();
+		
+		map.put("email", email);
+		
+		//db에 저장 서비스 호출
+		folderService.insert(map);
+		
+		
+		return map.get("sfname").toString();
 	}	//	폴더 생성 전 폴더명 설정
+	
 	//
 	// 생성된 폴더명 수정
 	@RequestMapping(value="/mysub/EditFolder1.do", produces = "text/plain; charset=UTF-8")

@@ -1,15 +1,15 @@
 package com.kosmo.nbbang.park.service.impl;
 
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo.nbbang.park.join.DefaultDTO;
+
 @Repository
-public class JoinDAO {
+public class DefaultDAO {
 	
 	@Autowired
 	private SqlSessionFactory sqlMapper;
@@ -17,9 +17,9 @@ public class JoinDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public int memberInsert(Map map) {
+	public int defaultInsert(DefaultDTO dfcmd) {
 		SqlSession session = sqlMapper.openSession();
-		int affected = session.insert("memberInsert", map);
+		int affected = session.insert("defaultInsert", dfcmd);
 		session.commit();
 		session.close();
 		return affected;
