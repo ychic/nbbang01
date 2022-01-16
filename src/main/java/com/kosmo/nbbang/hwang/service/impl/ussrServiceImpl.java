@@ -69,6 +69,18 @@ public class ussrServiceImpl implements ussrService {
 		catch(Exception e) {e.printStackTrace();}
 		return affected;
 	}
+
+	@Override
+	public int delete(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	//@Autowired
 	//private TransactionTemplate transactionTemplate;
