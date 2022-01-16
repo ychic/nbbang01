@@ -6,7 +6,7 @@
 
 <style type="text/css">
 *{margin:0; padding:0;}
-fieldset {border:5px solid #996633; border-radius:17px; width:1000px; height:300px;margin:0 auto; margin-top:100px;margin-bottom:200px;}
+fieldset {border:5px solid #996633; border-radius:17px; width:1000px; height:700px;margin:0 auto; margin-top:100px;margin-bottom:200px;}
        
 table thead tr th {background-color: gray;}
 form {text-align:center;}
@@ -15,7 +15,7 @@ h3#hname {margin-top:15px; margin-bottom:10px; font-weight:bold; font-size:15px;
 input#subject {width:400px; height:20px; margin-top:15px; border-radius:5px; border:2px solid #996633;}
 input#name {width:100px; height:20px;  border-radius:5px; border:2px solid #996633;}
 textarea#txtarea {margin-top:15px; border:2px solid #996633; border-radius:5px;}
-p {float:right; margin-right:15px; margin-top:18px;}
+p {float:left; margin-left:15px; margin-top:18px;}
 input#inbt {background-color:#ee7beb;
             color:white;
             font-size: 14px;
