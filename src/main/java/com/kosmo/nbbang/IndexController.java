@@ -98,26 +98,37 @@ public class IndexController {
 	public String recommand() {
 		return "recommand/RecommandMain.tiles";
 	}*/
-	//추천 게시판
 	/*
-	@RequestMapping("/recommandBbs.do")
+	@RequestMapping("/recommandList.do")
 	public String recommandBbs() {
-		return "recommand/RecommandBbs.tiles";
-	}
+		return "recommand/RecommandList.tiles";
+	}//추천 게시판
 	*/
-	//자유 게시판
-	@RequestMapping("/freeBbs.do")
+	@RequestMapping("/freeList.do")
 	public String freeBbs() {
-		return "recommand/FreeBbs.tiles";
-	}//추천,자유게시판 글쓰기
+		return "recommand/FreeList.tiles";
+	}//자유 게시판
+	/*
 	@RequestMapping("/recommandWrite.do")
 	public String recommandWrite() {
 		return "recommand/RecommandWrite.tiles";
-	}//추천,자유게시판 상세보기
+	}//추천,자유게시판 글쓰기
+	
 	@RequestMapping("/recommandView.do")
 	public String recommandView() {
 		return "recommand/RecommandView.tiles";
-	}
+	}//추천,자유게시판 상세보기
+	
+	@RequestMapping("/recommandEdit.do")
+	public String recommandEdit() {
+		return "recommand/RecommandEdit.tiles";
+	}//추천,자유게시판 글 수정
+	
+	@RequestMapping("/recommandDelete.do")
+	public String recommandDelete() {
+		return "recommand/RecommandDelete.tiles";
+	}//추천,자유게시판 글 삭제
+	*/
 	
 	
 	//가이드
@@ -126,10 +137,12 @@ public class IndexController {
 		return "guide/GuideMain.tiles";
 	}
 	//1:1문의
+	/*
 	@RequestMapping("/oneByOneBbsList.do")
 	public String oneByOneBbsList() {
 		return "guide/onebyoneqna/OneByOneBbsList.tiles";
 	}
+	*/
 	@RequestMapping("/oneByOneBbsWrite.do")
 	public String oneByOneBbsWrite() {
 		return "guide/onebyoneqna/OneByOneBbsWrite.tiles";
@@ -138,18 +151,22 @@ public class IndexController {
 	public String oneByOneBbsModify() {
 		return "guide/onebyoneqna/OneByOneBbsModify.tiles";
 	}
+	/*
 	@RequestMapping("/oneByOneBbsView.do")
 	public String oneByOneBbsView() {
 		return "guide/onebyoneqna/OoneByOneBbsView.tiles";
 	}
+	*/
 	
 	
 	//===============admin
 	//관리자 첫 화면
+	/*
 	@RequestMapping("/admin.do")
 	public String admin() {
 		return "admin/AdminMain";
 	}
+	*/
 	/*@RequestMapping("/adminmember.do")
 	public String adminMember() {
 		return "admin/AdminMember";
@@ -158,10 +175,12 @@ public class IndexController {
 	public String adminParty() {
 		return "admin/AdminWarning";
 	}
+	/*
 	@RequestMapping("/adminOneByOne.do")
 	public String adminOneByOne() {
 		return "admin/AdminOneByOne";
 	}
+	*/
 	@RequestMapping("/adminChat.do")
 	public String adminChat() {
 		return "admin/AdminChat";

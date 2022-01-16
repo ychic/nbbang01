@@ -151,8 +151,8 @@
 								<li class="dropdown">
 									<a class="dropbtn" onclick="location.href='recommand.do'">추천</a>
 									  <div class="dropdown-content">
-									    <a onclick="location.href='recommandBbs.do'">추천게시판</a>
-									    <a onclick="location.href='freeBbs.do'">자유게시판</a>
+									    <a onclick="location.href='recommandList.do'">추천게시판</a>
+									    <a onclick="location.href='freeList.do'">자유게시판</a>
 									  </div>
 								</li>
 								<li class="login_menu" style="float:right">
@@ -160,14 +160,14 @@
 								<li class="guide_menu dropdown" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a>
 									<div class="dropdown-content">
-									    <a onclick="location.href='oneByOneBbsList.do'">1:1문의</a>
+									    <a onclick="location.href='OBOList.do'">1:1문의</a>
 									  </div>
 								</li>
 							</ul>							
 							
 							
 							
-							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${sessionScope.email} 님</a>
+							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${nickname} 님</a>
 							
 							
 							

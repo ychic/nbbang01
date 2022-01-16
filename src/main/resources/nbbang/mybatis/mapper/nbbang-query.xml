@@ -13,4 +13,7 @@
 	<select id="findEmail" parameterType="Map" resultType="String">
 		SELECT email FROM member WHERE name=#{name} AND tel=#{tel}
 	</select>
+	<select id="getNickname" parameterType="Map" resultType="String">
+		SELECT nickname FROM member WHERE email=#{email} AND password=#{password}
+	</select>
 </mapper>

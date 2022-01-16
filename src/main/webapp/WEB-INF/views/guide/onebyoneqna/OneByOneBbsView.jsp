@@ -30,39 +30,61 @@ input#inbt {background-color:#ee7beb;
 
  <body>
 
-    <fieldset>글 상세보기 페이지
-	 
-          
-				<form> 
-				<h3 id="hsbj">제목</h3> 
-				<input type="text" id="subject" name="subject"><br/>
-				</form>
-
-				<form> 
-				<h3 id="hname">작성자</h3> 
-				<input type="text" id="name"  name="subject"><br/>
-				</form>
-           
-
-	    <form>
-
-		    <textarea name="content" id="txtarea" rows="4" cols="100"
-			 placeholder="내용을 입력하세요.">
- 
-			</textarea>
-		</form>
-
-
-       <p> 
-          <input type="button" id="inbt" value="목록" 
-		  onclick="location.href='oneByOneBbsList.do'"/>
-        
-          <input type="button" id="inbt" value="수정" 
-		  onclick="location.href='oneByOneBbsModify.do'"/>
-		  
-          <input type="button" id="inbt" value="삭제" onclick=""/>
-       </p>
+    <fieldset>view페이지
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th class="col-md-2 text-center">번호</th>
+						<td>${record.inqno}</td>
+					</tr>
+					<tr>
+						<th class="text-center">제목</th>
+						<td>${record.inqtitle}</td>
+					</tr>
+					<tr>
+						<th class="text-center">작성자</th>
+						<td>${record.email}</td>
+					</tr>
+					<tr>
+						<th class="text-center">등록일</th>
+						<td>${record.inqpostdate}</td>
+					</tr>
+					<tr>
+						<th class="text-center" colspan="2">내용</th>
+					</tr>
+					<tr>
+						<td colspan="2">${record.inqcontent}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isList();">목록</button>
+		</div>
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isUpdate();">수정</button>
+		</div>
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isDelete();">삭제</button>
+		</div>
+		<!-- 삭제시 뜨는 얼럿창  -->
 
 
 </fieldset>
-  
+<script>
+	function isList(){
+		location.replace("<c:url value="/OBOList.do?nowPage=${param.nowPage}"/>");
+		
+	}
+	function isUpdate(){
+		location.replace("<c:url value="/OBOupdate.do?inqno=${record.inqno}"/>");
+	
+	}
+	function isDelete(){
+		if(confirm("정말로 삭제 하시겠습니까?")){
+			location.replace("<c:url value="/OBODelete.do?inqno=${record.inqno}"/>");
+		}
+	}
+</script>
