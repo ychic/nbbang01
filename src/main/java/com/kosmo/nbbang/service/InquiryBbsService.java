@@ -10,6 +10,9 @@ import com.kosmo.nbbang.hwang.service.ListPagingData;
 public interface InquiryBbsService {
 	//입력/수정/삭제
 	int insert(Map map);
+	int delete(Map map);
+	int update(Map map);
+	
 	
 	//전체 목록용
 	ListPagingData<InquiryBbsDTO> selectList(Map map, HttpServletRequest req, int nowPage);
@@ -19,6 +22,8 @@ public interface InquiryBbsService {
 	
 	//페이지 상세보기
 	InquiryBbsDTO inqSelectOne(Map map);
+	
+	
 
 	
 

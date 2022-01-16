@@ -50,11 +50,18 @@ public class InquiryBbsDAO {
 	}
 
 	public InquiryBbsDTO inqSelectOne(Map map) {
-//		SqlSession session= sqlMapper.openSession();
-//		InquiryBbsDTO record = session.selectOne("inquirySelectOne",map);
-//		session.close();
 		
 		return template.selectOne("inquirySelectOne", map);
+	}
+
+	public int delete(Map map) {
+		
+		return template.delete("inquiryDelete",map);
+	}
+
+	public int update(Map map) {
+		
+		return template.update("inquiryUpdate",map);
 	}
 	
 	

@@ -6,7 +6,7 @@
 
 <style type="text/css">
 *{margin:0; padding:0;}
-fieldset {border:5px solid #996633; border-radius:17px; width:1000px; height:300px;margin:0 auto; margin-top:100px;margin-bottom:200px;}
+fieldset {border:5px solid #996633; border-radius:17px; width:1000px; height:700px;margin:0 auto; margin-top:100px;margin-bottom:200px;}
        
 table thead tr th {background-color: gray;}
 form {text-align:center;}
@@ -15,7 +15,7 @@ h3#hname {margin-top:15px; margin-bottom:10px; font-weight:bold; font-size:15px;
 input#subject {width:400px; height:20px; margin-top:15px; border-radius:5px; border:2px solid #996633;}
 input#name {width:100px; height:20px;  border-radius:5px; border:2px solid #996633;}
 textarea#txtarea {margin-top:15px; border:2px solid #996633; border-radius:5px;}
-p {float:right; margin-right:15px; margin-top:18px;}
+p {float:left; margin-left:15px; margin-top:18px;}
 input#inbt {background-color:#ee7beb;
             color:white;
             font-size: 14px;
@@ -61,10 +61,30 @@ input#inbt {background-color:#ee7beb;
 		</div>
 		
 		<div class="col-sm-offset-2 col-sm-4">
-			<button class="btn btn-info" onclick="location.href='OBOlist.do">목록</button>
+			<button class="btn btn-info" onclick="javascript:isList();">목록</button>
 		</div>
-
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isUpdate();">수정</button>
+		</div>
+		<div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="javascript:isDelete();">삭제</button>
+		</div>
+		<!-- 삭제시 뜨는 얼럿창  -->
 
 
 </fieldset>
-  
+<script>
+	function isList(){
+		location.replace("<c:url value="/OBOList.do?nowPage=${param.nowPage}"/>");
+		
+	}
+	function isUpdate(){
+		location.replace("<c:url value="/OBOupdate.do?inqno=${record.inqno}"/>");
+	
+	}
+	function isDelete(){
+		if(confirm("정말로 삭제 하시겠습니까?")){
+			location.replace("<c:url value="/OBODelete.do?inqno=${record.inqno}"/>");
+		}
+	}
+</script>
