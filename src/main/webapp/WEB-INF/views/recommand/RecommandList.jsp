@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -33,8 +34,7 @@ tr {
 				<!-- 검색용 UI -->
 				<div class="row"">
 					<div class="text-right">
-						<form class="form-inline" method="post"
-							action="<c:url value='/recommand/recommandList.do'/>">
+						<form class="form-inline" method="post" action="<c:url value='/recommand/recommandList.do'/>">
 							<div class="form-group">
 								<select name="searchColumn" class="form-control">
 									<option value="title">제목</option>
@@ -72,16 +72,16 @@ tr {
 					</tr>
 				</c:if>
 				<c:if test="${not isEmpty }">
-					<c:forEach var="item" items="${listPagingData.lists}"
-						varStatus="loop">
-						<tr>
+					<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
+						<tr class="text-center">
 							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
-
-							<td class="text-left"><a
-								href="<c:url value="/recommand/recommandView.do?no=${item.no}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">${item.title }</a>
-								<span class="badge">${item.commentCount }</span></td>
-							<td>${item.name }</td>
-							<td>${item.postDate }</td>
+							<td class="text-left">
+								<a href="<c:url value="/recommandView.do?ussrno=${item.ussrno}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">${item.ussrtitle }</a>
+								<span class="badge">${item.commentCount }</span>
+							</td>
+							<td class="text-center">${item.nickname}</td>
+							<td class="text-center">${item.ussrpostdate }</td>
+							<td class="text-center">${item.likeno }</td>
 						</tr>
 					</c:forEach>
 				</c:if>

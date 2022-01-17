@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<th class="text-center">등록일</th>
-					<td class="text-center">${record.ussrpostate}</td>
+					<td class="text-center">${record.ussrpostdate}</td>
 				</tr>
 				<tr>
 					<th class="text-center">주제</th>
@@ -57,8 +57,8 @@
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
 			<ul id="pillMenu" class="nav nav-pills center-block" style="width: 200px; margin-bottom: 10px">
-				<c:if test="${sessionScope.email ==record.email}">
-					<li><a href="<c:url value='/recommand/recommandEdit.do?no=${record.ussrno}'/>"
+				<c:if test="${sessionScope.email==record.email}">
+					<li><a href="<c:url value='/recommand/recommandEdit.do?ussrno=${record.ussrno}'/>"
 						class="btn btn-success">수정</a></li>
 					<li><a href="javascript:isDelete();" class="btn btn-success">삭제</a></li>
 				</c:if>
@@ -73,7 +73,7 @@
 			<div class="text-center">
 				<h2>댓글</h2>
 				<form class="form-inline" id="frm">
-					<input type="hidden" name="ussrno"	value="${record.ussrno}" />
+					<input type="hidden" name="ussrno" value="${record.ussrno}" />
 					<input type="hidden" name="comno" /> 
 					<input placeholder="댓글을 입력하세요" id="title" class="form-control" type="text" size="50" name="comcontent" /> 
 					<input class="btn btn-success" id="submit" type="button" value="등록" />

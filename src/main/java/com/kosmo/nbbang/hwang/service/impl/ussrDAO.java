@@ -26,7 +26,7 @@ public class ussrDAO {
 		session.close();
 		return count==1 ? true : false;
 	}
-	
+
 	public List<ussrDTO> selectList(Map map) {
 		SqlSession session= sqlMapper.openSession();
 		List<ussrDTO> lists=session.selectList("ussrSelectList", map);
