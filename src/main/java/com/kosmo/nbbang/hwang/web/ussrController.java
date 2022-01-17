@@ -49,7 +49,7 @@ public class ussrController {
 	public String writeOk(@ModelAttribute("email") String email, @RequestParam Map map) throws Exception {
 		map.put("email", email);
 		ussrService.insert(map);
-		return "forward:/recommand/recommandList.do";
+		return "forward:/recommandList.do";
 	}
 	
 	
@@ -71,13 +71,13 @@ public class ussrController {
 			return "recommand/RecommandEdit.tiles";
 		}
 		ussrService.update(map);
-		return "forward:/recommand/recommandView.do";
+		return "forward:/recommandView.do";
 	}
 
 	// 삭제처리]
 	@RequestMapping("/recommandDelete.do")
 	public String delete(@ModelAttribute("email") String email,@RequestParam Map map) throws Exception {
 		ussrService.delete(map);
-		return "forward:/recommand/recommandList.do";
+		return "forward:/recommandList.do";
 	}
 }

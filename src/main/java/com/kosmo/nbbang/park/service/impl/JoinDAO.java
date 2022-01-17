@@ -17,11 +17,12 @@ public class JoinDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public int insert(Map map) {
+	public int memberInsert(Map map) {
 		SqlSession session = sqlMapper.openSession();
 		int affected = session.insert("memberInsert", map);
 		session.commit();
 		session.close();
 		return affected;
 	}
+
 }

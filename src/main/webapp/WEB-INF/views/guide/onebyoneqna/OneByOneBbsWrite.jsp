@@ -7,87 +7,12 @@
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
-<style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-}
 
-fieldset {
-	border: 5px solid #996633;
-	border-radius: 17px;
-	width: 1000px;
-	height: 300px;
-	margin: 0 auto;
-	margin-top: 100px;
-	margin-bottom: 200px;
-}
-
-table thead tr th {
-	background-color: gray;
-}
-
-form {
-	text-align: center;
-}
-
-h3#hsbj {
-	margin-top: 15px;
-	font-weight: bolder;
-	font-size: 15px;
-}
-
-h3#hname {
-	margin-top: 15px;
-	margin-bottom: 10px;
-	font-weight: bold;
-	font-size: 15px;
-}
-
-input#subject {
-	width: 400px;
-	height: 20px;
-	margin-top: 15px;
-	border-radius: 5px;
-	border: 2px solid #996633;
-}
-
-input#name {
-	width: 100px;
-	height: 20px;
-	border-radius: 5px;
-	border: 2px solid #996633;
-}
-
-textarea#txtarea {
-	margin-top: 15px;
-	border: 2px solid #996633;
-	border-radius: 5px;
-}
-
-p {
-	float: right;
-	margin-right: 15px;
-	margin-top: 18px;
-}
-
-input#inbt {
-	background-color: #ee7beb;
-	color: white;
-	font-size: 14px;
-	font-weight: 600;
-	border-radius: 6px;
-	display: inline-block;
-	padding: 2px;
-	text-decoration: none;
-	box-shadow: 1px 1px 0px 0px rgb(85, 30, 32);
-}
-</style>
 
 <body>
 
-	<fieldset>
-		글쓰기 페이지
+<div class="container">
+   <div>
 
 		<form class="form-horizontal" method="post"  action="<c:url value='/saveOBO.do'/>">
 		<div class="form-group">
@@ -106,8 +31,8 @@ input#inbt {
             <label class="col-sm-2 control-label">내용</label>
             <div class="col-sm-10">
                <div class="row">
-                  <div class="col-sm-12">
-                     <textarea class="summernote" name="inqcontent"></textarea>  
+                  <div class="col-sm-12" >
+                  	<textarea class="summernote" name="inqcontent"></textarea>
                   </div>
                </div>
             </div>
@@ -118,13 +43,49 @@ input#inbt {
 					<button class="btn btn-info" onclick="submit()">등록</button>
 				</div>
 			</div>
-		</form>
+      </form>
+      <div class="col-sm-offset-2 col-sm-4">
+			<button class="btn btn-info" onclick="location.href='OBOList.do'">목록</button>
+	  </div>
+      
+   </div>
+   
+</div>
+<script>
+	//페이징 추가해야됨
+	/*
+	function isList(){
+		location.replace("<c:url value="/OBOList.do"/>");
 		
-				<div class="col-sm-offset-2 col-sm-4">
-					<button class="btn btn-info" onclick="location.href='OBOlist.do">목록</button>
-				</div>
+	}
+	*/
+	$('.summernote')
+			.summernote(
+					{
 
+						height : 250,
+						lang : "ko-KR",
+						placeholder : "여기에 입력하세요.",
+						toolbar : [
+								// [groupName, [list of button]]
+								[ 'fontname', [ 'fontname' ] ],
+								[ 'fontsize', [ 'fontsize' ] ],
+								[
+										'style',
+										[ 'bold', 'italic', 'underline',
+												'strikethrough', 'clear' ] ],
+								[ 'color', [ 'forecolor', 'color' ] ],
+								[ 'table', [ 'table' ] ],
+								[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
+								[ 'height', [ 'height' ] ],
+								[ 'insert', [ 'picture', 'link', 'video' ] ],
+								[ 'view', [ 'fullscreen', 'help' ] ] ],
+						fontNames : [ 'Arial', 'Arial Black', 'Comic Sans MS',
+								'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림',
+								'돋움체', '바탕체' ],
+						fontSizes : [ '8', '9', '10', '11', '12', '14', '16',
+								'18', '20', '22', '24', '28', '30', '36', '50',
+								'72' ]
 
-
-
-	</fieldset>
+	});//서머노트
+</script>

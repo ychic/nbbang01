@@ -48,4 +48,12 @@
 		SELECT i.*,m.name FROM member m JOIN inquirybbs i ON m.email=i.email WHERE inqno=#{inqno}	
 	</select>
 	
+	<delete id="inquiryDelete" parameterType="Map">
+		DELETE inquirybbs WHERE inqno=#{inqno}
+	</delete>
+	
+	<update id="inquiryUpdate" parameterType="Map">
+		UPDATE inquirybbs SET inqtitle=#{inqtitle},inqcontent=#{inqcontent} WHERE inqno=#{inqno}
+	</update>
+	
 </mapper>

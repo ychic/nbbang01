@@ -16,17 +16,17 @@
 
 <div class="container">
    <div>
-      <form id="myform" class="form-horizontal" method="post"   enctype="multipart/form-data" action="<c:url value='/recommandWrite.do'/>">
+      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/recommandWrite.do'/>">
          <div class="form-group">
-            <label class="col-sm-2 control-label">작성자</label>
+            <label class="col-sm-2 control-label">이메일</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="name" placeholder="이름을 입력하세요">
+               <input type="text" class="form-control" name="email" placeholder="${sessionScope.email}">
             </div>
          </div>
          <div class="form-group">
             <label class="col-sm-2 control-label">게시판</label>
             <div class="col-sm-4">
-               <select class="form-control">
+               <select class="form-control" name ="categoryname">
                  <option>추천게시판</option>
                  <option>자유게시판</option>
                </select>
@@ -48,7 +48,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label">제목</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
+               <input type="text" class="form-control" name="ussrtitle" placeholder="제목을 입력하세요">
             </div>
          </div>
          
@@ -57,7 +57,7 @@
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">
-                     <textarea class="summernote" name="editordata"></textarea>  
+                     <textarea class="summernote" name="ussrcontent"></textarea>  
                   </div>
                </div>
             </div>
@@ -65,7 +65,7 @@
          
          <div class="form-group">
             <div class="col-sm-offset-2 col-sm-4">
-               <button class="btn btn-info">등록</button>
+               <button class="btn btn-info" onclick="submit()">등록</button>
             </div>
          </div>
       </form>

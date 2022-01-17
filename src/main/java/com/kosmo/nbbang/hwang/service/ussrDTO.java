@@ -15,14 +15,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ussrDTO {
-	private String ussno;
+	private String ussrno;
 	private String ussrtitle;
 	private String ussrcontent;
 	private java.sql.Date ussrpostdate;
 	private String ussroriginfilenames;
 	private String ussrrealfilenames;
-	private String ussrcateforyname;
+	private String ussrcategoryname;
 	private String email;
+	
+	//닉네임뿌려주기용
+	private String nickname;
+	
+	//좋아요 수 저장용
+	private String likeno;
 	
 	//각 글에 따른 댓글 총수 저장용
 	private String commentCount;
@@ -31,12 +37,21 @@ public class ussrDTO {
 	//마이바티스의 ResultMap 태그의 collection태그 적용용
 	List<ussrCommentDTO> comments;
 
-	/*
-	public String getUssno() {
-		return ussno;
+	@Override
+	public String toString() {
+		return "ussrDTO [ussrno=" + ussrno + ", ussrtitle=" + ussrtitle + ", ussrcontent=" + ussrcontent
+				+ ", ussrpostdate=" + ussrpostdate + ", ussroriginfilenames=" + ussroriginfilenames
+				+ ", ussrrealfilenames=" + ussrrealfilenames + ", ussrcategoryname=" + ussrcategoryname + ", email="
+				+ email + ", nickname=" + nickname + ", likeno=" + likeno + ", commentCount=" + commentCount
+				+ ", comments=" + comments + "]";
 	}
-	public void setUssno(String ussno) {
-		this.ussno = ussno;
+	
+	/*
+	public String getUssrno() {
+		return ussrno;
+	}
+	public void setUssno(String ussrno) {
+		this.ussno = ussrno;
 	}
 	public String getUssrtitle() {
 		return ussrtitle;

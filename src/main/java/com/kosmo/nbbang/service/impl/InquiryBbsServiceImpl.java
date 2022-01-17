@@ -6,10 +6,13 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.kosmo.nbbang.hwang.service.ListPagingData;
+import com.kosmo.nbbang.hwang.service.impl.ussrCommentDAO;
 import com.kosmo.nbbang.service.PagingUtil;
 import com.kosmo.nbbang.service.InquiryBbsDTO;
 import com.kosmo.nbbang.service.InquiryBbsService;
@@ -19,6 +22,8 @@ public class InquiryBbsServiceImpl implements InquiryBbsService {
 	
 	@Resource(name = "inquiryBbsDAO")
 	private InquiryBbsDAO dao;
+	@Autowired
+	private ussrCommentDAO ucdao;
 	
 	//리소스파일(onememo.properties)에서 읽어오기
 	@Value("${PAGE_SIZE}")
@@ -87,14 +92,27 @@ public class InquiryBbsServiceImpl implements InquiryBbsService {
 	
 	@Override
 	public int getTotalRecord(Map map) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public InquiryBbsDTO inqSelectOne(Map map) {
-		// TODO Auto-generated method stub
+		
 		return dao.inqSelectOne(map);
+	}
+	
+//	@Autowired
+//	private TransactionTemplate transactionTemplate;
+	
+	@Override
+	public int delete(Map map) {
+		
+		return dao.delete(map);
+	}
+
+	@Override
+	public int update(Map map) {
+		return dao.update(map);
 	}
 	
 }

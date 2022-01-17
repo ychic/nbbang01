@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 쿼리문 작성 페이지 -->
+  
+<mapper namespace="nbbang.mybatis.mapper.report">
+
+	<resultMap type="reportDTO" id="reportDTOResult">
+	
+		<result column="reportno" property="reportno"/>
+		<result column="reportbbs" property="reportbbs"/>
+		<result column="reportcontent" property="reportcontent"/>
+		<result column="reporttype" property="reporttype"/>
+		<result column="reportregistdate" property="reportregistdate"/>
+		<result column="email" property="email"/>
+		 
+	</resultMap>
+
+	<insert id="reportInsert" parameterType="Map" >
+		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email})
+	</insert>
+	
+	
+</mapper>

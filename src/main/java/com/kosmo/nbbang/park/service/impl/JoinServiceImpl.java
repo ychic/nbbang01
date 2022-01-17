@@ -14,9 +14,8 @@ public class JoinServiceImpl implements JoinService {
 	private JoinDAO dao;
 
 	@Override
-	public int insert(Map map) {
-		return dao.insert(map);
+	public int memberInsert(Map map) {
+		return dao.memberInsert(map);
 	}
-	
 	
 }

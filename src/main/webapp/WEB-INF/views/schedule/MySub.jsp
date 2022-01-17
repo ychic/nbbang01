@@ -49,7 +49,7 @@
 					   <a href="#" class="list-group-item">
 					   
 					   <form id="frmFldrName">
-					   <input type="text" name="folderName" style="border: none; width: 110px;" placeholder="New" >
+					   <input id="newinput" type="text" name="sfname" style="border: none; width: 110px;" placeholder="New" />
 					   <span class="glyphicon glyphicon-plus" id="btnNwFldr" aria-hidden="true" style="padding-left: 40px"></span>
 					   </form>
 					   </a>
@@ -60,7 +60,6 @@
 					   <span>All</span><span class="badge bg-primary rounded-pill">14</span></a>
 					   
 					   
-
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="#" class="list-group-item" id="dFolder2">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
@@ -115,7 +114,7 @@
  					   <!-- 생성 폴더2(수정/삭제 가능)================================================================--> 
 					   <a href="#" class="list-group-item" id="hidFldr2" style="visibility: hidden;">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span id="secF" style="padding: 0px; margin: 0px;">new2</span>
+					   <span id="secF" style="padding: 0px; margin: 0px;">new2$</span>
 					   		<form id="frmEditname4">
 						   	<input type="text" id="inp4" name="hfldrName2" style="width:90px; border: none; display: none;">
 						  	</form>
@@ -186,47 +185,82 @@
 								//visible	
 							//return console.log("ok");
 							//}
+							var input=document.getElementById('newinput');
+							function noSpaceForm(input){
+								var str_space = /\s/;               // 공백 체크
+					            if(str_space.exec(input.value)) 
+					            {     // 공백 체크
+					                alert("공백을 사용할 수 없습니다.");
+					                input.focus();
+					                input.value = input.value.replace(' ',''); // 공백제거
+					                return false;
+					            }
+					            else {
+					            	return true;
+					            }
+
+							}
+							
 							var fCount=0;
 							if(fCount<5){
 								$('#btnNwFldr').click(function(){
-									$.ajax({
-										url:"<c:url value='/mysub/Newfolder.do'/>",
-										type:"post",
-										dataType:"text",
-										data:$('#frmFldrName').serialize(),
-										success:function(data1){
-											console.log('서버로부터 받은 데이터:',data1);
-											switch(fCount){
-											case 0:
-												$('#hidFldr1').css('visibility','visible'); fCount++;
-												$('#firF').text(data1);
-												break;
-											case 1:
-												$('#hidFldr2').css('visibility','visible'); fCount++;
-												$('#secF').text(data1);
-												break;
-											case 2:
-												$('#hidFldr3').css('visibility','visible'); fCount++;
-												$('#thrF').text(data1);
-												break;
-											case 3:
-												$('#hidFldr4').css('visibility','visible'); fCount++;
-												$('#forF').text(data1);
-												break;
-											case 4:
-												$('#hidFldr5').css('visibility','visible'); fCount++;
-												$('#fifF').text(data1);
-												break;
-											default: alert( '폴더수가 최대입니다' );
+									if(noSpaceForm(input)==true){
+										$.ajax({
+											url:"<c:url value='/mysub/Newfolder.do'/>",
+											type:"post",
+											dataType:"text",
+											data:$('#frmFldrName').serialize(),
+											success:function(data1){
+												console.log('서버로부터 받은 데이터:',data1);
+												switch(fCount){
+												case 0:
+													$('#hidFldr1').css('visibility','visible'); fCount++;
+													$('#firF').text(data1);
+													$('#hidFldr1').removeAttr('style');
+													break;
+												case 1:
+													$('#hidFldr2').css('visibility','visible'); fCount++;
+													$('#secF').text(data1);
+													break;
+												case 2:
+													$('#hidFldr3').css('visibility','visible'); fCount++;
+													$('#thrF').text(data1);
+													break;
+												case 3:
+													$('#hidFldr4').css('visibility','visible'); fCount++;
+													$('#forF').text(data1);
+													break;
+												case 4:
+													$('#hidFldr5').css('visibility','visible'); fCount++;
+													$('#fifF').text(data1);
+													$('#newinput').prop('disabled','true');
+													$('#newinput').val('New');
+													alert( '폴더수가 최대입니다1' );
+													break;
+												default: 
+													//$('#newinput').prop('disabled','true');
+													alert( '폴더수가 최대입니다2' );
+													
+												}
+											},
+											error:function(){
+												//console.log('에러:',error.responseText);
+												if(fCount>4){
+													alert('더이상 폴더를 생성할 수 없습니다');
+												}
+												else{
+													alert("폴더명을 입력해주세요");
+												}
+												
 											}
-										},
-										error:function(){
-											console.log('에러:',error.responseText);
-										}
-									});
+										});
+									}//유효성체크 if
+									
+									
 								});
 							}
 							else{
+								$('#newinput').prop('disabled','true');
 								 alert( '폴더수가 최대입니다' );
 							}
 						</script>
