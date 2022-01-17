@@ -25,7 +25,7 @@ public class ussrCommentController {
 	//@Autowired
 	//private ObjectMapper mapper;
 	
-	@PostMapping(value="/recommand/commentList.do",produces = "application/json; charset=UTF-8")	
+	@PostMapping(value="/commentList.do",produces = "application/json; charset=UTF-8")	
 	public List<Map> list(@ModelAttribute("email") String email, @RequestParam Map map) throws JsonProcessingException {
 		List<Map> lists= commentService.selectList(map);
 		for(Map comment:lists) {
@@ -35,7 +35,7 @@ public class ussrCommentController {
 	}
 	
 	//코멘트 입력처리]
-	@PostMapping(value="/recommand/commentWrite.do",produces = "text/plain; charset=UTF-8")
+	@PostMapping(value="/commentWrite.do",produces = "text/plain; charset=UTF-8")
 	public String write(@ModelAttribute("email") String email,@RequestParam Map map) {
 		map.put("email", email);
 		String commentInfo = commentService.insert(map);
@@ -43,14 +43,14 @@ public class ussrCommentController {
 	}
 	
 	//코멘트 수정처리]
-	@PostMapping(value="/recommand/commentEdit.do",produces = "text/plain; charset=UTF-8")
+	@PostMapping(value="/commentEdit.do",produces = "text/plain; charset=UTF-8")
 	public String update(@ModelAttribute("email") String email,@RequestParam Map map) {
 		commentService.update(map);
 		return map.get("lno").toString();
 	}
 	
 	//코멘트 삭제처리]
-	@PostMapping(value="/recommand/commentDelete.do",produces = "text/plain; charset=UTF-8")
+	@PostMapping(value="/commentDelete.do",produces = "text/plain; charset=UTF-8")
 	public String delete(@ModelAttribute("email") String email,@RequestParam Map map) {
 		int affected=commentService.delete(map);
 		return String.valueOf(affected);

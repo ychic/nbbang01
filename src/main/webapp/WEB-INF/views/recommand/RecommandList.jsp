@@ -32,9 +32,9 @@ tr {
 					</li>
 				</ul>
 				<!-- 검색용 UI -->
-				<div class="row"">
+				<div class="row">
 					<div class="text-right">
-						<form class="form-inline" method="post" action="<c:url value='/recommand/recommandList.do'/>">
+						<form class="form-inline" method="post" action="<c:url value='/recommandList.do'/>">
 							<div class="form-group">
 								<select name="searchColumn" class="form-control">
 									<option value="title">제목</option>

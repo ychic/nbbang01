@@ -27,7 +27,7 @@
 				ussrbbs u JOIN member m ON m.email=u.email 
 				<if test="searchWord !=null">
 					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
-				</if>				
+				</if>
 				ORDER BY ussrno DESC) T)
 		WHERE R BETWEEN #{start} AND #{end}
 	</select>
@@ -40,7 +40,7 @@
 	</select>
 	<insert id="ussrInsert" parameterType="Map" >
 		INSERT INTO ussrbbs
-		VALUES(SEQ_ussrbbs_ussrno.NEXTVAL,#{ussrtitle},#{ussrcontent},SYSDATE,#{ussroriginfilenames},#{ussrrealfilenames},#{categoryname},#{email})
+		VALUES(SEQ_ussrbbs_ussrno.NEXTVAL,#{ussrtitle},#{ussrcontent},SYSDATE,#{ussroriginfilenames, jdbcType=VARCHAR},#{ussrrealfilenames, jdbcType=VARCHAR},#{categoryname},#{email})
 	</insert>
 	<select id="ussrSelectOne" parameterType="Map" resultMap="ussrDTOResult">
 		SELECT u.*,m.nickname FROM member m JOIN ussrbbs u ON m.email=u.email WHERE ussrno=#{ussrno}
