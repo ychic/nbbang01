@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kosmo.nbbang.park.service.DefWatchService;
+import com.kosmo.nbbang.park.service.DefaultService;
+import com.kosmo.nbbang.park.service.impl.DefLifeServiceImpl;
 import com.kosmo.nbbang.park.service.impl.JoinServiceImpl;
 
 @Controller
@@ -20,6 +23,15 @@ public class JoinController {
 	@Resource(name="joinService")
 	private JoinServiceImpl joinService;
 	
+	@Resource(name="defaultService")
+	private DefaultService defaultService;
+
+	@Resource(name="defWatchService")
+	private DefWatchService defWatchService;
+	
+	@Resource(name = "defLifeService")
+	private DefLifeServiceImpl defLifeService;
+	
 	//회원가입후 로그인페이지로 이동시키기
 	@RequestMapping("/joinAfter.do")
 	public String joinAfter() {
@@ -28,16 +40,29 @@ public class JoinController {
 	
 	//유효성 검사& 저장하기
 	@RequestMapping("/join.do")
-	public String joinCheck(JoinFormCommand cmd,Model model,@RequestParam Map map) {
+	public String joinCheck(JoinFormCommand cmd,Model model,@RequestParam Map map,
+							DefaultDTO dfcmd, DefWatchDTO dfcmd2, DefLifeDTO dfcmd3) {
 		
 		if(!validate(cmd,model)) {	//유효성 실패
 			model.addAttribute("preference",Arrays.toString(cmd.getPreference()));	//체크된거 유지
 			return "auth/register/SignUp";
 		}
+		dfcmd.setAll("All");
+		dfcmd.setEmail(cmd.getEmail());
+		dfcmd2.setWatch("Watch");
+		dfcmd2.setEmail(cmd.getEmail());
+		dfcmd3.setLife("Life");
+		dfcmd3.setEmail(cmd.getEmail());
+		
 		
 		map.put("preference",(Arrays.toString(cmd.getPreference())));
 		//서비스호출
-		joinService.insert(map);
+		joinService.memberInsert(map);
+		defaultService.defaultInsert(dfcmd);
+		defWatchService.defWatchInsert(dfcmd2);
+		defLifeService.defLifeInsert(dfcmd3);
+
+		
 		return "auth/register/SignUpOk";
 	}
 	

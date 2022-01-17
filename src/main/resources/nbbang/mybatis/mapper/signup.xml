@@ -10,4 +10,5 @@
 		VALUES(#{email},#{password},#{name},#{nickname},#{birthdate},#{gender},#{tel},null,
 		#{preference},null,SYSDATE,null,null)
 	</insert>
+
 </mapper> 

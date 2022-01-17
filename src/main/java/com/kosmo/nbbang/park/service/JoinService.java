@@ -3,6 +3,6 @@ package com.kosmo.nbbang.park.service;
 import java.util.Map;
 
 public interface JoinService {
-	
-	int insert(Map map);
+	//회원가입서비스
+	int memberInsert(Map map);
 }
