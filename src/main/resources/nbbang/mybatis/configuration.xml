@@ -41,6 +41,8 @@
 		<typeAlias type="com.kosmo.nbbang.park.join.DefaultDTO" alias="defaultDTO"/>
 		<typeAlias type="com.kosmo.nbbang.park.join.DefWatchDTO" alias="defWatchDTO"/>
 		<typeAlias type="com.kosmo.nbbang.park.join.DefLifeDTO" alias="defLifeDTO"/>
+		<typeAlias type="com.kosmo.nbbang.service.ReportDTO" alias="reportDTO"/>
+		<typeAlias type="com.kosmo.nbbang.myreport.service.MyReportDTO" alias="myreport"/>
 
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
@@ -50,16 +52,15 @@
 		<mapper resource="nbbang/mybatis/mapper/admin.xml" />
 		<mapper resource="nbbang/mybatis/mapper/chat.xml" />
 		<mapper resource="nbbang/mybatis/mapper/nbbang-query.xml" />
-		
 		<mapper resource="nbbang/mybatis/mapper/signup.xml" />
-		
 		<mapper resource="nbbang/mybatis/mapper/partybbs.xml" />
-		
 		<mapper resource="nbbang/mybatis/mapper/ussr.xml" />
 		<mapper resource="nbbang/mybatis/mapper/ussrcomment.xml" />
 		<mapper resource="nbbang/mybatis/mapper/ussrdynamicsql.xml" />	
 		<mapper resource="nbbang/mybatis/mapper/recommMain.xml"/>
 		<mapper resource="nbbang/mybatis/mapper/inquirybbs.xml"/>
+		<mapper resource="nbbang/mybatis/mapper/report.xml"/>
+		<mapper resource="nbbang/mybatis/mapper/myreport.xml" />
 
 	</mappers>	
 </configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nbbang.mybatis.mapper.myreport">
+
+	<select id="selectMyReport" parameterType="String" resultType="myreport">
+		select to_char(paymentday, 'yyyy-mm') as paymentmon 
+		     , sum(money) as money
+		     , nvl(count(*), 0) as mondata
+		     , subservice as subservice
+		from subscription
+		where to_char(paymentday, 'YYYY') = '2022'
+		group by to_char(paymentday, 'yyyy-mm'), subservice
+		order by to_char(paymentday, 'yyyy-mm')
+	</select>
+	
+</mapper>

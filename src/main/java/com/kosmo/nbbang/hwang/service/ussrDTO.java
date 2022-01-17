@@ -8,12 +8,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+/*
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor*/
 public class ussrDTO {
 	private String ussno;
 	private String ussrtitle;
@@ -31,7 +31,7 @@ public class ussrDTO {
 	//마이바티스의 ResultMap 태그의 collection태그 적용용
 	List<ussrCommentDTO> comments;
 
-	/*
+	
 	public String getUssno() {
 		return ussno;
 	}
@@ -92,5 +92,5 @@ public class ussrDTO {
 	public void setComments(List<ussrCommentDTO> comments) {
 		this.comments = comments;
 	}
-	*/
+	
 }

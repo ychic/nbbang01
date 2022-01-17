@@ -72,6 +72,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="okbutton" class="btn btn-primary" data-bs-dismiss="small-modal">확인</button>
+				<button type="button" id="gotologin" class="btn btn-secondary" data-bs-dismiss="small-modal">로그인하러 가기</button>
 			</div>
 		</div>
 	</div>
@@ -159,6 +160,9 @@
 						
 						$('#okbutton').on('click',function(){
 							$('#small-modal').css('display','none');
+						});
+						$('#gotologin').on('click',function(){
+							location.href = "login.do";
 						});
 					 	
 					},

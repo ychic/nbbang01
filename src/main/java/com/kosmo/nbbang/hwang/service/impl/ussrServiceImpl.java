@@ -61,7 +61,7 @@ public class ussrServiceImpl implements ussrService {
 				req.getContextPath()+"/recommand/recommandList.do?");
 		
 		//Lombok 미 사용시
-		/*
+		
 		ListPagingData<ussrDTO> listPagingData = new ListPagingData<>();
 		listPagingData.setBlockPage(blockPage);
 		listPagingData.setLists(lists);
@@ -70,8 +70,8 @@ public class ussrServiceImpl implements ussrService {
 		listPagingData.setPagingString(pagingString);
 		listPagingData.setTotalRecordCount(totalRecordCount);
 		return listPagingData;
-		*/
-		return ListPagingData.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString).totalRecordCount(totalRecordCount).build();
+		
+		//return ListPagingData.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString).totalRecordCount(totalRecordCount).build();
 	}
 	
 	@Override
@@ -90,17 +90,7 @@ public class ussrServiceImpl implements ussrService {
 		return affected;	
 	}
 
-	@Override
-	public int delete(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int update(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 	
 	@Autowired
 	private TransactionTemplate transactionTemplate;

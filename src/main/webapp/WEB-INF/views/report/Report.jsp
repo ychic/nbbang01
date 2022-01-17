@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 	</div>
 </header>
 
@@ -26,26 +27,26 @@
 	신고 페이지
 	</div>
    <div>
-      <form id="myform" class="form-horizontal" method="post"   enctype="multipart/form-data" action="#">
+      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/reportInsert.do'/>">
          <div class="form-group">
             <label class="col-sm-2 control-label">ID</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="name" value="${sessionScope.email}">
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}">
             </div>
          </div>
          <div class="form-group">
             <label class="col-sm-2 control-label">카테고리</label>
             <div class="col-sm-4">
-               <select class="form-control">
-               	   <option name="repo_chat">채팅</option>
-               	   <option name="repo_mySub">MY구독</option>
-               	   <option name="repo_myParty">MY파티</option>
-               	   <option name="repo_mySchedule">MY스케쥴</option>
-               	   <option name="repo_myReport">MY리포트</option>
-	               <option name="repo_partyBbs">파티게시판</option>
-                   <option name="repo_recommandBbs">추천게시판</option>
-                   <option name="repo_freeBbs">자유게시판</option>
-                   <option name="repo_etc">기타</option>
+               <select class="form-control" name="reportbbs">
+               	   <option value="채팅" <c:if test="${fn:contains(reportbbs,'팅')}">selected</c:if>>채팅</option>
+               	   <option value="MY구독" <c:if test="${fn:contains(reportbbs,'독')}">selected</c:if>>MY구독</option>
+               	   <option value="MY파티" <c:if test="${fn:contains(reportbbs,'파')}">selected</c:if>>MY파티</option>
+               	   <option value="MY스케쥴" <c:if test="${fn:contains(reportbbs,'쥴')}">selected</c:if>>MY스케쥴</option>
+               	   <option value="MY리포트" <c:if test="${fn:contains(reportbbs,'포')}">selected</c:if>>MY리포트</option>
+	               <option value="파티게시판" <c:if test="${fn:contains(reportbbs,'티')}">selected</c:if>>파티게시판</option>
+                   <option value="추천게시판" <c:if test="${fn:contains(reportbbs,'천')}">selected</c:if>>추천게시판</option>
+                   <option value="자유게시판" <c:if test="${fn:contains(reportbbs,'유')}">selected</c:if>>자유게시판</option>
+                   <option value="기타" <c:if test="${fn:contains(reportbbs,'기')}">selected</c:if>>기타</option>
                </select>
             </div>
           </div>
@@ -53,9 +54,9 @@
          <div class="form-group">
             <label class="col-sm-2" style="padding-left:108px">신고사유</label>
             <div class="col-sm-4">
-               <input type="radio" class="custom-radio" name="repo_reason" checked>광고
-               <input type="radio" class="custom-radio" name="repo_reason">욕설/비방
-               <input type="radio" class="custom-radio" name="repo_reason">기타
+               <input type="radio" class="custom-radio" name="reporttype" value="광고" <c:if test="${reporttype=='광고'}"> checked</c:if>>광고
+               <input type="radio" class="custom-radio" name="reporttype" value="욕설/비방" <c:if test="${reporttype=='욕설/비방'}"> checked</c:if>>욕설/비방
+               <input type="radio" class="custom-radio" name="reporttype" value="기타" <c:if test="${reporttype=='기타'}"> checked</c:if>>기타
             </div>
          </div>
          
@@ -65,7 +66,7 @@
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">
-                     <textarea class="summernote" name="repo_editordata"></textarea>  
+                     <textarea class="summernote" name="reportcontent"></textarea>  
                   </div>
                </div>
             </div>
@@ -73,7 +74,7 @@
          
          <div class="form-group" >
             <div class="col-sm-offset-2 col-sm-4">
-               <button class="btn btn-warning" id="repo_send">신고하기</button>
+               <button class="btn btn-warning" onclick="submit()">신고하기</button>
             </div>
          </div>
       </form>
