@@ -33,6 +33,7 @@
 	<typeAliases>
 		<typeAlias type="com.kosmo.nbbang.service.MemberDTO" alias="member"/>
 		<typeAlias type="com.kosmo.nbbang.partykang.service.PartyChatDTO" alias="chat"/>
+		<typeAlias type="com.kosmo.nbbang.partybbs.service.PartyBbsDTO" alias="partyBbsDTO"/>
 		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrDTO" alias="ussrDTO"/>
 		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrCommentDTO" alias="ussrCommentDTO"/>
 		<typeAlias type="com.kosmo.nbbang.service.RecommDTO" alias="recomm"/>
@@ -51,11 +52,8 @@
 		<mapper resource="nbbang/mybatis/mapper/nbbang-query.xml" />
 		
 		<mapper resource="nbbang/mybatis/mapper/signup.xml" />
-		<mapper resource="nbbang/mybatis/mapper/default.xml" />
-		<mapper resource="nbbang/mybatis/mapper/defWatch.xml" />
-		<mapper resource="nbbang/mybatis/mapper/defLife.xml" />
-		<mapper resource="nbbang/mybatis/mapper/folder.xml" />
 		
+		<mapper resource="nbbang/mybatis/mapper/partybbs.xml" />
 		
 		<mapper resource="nbbang/mybatis/mapper/ussr.xml" />
 		<mapper resource="nbbang/mybatis/mapper/ussrcomment.xml" />
