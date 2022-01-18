@@ -34,8 +34,8 @@
 		<typeAlias type="com.kosmo.nbbang.service.MemberDTO" alias="member"/>
 		<typeAlias type="com.kosmo.nbbang.partykang.service.PartyChatDTO" alias="chat"/>
 		<typeAlias type="com.kosmo.nbbang.partybbs.service.PartyBbsDTO" alias="partyBbsDTO"/>
-		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrDTO" alias="ussrDTO"/>
-		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrCommentDTO" alias="ussrCommentDTO"/>
+		<typeAlias type="com.kosmo.nbbang.hwang.service.UssrDTO" alias="ussrDTO"/>
+		<typeAlias type="com.kosmo.nbbang.hwang.service.UssrCommentDTO" alias="ussrCommentDTO"/>
 		<typeAlias type="com.kosmo.nbbang.service.RecommDTO" alias="recomm"/>
 		<typeAlias type="com.kosmo.nbbang.service.InquiryBbsDTO" alias="inquiryBbsDTO"/>
 		<typeAlias type="com.kosmo.nbbang.park.join.DefaultDTO" alias="defaultDTO"/>

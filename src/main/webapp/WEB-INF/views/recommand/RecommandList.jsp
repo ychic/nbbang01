@@ -58,7 +58,7 @@ tr {
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th scope="col" class="col-md-1 text-center">No</th>
+					<th scope="col" class="col-md-1 text-center">Category</th>
 					<th scope="col" class="col-md-2 text-center">Title</th>
 					<th scope="col" class="col-md-1 text-center">Writer</th>
 					<th scope="col" class="col-md-1 text-center">PostDate</th>
@@ -74,14 +74,18 @@ tr {
 				<c:if test="${not isEmpty }">
 					<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
 						<tr class="text-center">
-							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
+							<td>
+								<c:if test="${item.navcategory=='recommandService'}"><span>구독서비스 추천</span></c:if>
+								<c:if test="${item.navcategory=='recommandContents'}"><span>컨텐츠 추천</span></c:if>
+								<c:if test="${item.navcategory=='recommandTips'}"><span>꿀팁 추천</span></c:if>
+							</td>
 							<td class="text-left">
-								<a href="<c:url value="/recommandView.do?ussrno=${item.ussrno}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">${item.ussrtitle }</a>
-								<span class="badge">${item.commentCount }</span>
+								<a href="<c:url value="/recommandView.do?ussrno=${item.ussrno}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">${item.ussrtitle }
+								<span class="badge">${item.commentCount }</span></a>
 							</td>
 							<td class="text-center">${item.nickname}</td>
-							<td class="text-center">${item.ussrpostdate }</td>
-							<td class="text-center">${item.likeno }</td>
+							<td class="text-center">${item.ussrpostdate}</td>
+							<td class="text-center">${item.likeno}</td>
 						</tr>
 					</c:forEach>
 				</c:if>

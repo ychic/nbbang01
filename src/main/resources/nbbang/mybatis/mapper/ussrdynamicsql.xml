@@ -5,14 +5,14 @@
   
 
 <mapper namespace="nbbang.mybatis.mapper.ussrdynamicsql">
-	<select id="findUssrbbsWithTitleLike" parameterType="Map" resultType="ussrDTO">
+	<select id="findUssrbbsWithTitleLike" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM ussrbbs
 		WHERE 1=1 
 		<if test="ussrtitle != null">
 			AND ussrtitle LIKE '%' || #{ussrtitle} || '%'
 		</if>		
 	</select>
-	<select id="findUssrLike" parameterType="Map" resultType="ussrDTO">
+	<select id="findUssrLike" parameterType="Map" resultType="UssrDTO">
 		SELECT u.*,name FROM ussrbbs u JOIN member m ON u.email=m.email
 		WHERE 1=1 
 		<if test="ussrtitle != null">
@@ -25,7 +25,7 @@
 			AND ussrcontent LIKE '%' || #{ussrcontent} || '%'
 		</if>
 	</select>
-	<select id="findUssrLikeChoose" parameterType="Map" resultType="ussrDTO">
+	<select id="findUssrLikeChoose" parameterType="Map" resultType="UssrDTO">
 		SELECT u.*,name FROM ussrbbs u JOIN member m ON u.email=m.email
 		WHERE 1=1
 		<choose>
@@ -43,7 +43,7 @@
 	<!-- 위 구문에서 "where 1=1"을 "where"로 변경시 조건에 따라 에러 발생 -->
 	<!-- 아래 where 엘리먼트는 JSTL에 의해 컨텐츠가 리턴되면 단순히 "WHERE"만을 추가한다. 
 	게다가 컨텐츠가 "AND"나 "OR"로 시작한다면 그 "AND"나 "OR"를 지워버린다. -->
-	<select id="findUssrLikeWhere" parameterType="Map" resultType="ussrDTO">
+	<select id="findUssrLikeWhere" parameterType="Map" resultType="UssrDTO">
 		SELECT u.*,name FROM ussrbbs u JOIN member m ON u.email=m.email		
 		<where>
 			<if test="ussrtitle != null">
@@ -58,7 +58,7 @@
 		</where>
 	</select>
 	
-	<select id="findUssrLikeTrim" parameterType="Map" resultType="ussrDTO">
+	<select id="findUssrLikeTrim" parameterType="Map" resultType="UssrDTO">
 		SELECT u.*,name FROM ussrbbs u JOIN member m ON u.email=m.email		
 		<trim prefix="where" prefixOverrides="AND" >
 			<if test="ussrtitle != null">
@@ -95,7 +95,7 @@
 	</update>
 	
 	<!-- List인 경우 -->
-	<select id="findUssrForeach" parameterType="List" resultType="ussrDTO">
+	<select id="findUssrForeach" parameterType="List" resultType="UssrDTO">
 		SELECT * FROM ussrbbs
 		WHERE ussrno IN 
 		<foreach collection="collection" open="(" close=")" item="item" separator=",">
