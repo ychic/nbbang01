@@ -63,5 +63,8 @@
 		<mapper resource="nbbang/mybatis/mapper/recommMain.xml"/>
 		<mapper resource="nbbang/mybatis/mapper/inquirybbs.xml"/>
 
+		<!-- banking -->	
+		<mapper resource="nbbang/mybatis/mapper/banktoken.xml"/>
+
 	</mappers>	
 </configuration>

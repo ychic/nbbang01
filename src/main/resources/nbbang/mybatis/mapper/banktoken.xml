@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.bankaccount">
+
+	<insert id="insertAuth" parameterType="Map">
+		insert into banktoken values(#{access_token},#{email},#{user_seq_no},#{user_ci})
+	</insert>
+	
+	<select id="selectAuth" parameterType="Map" resultMap="Map">
+		select * from banktoken WHERE email = #{email}
+	</select>
+	
+</mapper> 
