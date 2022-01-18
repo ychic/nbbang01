@@ -9,31 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.kosmo.nbbang.hwang.service.ListPagingData;
-import com.kosmo.nbbang.hwang.service.ussrDTO;
-import com.kosmo.nbbang.hwang.service.ussrService;
+import com.kosmo.nbbang.hwang.service.UssrDTO;
+import com.kosmo.nbbang.hwang.service.UssrService;
 import com.kosmo.nbbang.service.PagingUtil;
 
 @Transactional
-@Service("ussrService")
-public class ussrServiceImpl implements ussrService {
-	
-	@Resource(name="ussrDAO")
-	private ussrDAO dao;
+@Service("UssrService")
+public class UssrServiceImpl implements UssrService {
 	
 	@Autowired
-	private ussrCommentDAO ucdao;
+	private UssrDAO dao;
+	
 	
 	@Value("${PAGE_SIZE}")
 	private int pageSize;
@@ -42,12 +32,12 @@ public class ussrServiceImpl implements ussrService {
 	private int blockPage;
 
 	@Override
-	public boolean isLogin(Map map) {		
+	public boolean isLogin(Map map) {
 		return dao.isLogin(map);
 	}
 
 	@Override
-	public ListPagingData<ussrDTO> selectList(
+	public ListPagingData<UssrDTO> selectList(
 			Map map, HttpServletRequest req, int nowPage) {
 		int totalRecordCount = dao.getTotalRowCount(map);	
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
@@ -62,7 +52,7 @@ public class ussrServiceImpl implements ussrService {
 		
 		//Lombok 미 사용시
 		
-		ListPagingData<ussrDTO> listPagingData = new ListPagingData<>();
+		ListPagingData<UssrDTO> listPagingData = new ListPagingData<>();
 		listPagingData.setBlockPage(blockPage);
 		listPagingData.setLists(lists);
 		listPagingData.setNowPage(nowPage);
@@ -75,7 +65,7 @@ public class ussrServiceImpl implements ussrService {
 	}
 	
 	@Override
-	public ussrDTO selectOne(Map map) {		
+	public UssrDTO selectOne(Map map) {		
 		return dao.selectOne(map);
 	}
 	
@@ -89,33 +79,17 @@ public class ussrServiceImpl implements ussrService {
 		catch(Exception e) {e.printStackTrace();}
 		return affected;	
 	}
-
 	
 	
-	@Autowired
-	private TransactionTemplate transactionTemplate;
 	
 	@Override
-	public int delete(Map map){
-		int affected=0;
-		try {
-			//람다함수 사용
-			affected=transactionTemplate.execute(tx->{
-				int commentCount=ucdao.deleteByNo(map);
-				dao.delete(map);
-				return commentCount;
-			});
-			
-		}
-		catch(Exception e) {e.printStackTrace();}
-		System.out.println("삭제된 댓글 수:"+affected);
-		return affected;
+	public int delete(Map map) {
+		return dao.delete(map);
 	}
+	
 	@Override
 	public int update(Map map) {		
 		return dao.update(map);
 	}
 
-	
-	
 }

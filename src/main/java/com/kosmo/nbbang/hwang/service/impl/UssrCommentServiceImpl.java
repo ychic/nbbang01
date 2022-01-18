@@ -5,14 +5,18 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import com.kosmo.nbbang.hwang.service.ussrCommentService;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import com.kosmo.nbbang.hwang.service.UssrCommentService;
 
 @Service("ussrCommentService")
-public class ussrCommentServiceImpl implements ussrCommentService {
+public class UssrCommentServiceImpl implements UssrCommentService {
 
 	@Autowired
-	private ussrCommentDAO dao;
+	private UssrCommentDAO dao;
 	
 	@Override
 	public List<Map> selectList(Map map) {	
@@ -20,14 +24,12 @@ public class ussrCommentServiceImpl implements ussrCommentService {
 	}
 	
 	@Override
-	public String insert(Map map) {
-		int cno=dao.insert(map);
-		String name=dao.findNameById(map.get("email").toString());
-		return String.format("%s:%s",cno,name);
+	public int insert(Map map) {
+		return dao.insert(map);
 	}
-
+	
 	@Override
-	public int delete(Map map) {
+	public int delete(Map map){
 		return dao.delete(map);
 	}
 
