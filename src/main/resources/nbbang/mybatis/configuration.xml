@@ -62,5 +62,8 @@
 		<mapper resource="nbbang/mybatis/mapper/report.xml"/>
 		<mapper resource="nbbang/mybatis/mapper/myreport.xml" />
 
+		<!-- banking -->	
+		<mapper resource="nbbang/mybatis/mapper/banktoken.xml"/>
+
 	</mappers>	
 </configuration>
