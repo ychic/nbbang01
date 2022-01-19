@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo.nbbang.hwang.service.ListPagingData;
-import com.kosmo.nbbang.hwang.service.ussrDTO;
+import com.kosmo.nbbang.hwang.service.UssrDTO;
 import com.kosmo.nbbang.service.InquiryBbsDTO;
 import com.kosmo.nbbang.service.InquiryBbsService;
 import com.kosmo.nbbang.service.MemberDTO;

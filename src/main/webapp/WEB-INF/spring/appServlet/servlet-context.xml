@@ -59,4 +59,5 @@
 			path="/chat-ws.do" />
 	</websocket:handlers>
 	
+	<beans:bean id="mapper" class="com.fasterxml.jackson.databind.ObjectMapper"></beans:bean>
 </beans:beans>

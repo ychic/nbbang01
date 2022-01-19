@@ -10,11 +10,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo.nbbang.hwang.service.ussrDTO;
+import com.kosmo.nbbang.hwang.service.UssrDTO;
 
 @Repository
-public class ussrDAO {
-	@Resource(name = "sqlSessionFactory")
+public class UssrDAO {
+	@Resource(name="sqlSessionFactory")
 	private SqlSessionFactory sqlMapper;
 	
 	@Resource(name="template")
@@ -27,9 +27,9 @@ public class ussrDAO {
 		return count==1 ? true : false;
 	}
 
-	public List<ussrDTO> selectList(Map map) {
+	public List<UssrDTO> selectList(Map map) {
 		SqlSession session= sqlMapper.openSession();
-		List<ussrDTO> lists=session.selectList("ussrSelectList", map);
+		List<UssrDTO> lists=session.selectList("ussrSelectList", map);
 		session.close();
 		return lists;
 	}
@@ -48,7 +48,7 @@ public class ussrDAO {
 		return affected;
 	}
 	
-	public ussrDTO selectOne(Map map) {		
+	public UssrDTO selectOne(Map map) {		
 		return template.selectOne("ussrSelectOne",map);
 	}
 
@@ -56,7 +56,7 @@ public class ussrDAO {
 		return template.update("ussrUpdate", map);
 	}
 	
-	public void delete(Map map) {
-		template.delete("ussrDelete", map);		
+	public int delete(Map map) {
+		return template.delete("ussrDelete", map);
 	}
 }

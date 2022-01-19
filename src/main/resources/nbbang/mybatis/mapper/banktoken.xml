@@ -9,7 +9,7 @@
 		insert into banktoken values(#{access_token},#{email},#{user_seq_no},#{user_ci})
 	</insert>
 	
-	<select id="selectAuth" parameterType="Map" resultMap="Map">
+	<select id="selectAuth" parameterType="Map" resultType="Map">
 		select * from banktoken WHERE email = #{email}
 	</select>
 	
