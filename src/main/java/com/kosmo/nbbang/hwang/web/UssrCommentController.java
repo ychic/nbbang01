@@ -38,7 +38,7 @@ public class UssrCommentController {
 	@PostMapping(value="/commentWrite.do",produces = "text/plain; charset=UTF-8")
 	public String write(@ModelAttribute("email") String email,@RequestParam Map map) {
 		map.put("email", email);
-		int commentInfo = commentService.insert(map);
+		String commentInfo = commentService.insert(map);
 		return String.valueOf(commentInfo);
 	}
 	

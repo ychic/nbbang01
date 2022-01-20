@@ -12,19 +12,21 @@
 			AND ussrtitle LIKE '%' || #{ussrtitle} || '%'
 		</if>		
 	</select>
+	
 	<select id="findUssrLike" parameterType="Map" resultType="UssrDTO">
 		SELECT u.*,name FROM ussrbbs u JOIN member m ON u.email=m.email
 		WHERE 1=1 
 		<if test="ussrtitle != null">
 			AND ussrtitle LIKE '%' || #{ussrtitle} || '%'
 		</if>
-		<if test="name != null">
-			AND name LIKE '%' || #{name} || '%'
+		<if test="nickname != null">
+			AND nickname LIKE '%' || #{nickname} || '%'
 		</if>	
 		<if test="ussrcontent != null">
 			AND ussrcontent LIKE '%' || #{ussrcontent} || '%'
 		</if>
 	</select>
+	
 	<select id="findUssrLikeChoose" parameterType="Map" resultType="UssrDTO">
 		SELECT u.*,name FROM ussrbbs u JOIN member m ON u.email=m.email
 		WHERE 1=1
@@ -72,13 +74,12 @@
 			</if>		
 		</trim>
 	</select>
+	
 	<update id="updateUssrLikeTrim" parameterType="Map">
 		UPDATE ussrbbs
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="ussrtitle !=null">ussrtitle=#{ussrtitle},</if>
 			<if test="ussrcontent !=null">ussrcontent=#{ussrcontent},</if>
-			<if test="ussroriginfilenames !=null">ussroriginfilenames=#{ussroriginfilenames},</if>
-			<if test="ussrrealfilenames !=null">ussrrealfilenames=#{ussrrealfilenames},</if>
 		</trim>
 		WHERE ussrno =#{ussrno}	
 	</update>
@@ -88,8 +89,6 @@
 		<set>
 			<if test="ussrtitle !=null">ussrtitle=#{ussrtitle},</if>
 			<if test="ussrcontent !=null">ussrcontent=#{ussrcontent},</if>
-			<if test="ussroriginfilenames !=null">ussroriginfilenames=#{ussroriginfilenames},</if>
-			<if test="ussrrealfilenames !=null">ussrrealfilenames=#{ussrrealfilenames},</if>
 		</set>
 		WHERE ussrno =#{ussrno}		
 	</update>
