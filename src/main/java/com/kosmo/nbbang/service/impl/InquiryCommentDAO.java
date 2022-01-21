@@ -15,7 +15,12 @@ public class InquiryCommentDAO {
 	
 	public int insert(Map map) {
 		template.insert("inqCommentInsert",map);
+		System.out.println(map.get("comno").toString());
 		return Integer.parseInt(map.get("comno").toString());
+	}
+	
+	public String findNicknameByEmail(String email) {	
+		return template.selectOne("inqFindNicknameByEmail",email);
 	}
 
 	public List<Map> selectList(Map map) {

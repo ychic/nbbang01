@@ -71,7 +71,7 @@ public class InquiryBbsServiceImpl implements InquiryBbsService {
 		
 		// 글 전체 목록 얻기
 		List lists = dao.selectList(map);
-		String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/OBOlist.do?");
+		String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/OBOList.do?");
 		
 		System.out.println("pagingString"+pagingString);
 		
