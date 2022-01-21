@@ -51,24 +51,13 @@
 	
 	<!-- 웹 소켓: 먼저 pom.xml에 라이브러리 추가 -->
 	<!-- 웹소켓 서버용 빈 등록 -->
-	<!--  
 	<beans:bean id="chatServer"
 		class="com.kosmo.nbbang.partykang.WebSocketServer"></beans:bean>
-	-->
 	<!-- 웹소켓 서버와 클라이언트에서 접속하는 path와 매핑:엔드포인트 설정 -->
-	<!--  
 	<websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="chatServer"
 			path="/chat-ws.do" />
 	</websocket:handlers>
-	-->
-	<!-- /nbbang -->
-	<websocket:message-broker application-destination-prefix="/">
-        <websocket:stomp-endpoint allowed-origins="*" path="/endpoint">
-            <websocket:sockjs/>
-        </websocket:stomp-endpoint>
-        <websocket:simple-broker prefix="/topic"/>
-    </websocket:message-broker>
-    
-    <beans:bean id="mapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+	
+	<beans:bean id="mapper" class="com.fasterxml.jackson.databind.ObjectMapper"></beans:bean>
 </beans:beans>
