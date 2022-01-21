@@ -9,4 +9,7 @@
 	<select id="getNickName" parameterType="String" resultType="String">
 		SELECT nickname FROM member WHERE email = #{chatpartnerid}
 	</select>
+	<select id="getPartyBbs" parameterType="String" resultType="partyBbsDTO">
+		SELECT p.*, m.nickname FROM partybbs p JOIN member m ON p.email = m.email WHERE partyno = #{partyNo}
+	</select>
 </mapper>
