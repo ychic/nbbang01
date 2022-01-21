@@ -37,14 +37,14 @@ public class UssrDTO {
 	//no에 따른 모든 한줄 댓글 목록 저장용
 	//마이바티스의 ResultMap 태그의 collection태그 적용용
 	List<UssrCommentDTO> comments;
-	
+
 	@Override
 	public String toString() {
 		return "UssrDTO [ussrno=" + ussrno + ", ussrtitle=" + ussrtitle + ", ussrcontent=" + ussrcontent
 				+ ", ussrpostdate=" + ussrpostdate + ", ussroriginfilenames=" + ussroriginfilenames
-				+ ", ussrrealfilenames=" + ussrrealfilenames + ", ussrcategoryname=" + ussrcategoryname + ", email="
-				+ email + ", nickname=" + nickname + ", likeno=" + likeno + ", commentCount=" + commentCount
-				+ ", comments=" + comments + "]";
+				+ ", ussrrealfilenames=" + ussrrealfilenames + ", ussrcategoryname=" + ussrcategoryname
+				+ ", navcategory=" + navcategory + ", email=" + email + ", nickname=" + nickname + ", likeno=" + likeno
+				+ ", commentCount=" + commentCount + ", comments=" + comments + "]";
 	}
 	
 	/*

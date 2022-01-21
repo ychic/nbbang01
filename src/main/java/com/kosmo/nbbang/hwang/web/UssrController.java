@@ -3,6 +3,7 @@ package com.kosmo.nbbang.hwang.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -39,26 +40,13 @@ public class UssrController {
 	@RequestMapping("/recommandList.do")
 	public String list(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage,
 			HttpServletRequest req, Model model) {
-		String categoryname;
-		String navcategory;
 		ListPagingData<UssrDTO> listPagingData = ussrService.selectList(map, req, nowPage);
-		List<UssrDTO> lists = new Vector<UssrDTO>();
-		for (UssrDTO dto : listPagingData.getLists()) {
-			String[] c = dto.getUssrcategoryname().split(",");
-			categoryname = c[0];
-			navcategory = c[1];
-			dto.setUssrcategoryname(categoryname);
-			dto.setNavcategory(navcategory);
-			lists.add(dto);
-		}
-		listPagingData.setLists(lists);
 		model.addAttribute("listPagingData", listPagingData);
 		return "recommand/RecommandList.tiles";
 	}
 
 	@RequestMapping(value = "/recommandWrite.do", method = RequestMethod.GET)
 	public String write(@ModelAttribute("email") String email) {
-
 		return "recommand/RecommandWrite.tiles";
 	}
 
@@ -66,8 +54,11 @@ public class UssrController {
 	@RequestMapping(value = "/recommandWrite.do", method = RequestMethod.POST)
 	public String writeOk(@ModelAttribute("email") String email, @RequestParam Map map) throws Exception {
 		map.put("email", email);
-		String categoryname = map.get("categoryname").toString() + "," + map.get("navcategory").toString();
-		map.put("categoryname", categoryname);
+		Set<String> keys = map.keySet();
+		for(String key : keys) {
+			System.out.println(key);
+			System.out.println(map.get(key).toString());
+		}
 		ussrService.insert(map);
 		return "forward:/recommandList.do";
 	}
@@ -89,8 +80,6 @@ public class UssrController {
 			req.setAttribute("record", record);
 			return "recommand/RecommandEdit.tiles";
 		}
-		String categoryname = map.get("categoryname").toString() + "," + map.get("navcategory").toString();
-		map.put("categoryname", categoryname);
 		ussrService.update(map);
 		return "forward:/recommandView.do";
 	}
@@ -104,9 +93,9 @@ public class UssrController {
 
 	// 카테고리 옵션처리
 	@RequestMapping(value = "/categoryChange.do", produces = "application/json; charset=UTF-8")
-	public @ResponseBody String ajaxCourse(@RequestParam String categoryname) throws JsonProcessingException {
+	public @ResponseBody String ajaxCourse(@RequestParam String ussrcategoryname) throws JsonProcessingException {
 		Map map = new TreeMap();
-		switch (categoryname) {
+		switch (ussrcategoryname) {
 		case "recommand":
 			map.put("recommandService", "구독서비스 추천");
 			map.put("recommandContents", "컨텐츠 추천");

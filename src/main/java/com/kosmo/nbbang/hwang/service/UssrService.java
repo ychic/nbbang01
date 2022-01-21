@@ -11,5 +11,4 @@ public interface UssrService {
 	int insert(Map map);
 	int delete(Map map);
 	int update(Map map);
-	
 }

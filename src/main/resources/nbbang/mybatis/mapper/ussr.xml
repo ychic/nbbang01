@@ -12,6 +12,7 @@
 		<result column="ussroriginfilenames" property="ussroriginfilenames"/>
 		<result column="ussrrealfilenames" property="ussrrealfilenames"/>
 		<result column="ussrcategoryname" property="ussrcategoryname"/>
+		<result column="navcategory" property="navcategory"/>
 		<result column="commentCount" property="commentCount"/>
 		<result column="likeno" property="likeno"/>
 		<collection property="comments" column="ussrno" select="nbbang.mybatis.mapper.ussrcomment.ussrCommentListsUsingCollection" javaType="List" ofType="UssrCommentDTO"/> 
@@ -42,15 +43,19 @@
 	
 	<insert id="ussrInsert" parameterType="Map" >
 		INSERT INTO ussrbbs
-		VALUES(SEQ_ussrbbs_ussrno.NEXTVAL,#{ussrtitle},#{ussrcontent},SYSDATE,#{ussroriginfilenames, jdbcType=VARCHAR},#{ussrrealfilenames, jdbcType=VARCHAR},#{categoryname},#{email})
+		VALUES(SEQ_ussrbbs_ussrno.NEXTVAL,#{ussrtitle},#{ussrcontent},SYSDATE, null, null,#{ussrcategoryname},#{email},#{navcategory})
 	</insert>
 	
 	<select id="ussrSelectOne" parameterType="Map" resultMap="ussrDTOResult">
 		SELECT u.*,m.nickname FROM member m JOIN ussrbbs u ON m.email=u.email WHERE ussrno=#{ussrno}
 	</select>
 	
+	<select id="ussrFindNicknameByEmail" parameterType="String" resultType="String">
+		SELECT nickname FROM member WHERE email=#{email}
+	</select>
+	
 	<update id="ussrUpdate" parameterType="Map">
-		UPDATE ussrbbs SET ussrtitle=#{ussrtitle},ussrcontent=#{ussrcontent},ussrcategoryname=#{categoryname} WHERE ussrno=#{ussrno}
+		UPDATE ussrbbs SET ussrtitle=#{ussrtitle},ussrcontent=#{ussrcontent},ussrcategoryname=#{ussrcategoryname},navcategory=#{navcategory} WHERE ussrno=#{ussrno}
 	</update>
 	
 	<delete id="ussrDelete" parameterType="Map">

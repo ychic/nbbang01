@@ -24,8 +24,10 @@ public class UssrCommentServiceImpl implements UssrCommentService {
 	}
 	
 	@Override
-	public int insert(Map map) {
-		return dao.insert(map);
+	public String insert(Map map) {
+		int comno = dao.insert(map);
+		String nickname = dao.findNicknameByEmail(map.get("email").toString());
+		return String.format("%s:%s",comno,nickname);
 	}
 	
 	@Override

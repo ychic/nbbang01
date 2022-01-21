@@ -26,7 +26,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label">게시판</label>
             <div class="col-sm-4">
-               <select class="form-control" name ="categoryname" id="categoryname">
+               <select class="form-control" name ="ussrcategoryname" id="ussrcategoryname">
                  <option value="recommand">추천게시판</option>
                  <option value="free">자유게시판</option>
                </select>
@@ -70,10 +70,10 @@
 </div>
 <!-- 카테고리 선택 Ajax -->
 <script>
-$('#categoryname').change(function(){
+$('#ussrcategoryname').change(function(){
 	$.ajax({
 			url:"<c:url value="/categoryChange.do"/>",
-			data:{categoryname:$(this).val()},
+			data:{ussrcategoryname:$(this).val()},
 			dataType:'json'
 		}).done(function(data){
 			var options="";

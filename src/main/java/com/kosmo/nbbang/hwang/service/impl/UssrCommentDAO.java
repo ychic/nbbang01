@@ -28,9 +28,9 @@ public class UssrCommentDAO {
 		return Integer.parseInt(map.get("comno").toString());
 	}
 	
-//	public String findNicknameByEmail(String email) {	
-//		return template.selectOne("findNicknameByEmail",email);
-//	}
+	public String findNicknameByEmail(String email) {	
+		return template.selectOne("ussrFindNicknameByEmail",email);
+	}
 	
 	public int update(Map map) {		
 		return template.update("ussrCommentUpdate",map);

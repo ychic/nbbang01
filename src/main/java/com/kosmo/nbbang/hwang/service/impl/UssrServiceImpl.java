@@ -25,10 +25,10 @@ public class UssrServiceImpl implements UssrService {
 	private UssrDAO dao;
 	
 	
-	@Value("${PAGE_SIZE}")
+	@Value("${UPAGE_SIZE}")
 	private int pageSize;
 	
-	@Value("${BLOCK_PAGE}")
+	@Value("${UBLOCK_PAGE}")
 	private int blockPage;
 
 	@Override
@@ -39,7 +39,7 @@ public class UssrServiceImpl implements UssrService {
 	@Override
 	public ListPagingData<UssrDTO> selectList(
 			Map map, HttpServletRequest req, int nowPage) {
-		int totalRecordCount = dao.getTotalRowCount(map);	
+		int totalRecordCount = dao.getTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;
@@ -48,7 +48,7 @@ public class UssrServiceImpl implements UssrService {
 		List lists= dao.selectList(map);
 		String pagingString=PagingUtil.pagingBootStrapStyle(totalRecordCount, 
 				pageSize, blockPage, nowPage,
-				req.getContextPath()+"/recommand/recommandList.do?");
+				req.getContextPath()+"/recommandList.do?");
 		
 		//Lombok 미 사용시
 		

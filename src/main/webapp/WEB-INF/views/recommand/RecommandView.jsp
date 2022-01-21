@@ -31,9 +31,9 @@
 				<tr>
 					<th class="text-center">주제</th>
 					<td class="text-center">
-						<c:if test="${record.ussrcategoryname=='recommand,recommandService'}">구독서비스 추천</c:if>
-						<c:if test="${record.ussrcategoryname=='recommand,recommandContents'}">컨텐츠 추천</c:if>
-						<c:if test="${record.ussrcategoryname=='recommand,recommandTips'}">꿀팁 추천</c:if>
+						<c:if test="${record.navcategory=='recommandService'}">구독서비스 추천</c:if>
+						<c:if test="${record.navcategory=='recommandContents'}">컨텐츠 추천</c:if>
+						<c:if test="${record.navcategory=='recommandTips'}">꿀팁 추천</c:if>
 					</td>
 				</tr>
 			</table>
@@ -100,7 +100,7 @@
 											<td>${comment.compostDate}</td>
 											<td>
 												<c:if test="${sessionScope.email==comment.email}" var="isOwn">
-													<span class='delete' title='${comment.comno}' style="cursor: pointer">댓글 삭제</span>
+													<span class='delete' title='${comment.comno}' style="cursor: pointer">삭제</span>
 												</c:if>
 												<c:if test="${not isOwn}">
 													삭제불가
@@ -189,11 +189,11 @@
 				
 				if($('#submit').val()=='등록'){
 					var comno = data.split(":")[0];
-					var name = data.split(":")[1];
+					var nickname = data.split(":")[1];
 					var date = new Date();
 					var compostdate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
 					console.log(comno,name)
-					var newComment ="<tr class='comment"+comno+"'><td>"+name+"</td><td style='cursor:pointer' class='title' title='"+comno+"'>"+$("#title").val()+"</td><td>"+compostdate+"</td><td style='cursor:pointer' class='delete' title='"+data+"'>삭제</td></tr>";
+					var newComment ="<tr class='comment"+comno+"'><td>"+nickname+"</td><td style='cursor:pointer' class='title' title='"+comno+"'>"+$("#title").val()+"</td><td>"+compostdate+"</td><td style='cursor:pointer' class='delete' title='"+data+"'>삭제</td></tr>";
 					$(".comment-title").prepend(newComment);
 				}
 				else{
