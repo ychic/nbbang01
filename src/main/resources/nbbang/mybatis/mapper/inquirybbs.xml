@@ -17,6 +17,7 @@
 		<result column="inqrealfilenames" property="inqrealfilenames"/>
 		<result column="email" property="email"/>
 		<result column="commentCount" property="commentCount"/>
+		<collection property="comments" column="inqno" select="nbbang.mybatis.mapper.inquirycomment.inqCommentListsUsingCollection" javaType="List" ofType="inquiryCommentDTO"/> 
 		 
 	</resultMap>
 

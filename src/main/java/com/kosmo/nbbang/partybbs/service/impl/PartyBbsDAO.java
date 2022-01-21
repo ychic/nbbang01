@@ -41,4 +41,8 @@ public class PartyBbsDAO {
 		session.close();
 		return affected;
 	}
+
+	public PartyBbsDTO partySelectOne(Map map) {
+		return template.selectOne("partybbsSelectOne", map);
+	}
 } // end PartyBbsDAO 

@@ -27,11 +27,37 @@
 	신고 페이지
 	</div>
    <div>
-      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/reportInsert.do'/>">
+   <form id="myform" class="form-horizontal" method="post" action="<c:url value='/partyReportOk.do'/>">
+   		<div class="form-group">
+            <label class="col-sm-2 control-label">신고글 NO</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="partyNo" value="${record.partyNo}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 제목</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="partyTitle" value="${record.partyTitle}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 날짜</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="partyPostdate" value="${record.partyPostdate}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 작성자</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="email" value="${record.email}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 내용</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="partyContent" value="${record.partyContent}" disabled>
+            </div>
+    	</div>
+   
+      	<hr>
          <div class="form-group">
             <label class="col-sm-2 control-label">신고자 ID</label>
+            
             <div class="col-sm-4">
                <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+               <input type="hidden" class="form-control" name="partyNo" value="${record.partyNo}">
             </div>
          </div>
          <div class="form-group">
@@ -43,7 +69,7 @@
                	   <option value="MY파티" <c:if test="${fn:contains(reportbbs,'파')}">selected</c:if>>MY파티</option>
                	   <option value="MY스케쥴" <c:if test="${fn:contains(reportbbs,'쥴')}">selected</c:if>>MY스케쥴</option>
                	   <option value="MY리포트" <c:if test="${fn:contains(reportbbs,'포')}">selected</c:if>>MY리포트</option>
-	               <option value="파티게시판" <c:if test="${fn:contains(reportbbs,'티')}">selected</c:if>>파티게시판</option>
+	               <option value="파티원게시판" <c:if test="${fn:contains(reportbbs,'티')}">selected</c:if>>파티원게시판</option>
                    <option value="추천게시판" <c:if test="${fn:contains(reportbbs,'천')}">selected</c:if>>추천게시판</option>
                    <option value="자유게시판" <c:if test="${fn:contains(reportbbs,'유')}">selected</c:if>>자유게시판</option>
                    <option value="문의게시판" <c:if test="${fn:contains(reportbbs,'문')}">selected</c:if>>문의게시판</option>
@@ -60,10 +86,8 @@
                <input type="radio" class="custom-radio" name="reporttype" value="기타" <c:if test="${reporttype=='기타'}"> checked</c:if>>기타
             </div>
          </div>
-         
-         
          <div class="form-group">
-            <label class="col-sm-2 control-label">신고내용</label>
+            <label class="col-sm-2 control-label">내용</label>
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">

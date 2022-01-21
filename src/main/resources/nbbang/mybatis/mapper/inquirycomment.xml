@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.inquirycomment">
+
+	<resultMap type="inquiryCommentDTO" id="inquiryCommentDTOResult">
+	
+		<result column="comno" property="comno"/>
+		<result column="comcontent" property="comcontent"/>
+		<result column="compostdate" property="compostdate"/>
+		<result column="comoriginfilename" property="comoriginfilename"/>
+		<result column="comfilename" property="comfilename"/>
+		<result column="inqno" property="inqno"/>
+		<result column="email" property="email"/>
+		
+	</resultMap>
+	
+	<select id="inqCommentListsUsingCollection" parameterType="Map" resultType="inquiryCommentDTO">
+		SELECT i.*,m.name 
+		FROM member m JOIN inquirycomment i ON m.email=i.email
+		WHERE inqno = #{inqno}
+		ORDER BY comno DESC
+	</select>
+	<select id="inqCommentListsUsingAjax" parameterType="Map" resultType="Map">
+		SELECT i.*,m.nickname 
+		FROM member m JOIN inquirycomment i ON m.email=i.email
+		WHERE inqno = #{inqno}
+		ORDER BY comno DESC
+	</select>  
+	
+	<insert id="inqCommentInsert" parameterType="Map" >
+		<selectKey keyProperty="comno" resultType="int" order="BEFORE">
+			SELECT SEQ_inquirycomment_comno.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO inquirycomment 
+		VALUES(SEQ_inquirycomment_COMNO.CURRVAL,#{comcontent},SYSDATE,#{comoriginfilename, jdbcType=VARCHAR},#{comfilename, jdbcType=VARCHAR},#{inqno},#{email})
+		
+	</insert>
+	
+	<update id="inqCommentUpdate" parameterType="Map">
+		UPDATE inquirycomment SET comcontent=#{comcontent} WHERE comno=#{comno}
+	</update>
+	
+	<delete id="inqCommentDelete" parameterType="Map">
+		DELETE inquirycomment WHERE comno=#{comno}
+	</delete>
+	
+	
+</mapper>

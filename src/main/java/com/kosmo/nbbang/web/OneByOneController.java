@@ -2,6 +2,7 @@ package com.kosmo.nbbang.web;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import com.kosmo.nbbang.service.InquiryBbsService;
 import com.kosmo.nbbang.service.MemberDTO;
 import com.kosmo.nbbang.service.MemberListPaging;
 import com.kosmo.nbbang.service.impl.MemberServiceImpl;
+import com.kosmo.nbbang.service.ReportService;
 
 @SessionAttributes({"email"})
 @Controller
@@ -26,6 +28,9 @@ public class OneByOneController {
 	
 	@Autowired
 	private InquiryBbsService inquiryBbsService;
+	@Autowired
+	private ReportService reportService;
+	
 	
 	//문의 작성
 	@RequestMapping("/saveOBO.do")
@@ -33,10 +38,11 @@ public class OneByOneController {
 //		for(Map.Entry<String, String> entry : map.entrySet()) {
 //	         System.out.println(entry.getKey()+"-"+entry.getValue());
 //	      }
+		
 		int affected = inquiryBbsService.insert(map);
 		System.out.println("affected:"+affected);
 		
-		return "guide/onebyoneqna/OneByOneBbsView.tiles";
+		return "forward:/OBOList.do";
 	}
 	
 	//신고 list 출력(프론트)
@@ -52,7 +58,7 @@ public class OneByOneController {
 		return "guide/onebyoneqna/OneByOneBbsList.tiles";
 	}
 	
-	//신고 list 출력 관리자페이지
+	//문의 list 출력 관리자페이지
 	@RequestMapping("/adminOneByOne.do")
 	public String adminOBOlist(@RequestParam Map map,
 							   @RequestParam(required = false, defaultValue = "1") int nowPage,
@@ -81,7 +87,7 @@ public class OneByOneController {
 	public String OBODelete(@RequestParam Map map) {
 		inquiryBbsService.delete(map);
 		
-		return "guide/onebyoneqna/OneByOneBbsList.tiles";
+		return "forward:/OBOList.do";
 	}
 	
 	//수정
@@ -97,6 +103,8 @@ public class OneByOneController {
 
 		return "forward:/oneByOneBbsView.do";
 	}
+	
+	
 	
 	
 }//OneByOneController

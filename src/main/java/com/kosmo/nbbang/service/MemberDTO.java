@@ -4,7 +4,13 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-
+/*
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+*/
 public class MemberDTO {
 	
 	/*

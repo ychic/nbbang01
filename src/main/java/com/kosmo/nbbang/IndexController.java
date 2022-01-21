@@ -173,10 +173,11 @@ public class IndexController {
 	public String adminMember() {
 		return "admin/AdminMember";
 	}*/
+	/*
 	@RequestMapping("/adminWarning.do")
 	public String adminParty() {
 		return "admin/AdminWarning";
-	}
+	}*/
 	/*
 	@RequestMapping("/adminOneByOne.do")
 	public String adminOneByOne() {

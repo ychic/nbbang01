@@ -27,11 +27,37 @@
 	신고 페이지
 	</div>
    <div>
-      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/reportInsert.do'/>">
+   <form id="myform" class="form-horizontal" method="post" action="<c:url value='/oboReportOk.do'/>">
+   		<div class="form-group">
+            <label class="col-sm-2 control-label">신고글 NO</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="inqno" value="${record.inqno}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 제목</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="inqtitle" value="${record.inqtitle}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 날짜</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="inqpostdate" value="${record.inqpostdate}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 작성자</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="email" value="${record.email}" disabled>
+            </div>
+            <label class="col-sm-2 control-label">신고글 내용</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="inqcontent" value="${record.inqcontent}" disabled>
+            </div>
+    	</div>
+   
+      	<hr>
          <div class="form-group">
             <label class="col-sm-2 control-label">신고자 ID</label>
+            
             <div class="col-sm-4">
                <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+               <input type="hidden" class="form-control" name="inqno" value="${record.inqno}">
             </div>
          </div>
          <div class="form-group">
@@ -60,10 +86,8 @@
                <input type="radio" class="custom-radio" name="reporttype" value="기타" <c:if test="${reporttype=='기타'}"> checked</c:if>>기타
             </div>
          </div>
-         
-         
          <div class="form-group">
-            <label class="col-sm-2 control-label">신고내용</label>
+            <label class="col-sm-2 control-label">내용</label>
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">

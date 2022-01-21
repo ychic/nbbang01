@@ -64,4 +64,9 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 		return affected;
 	}
 
+	public PartyBbsDTO partySelectOne(Map map) {
+		
+		return dao.partySelectOne(map);
+	}
+
 } // end PartyBbsServiceImpl 

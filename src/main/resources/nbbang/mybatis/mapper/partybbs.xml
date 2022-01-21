@@ -38,4 +38,8 @@
 		#{partyAllotmentPrice},#{partyCategoryName},#{partyMembership},#{email},null)
 	</insert>
 	
+	<select id="partybbsSelectOne" parameterType="Map" resultMap="partyBbsDTOResult">
+		SELECT p.*,m.name FROM member m JOIN partybbs p ON m.email=p.email WHERE partyNo=#{partyNo}	
+	</select>
+	
 </mapper> 

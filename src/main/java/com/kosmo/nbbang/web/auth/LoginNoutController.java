@@ -1,6 +1,7 @@
 package com.kosmo.nbbang.web.auth;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.kosmo.nbbang.park.join.JoinFormCommand;
+import com.kosmo.nbbang.service.MemberDTO;
 import com.kosmo.nbbang.service.impl.MemberServiceImpl;
 
 
@@ -28,11 +31,13 @@ public class LoginNoutController {
 	
 	
 	@RequestMapping("/memberlogin.do")
-	public String process(@RequestParam Map map, Model model,SessionStatus status) {
+	public String process(@RequestParam Map map, Model model,SessionStatus status,HttpSession session) {
 		String nickname = memberService.getNickname(map);
 		int flag = memberService.isLogin(map);
 		model.addAttribute("email",map.get("email"));
+		model.addAttribute("password",map.get("password"));
 		model.addAttribute("nickname",nickname);
+		session.setAttribute("nickname", nickname);
 		
 		if(flag == 0) {
 			//회원이 아닐경우 저장된 데이터 삭제
@@ -43,7 +48,7 @@ public class LoginNoutController {
 			//관리자 로그인
 			model.addAttribute("nickname",nickname);
 			return "admin/AdminMain";
-		}
+		} 
 		return "index";
 	}
 	//로그아웃 처리]
@@ -68,7 +73,6 @@ public class LoginNoutController {
 		
 		return result;
 	}
-	
 	
 	
 	
