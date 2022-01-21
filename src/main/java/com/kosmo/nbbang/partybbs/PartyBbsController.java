@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kosmo.nbbang.partybbs.service.PartyBbsListPagingData;
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
 import com.kosmo.nbbang.partybbs.service.impl.PartyBbsServiceImpl;
+import com.kosmo.nbbang.service.InquiryBbsDTO;
+import com.kosmo.nbbang.service.ReportService;
 
 @SessionAttributes("email")
 @Controller
@@ -24,6 +26,7 @@ public class PartyBbsController {
 	// 서비스 주입
 	@Autowired
 	private PartyBbsServiceImpl partyBbsService;
+	
 
 	// 파티원 게시판
 	@RequestMapping("/partyBbs.do")
@@ -50,6 +53,18 @@ public class PartyBbsController {
 		map.put("email", email);
 		partyBbsService.insert(map);
 		return "forward:/partyBbs.do";
+	}
+	
+	//신고를 위한 뷰페이지
+	//상세보기]
+	@RequestMapping("/partyBbsView.do")
+	public String partyBbsView(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
+		PartyBbsDTO record = partyBbsService.partySelectOne(map);
+
+		record.setPartyContent(record.getPartyContent().replace("\r\n", "<br/>"));
+		model.addAttribute("record", record);
+
+		return "party/PartyBbsViewForReport.tiles";
 	}
 
 } // end PartyBbsController

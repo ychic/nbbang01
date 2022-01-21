@@ -8,13 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+/*
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ussrDTO {
+*/
+public class UssrDTO {
 	private String ussrno;
 	private String ussrtitle;
 	private String ussrcontent;
@@ -22,6 +23,7 @@ public class ussrDTO {
 	private String ussroriginfilenames;
 	private String ussrrealfilenames;
 	private String ussrcategoryname;
+	private String navcategory;
 	private String email;
 	
 	//닉네임뿌려주기용
@@ -32,26 +34,26 @@ public class ussrDTO {
 	
 	//각 글에 따른 댓글 총수 저장용
 	private String commentCount;
-		
+	
 	//no에 따른 모든 한줄 댓글 목록 저장용
 	//마이바티스의 ResultMap 태그의 collection태그 적용용
-	List<ussrCommentDTO> comments;
+	List<UssrCommentDTO> comments;
 
 	@Override
 	public String toString() {
-		return "ussrDTO [ussrno=" + ussrno + ", ussrtitle=" + ussrtitle + ", ussrcontent=" + ussrcontent
+		return "UssrDTO [ussrno=" + ussrno + ", ussrtitle=" + ussrtitle + ", ussrcontent=" + ussrcontent
 				+ ", ussrpostdate=" + ussrpostdate + ", ussroriginfilenames=" + ussroriginfilenames
-				+ ", ussrrealfilenames=" + ussrrealfilenames + ", ussrcategoryname=" + ussrcategoryname + ", email="
-				+ email + ", nickname=" + nickname + ", likeno=" + likeno + ", commentCount=" + commentCount
-				+ ", comments=" + comments + "]";
+				+ ", ussrrealfilenames=" + ussrrealfilenames + ", ussrcategoryname=" + ussrcategoryname
+				+ ", navcategory=" + navcategory + ", email=" + email + ", nickname=" + nickname + ", likeno=" + likeno
+				+ ", commentCount=" + commentCount + ", comments=" + comments + "]";
 	}
 	
-	/*
+	
 	public String getUssrno() {
 		return ussrno;
 	}
 	public void setUssno(String ussrno) {
-		this.ussno = ussrno;
+		this.ussrno = ussrno;
 	}
 	public String getUssrtitle() {
 		return ussrtitle;
@@ -83,11 +85,11 @@ public class ussrDTO {
 	public void setUssrrealfilenames(String ussrrealfilenames) {
 		this.ussrrealfilenames = ussrrealfilenames;
 	}
-	public String getUssrcateforyname() {
-		return ussrcateforyname;
+	public String getUssrcategoryname() {
+		return ussrcategoryname;
 	}
-	public void setUssrcateforyname(String ussrcateforyname) {
-		this.ussrcateforyname = ussrcateforyname;
+	public void setUssrcategoryname(String ussrcategoryname) {
+		this.ussrcategoryname = ussrcategoryname;
 	}
 	public String getEmail() {
 		return email;
@@ -101,11 +103,11 @@ public class ussrDTO {
 	public void setCommentCount(String commentCount) {
 		this.commentCount = commentCount;
 	}
-	public List<ussrCommentDTO> getComments() {
+	public List<UssrCommentDTO> getComments() {
 		return comments;
 	}
-	public void setComments(List<ussrCommentDTO> comments) {
+	public void setComments(List<UssrCommentDTO> comments) {
 		this.comments = comments;
 	}
-	*/
+	
 }

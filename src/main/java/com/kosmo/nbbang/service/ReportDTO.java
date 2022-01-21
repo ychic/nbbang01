@@ -19,6 +19,8 @@ public class ReportDTO {
 	private String reportcontent;
 	private String reporttype;
 	private java.sql.Date reportregistdate;
+	private String inqno;
+	private String partyNo;
 	private String email;
 	
 	public ReportDTO() {
@@ -26,7 +28,8 @@ public class ReportDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ReportDTO(String reportno, String reportbbs, String reportcontent, String reporttype, Date reportregistdate,
+	public ReportDTO(String reportno, String reportbbs, String reportcontent, String reporttype, Date reportregistdate, String inqno,
+			String partyNo,
 			String email) {
 		super();
 		this.reportno = reportno;
@@ -34,6 +37,8 @@ public class ReportDTO {
 		this.reportcontent = reportcontent;
 		this.reporttype = reporttype;
 		this.reportregistdate = reportregistdate;
+		this.inqno = inqno;
+		this.partyNo = partyNo;
 		this.email = email;
 	}
 	public String getReportno() {
@@ -60,6 +65,21 @@ public class ReportDTO {
 	public void setReporttype(String reporttype) {
 		this.reporttype = reporttype;
 	}
+	
+	public String getInqno() {
+		return inqno;
+	}
+	public void setInqno(String inqno) {
+		this.inqno = inqno;
+	}
+	
+	public String getPartyNo() {
+		return partyNo;
+	}
+	public void setPartyNo(String partyNo) {
+		this.partyNo = partyNo;
+	}
+	
 	public java.sql.Date getReportregistdate() {
 		return reportregistdate;
 	}

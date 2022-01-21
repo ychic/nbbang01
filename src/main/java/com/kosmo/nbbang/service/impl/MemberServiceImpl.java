@@ -35,9 +35,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	// 리소스파일(onememo.properties)에서 읽어오기
-	@Value("${PAGE_SIZE}")
+	@Value("${APAGE_SIZE}")
 	private int pageSize;
-	@Value("${BLOCK_PAGE}")
+	@Value("${ABLOCK_PAGE}")
 	private int blockPage;
 
 	@Override

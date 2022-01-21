@@ -29,7 +29,7 @@
    <div>
       <form id="myform" class="form-horizontal" method="post" action="<c:url value='/reportInsert.do'/>">
          <div class="form-group">
-            <label class="col-sm-2 control-label">ID</label>
+            <label class="col-sm-2 control-label">신고자 ID</label>
             <div class="col-sm-4">
                <input type="text" class="form-control" name="email" value="${sessionScope.email}">
             </div>
@@ -46,6 +46,7 @@
 	               <option value="파티게시판" <c:if test="${fn:contains(reportbbs,'티')}">selected</c:if>>파티게시판</option>
                    <option value="추천게시판" <c:if test="${fn:contains(reportbbs,'천')}">selected</c:if>>추천게시판</option>
                    <option value="자유게시판" <c:if test="${fn:contains(reportbbs,'유')}">selected</c:if>>자유게시판</option>
+                   <option value="문의게시판" <c:if test="${fn:contains(reportbbs,'문')}">selected</c:if>>문의게시판</option>
                    <option value="기타" <c:if test="${fn:contains(reportbbs,'기')}">selected</c:if>>기타</option>
                </select>
             </div>
@@ -55,14 +56,14 @@
             <label class="col-sm-2" style="padding-left:108px">신고사유</label>
             <div class="col-sm-4">
                <input type="radio" class="custom-radio" name="reporttype" value="광고" <c:if test="${reporttype=='광고'}"> checked</c:if>>광고
-               <input type="radio" class="custom-radio" name="reporttype" value="욕설/비방" <c:if test="${reporttype=='욕설/비방'}"> checked</c:if>>욕설/비방
+               <input type="radio" class="custom-radio" name="reporttype" value="비방" <c:if test="${reporttype=='비방'}"> checked</c:if>>비방
                <input type="radio" class="custom-radio" name="reporttype" value="기타" <c:if test="${reporttype=='기타'}"> checked</c:if>>기타
             </div>
          </div>
          
          
          <div class="form-group">
-            <label class="col-sm-2 control-label">내용</label>
+            <label class="col-sm-2 control-label">신고내용</label>
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">

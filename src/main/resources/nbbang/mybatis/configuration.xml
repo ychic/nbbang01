@@ -34,8 +34,8 @@
 		<typeAlias type="com.kosmo.nbbang.service.MemberDTO" alias="member"/>
 		<typeAlias type="com.kosmo.nbbang.partykang.service.PartyChatDTO" alias="chat"/>
 		<typeAlias type="com.kosmo.nbbang.partybbs.service.PartyBbsDTO" alias="partyBbsDTO"/>
-		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrDTO" alias="ussrDTO"/>
-		<typeAlias type="com.kosmo.nbbang.hwang.service.ussrCommentDTO" alias="ussrCommentDTO"/>
+		<typeAlias type="com.kosmo.nbbang.hwang.service.UssrDTO" alias="ussrDTO"/>
+		<typeAlias type="com.kosmo.nbbang.hwang.service.UssrCommentDTO" alias="ussrCommentDTO"/>
 		<typeAlias type="com.kosmo.nbbang.service.RecommDTO" alias="recomm"/>
 		<typeAlias type="com.kosmo.nbbang.service.InquiryBbsDTO" alias="inquiryBbsDTO"/>
 		<typeAlias type="com.kosmo.nbbang.park.join.DefaultDTO" alias="defaultDTO"/>
@@ -43,6 +43,7 @@
 		<typeAlias type="com.kosmo.nbbang.park.join.DefLifeDTO" alias="defLifeDTO"/>
 		<typeAlias type="com.kosmo.nbbang.service.ReportDTO" alias="reportDTO"/>
 		<typeAlias type="com.kosmo.nbbang.myreport.service.MyReportDTO" alias="myreport"/>
+		<typeAlias type="com.kosmo.nbbang.service.InquiryCommentDTO" alias="inquiryCommentDTO"/>
 
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
@@ -61,6 +62,9 @@
 		<mapper resource="nbbang/mybatis/mapper/inquirybbs.xml"/>
 		<mapper resource="nbbang/mybatis/mapper/report.xml"/>
 		<mapper resource="nbbang/mybatis/mapper/myreport.xml" />
+		<mapper resource="nbbang/mybatis/mapper/inquirycomment.xml" />
+		<!-- banking -->	
+		<mapper resource="nbbang/mybatis/mapper/banktoken.xml"/>
 
 	</mappers>	
 </configuration>

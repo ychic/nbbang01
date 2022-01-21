@@ -7,6 +7,10 @@ ALTER TABLE member MODIFY authority NULL;
 /* partybbs 컬럼추가 및 수정_김형태 */
 ALTER TABLE partybbs ADD partymatchdate DATE;
 ALTER TABLE partybbs RENAME COLUMN partytile TO partytitle;
+/* ussrbbs 칼럼추가_황태환 */
+ALTER TABLE ussrbbs ADD NAVCATEGORY nvarchar2(30) NOT NULL;
+/* report 테이블에 컬럼추가_김수연 */
+ ALTER TABLE report ADD inqno number
 
 /* Drop Tables */
 

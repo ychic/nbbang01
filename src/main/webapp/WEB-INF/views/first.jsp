@@ -105,6 +105,7 @@
 	 	right:0; 
 	 	margin-right:50px; 
 	 	transition: all linear 0.1s;
+	 	z-index:1;
 	 }
 	 #circle1{margin-top:0px;}
 	 #circle2{margin-top:13px;}

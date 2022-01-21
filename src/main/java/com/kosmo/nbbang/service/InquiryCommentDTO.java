@@ -1,19 +1,53 @@
-package com.kosmo.nbbang.hwang.service;
+package com.kosmo.nbbang.service;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.sql.Date;
 
+/*
 @Getter
 @Setter
-public class ussrCommentDTO {
+*/
+public class InquiryCommentDTO {
+/*
+ * comno number NOT NULL,
+	comcontent nvarchar2(1000) NOT NULL,
+	compostdate date DEFAULT SYSDATE NOT NULL,
+	comoriginfilename nvarchar2(50),
+	comfilename nvarchar2(60),
+	inqno number NOT NULL,
+	email varchar2(40) NOT NULL,
+	PRIMARY KEY (comno)
+ * 
+ * */
+	
 	private String comno;
 	private String comcontent;
 	private java.sql.Date compostDate;
 	private String comoriginfilename;
 	private String comfilename;
-	private String ussrno;
+	private String inqno;
 	private String email;
-	/*
+	
+	
+	public InquiryCommentDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public InquiryCommentDTO(String comno, String comcontent, Date compostDate, String comoriginfilename,
+			String comfilename, String inqno, String email) {
+		super();
+		this.comno = comno;
+		this.comcontent = comcontent;
+		this.compostDate = compostDate;
+		this.comoriginfilename = comoriginfilename;
+		this.comfilename = comfilename;
+		this.inqno = inqno;
+		this.email = email;
+	}
+
+
+
 	public String getComno() {
 		return comno;
 	}
@@ -44,11 +78,11 @@ public class ussrCommentDTO {
 	public void setComfilename(String comfilename) {
 		this.comfilename = comfilename;
 	}
-	public String getUssrno() {
-		return ussrno;
+	public String getInqno() {
+		return inqno;
 	}
-	public void setUssrno(String ussrno) {
-		this.ussrno = ussrno;
+	public void setInqno(String inqno) {
+		this.inqno = inqno;
 	}
 	public String getEmail() {
 		return email;
@@ -56,5 +90,7 @@ public class ussrCommentDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	*/
+	
+	
+	
 }

@@ -13,14 +13,41 @@
 		<result column="reportbbs" property="reportbbs"/>
 		<result column="reportcontent" property="reportcontent"/>
 		<result column="reporttype" property="reporttype"/>
+		
+		<result column="inqno" property="inqno"/>
+		<result column="partyNo" property="partyNo"/>
 		<result column="reportregistdate" property="reportregistdate"/>
 		<result column="email" property="email"/>
 		 
 	</resultMap>
 
 	<insert id="reportInsert" parameterType="Map" >
-		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email})
+		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
+		#{inqno},null)
 	</insert>
+	<insert id="reportInsertParty" parameterType="Map" >
+		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
+		null,#{partyNo})
+	</insert>
+	
+	<select id="reportSelectList" parameterType="Map" resultType="reportDTO">
+		SELECT * FROM 
+		(SELECT T.*,ROWNUM R FROM
+			(SELECT r.*,m.nickname FROM report r JOIN member m ON m.email=r.email 
+			<if test="searchWord !=null">
+				WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+			</if>
+			ORDER BY reportno DESC) T) 
+		WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="reportTotalRowCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM report r JOIN member m ON m.email=r.email
+		<if test="searchWord != null">
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
 	
 	
 </mapper>
