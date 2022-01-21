@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="col-md-12" style="padding-top: 5px; padding-bottom: 5px;">
-				<form class="form-inline">
+				<div class="form-inline">
 					<div class="form-group">
 						<input class="btn btn-info" type="button" id="sendImgBtn"
 							value="이미지전송">
@@ -131,7 +131,7 @@ $(function(){
 		//서버로 연결한 사람의 정보(닉네임) 전송
 		//msg:kim가(이) 입장했어요
 		//사용자가 입력한 닉네임 저장
-		nickname = '${myNickName}';
+		nickname = '${nickName}';
 		wsocket.send('msg:' + nickname + "가(이) 입장했어요");
 		appendMessage("연결되었어요");
 	}

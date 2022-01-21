@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
 import com.kosmo.nbbang.partykang.service.PartyChatDTO;
 
 @Repository
@@ -20,5 +21,9 @@ public class PartyChatDAO {
 
 	public String getNickName(String chatpartnerid) {
 		return template.selectOne("getNickName", chatpartnerid);
+	}
+
+	public PartyBbsDTO getPartyBbs(String partyNo) {
+		return template.selectOne("getPartyBbs", partyNo);
 	}
 }
