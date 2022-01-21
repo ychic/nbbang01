@@ -98,7 +98,7 @@ td{
 					<!-- 제목 -->
 					<div style="font-size:30px;font-weight:bold;">${record.inqtitle}</div>
 					<!-- 작성자 및 게시일 -->
-					<span>${record.email}</span><div style="float:right">${record.inqpostdate}</div>
+					<span>${record.nickname}</span><div style="float:right">${record.inqpostdate}</div>
 					<!-- 구분선  -->
 					<hr class="col-md-offset-2 col-md-8" style="width:725px;margin-left:0px;"/>
 					<!-- 내용 -->

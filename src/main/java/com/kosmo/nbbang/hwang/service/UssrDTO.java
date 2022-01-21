@@ -8,12 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+/*
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+*/
 public class UssrDTO {
 	private String ussrno;
 	private String ussrtitle;
@@ -47,12 +48,12 @@ public class UssrDTO {
 				+ ", commentCount=" + commentCount + ", comments=" + comments + "]";
 	}
 	
-	/*
+	
 	public String getUssrno() {
 		return ussrno;
 	}
 	public void setUssno(String ussrno) {
-		this.ussno = ussrno;
+		this.ussrno = ussrno;
 	}
 	public String getUssrtitle() {
 		return ussrtitle;
@@ -108,5 +109,5 @@ public class UssrDTO {
 	public void setComments(List<UssrCommentDTO> comments) {
 		this.comments = comments;
 	}
-	*/
+	
 }

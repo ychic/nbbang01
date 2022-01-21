@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 	</div>
 </header>
 
@@ -121,9 +122,9 @@
 					<div class="form-group">
 						<!-- searchColumn /searchWord 의 파라미터로 넘어감 -->
 						<select name="searchColumn" class="form-control">
-							<option value="title">제목</option>
-							<option value="name">작성자</option>
-							<option value="content">내용</option>
+							<option value="inqtitle">제목</option>
+							<option value="nickname">작성자</option>
+							<option value="inqcontent" >내용</option>
 						</select>
 					</div>
 					<div class="form-group">

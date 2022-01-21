@@ -28,12 +28,12 @@ public class InquiryBbsDTO {
 	private String inqoriginfilenames;
 	private String inqrealfilenames;
 	private String email;
+	//닉네임
 	private String nickname;
 	//각 글에 따른 댓글 총수 저장용
 	private String commentCount;
-	
+	//댓글
 	List<InquiryCommentDTO> comments;
-	
 	
 	public InquiryBbsDTO() {
 		super();
