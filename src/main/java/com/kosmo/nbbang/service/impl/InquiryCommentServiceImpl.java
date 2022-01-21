@@ -14,8 +14,11 @@ public class InquiryCommentServiceImpl implements InquiryCommentService {
 	@Autowired
 	private InquiryCommentDAO dao;
 	
-	public int insert(Map map) {
-		return dao.insert(map);
+	@Override
+	public String insert(Map map) {
+		int comno = dao.insert(map);
+		String nickname = dao.findNicknameByEmail(map.get("email").toString());
+		return String.format("%s:%s",comno,nickname);
 	}
 
 	public List<Map> selectList(Map map) {

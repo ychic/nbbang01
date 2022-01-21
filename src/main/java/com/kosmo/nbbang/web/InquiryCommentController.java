@@ -39,7 +39,7 @@ public class InquiryCommentController {
 	public String inqCommentWrite(@ModelAttribute("comcontent") String comcontent,@ModelAttribute("email") String email, @RequestParam Map map) {
 		
 		map.put("email", email);
-		int commentInfo = commentService.insert(map);
+		String commentInfo = commentService.insert(map);
 		System.out.println("코멘트insert/commentInfo:"+commentInfo);
 		System.out.println("코멘트comcontent:"+comcontent);
 		
