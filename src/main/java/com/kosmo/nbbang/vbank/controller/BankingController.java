@@ -43,6 +43,22 @@ public class BankingController {
 	@Autowired
 	InnerService innerservice;
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 */
+	
+	@GetMapping("/user/auth.do")
+	public Map getUrl(@RequestParam Map map) {
+		
+		
+		return bankingservice.requestAuthUrl(map);
+	}
+	
+	
+	
+	
 	
 	@GetMapping(value="/user/auth.do",produces = {"application/json"})
 	public Map getUrl(@RequestParam Map map) {
