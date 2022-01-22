@@ -81,7 +81,7 @@ public class JoinController {
 			model.addAttribute("passwordError","비밀번호를 입력하세요");
 			return false;
 		}
-		String patternPassword = "^[0-9]{4,20}$";
+		String patternPassword = "^[a-z0-9A-Z]{4,20}$";
 		if(!(Pattern.matches(patternPassword, cmd.getPassword()))) {
 			model.addAttribute("passwordError","4자 이상 입력해주세요");
 			return false;

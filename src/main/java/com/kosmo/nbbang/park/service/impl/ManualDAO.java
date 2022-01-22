@@ -1,5 +1,6 @@
 package com.kosmo.nbbang.park.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,28 +9,29 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo.nbbang.mysub.FolderDTO;
+import com.kosmo.nbbang.park.web.SubManualDTO;
+
 
 @Repository
-public class FolderDAO {
-	
+public class ManualDAO {
 	@Autowired
 	private SqlSessionFactory sqlMapper;
 
 	@Autowired
 	private SqlSessionTemplate template;
-
-	public int insert(Map map) {
+	
+	public int manualInsert(SubManualDTO cmd) {
 		SqlSession session = sqlMapper.openSession();
-		int affected = session.insert("folderInsert", map);
+		int affected = session.insert("manualInsert",cmd);
 		session.commit();
 		session.close();
 		return affected;
 	}
 
-	public FolderDTO selectOne(Map map) {
-		return template.selectOne("folderSelectOne",map);
+	public List<Map> selectList(Map map) {
+		return template.selectList("sfnoSelectList",map);
 	}
+	
 	
 	
 	
