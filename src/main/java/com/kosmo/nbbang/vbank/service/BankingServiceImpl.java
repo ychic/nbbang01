@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -42,12 +43,9 @@ public class BankingServiceImpl implements BankingService {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setAccessControlAllowOrigin("*");
 		headers.setAccessControlAllowCredentials(true);
-		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(new LinkedMultiValueMap<String, String>(),
-				headers);
-
+		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(new LinkedMultiValueMap<String, String>(),headers);
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<Map> response = rt.exchange(url, HttpMethod.GET, entity, Map.class);
-
 		result = response.getBody();
 		Set<String> keys = result.keySet();
 		for (String entry : keys) {

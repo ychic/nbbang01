@@ -1,6 +1,7 @@
 package com.kosmo.nbbang.vbank.controller;
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -71,14 +72,19 @@ public class BankingCallbackController {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
+			Set<String> keys = res.keySet();
+			for(String key : keys) {
+				System.out.println(key+" - " + res.get(key));
+			}
 			
 			
-			if(res.get("resp_code")!=null) {
+			if(res.get("resp_code").toString().equals(ResponeCode.OK)) {
 				//dao를 통해 등록해야할 것 > 
 				String email = session.getAttribute(SESSION_UID).toString();
+				System.out.println("Email:" +email);
 				//Test
 //				String email = "jsik@naver.com";
-//				res.put("email", email);
+				res.put("email", email);
 
 				int affect = innerservice.setAuth(res);
 		
