@@ -40,6 +40,13 @@
 		<typeAlias type="com.kosmo.nbbang.park.join.DefaultDTO" alias="defaultDTO"/>
 		<typeAlias type="com.kosmo.nbbang.park.join.DefWatchDTO" alias="defWatchDTO"/>
 		<typeAlias type="com.kosmo.nbbang.park.join.DefLifeDTO" alias="defLifeDTO"/>
+		<typeAlias type="com.kosmo.nbbang.park.web.SubManualDTO" alias="subManualDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.MySubDTO" alias="mySubDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.FolderDTO" alias="folderDTO"/>
+		<typeAlias type="com.kosmo.nbbang.park.web.SfnoDTO" alias="sfnoDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.SecondFolderDTO" alias="secondFolderDTO"/>
+		
+		
 
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
@@ -55,6 +62,10 @@
 		<mapper resource="nbbang/mybatis/mapper/defWatch.xml" />
 		<mapper resource="nbbang/mybatis/mapper/defLife.xml" />
 		<mapper resource="nbbang/mybatis/mapper/folder.xml" />
+		<mapper resource="nbbang/mybatis/mapper/mysubManual.xml" />
+		<mapper resource="nbbang/mybatis/mapper/mysubinitview.xml" />
+		<mapper resource="nbbang/mybatis/mapper/mysubinitContents.xml" />
+		<mapper resource="nbbang/mybatis/mapper/secondFolder.xml" />
 		
 		
 		<mapper resource="nbbang/mybatis/mapper/ussr.xml" />
