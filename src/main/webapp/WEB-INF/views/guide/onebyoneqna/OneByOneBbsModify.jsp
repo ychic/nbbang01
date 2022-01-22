@@ -11,10 +11,63 @@
    div{
       color:black;
    }
+   .btns1{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	margin-left:100px;
+	}
+	.writeform{
+	width:90%;
+	margin-bottom:100px;
+	}
+   
+   /* 광고 영역 */
+	.ad_one, .ad_two{
+		background-color:red;
+		width: 188.5px;
+		height:377px;
+		display: inline-block;
+		position: fixed;
+		top:150px;
+		background-size: cover;
+		background-position: center;
+		background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+		animation: ad_one_ani 16s infinite;
+	}
+	
+	.ad_one{
+		left:30px;
+	}
+	
+	.ad_two{
+		right:30px;
+	}
+	
+	@keyframes ad_one_ani {
+		33%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")}
+		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
+		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
+	}
 </style>
+<body>
+
+<!-- 광고 1 -->
+<div class="ad_one">
+	
+</div>
+
+
 
 <div class="container">
-   <div>
+
+
+		<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">1:1 문의게시판</h1>
+		<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">자유롭게 문의를 남겨주시면 빠른 시간 안에 답장하겠습니다.</h4>
+		<hr class="col-md-12" style="width:1000px;margin-left:50px;"/>
+
+
+   <div class="writeform">
       <form id="myform" class="form-horizontal" method="post" action="<c:url value='/OBOupdate.do?inqno=${record.inqno}'/>">
          <div class="form-group">
             <label class="col-sm-2 control-label">제목</label>
@@ -24,9 +77,13 @@
          </div>
        
          <div class="form-group">
-            <label class="col-sm-2 control-label">작성자</label>
+            <label class="col-sm-2 control-label">닉네임</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+	            <input type="text" class="form-control" name="nickname" value="${sessionScope.nickname}" disabled>
+	        </div>
+	        <label class="col-sm-2 control-label">이메일</label>
+            <div class="col-sm-4">
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}" disabled>
             </div>
          </div>
          
@@ -40,18 +97,11 @@
                </div>
             </div>
          </div>
-         
-         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-4">
-               <button class="btn btn-modify" onclick="submit()">수정</button>
-            </div>
-         </div>
-          
-         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-4">
+         <!-- 버튼 위치 스타일 -->
+			<div class="btns1">
+               <button class="btn btn-warning" onclick="submit()">수정</button>
                <button class="btn btn-list" onclick="location.href='oneByOneBbsView.do">취소</button>
-            </div>
-         </div>
+        	</div>
          
       </form>
       
@@ -59,6 +109,12 @@
    
 </div>
 
+<!-- 광고 2 -->
+<div class="ad_two">
+	
+</div>
+
+</body>
 <script>
    $('.summernote').summernote({
       

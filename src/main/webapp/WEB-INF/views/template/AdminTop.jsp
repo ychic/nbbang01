@@ -14,18 +14,6 @@
     <meta name="author" content="">
 
     <title>Nbbang Admin</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="<%=request.getContextPath()%>/resources/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<%=request.getContextPath()%>/resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
-    
-    
-
 </head>
 
 <body id="page-top">
@@ -83,17 +71,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" onclick="location.href='adminReport.do'" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages" style="cursor:pointer;">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>신고</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">신고 관리:</h6>
-                        <a class="collapse-item" href="<c:url value='/adminWarning.do'/>">회원 및 게시물</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -120,7 +102,7 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					<!-- Topbar Search -->
+					<!-- Topbar Search 
 					<form
 						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 						<div class="input-group">
@@ -133,7 +115,7 @@
 								</button>
 							</div>
 						</div>
-					</form>
+					</form>-->
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -225,7 +207,7 @@
 						<li class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								
-								<span class="mr-2 d-none d-lg-inline text-gray-600 small">${nickname}</span> 
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.nickname}</span> 
 							<img class="img-profile rounded-circle" src="<%=request.getContextPath()%>/resources/admin/img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information
 							<div

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
@@ -21,44 +20,35 @@ tr {
 					<li><a href="#">컨텐츠 추천</a></li>
 					<li><a href="#">꿀팁 추천</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							정렬<span class="caret"></span>
-						</a>
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">정렬<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">최신순</a></li>
-							<li><a href="#">추천순</a></li>
+							<li><a href="<c:url value='/recommandList.do'/>">최신순</a></li>
+							<li><a href="<c:url value='/recommandList.do'/>">추천순</a></li>
 						</ul>
 					</li>
 				</ul>
 				<!-- 검색용 UI -->
-				<div class="row"">
-					<div class="text-right">
-						<form class="form-inline" method="post"
-							action="<c:url value='/recommand/recommandList.do'/>">
-							<div class="form-group">
-								<select name="searchColumn" class="form-control">
-									<option value="title">제목</option>
-									<option value="name">작성자</option>
-									<option value="content">내용</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<input type="text" name="searchWord" class="form-control" />
-							</div>
-							<button type="submit" class="btn btn-primary">검색</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
+				<form class="navbar-form navbar-right" method="post" action="<c:url value='/recommandList.do'/>">
+					    <div class="form-group">
+							<select name="searchColumn" class="form-control">
+								<option value="ussrtitle">제목</option>
+								<option value="nickname">작성자</option>
+								<option value="ussrcontent">내용</option>
+							</select>
+						</div>
+					    <div class="form-group">
+					    	<input type="text" name="searchWord" class="form-control" placeholder="검색">
+						</div>
+					<button type="submit" class="btn btn-default">검색</button>
+				</form>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
 	</nav>
-	<div class="table-responsive">
-		<table class="table table-hover">
+	<div class="table-responsive" style="overflow:hidden;">
+		<table class="table table-hover" id="KoreanMovie">
 			<thead>
 				<tr>
-					<th scope="col" class="col-md-1 text-center">No</th>
+					<th scope="col" class="col-md-1 text-center">Category</th>
 					<th scope="col" class="col-md-2 text-center">Title</th>
 					<th scope="col" class="col-md-1 text-center">Writer</th>
 					<th scope="col" class="col-md-1 text-center">PostDate</th>
@@ -72,16 +62,22 @@ tr {
 					</tr>
 				</c:if>
 				<c:if test="${not isEmpty }">
-					<c:forEach var="item" items="${listPagingData.lists}"
-						varStatus="loop">
-						<tr>
-							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
-
-							<td class="text-left"><a
-								href="<c:url value="/recommand/recommandView.do?no=${item.no}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">${item.title }</a>
-								<span class="badge">${item.commentCount }</span></td>
-							<td>${item.name }</td>
-							<td>${item.postDate }</td>
+					<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
+						<tr class="text-center">
+							<td>
+								<c:if test="${item.navcategory=='recommandService'}"><span>구독서비스 추천</span></c:if>
+								<c:if test="${item.navcategory=='recommandContents'}"><span>컨텐츠 추천</span></c:if>
+								<c:if test="${item.navcategory=='recommandTips'}"><span>꿀팁 추천</span></c:if>
+							</td>
+							<td class="text-left">
+								<a href="<c:url value="/recommandView.do?ussrno=${item.ussrno}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">${item.ussrtitle }
+								<span class="badge">${item.commentCount }</span></a>
+							</td>
+							<td class="text-center">${item.nickname}</td>
+							<td class="text-center">${item.ussrpostdate}</td>
+							<td class="text-center">
+								<c:if test="${item.likeno==null}">0</c:if>${item.likeno}
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>

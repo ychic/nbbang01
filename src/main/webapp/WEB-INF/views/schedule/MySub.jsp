@@ -44,7 +44,7 @@
 				<div class="col-sm-12"></div>
 				<div class="col-sm-10">
 					<div class="list-group">
-					   <a href="#" class="list-group-item active">Folder</a>
+					   <a href="#" class="list-group-item active">Folder${folder.email}</a>
 					   
 					   <a href="#" class="list-group-item">
 					   
@@ -55,13 +55,13 @@
 					   </a>
 					   
 					   <!-- 필수 폴더(수정/삭제 불가)--> 
-					   <a href="#" class="list-group-item" id="dFolder1">
+					   <a href="<c:url value='/mySub.do' />" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span>All</span><span class="badge bg-primary rounded-pill">14</span></a>
+					   <span>${folder.sfname}</span><span class="badge bg-primary rounded-pill">14</span></a>
 					   
 					   
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
-					   <a href="#" class="list-group-item" id="dFolder2">
+					   <a href="<c:url value='/secondFold.do' />" class="list-group-item" id="dFolder2">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
 					   <span id="dfdn1" style="padding: 0px; margin: 0px;">Watch</span>
 						   <form id="frmEditname1">
@@ -78,7 +78,7 @@
 					   	</div>
  					   </a>
 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
-					   <a href="#" class="list-group-item" id="dFolder3">
+					   <a href="<c:url value='/thirdFold.do' />" class="list-group-item" id="dFolder3">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
 					   <span id="dfdn2" style="padding: 0px; margin: 0px;">Life</span>
 						   <form id="frmEditname2">
@@ -297,13 +297,13 @@
 				        <h4 class="modal-title" id="mdlNwSubLabel">구독 서비스 등록</h4>
 				      </div>
 				      <div class="modal-body">
-					      	<form>
+					      	<form action="<c:url value='/manual.do'/>" method="post">
 					          <div class="form-group">
 					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" id="subLogo">
 					          </div>
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">구독서비스명</label>
-					            <input type="text" class="form-control" id="subName" value="" style="width:450px;display: inline-block;">
+					            <input type="text" class="form-control" id="subName" name="subservice" value="" style="width:450px;display: inline-block;">
 					            
 					            <!-- 구독 리스트 클릭 버튼 -->
 					            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn"/>
@@ -361,29 +361,35 @@
 									<a href="#" class="list-group-item subServiceListSelf"><span>직접 입력하기</span></a>
 									
 								</div> 
-								
-								
-								
+
 								
 					          </div>
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">다음 결제일</label>
-					            <input type="text" class="form-control" id="datepicker">
+					            <input type="text" class="form-control" id="datepicker" name="paymentday">
 					          </div>
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">월 구독료</label>
-					            <input type="text" class="form-control" id="subPay">
+					            <input type="text" class="form-control" id="subPay" name="money">
 					          </div>
-					          <div class="form-group">
-					            <label for="message-text" class="control-label">메모</label>
-					            <textarea class="form-control" id="subMemo"></textarea>
+					          
+					          <div>
+					          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+						          	<select class="form-control" name="folderSelect">
+									  <option value="Watch">Watch</option>
+									  <option value="Life">Life</option>
+									</select>
 					          </div>
+					          
+					          <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+						        <button type="submit" class="btn btn-primary">등록</button>
+						      </div>
+					          
 					        </form>
 				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				        <button type="button" class="btn btn-primary">등록</button>
-				      </div>
+				      
+				      
 				    </div>
 				  </div>
 				</div>
@@ -416,15 +422,35 @@
 						  </thead>
 						  <tbody id="sortable">
 						  <!-- class="table-active" 아래tr에서 삭제한상태 -->
-						    <tr class="ui-state-default">
-						      <td>로고</td>
-						      <td>넷플릭스</td>
-						      <td>3일</td>
-						      <td>14900원</td>
-						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-						    </tr>
+						
+						  <!-- 마이바티스 resultMap의 collection 태그사용 -->
+						  <c:if test="${not empty folder.mysubs}">
+						  		<c:forEach items="${folder.mysubs}" var="mysub">
+								    <tr class="ui-state-default">
+								      <td>로고</td>
+								      <td>${mysub.subservice}</td>
+								      <td>${mysub.paymentday}</td>
+								      <td>${mysub.money}원</td>
+								      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+								    </tr>
+							    </c:forEach>
+						  </c:if>
+						  <%-- <c:if test="${not tmp}">
+						  <script>
+						  console.log("sssssssssss",${secondRecord});
+						  </script>
+						  		<c:forEach items="${secondRecord}" var="mysub2">
+								    <tr class="ui-state-default">
+								      <td>로고</td>
+								      <td>${mysub2.subservice}</td>
+								      <td>${mysub2.paymentday}</td>
+								      <td>${mysub2.money}원</td>
+								      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+								    </tr>
+							    </c:forEach>
+						  </c:if> --%>
 						  
-						    <tr class="ui-state-default">
+						    <!-- <tr class="ui-state-default">
 						      <td>로고</td>
 						      <td>쿠팡</td>
 						      <td>5일</td>
@@ -438,7 +464,7 @@
 						      <td>1일</td>
 						      <td>10000원</td>
 						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-						    </tr>		
+						    </tr> -->		
 						  </tbody>
 						</table>
 						
@@ -883,44 +909,44 @@
 	
 	//구독 리스트 선택값 넘기기
 	var subObject = {
-			'넷플릭스' : '16,000원',
-			'닌텐도스위치' : '4,000원',
-			'디즈니+' : '8,000원',
-			'멜론' : '7,000원',
-			'벅스' : '7,000원',
-			'스포티비나우' : '9,000원',
-			'아이클라우드' : '1,000원',
-			'유튜브프리미엄' : '10,000원',
-			'애플뮤직' : '9,000원',
-			'왓챠' : '8,000원',
-			'웨이브' : '8,000원',
-			'티빙' : '8,000원',
-			'플로' : '7,000원',
-			'플레이스테이션' : '4,000원',
-			'카카오이모티콘+' : '2,500원',
-			'꾸까' : '18,000원',
-			'네이버+' : '5,000원',
-			'더반찬' : '28,000원',
-			'런드리고' : '65,000원',
-			'쏘카' : '3,000원',
-			'와이즐리' : '9,000원',
-			'월간과자' : '10,000원',
-			'위클리 셔츠' : '50,000원',
-			'잡플래닛' : '12,000원',
-			'쿠팡 와우' : '4,000원',
-			'필리' : '14,000원',
-			'하비인더박스' : '40,000원',
-			'해피문데이' : '7,000원',
-			'BBC사이언스' : '13,000원',
-			'리디셀렉트' : '5,000원',
-			'밀리의 서재' : '10,000원',
-			'매경e신문' : '15,000원',
-			'빅이슈' : '7,000원',
-			'예스24북클럽' : '6,000원',
-			'윌라' : '10,000원',
-			'조인스 프라임' : '10,000원',
-			'퍼블리' : '10,000원',
-			'핀즐' : '20,000원'
+			'넷플릭스' : '16000',
+			'닌텐도스위치' : '4000',
+			'디즈니+' : '8000',
+			'멜론' : '7000',
+			'벅스' : '7000',
+			'스포티비나우' : '9000',
+			'아이클라우드' : '1000',
+			'유튜브프리미엄' : '10000',
+			'애플뮤직' : '9000',
+			'왓챠' : '8000',
+			'웨이브' : '8000',
+			'티빙' : '8000',
+			'플로' : '7000',
+			'플레이스테이션' : '4000',
+			'카카오이모티콘+' : '2500',
+			'꾸까' : '18000',
+			'네이버+' : '5000',
+			'더반찬' : '28000',
+			'런드리고' : '65000',
+			'쏘카' : '3000',
+			'와이즐리' : '9000',
+			'월간과자' : '10000',
+			'위클리 셔츠' : '50000',
+			'잡플래닛' : '12000',
+			'쿠팡 와우' : '4000',
+			'필리' : '14000',
+			'하비인더박스' : '40000',
+			'해피문데이' : '7000',
+			'BBC사이언스' : '13000',
+			'리디셀렉트' : '5000',
+			'밀리의 서재' : '10000',
+			'매경e신문' : '15000',
+			'빅이슈' : '7000',
+			'예스24북클럽' : '6000',
+			'윌라' : '10000',
+			'조인스 프라임' : '10000',
+			'퍼블리' : '10000',
+			'핀즐' : '20000'
 	};
 	
 	$('.subServiceList').click(function(e){
@@ -933,6 +959,10 @@
     	$('#subListKsy').css("display", "none");
     });
 	
+	
+	
+	/* console.log(${secondRecord.mysubs});
+	console.log(${tmp}); */
 </script>
 <style>
 	#mdlNwSub1{

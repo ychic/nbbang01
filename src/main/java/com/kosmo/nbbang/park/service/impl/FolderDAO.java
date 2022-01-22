@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo.nbbang.mysub.FolderDTO;
+
 @Repository
 public class FolderDAO {
 	
@@ -24,4 +26,11 @@ public class FolderDAO {
 		session.close();
 		return affected;
 	}
+
+	public FolderDTO selectOne(Map map) {
+		return template.selectOne("folderSelectOne",map);
+	}
+	
+	
+	
 }

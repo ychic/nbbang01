@@ -2,6 +2,7 @@ package com.kosmo.nbbang;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class IndexController {
@@ -59,12 +60,20 @@ public class IndexController {
 	@RequestMapping("/managing.do")
 	public String schedule() {
 		return "schedule/ManagingSubMain.tiles";
-	}
-	//내 구독
+	}	
+
+	//내 구독 초기화면
 	@RequestMapping("/mySub.do")
 	public String mySub() {
-		return "schedule/MySub.tiles";
+		return "forward:/mysub/mySubinitView.do"; 	//각 사용자 계정에 맞춰 폴더를 뿌려주는 Controller로 포워딩 // ?sfname=All"
 	}
+	
+	//mysub secondFolder(Watch)클릭 후 랜딩
+	@RequestMapping("/secondFold.do")
+	public String secondFold() {
+		return "forward:/mysub/secondFolderView.do";
+	}
+	
 	//내 스케쥴
 	@RequestMapping("/mySchedule.do")
 	public String mySchedule() {
@@ -75,11 +84,13 @@ public class IndexController {
 	public String myParty() {
 		return "schedule/MyParty.tiles";
 	}
+	/*
 	//내 리포트
 	@RequestMapping("/myReport.do")
 	public String myReport() {
 		return "schedule/MyReport.tiles";
 	}
+	*/
 	//내 계좌조회
 	@RequestMapping("/myAccounts.do")
 	public String myAccounts() {
@@ -171,10 +182,11 @@ public class IndexController {
 	public String adminMember() {
 		return "admin/AdminMember";
 	}*/
+	/*
 	@RequestMapping("/adminWarning.do")
 	public String adminParty() {
 		return "admin/AdminWarning";
-	}
+	}*/
 	/*
 	@RequestMapping("/adminOneByOne.do")
 	public String adminOneByOne() {

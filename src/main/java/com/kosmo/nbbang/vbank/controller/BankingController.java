@@ -60,6 +60,16 @@ public class BankingController {
 	
 	
 	
+	@GetMapping(value="/user/auth.do",produces = {"application/json"})
+	public Map getUrl(@RequestParam Map map) {
+		System.out.println("getUrl메소드 진입");
+		System.out.println("res: "+map.get("location"));
+		Map test = bankingservice.requestAuthUrl(map);
+		System.out.println("도착!");
+		return test;
+	}
+	
+	
 	/*
 	 * 	Method : 전계좌 조회 
 	 *  condition : dao에 등록된 사람만 조회 가능

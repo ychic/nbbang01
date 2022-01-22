@@ -33,11 +33,25 @@ public class MemberServiceImpl implements MemberService {
 	public String findEmail(Map map) {
 		return dao.findEmail(map);
 	}
+	public int delete(Map map) {
+		return dao.delete(map);
+		
+	}
+	public String blackMember(Map map) {
+		return dao.blackMember(map);
+	}
+	public int setBlackMember(Map map) {
+		return dao.setBlackMember(map);
+	}
+	public String authorityByEmail(Map map) {
+		return dao.authorityByEmail(map);
+	}
 
+	
 	// 리소스파일(onememo.properties)에서 읽어오기
-	@Value("${PAGE_SIZE}")
+	@Value("${APAGE_SIZE}")
 	private int pageSize;
-	@Value("${BLOCK_PAGE}")
+	@Value("${ABLOCK_PAGE}")
 	private int blockPage;
 
 	@Override
@@ -61,6 +75,11 @@ public class MemberServiceImpl implements MemberService {
 		return MemberListPaging.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString)
 				.totalRecordCount(totalRecordCount).build();
 	}
+
+	
+	
+
+	
 
 	
 }
