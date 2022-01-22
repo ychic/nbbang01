@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,10 +37,16 @@ public class BankingCallbackController {
 		 *  Scenario : 사용자 전체조회 계좌 요청-> vbankServer 전체 계좌 요청 및 응답 -> 브라우저로 응답[JSON]  - Array 형식 
 		 *  issue > 편의를 위해 Rest가 아닌 Controller로 빼놔야할 수도 있음
 		 */
-		@GetMapping("/callback/url.do")
+		@GetMapping(value = "/callback/url.do")
 		@ResponseBody
-		public String getMyCallback(@RequestParam Map map,HttpSession session) {
-
+		public String getMyCallback(@RequestParam Map<String,String> map,HttpSession session) {
+			
+			for(Map.Entry<String, String> entry : map.entrySet()) {
+				System.out.println(entry.getKey()+" - " + entry.getValue());
+			}
+			
+			
+			
 			//callback Eventhanlder
 			Map res  =bankingservice.setAuthToken(map);
 			
@@ -66,18 +73,18 @@ public class BankingCallbackController {
 //			}
 			
 			
-			if(res.get("resp_code").equals(ResponeCode.OK)) {
+			if(res.get("resp_code")!=null) {
 				//dao를 통해 등록해야할 것 > 
-//				String email = session.getAttribute(SESSION_UID).toString();
+				String email = session.getAttribute(SESSION_UID).toString();
 				//Test
-				String email = "jsik@naver.com";
-				res.put("email", email);
+//				String email = "jsik@naver.com";
+//				res.put("email", email);
 
 				int affect = innerservice.setAuth(res);
 		
 			}
 			
-			return "<html><body><h1>스크립트로 오자마자 지워버리면됩니다.지우면서 부모창에 token만 주입하면됨</h1></body></html>";
+			return "<script>window.close()</script>";
 		}
 		
 }

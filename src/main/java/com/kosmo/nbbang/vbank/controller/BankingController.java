@@ -49,17 +49,6 @@ public class BankingController {
 	 * 
 	 */
 	
-	@GetMapping("/user/auth.do")
-	public Map getUrl(@RequestParam Map map) {
-		
-		
-		return bankingservice.requestAuthUrl(map);
-	}
-	
-	
-	
-	
-	
 	@GetMapping(value="/user/auth.do",produces = {"application/json"})
 	public Map getUrl(@RequestParam Map map) {
 		System.out.println("getUrl메소드 진입");
