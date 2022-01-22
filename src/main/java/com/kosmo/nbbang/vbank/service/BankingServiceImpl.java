@@ -16,6 +16,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosmo.nbbang.aoputils.NumUtils;
 
@@ -72,23 +73,36 @@ public class BankingServiceImpl implements BankingService {
 		headers.setAccessControlAllowCredentials(true);
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 
-		params.add("location", map.get("location").toString());
+		params.add("code", map.get("code").toString());
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String data = "";
+		try {
+			data =mapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(params, headers);
-
+//		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(params, headers);
+		HttpEntity<String> entity = new HttpEntity(data.toString(), headers);
+		System.out.println(entity.toString());
+		System.out.println(entity.getHeaders());
+		System.out.println(entity.getBody());
 		RestTemplate rt = new RestTemplate();
-		ResponseEntity<Map> response = rt.exchange(url, HttpMethod.POST, entity, Map.class);
-
+		ResponseEntity<Map> response = rt.postForEntity(url, entity, Map.class);
+		System.out.println("Check");
+//		String res = response.getBody();
 		result = response.getBody();
-		Set<String> keys = result.keySet();
-		for (String entry : keys) {
-			System.out.println(entry + " - " + result.get(entry));
-		}
-
-		if (result.get("resp_code").toString() != ResponeCode.OK) {
-			// 실패시 추가로 반환할게 있다면 이쪽으로
-
-		}
+//		Set<String> keys = result.keySet();
+//		for (String entry : keys) {
+//			System.out.println(entry + " - " + result.get(entry));
+//		}
+//
+//		if (result.get("resp_code").toString() != ResponeCode.OK) {
+//			// 실패시 추가로 반환할게 있다면 이쪽으로
+//
+//		}
 
 		return result;
 	}
