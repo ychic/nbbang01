@@ -17,6 +17,7 @@
 		<result column="inqrealfilenames" property="inqrealfilenames"/>
 		<result column="email" property="email"/>
 		<result column="commentCount" property="commentCount"/>
+		<collection property="comments" column="inqno" select="nbbang.mybatis.mapper.inquirycomment.inqCommentListsUsingCollection" javaType="List" ofType="inquiryCommentDTO"/> 
 		 
 	</resultMap>
 
@@ -45,7 +46,7 @@
 	</select>
 	
 	<select id="inquirySelectOne" parameterType="Map" resultMap="inquiryBbsDTOResult">
-		SELECT i.*,m.name FROM member m JOIN inquirybbs i ON m.email=i.email WHERE inqno=#{inqno}	
+		SELECT i.*,m.nickname FROM member m JOIN inquirybbs i ON m.email=i.email WHERE inqno=#{inqno}	
 	</select>
 	
 	<delete id="inquiryDelete" parameterType="Map">
@@ -55,5 +56,9 @@
 	<update id="inquiryUpdate" parameterType="Map">
 		UPDATE inquirybbs SET inqtitle=#{inqtitle},inqcontent=#{inqcontent} WHERE inqno=#{inqno}
 	</update>
+	
+	<select id="inqFindNicknameByEmail" parameterType="String" resultType="String">
+		SELECT nickname FROM member WHERE email=#{email}
+	</select>
 	
 </mapper>

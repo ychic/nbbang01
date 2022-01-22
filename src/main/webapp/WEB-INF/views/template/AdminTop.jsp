@@ -83,17 +83,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" onclick="location.href='adminReport.do'" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages" style="cursor:pointer;">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>신고</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">신고 관리:</h6>
-                        <a class="collapse-item" href="<c:url value='/adminWarning.do'/>">회원 및 게시물</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -225,7 +219,7 @@
 						<li class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								
-								<span class="mr-2 d-none d-lg-inline text-gray-600 small">${nickname}</span> 
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.nickname}</span> 
 							<img class="img-profile rounded-circle" src="<%=request.getContextPath()%>/resources/admin/img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information
 							<div

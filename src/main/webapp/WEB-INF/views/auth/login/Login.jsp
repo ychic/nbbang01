@@ -95,9 +95,7 @@
 						
 							<div class="form-group">
 								<input id="password-field" type="password" class="form-control"
-									name="password" placeholder="비밀번호" required> <span
-									toggle="#password-field"
-									class="fa fa-fw fa-eye field-icon toggle-password"></span>
+									name="password" placeholder="비밀번호" required> 
 							</div>
 							
 							
@@ -109,8 +107,8 @@
 							
 							<div class="form-group d-md-flex">
 								<div class="w-50">
-									<label class="checkbox-wrap checkbox-primary">Remember
-										Me <input type="checkbox" checked> <span class="checkmark"></span>
+									<label class="checkbox-wrap checkbox-primary">Save Id
+										<input type="checkbox" checked> <span class="checkmark"></span>
 									</label>
 								</div>
 								<div class="w-50 text-md-right">

@@ -20,7 +20,7 @@
 			style="overflow: auto; height: 457px;">
 			<c:if test="${not empty chatList}" var="emptyList">
 				<c:forEach items="${chatList}" var="item">
-					<li><a id="${item.partyno}">${nickname.get(item.chatpartnerid)}님과 채팅중입니다</a></li>
+					<li><a id="p_${item.partyno}_${item.chatno}">${pnickname.get(item.chatpartnerid)}님과 채팅중입니다</a></li>
 				</c:forEach>
 			</c:if>
 			<c:if test="${!emptyList}">
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="col-md-12" style="padding-top: 5px; padding-bottom: 5px;">
-				<form class="form-inline">
+				<div class="form-inline">
 					<div class="form-group">
 						<input class="btn btn-info" type="button" id="sendImgBtn"
 							value="이미지전송">
@@ -90,10 +90,10 @@ $(function(){
 	//닉 네임 저장용
 	var nickname;
 	//입장버튼 클릭시 ]-서버와 연결된 웹소켓 클라이언트 생성
-	$('a').click(
-			function(e) {
+	$('body > div.container > div.row > ul > li > a').click(
+			function(e) {				
 				e.preventDefault();				
-				wsocket = new WebSocket("ws://localhost:9575<c:url value="/chat-ws.do"/>?partyno="+$(this).get(0).id);
+				wsocket = new WebSocket("ws://localhost:9575<c:url value='/chat-ws.do'/>?chatno="+$(this).get(0).id.split('_')[2]);
 				console.log('wsocket:', wsocket);
 				//서버와 연결된 웹 소켓에 이벤트 등록
 				wsocket.onopen = open;
@@ -131,7 +131,7 @@ $(function(){
 		//서버로 연결한 사람의 정보(닉네임) 전송
 		//msg:kim가(이) 입장했어요
 		//사용자가 입력한 닉네임 저장
-		nickname = '${myNickName}';
+		nickname = '${nickName}';
 		wsocket.send('msg:' + nickname + "가(이) 입장했어요");
 		appendMessage("연결되었어요");
 	}

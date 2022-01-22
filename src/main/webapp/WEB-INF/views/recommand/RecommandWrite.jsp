@@ -16,39 +16,36 @@
 
 <div class="container">
    <div>
-      <form id="myform" class="form-horizontal" method="post"   enctype="multipart/form-data" action="<c:url value='/recommandWrite.do'/>">
+      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/recommandWrite.do'/>">
          <div class="form-group">
-            <label class="col-sm-2 control-label">작성자</label>
+            <label class="col-sm-2 control-label">이메일</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="name" placeholder="이름을 입력하세요">
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}" readonly="readonly">
             </div>
          </div>
          <div class="form-group">
             <label class="col-sm-2 control-label">게시판</label>
             <div class="col-sm-4">
-               <select class="form-control">
-                 <option>추천게시판</option>
-                 <option>자유게시판</option>
+               <select class="form-control" name ="ussrcategoryname" id="ussrcategoryname">
+                 <option value="recommand">추천게시판</option>
+                 <option value="free">자유게시판</option>
                </select>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">주제</label>
             <div class="col-sm-4">
-               <select class="form-control">
-                 <option>구독서비스 추천</option>
-                 <option>컨텐츠 추천</option>
-                 <option>꿀팁 추천</option>
-                 <option>일반</option>
-                 <option>리뷰</option>
-                 <option>정보</option>
+               <select class="form-control" name="navcategory" id="navcategory">
+                 <option value="recommandService">구독서비스 추천</option>
+                 <option value="recommandContents">컨텐츠 추천</option>
+                 <option value="recommandTips">꿀팁 추천</option>
                </select>
             </div>
           </div>
          <div class="form-group">
             <label class="col-sm-2 control-label">제목</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
+               <input type="text" class="form-control" name="ussrtitle" placeholder="제목을 입력하세요">
             </div>
          </div>
          
@@ -57,7 +54,7 @@
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">
-                     <textarea class="summernote" name="editordata"></textarea>  
+                     <textarea class="summernote" name="ussrcontent"></textarea>  
                   </div>
                </div>
             </div>
@@ -65,16 +62,37 @@
          
          <div class="form-group">
             <div class="col-sm-offset-2 col-sm-4">
-               <button class="btn btn-info">등록</button>
+               <button class="btn btn-info" onclick="submit()">등록</button>
             </div>
          </div>
       </form>
    </div>
 </div>
-
+<!-- 카테고리 선택 Ajax -->
+<script>
+$('#ussrcategoryname').change(function(){
+	$.ajax({
+			url:"<c:url value="/categoryChange.do"/>",
+			data:{ussrcategoryname:$(this).val()},
+			dataType:'json'
+		}).done(function(data){
+			var options="";
+			$.each(data,function(key,value){
+				options+="<option value='"+key+"'>"+value+"</option>";
+			});
+			$('#navcategory').html(options);
+			
+		}).fail(function(req,error){
+			console.log('응답코드:%s,에러 메시지:%s,error:%s',
+					req.status,
+					req.responseText,
+					error);
+		});
+});
+</script>
+<!-- 섬머노트 스크립트 -->
 <script>
    $('.summernote').summernote({
-      
         height: 250,
         lang: "ko-KR",
         placeholder: "여기에 입력하세요.",
@@ -92,7 +110,5 @@
               ],
          fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
          fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-        
-        
    });
 </script>

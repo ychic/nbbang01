@@ -9,7 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo.nbbang.hwang.service.ussrDTO;
+import com.kosmo.nbbang.hwang.service.UssrDTO;
 import com.kosmo.nbbang.service.InquiryBbsDTO;
 
 @Repository

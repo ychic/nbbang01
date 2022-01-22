@@ -84,11 +84,13 @@ public class IndexController {
 	public String myParty() {
 		return "schedule/MyParty.tiles";
 	}
+	/*
 	//내 리포트
 	@RequestMapping("/myReport.do")
 	public String myReport() {
 		return "schedule/MyReport.tiles";
 	}
+	*/
 	//내 계좌조회
 	@RequestMapping("/myAccounts.do")
 	public String myAccounts() {
@@ -180,10 +182,11 @@ public class IndexController {
 	public String adminMember() {
 		return "admin/AdminMember";
 	}*/
+	/*
 	@RequestMapping("/adminWarning.do")
 	public String adminParty() {
 		return "admin/AdminWarning";
-	}
+	}*/
 	/*
 	@RequestMapping("/adminOneByOne.do")
 	public String adminOneByOne() {

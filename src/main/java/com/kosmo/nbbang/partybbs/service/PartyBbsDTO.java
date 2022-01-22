@@ -14,6 +14,8 @@ public class PartyBbsDTO {
 	private String partyCategoryName;
 	private String partyMembership;
 	private String email;
+	private Date partyMatchdate;
+	private String nickname;
 	
 	// 생성자
 	public PartyBbsDTO() {
@@ -21,7 +23,7 @@ public class PartyBbsDTO {
 	
 	public PartyBbsDTO(String partyNo, String partyTitle, String partyContent, Date partyPostdate,
 			String partyMaxCapacity, String partyActivation, String partyAllotmentPrice, String partyCategoryName,
-			String partyMembership, String email) {
+			String partyMembership, String email, Date partyMatchdate, String nickname) {
 		super();
 		this.partyNo = partyNo;
 		this.partyTitle = partyTitle;
@@ -33,6 +35,8 @@ public class PartyBbsDTO {
 		this.partyCategoryName = partyCategoryName;
 		this.partyMembership = partyMembership;
 		this.email = email;
+		this.partyMatchdate = partyMatchdate;
+		this.nickname = nickname;
 	}
 
 	// Getter, Setter
@@ -95,6 +99,18 @@ public class PartyBbsDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Date getPartyMatchdate() {
+		return partyMatchdate;
+	}
+	public void setPartyMatchdate(Date partyMatchdate) {
+		this.partyMatchdate = partyMatchdate;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 } // end PartyBbsDTO 

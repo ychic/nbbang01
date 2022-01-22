@@ -16,13 +16,10 @@ public interface BankingService {
 	 */
 	
 	//등록
-	public Map requestAuthUrl(boolean authorized,Map map);
+	public Map requestAuthUrl(Map map);
 
-	public Map registNewAccount(Map map);
+	public Map setAuthToken(Map map);
 
-	public Map checkAccount(Map map);
-	
-	public Map registOtherAccount();
 	
 	//조회
 	
