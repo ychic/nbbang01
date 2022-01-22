@@ -41,29 +41,29 @@ public class BankingCallbackController {
 		public String getMyCallback(@RequestParam Map map,HttpSession session) {
 
 			//callback Eventhanlder
-//			Map res  =bankingservice.setAuthToken(map);
+			Map res  =bankingservice.setAuthToken(map);
 			
 			//Test
-			String result = "{\r\n"
-					+ "    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDAxNzE1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2NTAyNTcyNTIsImp0aSI6IjhjZGRkMjkzLTg4NmMtNGUxZi1hMWM1LTliNDU2Yjc2YjM4OCJ9.eZ1hKj56JMQccYAbRsaFes7VT8GeqLld6s6ndyaZ2_E\",\r\n"
-					+ "    \"token_type\": \"Bearer\",\r\n"
-					+ "    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDAxNzE1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2NTExMjEyNTIsImp0aSI6Ijg1YzMxMDNjLTFlYjItNGM0ZC05YzE3LTJhZmE3Y2ZkZDIxNyJ9.5hX1mm4jmr5lhwsf4fJuAcKDN9HfFqvHWUT0fTP5rnM\",\r\n"
-					+ "    \"expires_in\": 7775999,\r\n"
-					+ "    \"scope\": \"inquiry login transfer\",\r\n"
-					+ "    \"user_seq_no\": \"1101001715\"\r\n"
-					+ "}";
-			
-			ObjectMapper mapper = new ObjectMapper();
-			Map res=null;
-			try {
-				res = mapper.readValue(result, Map.class);
-			} catch (JsonMappingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			String result = "{\r\n"
+//					+ "    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDAxNzE1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2NTAyNTcyNTIsImp0aSI6IjhjZGRkMjkzLTg4NmMtNGUxZi1hMWM1LTliNDU2Yjc2YjM4OCJ9.eZ1hKj56JMQccYAbRsaFes7VT8GeqLld6s6ndyaZ2_E\",\r\n"
+//					+ "    \"token_type\": \"Bearer\",\r\n"
+//					+ "    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDAxNzE1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2NTExMjEyNTIsImp0aSI6Ijg1YzMxMDNjLTFlYjItNGM0ZC05YzE3LTJhZmE3Y2ZkZDIxNyJ9.5hX1mm4jmr5lhwsf4fJuAcKDN9HfFqvHWUT0fTP5rnM\",\r\n"
+//					+ "    \"expires_in\": 7775999,\r\n"
+//					+ "    \"scope\": \"inquiry login transfer\",\r\n"
+//					+ "    \"user_seq_no\": \"1101001715\"\r\n"
+//					+ "}";
+//			
+//			ObjectMapper mapper = new ObjectMapper();
+//			Map res=null;
+//			try {
+//				res = mapper.readValue(result, Map.class);
+//			} catch (JsonMappingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (JsonProcessingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 			
 			if(res.get("resp_code").equals(ResponeCode.OK)) {

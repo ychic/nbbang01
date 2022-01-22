@@ -73,11 +73,11 @@
 	         <div class="form-group">
 	            <label class="col-sm-2 control-label">닉네임</label>
 	            <div class="col-sm-4">
-	               <input type="text" class="form-control" name="nickname" value="${sessionScope.nickname}">
+	               <input type="text" class="form-control" name="nickname" value="${sessionScope.nickname}" disabled>
 	            </div>
 	            <label class="col-sm-2 control-label">이메일</label>
 	            <div class="col-sm-4">
-	               <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+	               <input type="text" class="form-control" name="email" value="${sessionScope.email}" disabled>
 	            </div>
 	         </div>
 	         <div class="form-group">

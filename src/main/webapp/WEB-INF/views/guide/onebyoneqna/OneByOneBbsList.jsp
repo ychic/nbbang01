@@ -89,16 +89,15 @@
 				</c:if>
 
 				<c:if test="${not isEmpty}">
-					<c:forEach var="item" items="${listPagingData.lists}"
-						varStatus="loop">
+					<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
 						<tr>
-							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage-1) * listPagingData.pageSize) + loop.index)}</td>
+							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
 
 							<td class="text-left"><a
-								href="<c:url value="/oneByOneBbsView.do?inqno=${item.inqno}&nowPage="/><c:out value="${param.nowPage}" default="1"/>">
-									${item.inqtitle}</a> <span class="badge">${item.commentCount}</span></td>
-							<td>${item.nickname}</td>
-							<td>${item.inqpostdate}</td>
+								href="<c:url value="/oneByOneBbsView.do?inqno=${item.inqno}&nowPage="/><c:out value="${param.nowPage }" default="1"/>">
+									${item.inqtitle }</a> <span class="badge">${item.commentCount }</span></td>
+							<td>${item.nickname }</td>
+							<td>${item.inqpostdate }</td>
 						</tr>
 					</c:forEach>
 				</c:if>

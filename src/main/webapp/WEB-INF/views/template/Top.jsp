@@ -80,7 +80,7 @@
 	}
 </style> 
 
-<!-- modal 시작 -->
+<!-- 로그아웃 modal 시작 -->
 <div class="modal" id="small-modal">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
@@ -102,6 +102,28 @@
 	</div>
 </div>
 <!-- modal 끝 -->
+<!-- 회원탈퇴 modal 시작 -->
+<div class="modal resignModal" id="small-modal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">회원탈퇴 확인창</h5>
+					<span aria-hidden="true"></span>
+			</div>
+			<div class="modal-body">
+				<p>정말 엔빵과 이별하시겠어요? ㅠ..ㅠ</p>
+			</div>
+			<div class="modal-footer">
+				<a href="<c:url value='resignPage.do'/>">
+					<button type="button" id="savebutton" class="btn btn-primary">회원탈퇴</button>
+				</a>
+				<button type="button" id="closebutton" class="btn btn-secondary"
+					data-bs-dismiss="small-modal" >취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <body data-target="#nino-navbar" data-spy="scroll">
 
 	<!-- Header
@@ -155,8 +177,6 @@
 									    <a onclick="location.href='freeList.do'">자유게시판</a>
 									  </div>
 								</li>
-								<li class="login_menu" style="float:right">
-									<a id="memberlogout" >로그아웃</a></li>
 								<li class="guide_menu dropdown" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a>
 									<div class="dropdown-content">
@@ -175,7 +195,16 @@
 						
 						
 						<ul class="nino-iconsGroup nav navbar-nav">
-							<li><a href="#" class="nino-search"><i class="mdi mdi-magnify nino-icon"></i></a></li>
+							<li class="dropdown" style="float:right; font-size:13px; font-wight:300">
+								<a id="dropbtn" >
+									<img src="<%=request.getContextPath()%>/resources/login/images/logout2.png" alt="" style="width:24px;height:24px;">
+								</a>
+								<div class="dropdown-content">
+									<a id="memberlogout">로그아웃</a>
+									<a id="memberResign">회원탈퇴</a>
+								</div>
+							</li>
+								
 						</ul>
 					</div>
 					</c:if>
@@ -201,6 +230,9 @@
 				$('#small-modal').css('display','none');
 			});
 			
+			$('#memberResign').on('click',function(){
+				$('.resignModal').css('display','block');
+			});
 		});
 		
 	
