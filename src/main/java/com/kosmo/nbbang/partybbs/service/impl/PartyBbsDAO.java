@@ -23,17 +23,65 @@ public class PartyBbsDAO {
 	public List<PartyBbsDTO> selectList(Map map) {
 		SqlSession session = sqlMapper.openSession();
 		List<PartyBbsDTO> lists = session.selectList("partyBbsSelectList", map);
-		session.close();		
+		session.close();
+		return lists;
+	}
+
+	// 넷플릭스 리스트
+	public List<PartyBbsDTO> netplixList(Map map) {
+		SqlSession session = sqlMapper.openSession();
+		List<PartyBbsDTO> lists = session.selectList("netplixList", map);
+		session.close();
 		return lists;
 	}
 	
+	// 왓챠 리스트
+	public List<PartyBbsDTO> whatchaList(Map map) {
+		SqlSession session = sqlMapper.openSession();
+		List<PartyBbsDTO> lists = session.selectList("whatchaList", map);
+		session.close();
+		return lists;
+	}
+	
+	// 디즈니 리스트
+	public List<PartyBbsDTO> disneyList(Map map) {
+		SqlSession session = sqlMapper.openSession();
+		List<PartyBbsDTO> lists = session.selectList("disneyList", map);
+		session.close();
+		return lists;
+	}
+	
+	// 라프텔 리스트
+	public List<PartyBbsDTO> laftelList(Map map) {
+		SqlSession session = sqlMapper.openSession();
+		List<PartyBbsDTO> lists = session.selectList("laftelList", map);
+		session.close();
+		return lists;
+	}
+	
+	// 티빙 리스트
+	public List<PartyBbsDTO> tvingList(Map map) {
+		SqlSession session = sqlMapper.openSession();
+		List<PartyBbsDTO> lists = session.selectList("tvingList", map);
+		session.close();
+		return lists;
+	}
+	
+	// 웨이브 리스트
+	public List<PartyBbsDTO> wavveList(Map map) {
+		SqlSession session = sqlMapper.openSession();
+		List<PartyBbsDTO> lists = session.selectList("wavveList", map);
+		session.close();
+		return lists;
+	}
+
 	public int getTotalRowCount(Map map) {
 		SqlSession session = sqlMapper.openSession();
 		int total = session.selectOne("partyBbsTotalRowCount", map);
 		session.close();
 		return total;
 	}
-	
+
 	public int insert(Map map) {
 		SqlSession session = sqlMapper.openSession();
 		int affected = session.insert("partyBbsInsert", map);
@@ -42,7 +90,13 @@ public class PartyBbsDAO {
 		return affected;
 	}
 
+	public int delete(Map map) {
+		return template.delete("partyBbsDelete", map);
+	}
+	
 	public PartyBbsDTO partySelectOne(Map map) {
 		return template.selectOne("partybbsSelectOne", map);
 	}
-} // end PartyBbsDAO 
+
+
+} // end PartyBbsDAO

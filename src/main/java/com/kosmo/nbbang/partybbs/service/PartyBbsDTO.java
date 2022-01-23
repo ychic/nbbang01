@@ -16,6 +16,8 @@ public class PartyBbsDTO {
 	private String email;
 	private Date partyMatchdate;
 	private String nickname;
+	private String profile;
+	private String oringinProfile;
 	
 	// 생성자
 	public PartyBbsDTO() {
@@ -23,7 +25,7 @@ public class PartyBbsDTO {
 	
 	public PartyBbsDTO(String partyNo, String partyTitle, String partyContent, Date partyPostdate,
 			String partyMaxCapacity, String partyActivation, String partyAllotmentPrice, String partyCategoryName,
-			String partyMembership, String email, Date partyMatchdate, String nickname) {
+			String partyMembership, String email, Date partyMatchdate, String nickname, String profile, String oringinProfile) {
 		super();
 		this.partyNo = partyNo;
 		this.partyTitle = partyTitle;
@@ -37,6 +39,8 @@ public class PartyBbsDTO {
 		this.email = email;
 		this.partyMatchdate = partyMatchdate;
 		this.nickname = nickname;
+		this.profile = profile;
+		this.oringinProfile = oringinProfile;
 	}
 
 	// Getter, Setter
@@ -111,6 +115,19 @@ public class PartyBbsDTO {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public String getOringinProfile() {
+		return oringinProfile;
+	}
+	public void setOringinProfile(String oringinProfile) {
+		this.oringinProfile = oringinProfile;
 	}
 	
 } // end PartyBbsDTO 
