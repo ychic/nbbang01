@@ -16,6 +16,6 @@
 	
 	<select id="folderSelectOne" parameterType="Map" resultMap="folderDTOresult">
 	<!-- 해당계정의 All폴더의 정보 가져오기 -->
-		SELECT * FROM subfolder WHERE email=#{email} AND sfname='All'<!-- #{sfname} -->
+		SELECT * FROM subfolder WHERE email=#{email} AND sfname='All' <!-- {#sfname} -->
 	</select>
 </mapper> 

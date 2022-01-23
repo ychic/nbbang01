@@ -8,7 +8,7 @@
 	<insert id="memberInsert" parameterType="Map">
 		INSERT INTO member
 		VALUES(#{email},#{password},#{name},#{nickname},#{birthdate},#{gender},#{tel},null,
-		#{preference},null,SYSDATE,null,null)
+		#{preference},#{authority},SYSDATE,#{oringinprofile},null)
 	</insert>
 
 </mapper> 
