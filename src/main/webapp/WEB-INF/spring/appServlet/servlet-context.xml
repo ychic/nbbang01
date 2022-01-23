@@ -56,6 +56,6 @@
         </websocket:stomp-endpoint>
         <websocket:simple-broker prefix="/topic"/>
     </websocket:message-broker>
-	
+    
 	<beans:bean id="mapper" class="com.fasterxml.jackson.databind.ObjectMapper"></beans:bean>
 </beans:beans>

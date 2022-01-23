@@ -317,7 +317,7 @@
 						<c:if test="${email eq item.email || email eq 'nbbang@nbbang.com'}"><!-- 어드민 코드 수정하기 -->
 							<a href="<c:url value="#"/>" class="btn btn-warning">삭제</a>
 						</c:if>
-						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>" class="btn btn-warning">신고</a>
+						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>"  class="btn btn-warning" >신고</a>
 						<a href="<c:url value="#"/>" class="btn btn-warning">대화하기</a>
 					</div>
 				</div>

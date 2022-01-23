@@ -78,7 +78,7 @@
 					   	</div>
  					   </a>
 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
-					   <a href="<c:url value='/thirdFold.do' />" class="list-group-item" id="dFolder3">
+					   <a href="#" class="list-group-item" id="dFolder3">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
 					   <span id="dfdn2" style="padding: 0px; margin: 0px;">Life</span>
 						   <form id="frmEditname2">
@@ -424,7 +424,7 @@
 						  <!-- class="table-active" 아래tr에서 삭제한상태 -->
 						
 						  <!-- 마이바티스 resultMap의 collection 태그사용 -->
-						  <c:if test="${not empty folder.mysubs}">
+						  <%-- <c:if test="${not empty folder.mysubs}">
 						  		<c:forEach items="${folder.mysubs}" var="mysub">
 								    <tr class="ui-state-default">
 								      <td>로고</td>
@@ -434,11 +434,11 @@
 								      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 								    </tr>
 							    </c:forEach>
-						  </c:if>
-						  <%-- <c:if test="${not tmp}">
-						  <script>
-						  console.log("sssssssssss",${secondRecord});
-						  </script>
+						  </c:if> --%>
+						  <c:if test="${not empty secondRecord}">
+						<!-- <script>
+						console.log(${secondRecord});
+						</script> -->
 						  		<c:forEach items="${secondRecord}" var="mysub2">
 								    <tr class="ui-state-default">
 								      <td>로고</td>
@@ -448,7 +448,7 @@
 								      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
 								    </tr>
 							    </c:forEach>
-						  </c:if> --%>
+						  </c:if>
 						  
 						    <!-- <tr class="ui-state-default">
 						      <td>로고</td>
@@ -961,8 +961,7 @@
 	
 	
 	
-	/* console.log(${secondRecord.mysubs});
-	console.log(${tmp}); */
+	
 </script>
 <style>
 	#mdlNwSub1{

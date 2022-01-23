@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.mysubManual">
+
+	<insert id="manualInsert" parameterType="subManualDTO">
+		INSERT INTO subscription
+		VALUES(SEQ_SUBSCRIPTION_SUBNO.NEXTVAL,#{subservice},
+		#{paymentday},#{money},#{sfno})
+	</insert>
+			<!--  -->
+
+	<select id="sfnoSelectList" parameterType="Map" resultType="Map" >
+		SELECT sfno FROM subfolder
+		WHERE email=#{email}
+	</select>
+	<!-- 	필요파라미터(1):	email
+			해당계정의 sfno 긁어서 map에저장.->서비스할때 List<map> 하면 리스트에 담아줌 - "{SFNO=98}" - 이런식으로
+			public List<Map> selectList(Map map) {
+				return dao.selectList(map);
+			}
+			
+			sfno
+			97
+			98
+			99 -->
+	
+</mapper> 

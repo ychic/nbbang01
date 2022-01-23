@@ -42,4 +42,20 @@ public class MemberDAO {
 	public List selectAllMember(Map map) {		
 		return template.selectList("selectAllMember", map);
 	}
+<<<<<<< HEAD
+=======
+	public int delete(Map map) {
+		return template.delete("memberDelete", map);
+	}
+	public String blackMember(Map map) {
+		return template.selectOne("getBlackMember", map);
+	}
+	public int setBlackMember(Map map) {
+		return template.update("setBlackMember", map);
+	}
+	public String authorityByEmail(Map map) {
+		return template.selectOne("getAuthorityByEmail", map);
+	}
+	
+>>>>>>> branch 'master' of https://github.com/hth4478/nbbang01.git
 }//MemberDAO

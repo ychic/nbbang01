@@ -16,7 +16,7 @@
 
 <div class="container">
    <div>
-      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/recommandEdit.do?ussrno=${record.ussrno}'/>">
+      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/ussrEdit.do?ussrno=${record.ussrno}'/>">
          <div class="form-group">
             <label class="col-sm-2 control-label">이메일</label>
             <div class="col-sm-4">
@@ -48,7 +48,6 @@
                <input type="text" class="form-control" name="ussrtitle" value="${record.ussrtitle}">
             </div>
          </div>
-         
          <div class="form-group">
             <label class="col-sm-2 control-label">내용</label>
             <div class="col-sm-10">

@@ -10,6 +10,8 @@
 	}
 	#bbs{
 		width: 750px;
+		margin-top: 50px;
+		margin-bottom: 100px;
 	}
 	.selectOTT{
 		padding: 20px 16px;
@@ -198,52 +200,99 @@
 		width: 100%;
 		text-align: right;
 	}
+	/* 광고 영역 */
+	.ad_one, .ad_two{
+		background-color:red;
+		width: 188.5px;
+		height:377px;
+		display: inline-block;
+		position: fixed;
+		top:150px;
+		background-size: cover;
+		background-position: center;
+		background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+		animation: ad_one_ani 16s infinite;
+	}
+	
+	.ad_one{
+		left:30px;
+	}
+	
+	.ad_two{
+		right:30px;
+	}
+	
+	@keyframes ad_one_ani {
+		33%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")}
+		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
+		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
+	}
 </style>
-
-<div id="bbs" class="container">
-	<div id="bbsList" class="container">
+<body>
+	 <!-- 광고 1 -->
+	<div class="ad_one">
 		
-		<div class="blankSpace"></div>
-		
-			<div class="listBox">
-				<div class="blankSpace"></div>
-				<div class="profileBox">
-			   		<div>
-			   			<div class="userProfile">
-			   				<img class="userProfileImg" src="<%=request.getContextPath()%>/resources/images/profile/profile_image.png" alt="">
-			   			</div>
-			   			<div class="nickname">
-			   				${record.nickname }
-			   			</div>
-			   		</div>
-				</div>
+	</div>
+		<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:300px;color:#BEBEBE;">파티원게시판 신고처리 페이지</h1>
+		<hr class="col-md-12" style="width:900px;margin-left:300px;"/>
+	
+		<div id="bbs" class="container">
+			
 				
-				<div class="partyTitleNCapa">
-					<h1 class="partyTitleText">${record.partyTitle }</h1>
-					<h2 class="partyMaxCapacity">(1/${record.partyMaxCapacity })</h2>
-				</div>
-				<div class="partyCategoryNameNMem">${record.partyCategoryName} / ${record.partyMembership}</div>
-				<div class="partyPostdate">${record.partyPostdate }</div>
-				<div class="price">${record.partyAllotmentPrice }원 / 1인당 <fmt:parseNumber var="price" integerOnly="true" value="${record.partyAllotmentPrice / record.partyMaxCapacity }"/>${price }원</div>
-				<div class="detailBlank"></div>
-				<div class="partyContent">
-					${record.partyContent }
-				</div>
-				<div id="buttonArea" class="row">
-					<div class="col-md-12 text-right">
-						<c:if test="${email eq record.email || email eq 'nbbang@nbbang.com'}"><!-- 어드민 코드 수정하기 -->
-							<a href="<c:url value="#"/>" class="btn btn-warning">삭제</a>
-						</c:if>
-						<a href="<c:url value="#"/>" class="btn btn-warning">수정</a>
-						<a href="<c:url value="#"/>" class="btn btn-warning">회원정지</a>
+			<div id="bbsList" class="container">
+				
+				<div class="blankSpace"></div>
+				
+					<div class="listBox">
+						<div class="blankSpace"></div>
+						<div class="profileBox">
+					   		<div>
+					   			<div class="userProfile">
+					   				<img class="userProfileImg" src="<%=request.getContextPath()%>/resources/images/profile/profile_image.png" alt="">
+					   			</div>
+					   			<div class="nickname">
+					   				${record.nickname }
+					   			</div>
+					   			<input type="hidden" name="email" value="${record.email}">
+					   		</div>
+						</div>
+						
+						<div class="partyTitleNCapa">
+							<h1 class="partyTitleText">${record.partyTitle }</h1>
+							<h2 class="partyMaxCapacity">(1/${record.partyMaxCapacity })</h2>
+						</div>
+						<div class="partyCategoryNameNMem">${record.partyCategoryName} / ${record.partyMembership}</div>
+						<div class="partyPostdate">${record.partyPostdate }</div>
+						<div class="price">${record.partyAllotmentPrice }원 / 1인당 <fmt:parseNumber var="price" integerOnly="true" value="${record.partyAllotmentPrice / record.partyMaxCapacity }"/>${price }원</div>
+						<div class="detailBlank"></div>
+						<div class="partyContent">${record.partyContent }</div>
+						<div id="buttonArea" class="row">
+							<div class="col-md-12 text-right">
+								<c:if test="${email eq record.email || email eq 'nbbang@nbbang.com'}"><!-- 어드민 코드 수정하기 -->
+									<a href="<c:url value="#"/>" class="btn btn-info">삭제</a>
+								</c:if>
+								<a href="<c:url value="#"/>" class="btn btn-primary">마감처리</a>
+								<a href="#" class="btn btn-warning"  onclick="javascript:setBlackMember();">회원정지</a>
+							</div>
+						</div>
+						<div class="blankSpace"></div>
 					</div>
-				</div>
+					<div class="blankSpace"></div>
 				<div class="blankSpace"></div>
 			</div>
-			<div class="blankSpace"></div>
-		<div class="blankSpace"></div>
-	</div>
-</div>
-<script>
+		</div>
 	
+	<!-- 광고 2 -->
+	<div class="ad_two">
+		
+	</div>
+	
+</body>
+
+<script>
+	function setBlackMember(){
+		if(confirm("정말로 회원 정지를 진행하시겠습니까?")){
+			location.replace("<c:url value='/partyBlackMember.do?email=${record.email}'/>");
+		}
+	}
 </script>

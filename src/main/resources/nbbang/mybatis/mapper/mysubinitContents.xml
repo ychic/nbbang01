@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.mysubinitContents">
+	<select id="selectContents" parameterType="Map" resultType="mySubDTO">
+		<!-- 해당계정 모든 구독목록가져오기 -->
+		SELECT s.*
+		FROM subscription s JOIN subfolder f on f.sfno = s.sfno
+		WHERE email=#{email} <!-- AND sfname=#{sfname} -->
+	</select>
+	
+	<!-- <select id="sumMoney" >
+		SELECT SUM(money) FROM subscription
+	</select> -->
+</mapper> 

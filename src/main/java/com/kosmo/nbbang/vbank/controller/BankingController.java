@@ -43,6 +43,21 @@ public class BankingController {
 	@Autowired
 	InnerService innerservice;
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 */
+	
+	@GetMapping(value="/user/auth.do",produces = {"application/json"})
+	public Map getUrl(@RequestParam Map map) {
+		System.out.println("getUrl메소드 진입");
+		System.out.println("res: "+map.get("location"));
+		Map test = bankingservice.requestAuthUrl(map);
+		System.out.println("도착!");
+		return test;
+	}
+	
 	
 	/*
 	 * 	Method : 전계좌 조회 
@@ -65,7 +80,7 @@ public class BankingController {
 	 *  Scenario : 사용자 전체조회 계좌 요청-> vbankServer 전체 계좌 요청 및 응답 -> 브라우저로 응답[JSON] - object 형식 
 	 *  필수 파라미터 : 사용자 ID, 사용자 fintech
 	 */
-	@GetMapping("/user/account/{fin_num}")
+	@GetMapping("/user/account/{fin_num}.do")
 	public Map getUseraccount(@RequestParam Map map,@PathVariable("fin_num") int  fin_num) {
 		
 		
@@ -106,7 +121,6 @@ public class BankingController {
 		
 		return bankingservice.doTransactionStatement(auth);
 	}
-	
 	
 	
 }
