@@ -3,13 +3,40 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nbbang.mybatis.mapper.chat">
-	<select id="getMyChat" parameterType="String" resultType="chat">
-		SELECT * FROM chat WHERE chatpartnerid = #{email} or email = #{email}
+	<select id="getMyChatList" parameterType="String" resultType="chat">
+		SELECT * FROM chat WHERE participant = #{email} OR bbswriter = #{email}
 	</select>
 	<select id="getNickName" parameterType="String" resultType="String">
-		SELECT nickname FROM member WHERE email = #{chatpartnerid}
+		SELECT nickname FROM member WHERE email = #{email}
 	</select>
 	<select id="getPartyBbs" parameterType="String" resultType="partyBbsDTO">
 		SELECT p.*, m.nickname FROM partybbs p JOIN member m ON p.email = m.email WHERE partyno = #{partyNo}
+	</select>
+	<update id="p_quitRoom" parameterType="Map">
+		UPDATE chat SET participant = '' WHERE chatno = #{roomNo} 
+	</update>
+	<update id="b_quitRoom" parameterType="Map">
+		UPDATE chat SET bbswriter = '' WHERE chatno = #{roomNo} 
+	</update>
+	<select id="checkNull" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM chat WHERE chatno = #{roomNo} AND bbswriter IS NULL AND participant IS NULL
+	</select>
+	<delete id="deleteChat" parameterType="Map">
+		DELETE chat WHERE chatno = #{roomNo}
+	</delete>
+	<select id="getMyChat" parameterType="String" resultType="chat">
+		SELECT * FROM chat WHERE chatno = #{roomNo}
+	</select>
+	<select id="getBbsMemberCount" parameterType="String" resultType="int">
+		SELECT partymaxcapacity FROM partybbs WHERE partyno = #{partyNo} 
+	</select>
+	<select id="getMemberCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo} 
+	</select>
+	<insert id="addMember" parameterType="Map">
+		INSERT INTO partymember VALUES(SEQ_PARTYMEMBER_PMNO.NEXTVAL, #{partyNo}, #{partnerId}, 'N')
+	</insert>
+	<select id="getMember" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo} AND pmmember = #{partnerId}
 	</select>
 </mapper>
