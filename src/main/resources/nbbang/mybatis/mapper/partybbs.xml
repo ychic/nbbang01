@@ -17,26 +17,90 @@
 		<result column="partyMembership" property="partyMembership"/>
 		<result column="email" property="email"/>
 		<result column="partyMatchdate" property="partyMatchdate"/>
+		<result column="partyMember" property="partyMatchdate"/>
 	</resultMap>
 
 	<select id="partyBbsSelectList" parameterType="Map" resultType="partyBbsDTO">
 		SELECT * FROM 
 		(SELECT T.*, ROWNUM R FROM 
-			(SELECT p.*, m.nickname FROM 
-				partybbs p JOIN member m ON m.email = p.email ORDER BY partyno DESC) T)
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
 		WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="netplixList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'netplix'
+	</select>
+	
+	<select id="whatchaList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'whatcha'
+	</select>
+	
+	<select id="disneyList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'disney'
+	</select>
+	
+	<select id="laftelList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'laftel'
+	</select>
+	
+	<select id="tvingList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'tving'
+	</select>
+	
+	<select id="wavveList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
+				partybbs p JOIN member m ON m.email = p.email
+				ORDER BY partyactivation DESC, partyno DESC) T)
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'wavve'
 	</select>
 	
 	<select id="partyBbsTotalRowCount" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM partybbs p JOIN member m ON m.email = p.email
 	</select>
-
+<!-- 	
+	<select id="selectPartyMember" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo}
+	</select>
+ -->
 	<insert id="partyBbsInsert" parameterType="Map">
 		INSERT INTO partybbs
 		VALUES(SEQ_partybbs_partyno.NEXTVAL,#{partyTitle},
 		#{partyContent},SYSDATE,#{partyMaxCapacity},#{partyActivation},
 		#{partyAllotmentPrice},#{partyCategoryName},#{partyMembership},#{email},null)
 	</insert>
+	
+	<delete id="partyBbsDelete" parameterType="Map">
+		DELETE partybbs WHERE partyno = #{partyNo}
+	</delete>
 	
 	<select id="partybbsSelectOne" parameterType="Map" resultMap="partyBbsDTOResult">
 		SELECT p.*,m.name FROM member m JOIN partybbs p ON m.email=p.email WHERE partyNo=#{partyNo}	

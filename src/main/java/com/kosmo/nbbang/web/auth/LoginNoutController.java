@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -31,13 +32,17 @@ public class LoginNoutController {
 	
 	
 	@RequestMapping("/memberlogin.do")
-	public String process(@RequestParam Map map, Model model,SessionStatus status,HttpSession session) {
+	public String process(@RequestParam Map map, Model model,SessionStatus status,HttpSession session,HttpServletRequest req) {
 		String nickname = memberService.getNickname(map);
 		int flag = memberService.isLogin(map);
-		model.addAttribute("email",map.get("email"));
+		String blackMember = memberService.blackMember(map);
+		String email = (String) map.get("email");
+		model.addAttribute("email",email);
 		model.addAttribute("password",map.get("password"));
 		model.addAttribute("nickname",nickname);
 		session.setAttribute("nickname", nickname);
+		session.setAttribute("email", email);
+		
 		
 		if(flag == 0) {
 			//회원이 아닐경우 저장된 데이터 삭제
@@ -48,7 +53,11 @@ public class LoginNoutController {
 			//관리자 로그인
 			model.addAttribute("nickname",nickname);
 			return "admin/AdminMain";
-		} 
+		} else if(blackMember.equals("black")) {
+			model.addAttribute("blackMember",blackMember);
+			System.out.println("blackMember확인:"+blackMember);
+			return "auth/404";
+		}
 		return "index";
 	}
 	//로그아웃 처리]
@@ -73,7 +82,71 @@ public class LoginNoutController {
 		
 		return result;
 	}
+	//관리자페이지 - 신고관리 - 대상클릭 - 파티원관리페이지에서 회원정지시 : 잘 작동됨
+	@RequestMapping("/partyBlackMember.do")
+	public String partyBlackMember(@RequestParam Map map,Model model) {
+		
+		String email = (String) map.get("email");
+		String authority = memberService.authorityByEmail(map);
+		
+		System.out.println("email"+email);
+		System.out.println("authority"+authority);
+		
+		int affected = memberService.setBlackMember(map);
+		
+		if(affected == 1) {
+			return "admin/AdminMain";
+		}
+		
+		return "first";
+	}
 	
+	//관리자페이지 - 회원관리에서 회원정지시 : 해결중
+	@RequestMapping("/blackMember.do")
+	public @ResponseBody String blackMember(@ModelAttribute("emailAdmin") String emailAdmin,@RequestParam Map map,Model model,SessionStatus status) {
+		map.put("emailAdmin", emailAdmin);
+		System.out.println("emailAdmin"+emailAdmin);
+		
+		String authority = memberService.authorityByEmail(map);
+		
+		
+		if(authority == null || authority.equals("normal")) {
+			System.out.println("blackMember설정 if문 진입");
+			memberService.setBlackMember(map);
+			return "admin/AdminMember";
+		}
+		
+		model.addAttribute("authority",authority); 
+		System.out.println("authority확인:"+authority);
+		
+		return "auth/404";
+	}
 	
+	//회원탈퇴 페이지
+	@RequestMapping("/resignPage.do")
+	public String resignPage(@RequestParam Map map,Model model,SessionStatus status) {
+		
+		return "auth/Resign.tiles";
+	}
+		
+	//회원탈퇴
+	@RequestMapping("/resign.do")
+	public String resign(@ModelAttribute("email") String email,@ModelAttribute("password") String password,@RequestParam Map map,Model model,SessionStatus status) {
+		
+		int flag = memberService.isLogin(map);
+		if(flag==1) {
+			map.put("email", email);
+			map.put("password", password);
+			
+			memberService.delete(map);
+			status.setComplete();
+		}else {
+			model.addAttribute("errorMessage","아이디와 비밀번호가 다릅니다.");
+			return "auth/Resign.tiles";
+		}
+		
+
+		return "first";
+	}
 	
 }

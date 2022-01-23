@@ -96,9 +96,10 @@
 		<div class="account-new">
 			<span class="account-new-word">
 				<a href="javascript:createCardDiv()">
-				<img src="<%=request.getContextPath()%>/resources/account/plus-icon.png"/></a>
-				계좌 등록
+					<img src="<%=request.getContextPath()%>/resources/account/plus-icon.png" id="getAjax"></a>
+					계좌 등록
 			</span>
+			<input type="hidden" id="location" value="http://localhost:9570/nbbang/callback/url.do">
 		</div>
 	</div>
 	
@@ -128,16 +129,20 @@
 	//콜백 url 
 	$("#getAjax").on('click',function(){
           console.log("Ajax 수행")
-          console.log('타겟 요청','<c:url value="/auth/AuthToken.do"/>')
+          console.log('타겟 요청','<c:url value="/user/auth.do"/>')
           $.ajax({
-               url: '<c:url value="/auth/AuthToken.do"/>',
+               url: '<c:url value="/user/auth.do"/>',
                type: 'GET',
+               cache : false,
+               data:{location:$('#location').val()},
                dataType: 'json',
                success:function(data){
+            	   		console.log('success진입');
                        // url을 담고 있음
-                       console.log(data.location);
+                       console.log(data.Location);
                        //
-                       var tmpWindow=window.open(data.location,"",'_blank,width=900,height=880,menubar=false')
+                       var tmpWindow=window.open(data.Location,"",'_blank,width=900,height=880,menubar=false')
+                       
                },
                error:function(e){
                        console.log(e)

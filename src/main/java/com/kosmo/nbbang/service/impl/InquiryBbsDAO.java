@@ -23,6 +23,7 @@ public class InquiryBbsDAO {
 	public int insert(Map map) {	
 		
 		SqlSession session = sqlMapper.openSession();
+		System.out.println("======================이메일확인"+map.containsKey("email"));
 		int affected = session.insert("inquiryBbsInsert", map);
 		
 		session.commit();

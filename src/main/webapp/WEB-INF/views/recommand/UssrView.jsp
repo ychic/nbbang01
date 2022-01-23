@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+</div>
+</header>
 
 <style>
 	table{
@@ -11,7 +13,7 @@
 		margin-bottom: 50px;
 	}
 </style>
-
+<%String referer = request.getHeader("referer");%>
 <div class="container">
 	<div>
 		<h1 class="col-md-offset-2">${record.ussrtitle}</h1>
@@ -31,9 +33,9 @@
 				<tr>
 					<th class="text-center">주제</th>
 					<td class="text-center">
-						<c:if test="${record.navcategory=='recommandService'}">구독서비스 추천</c:if>
-						<c:if test="${record.navcategory=='recommandContents'}">컨텐츠 추천</c:if>
-						<c:if test="${record.navcategory=='recommandTips'}">꿀팁 추천</c:if>
+						<c:if test="${record.navcategory=='freeNormal'}">일반</c:if>
+						<c:if test="${record.navcategory=='freeReview'}">리뷰</c:if>
+						<c:if test="${record.navcategory=='freeInfo'}">정보</c:if>
 					</td>
 				</tr>
 			</table>
@@ -48,6 +50,19 @@
 				</tr>
 			</table>
 			<br/>
+			
+				<div class="form-group" style="height: 50px; line-height: 50px;">
+					<div class="col-sm-offset-2 col-sm-4">
+						<button type="button" class="btm_image" id="likeInsert">
+							<img src="<%=request.getContextPath()%>/resources/images/recommend/Icon_recommend.png" alt="추천" style="height: 50px; width: 50px;">
+						</button>
+					</div>
+					<div class="col-sm-4" style="color: black; text-align: left; line-height: 57px; font-size: 2em;" id="lcount">
+						${record.likeCount}
+					</div>
+				</div>
+			
+			<!--
 			<table style="width:200px; height:60px; line-height:60px; margin-left:auto; margin-right:auto;">
 				<tr style="border:1px solid;">
 					<td class="text-center col-md-2" style="line-height:60px; padding: 10px 0px 10px 10px;">
@@ -56,10 +71,11 @@
 						</button>
 					</td>
 					<td class="text-center col-md-2" style="text-align:center; line-height:60px; font-size: 3em; padding: 10px 10px 10px 0px;">
-						${record.likeno}
+						${record.likeCount}
 					</td>
 				</tr>
 			</table>
+			-->
 		</div>
 	</div>
 	<br/>
@@ -68,10 +84,16 @@
 		<div class="col-md-offset-2 col-md-8">
 			<ul id="pillMenu" class="nav nav-pills center-block" style="width: 200px; margin-bottom: 10px">
 				<c:if test="${sessionScope.email==record.email}">
-					<li><a href="<c:url value='/recommandEdit.do?ussrno=${record.ussrno}'/>" class="btn btn-info">수정</a></li>
+					<li><a href="<c:url value='/ussrEdit.do?ussrno=${record.ussrno}'/>" class="btn btn-info">수정</a></li>
 					<li><a href="javascript:isDelete();" class="btn btn-info">삭제</a></li>
 				</c:if>
-				<li><a href="<c:url value='/recommandList.do?nowPage=${param.nowPage}'/>" class="btn btn-info">목록</a></li>
+				<li>
+					<a href="<%if(referer.contains("recommand")){%>
+						<c:url value='/recommandList.do?nowPage=${param.nowPage}'/>
+					<%} else{%>
+						<c:url value='/freeList.do?nowPage=${param.nowPage}'/>
+					<%}%>" class="btn btn-info">목록</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -113,7 +135,8 @@
 						</c:if>
 					</div>
 				</div>
-				<form class="form-inline" id="frm" action="<c:url value='/recommandView.do?ussrno=${record.ussrno}'/>">
+				
+				<form class="form-inline" id="frm" action="<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>">
 					<input type="hidden" name="ussrno" value="${record.ussrno}" />
 					<input type="hidden" name="comno" /> 
 					<input placeholder="댓글을 입력하세요" id="title" class="form-control" type="text" size="50" name="comcontent" /> 
@@ -239,4 +262,21 @@
 		}
 	}
 	
+	$("#likeInsert").on('click',function(){
+		console.log("클릭 이벤트 발생:",$(this).val());
+		$.ajax({
+			url:'<c:url value="/likeInsert.do"/>',
+			data:{"email":"${sessionScope.email}", 'ussrno':'${record.ussrno}'},
+			dataType:"text",
+			type:"post",
+			success:function(data){
+				if(data == "추천하셨습니다"){
+					alert(data);
+					$("#lcount").html((parseInt($("#lcount").text())+1));
+				}else{
+					alert(data);					
+				}
+			}
+		});
+	});
 </script>
