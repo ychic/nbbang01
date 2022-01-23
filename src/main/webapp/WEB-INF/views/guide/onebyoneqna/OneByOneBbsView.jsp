@@ -188,14 +188,13 @@ td{
 					<div class="card mb-3">
 						<h5 class="card-header">Leave a Comment:</h5>
 						<div class="card-body">
-							<form name="comment-form" id="frm" action="<c:url value='/oneByOneBbsView.do?inqno=${record.inqno}'/>" method="post" autocomplete="off">
+							<form name="comment-form" action="<c:url value='/oneByOneBbsView.do?inqno=${record.inqno}'/>" method="post" autocomplete="off">
 								<div class="form-group">
 									<input type="hidden" name="inqno" value="${record.inqno}" />
 									<input type="hidden" name="comno"/>
-									<textarea name="comcontent" id="title" cols="97" rows="3"></textarea>
-									<!-- <input placeholder="댓글을 입력하세요" id="title" class="form-control" type="text" size="50" name="comcontent" /> -->
+									<textarea name="comcontent" cols="97" rows="3"></textarea>
 								</div>
-								<button type="submit" id="submit" class="btn btn-primary" value="등록" onclick="submit()">댓글등록</button>
+								<button type="submit" id="submit" class="btn btn-primary" value="등록">댓글등록</button>
 							</form>
 						</div>
 					</div>
@@ -330,11 +329,11 @@ td{
 				
 				if($('#submit').val()=='등록'){
 					var comno = data.split(":")[0];
-					var nickname = data.split(":")[1];
+					var name = data.split(":")[1];
 					var date = new Date();
 					var compostdate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
-					console.log(comno,nickname)
-					var newComment ="<tr class='comment"+comno+"'><td>"+nickname+"</td><td style='cursor:pointer' class='title' title='"+comno+"'>"+$("#title").val()+"</td><td>"+compostdate+"</td><td style='cursor:pointer' class='delete' title='"+data+"'>삭제</td></tr>";
+					console.log(comno,name)
+					var newComment ="<tr class='comment"+comno+"'><td>"+name+"</td><td style='cursor:pointer' class='title' title='"+comno+"'>"+$("#title").val()+"</td><td>"+compostdate+"</td><td style='cursor:pointer' class='delete' title='"+data+"'>삭제</td></tr>";
 					$(".comment-title").prepend(newComment);
 				}
 				else{

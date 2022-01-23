@@ -118,8 +118,8 @@ public class BankingServiceImpl implements BankingService {
 
 		// Test
 
-		String authorization = sendData.get("access_token").toString();
-		String user_seq_no = sendData.get("user_seq").toString();
+		String authorization = map.get("access_token").toString();
+		String user_seq_no = map.get("user_seq").toString();
 
 		Map result = new HashMap();
 		String url = "http://localhost:9125/user/account";

@@ -367,7 +367,7 @@
 								class="btn btn-warning"
 								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>삭제</a>
 						</c:if>
-						<a href="<c:url value="#"/>" class="btn btn-warning"
+						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>" class="btn btn-warning"
 							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>신고</a>
 						<a href="<c:url value="#"/>" class="btn btn-warning"
 							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>대화하기</a>

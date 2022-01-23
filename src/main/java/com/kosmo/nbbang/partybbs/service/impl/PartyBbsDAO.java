@@ -94,6 +94,7 @@ public class PartyBbsDAO {
 		return template.delete("partyBbsDelete", map);
 	}
 	
+	//파티게시판 신고용
 	public PartyBbsDTO partySelectOne(Map map) {
 		return template.selectOne("partybbsSelectOne", map);
 	}

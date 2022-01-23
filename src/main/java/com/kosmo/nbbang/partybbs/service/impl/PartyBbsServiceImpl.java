@@ -211,7 +211,9 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 	public int delete(Map map) {
 		return dao.delete(map);
 	}
-
+	
+	
+	//파티게시판 신고용
 	public PartyBbsDTO partySelectOne(Map map) {
 		return dao.partySelectOne(map);
 	}

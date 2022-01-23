@@ -42,8 +42,6 @@ public class MemberDAO {
 	public List selectAllMember(Map map) {		
 		return template.selectList("selectAllMember", map);
 	}
-<<<<<<< HEAD
-=======
 	public int delete(Map map) {
 		return template.delete("memberDelete", map);
 	}
@@ -57,5 +55,4 @@ public class MemberDAO {
 		return template.selectOne("getAuthorityByEmail", map);
 	}
 	
->>>>>>> branch 'master' of https://github.com/hth4478/nbbang01.git
 }//MemberDAO
