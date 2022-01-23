@@ -1,11 +1,7 @@
 package com.kosmo.nbbang.hwang.web;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -36,55 +32,106 @@ public class UssrController {
 	@Autowired
 	private ObjectMapper mapper;
 
-	// 목록 처리
+	//추천게시판 리스트
 	@RequestMapping("/recommandList.do")
-	public String list(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage,
-			HttpServletRequest req, Model model) {
-		ListPagingData<UssrDTO> listPagingData = ussrService.selectList(map, req, nowPage);
-		model.addAttribute("listPagingData", listPagingData);
+	public String recommandList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		System.out.println(map.get("ussrcategoryname"));
+		ListPagingData<UssrDTO> recommandList = ussrService.recommandList(map, req, nowPage);
+		model.addAttribute("recommandListPagingData", recommandList);
 		return "recommand/RecommandList.tiles";
 	}
-
-	@RequestMapping(value = "/recommandWrite.do", method = RequestMethod.GET)
-	public String write(@ModelAttribute("email") String email) {
-		return "recommand/RecommandWrite.tiles";
+	@RequestMapping("/recommandLikeSortList.do")
+	public String recommandLikeSortList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> recommandLikeSortListPaging = ussrService.recommandLikeSortList(map, req, nowPage);
+		model.addAttribute("recommandListPagingData", recommandLikeSortListPaging);
+		return "recommand/RecommandList.tiles";
+	}
+	@RequestMapping("/recommandServiceList.do")
+	public String recommandServiceList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> recommandServiceList = ussrService.recommandServiceList(map, req, nowPage);
+		model.addAttribute("recommandListPagingData", recommandServiceList);
+		return "recommand/RecommandList.tiles";
+	}
+	@RequestMapping("/recommandContentsList.do")
+	public String recommandContentsList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> recommandContentsList = ussrService.recommandContentsList(map, req, nowPage);
+		model.addAttribute("recommandListPagingData", recommandContentsList);
+		return "recommand/RecommandList.tiles";
+	}
+	@RequestMapping("/recommandTipsList.do")
+	public String recommandTipsList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> recommandTipsList = ussrService.recommandTipsList(map, req, nowPage);
+		model.addAttribute("recommandListPagingData", recommandTipsList);
+		return "recommand/RecommandList.tiles";
+	}
+	
+	//자유게시판 리스트
+	@RequestMapping("/freeList.do")
+	public String freeList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> freeList = ussrService.freeList(map, req, nowPage);
+		model.addAttribute("freeListPagingData", freeList);
+		return "recommand/FreeList.tiles";
+	}
+	@RequestMapping("/freeLikeSortList.do")
+	public String freeLikeSortList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> freeLikeSortList = ussrService.freeLikeSortList(map, req, nowPage);
+		model.addAttribute("freeListPagingData", freeLikeSortList);
+		return "recommand/FreeList.tiles";
+	}
+	@RequestMapping("/freeNormalList.do")
+	public String freeNormalList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> freeNormalList = ussrService.freeNormalList(map, req, nowPage);
+		model.addAttribute("freeListPagingData", freeNormalList);
+		return "recommand/FreeList.tiles";
+	}
+	@RequestMapping("/freeReviewList.do")
+	public String freeReviewList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> freeReviewList = ussrService.freeReviewList(map, req, nowPage);
+		model.addAttribute("freeListPagingData", freeReviewList);
+		return "recommand/FreeList.tiles";
+	}
+	@RequestMapping("/freeInfoList.do")
+	public String freeInfoList(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+		ListPagingData<UssrDTO> freeInfoList = ussrService.freeInfoList(map, req, nowPage);
+		model.addAttribute("freeListPagingData", freeInfoList);
+		return "recommand/FreeList.tiles";
 	}
 
-	// 입력처리
-	@RequestMapping(value = "/recommandWrite.do", method = RequestMethod.POST)
-	public String writeOk(@ModelAttribute("email") String email, @RequestParam Map map) throws Exception {
+	@RequestMapping(value = "/ussrWrite.do", method = RequestMethod.GET)
+	public String Write(@ModelAttribute("email") String email) {
+		return "recommand/UssrWrite.tiles";
+	}
+	@RequestMapping(value = "/ussrWrite.do", method = RequestMethod.POST)
+	public String WiteOk(@ModelAttribute("email") String email, @RequestParam Map map, HttpServletRequest req) throws Exception {
 		map.put("email", email);
-		Set<String> keys = map.keySet();
-		for(String key : keys) {
-			System.out.println(key);
-			System.out.println(map.get(key).toString());
-		}
 		ussrService.insert(map);
 		return "forward:/recommandList.do";
 	}
 
 	// 상세보기
-	@RequestMapping("/recommandView.do")
-	public String view(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
+	@RequestMapping("/ussrView.do")
+	public String view(@ModelAttribute("email") String email, @RequestParam Map map, Model model, HttpServletRequest req) {
+		String referer = req.getHeader("referer");
+		System.out.println("이전 URL:"+referer);
 		UssrDTO record = ussrService.selectOne(map);
 		record.setUssrcontent(record.getUssrcontent().replace("\r\n", "<br/>"));
 		model.addAttribute("record", record);
-		return "recommand/RecommandView.tiles";
+		return "recommand/UssrView.tiles";
 	}
 
-	// 수정폼으로 이동 및 수정처리
-	@RequestMapping("/recommandEdit.do")
+	//수정폼으로 이동 및 수정처리
+	@RequestMapping("/ussrEdit.do")
 	public String edit(@ModelAttribute("email") String email, @RequestParam Map map, HttpServletRequest req) {
 		if (req.getMethod().equals("GET")) {
 			UssrDTO record = ussrService.selectOne(map);
 			req.setAttribute("record", record);
-			return "recommand/RecommandEdit.tiles";
+			return "recommand/UssrEdit.tiles";
 		}
 		ussrService.update(map);
-		return "forward:/recommandView.do";
+		return "forward:/ussrView.do";
 	}
 
-	// 삭제처리
+	//삭제처리
 	@RequestMapping("/recommandDelete.do")
 	public String delete(@ModelAttribute("email") String email, @RequestParam Map map) throws Exception {
 		ussrService.delete(map);
@@ -109,6 +156,15 @@ public class UssrController {
 		return mapper.writeValueAsString(map);
 	}
 	
-	
+	@RequestMapping(value = "/likeInsert.do", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public @ResponseBody String likeInsert(@RequestParam Map map) throws Exception {
+		int affected = ussrService.likeCount(map);
+		if(affected==0) {
+			ussrService.likeInsert(map);
+			return "추천하셨습니다.";
+		}else {
+			return "이미 추천하셨습니다.";
+		}
+	}
 	
 }
