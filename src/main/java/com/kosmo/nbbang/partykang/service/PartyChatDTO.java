@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter*/
 public class PartyChatDTO {
 	private String chatno;
-	private String partyno;
-	private String chatpartnerid;
-	private String email;
+	private String partyno;	
+	private String participant;
+	private String bbswriter;
 	
 	public String getChatno() {
 		return chatno;
@@ -17,26 +17,23 @@ public class PartyChatDTO {
 	public void setChatno(String chatno) {
 		this.chatno = chatno;
 	}
-	
 	public String getPartyno() {
 		return partyno;
 	}
 	public void setPartyno(String partyno) {
 		this.partyno = partyno;
 	}
-	
-	public String getChatpartnerid() {
-		return chatpartnerid;
+	public String getParticipant() {
+		return participant;
 	}
-	public void setChatpartnerid(String chatpartnerid) {
-		this.chatpartnerid = chatpartnerid;
+	public void setParticipant(String participant) {
+		this.participant = participant;
 	}
-	
-	public String getEmail() {
-		return email;
+	public String getBbswriter() {
+		return bbswriter;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setBbswriter(String bbswriter) {
+		this.bbswriter = bbswriter;
 	}	
 	
 }
