@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -73,7 +74,6 @@ public class LoginNoutController {
 		
 		return result;
 	}
-	
 	
 	
 }
