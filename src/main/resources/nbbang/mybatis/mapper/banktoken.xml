@@ -9,8 +9,16 @@
 		insert into banktoken values(#{access_token},#{email},#{user_seq_no},#{user_ci})
 	</insert>
 	
+	<delete id="deleteToken" parameterType="Map">
+		delete banktoken WHERE email = #{email}
+	</delete>
+	
+	
 	<select id="selectAuth" parameterType="Map" resultType="Map">
 		select * from banktoken WHERE email = #{email}
 	</select>
+	
+	
+	
 	
 </mapper> 
