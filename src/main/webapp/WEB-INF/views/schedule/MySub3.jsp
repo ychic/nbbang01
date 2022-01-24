@@ -63,7 +63,7 @@
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="<c:url value='/secondFold.do' />" class="list-group-item" id="dFolder2">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span id="dfdn1" style="padding: 0px; margin: 0px;">${folderName.sfname}</span>
+					   <span id="dfdn1" style="padding: 0px; margin: 0px;">Watch</span>
 						   <form id="frmEditname1">
 						   <input type="text" id="inp1" name="dfldrName2" style="width:90px; border: none; display: none;">
 						   </form>
@@ -80,7 +80,7 @@
 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
 					   <a href="<c:url value='/thirdFold.do' />" class="list-group-item" id="dFolder3">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span id="dfdn2" style="padding: 0px; margin: 0px;">Life</span>
+					   <span id="dfdn2" style="padding: 0px; margin: 0px;">${folderName.sfname}</span>
 						   <form id="frmEditname2">
 						   <input type="text" id="inp2" name="dfldrName3" style="width:90px; border: none; display: none;">
 						   </form>
@@ -872,7 +872,6 @@
 			}
 		});
 	});
-	
 	
 	//구독 리스트 선택값 넘기기
 	

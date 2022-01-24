@@ -57,7 +57,7 @@
 					   <!-- 필수 폴더(수정/삭제 불가)--> 
 					   <a href="<c:url value='/mySub.do' />" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span>${folder.sfname}</span><span class="badge bg-primary rounded-pill">14</span></a>
+					   <span>${folderName.sfname}</span><span class="badge bg-primary rounded-pill">14</span></a>
 					   
 					   
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
@@ -298,9 +298,11 @@
 				      </div>
 				      <div class="modal-body">
 					      	<form action="<c:url value='/manual.do'/>" method="post">
-					          <div class="form-group">
-					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" id="subLogo">
+					      	
+					          <div class="form-group" style="padding-left: 165px;">
+					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" id="subLogo" style="display: none;"> <!-- visibility: hidden; -->
 					          </div>
+					         
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">구독서비스명</label>
 					            <input type="text" class="form-control" id="subName" name="subservice" value="" style="width:450px;display: inline-block;">
@@ -365,7 +367,7 @@
 								
 					          </div>
 					          <div class="form-group">
-					            <label for="recipient-name" class="control-label">다음 결제일</label>
+					            <label for="recipient-name" class="control-label">결제일</label>
 					            <input type="text" class="form-control" id="datepicker" name="paymentday">
 					          </div>
 					          <div class="form-group">
@@ -413,8 +415,8 @@
 						<table class="table table-hover" >
 						  <thead>
 						    <tr>
-						      <th class="col-sm-2" scope="col" >폴더 밸류(월)</th>
-						      <th class="col-sm-3" scope="col" >ex 120,000원</th>
+						      <th class="col-sm-2" scope="col" >${folderName.sfname}</th>
+						      <th class="col-sm-3" scope="col" >120,000원(월)</th>
 						      <th class="col-sm-3" scope="col" ></th>
 						      <th class="col-sm-3" scope="col" ></th>
 						      <th class="col-sm-1" scope="col" ></th>
@@ -427,7 +429,15 @@
 						  <c:if test="${not empty folder.mysubs}">
 						  		<c:forEach items="${folder.mysubs}" var="mysub">
 								    <tr class="ui-state-default">
-								      <td>로고</td>
+								      <td>
+									      <div class="form-group">
+										      <c:if test="${mysub.subservice eq '멜론'}">
+											      
+											      	<img src="<%=request.getContextPath()%>/resources/images_sub/logo_horizontal/melon.jpg" alt="로고이미지" > <!-- class="img-thumbnail" -->
+											      
+										      </c:if>
+						          		  </div>
+					          		  </td>
 								      <td>${mysub.subservice}</td>
 								      <td>${mysub.paymentday}</td>
 								      <td>${mysub.money}원</td>
@@ -856,6 +866,22 @@
 			['핀즐','<%=request.getContextPath()%>/resources/images_sub/lecture/033_pinzle.png','20,000원','핀즐은 국내 최다 해외 아티스트를 보유한 국내 유일 글로벌 아트 에이전시입니다. 삶과 예술에 대한 아티스트 인터뷰와 지면으로만 만날 수 있었던 콘텐츠까지, 바야흐로 그림을 정기구독하는 시대입니다.','https://pinzle.net/']
 			
 	];
+	//로고 뿌려주기
+	$('.subServiceList').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	
 	
 	//구독 리스트 선택값 넘기기
 	
@@ -863,7 +889,6 @@
 		var btnSeeMore = document.getElementsByClassName('btnSeeMore');
 		
 		$.each(btnSeeMore, function(index_1, item_1){
-			
 			if(e.target == item_1){
 				$.each(subObjectInfo, function(index, item){
 					
@@ -876,12 +901,15 @@
 					}
 				});
 			}
+
+			
 		});
 		if(!modalSeeMorebtn){
 			$('#modalSeeMore').css("display", "block");
 			modalSeeMorebtn = true;
 		}
 	});
+	
 	$('#modalSeeMoreDefault').click(function(){
 		if(modalSeeMorebtn){
 			$('#modalSeeMore').css("display", "none");

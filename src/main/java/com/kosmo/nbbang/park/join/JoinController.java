@@ -54,7 +54,6 @@ public class JoinController {
 		dfcmd3.setLife("Life");
 		dfcmd3.setEmail(cmd.getEmail());
 		
-		
 		map.put("preference",(Arrays.toString(cmd.getPreference())));
 		//서비스호출
 		joinService.memberInsert(map);
