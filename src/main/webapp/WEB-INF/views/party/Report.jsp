@@ -20,12 +20,18 @@
 		width:90%;
 		padding-bottom:30px;
 	}
+	.btns1{
+		width:100%;
+		display:inline-block;
+		text-align:center;
+		margin-left:100px;
+	}
 </style>
 
 <div class="container">
-	<div class="reportTitle">
-	신고 페이지
-	</div>
+	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">신고</h1>
+	<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">불편사항을 신고해 주시면 빠르게 처리하겠습니다.</h4>
+	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
    <div>
    <form id="myform" class="form-horizontal" method="post" action="<c:url value='/partyReportOk.do'/>">
    		<div class="form-group">
@@ -51,7 +57,7 @@
             </div>
     	</div>
    
-      	<hr>
+      	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
          <div class="form-group">
             <label class="col-sm-2 control-label">신고자 ID</label>
             
@@ -97,10 +103,9 @@
             </div>
          </div>
          
-         <div class="form-group" >
-            <div class="col-sm-offset-2 col-sm-4">
+         <div class="btns1">
                <button class="btn btn-warning" onclick="submit()">신고하기</button>
-            </div>
+               <button class="btn btn-secondary" onclick="location.href='partyBbs.do'">취소</button>
          </div>
       </form>
    </div>

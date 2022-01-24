@@ -47,4 +47,26 @@ public class PartyChatUtil {
 			return "fail";
 		}
 	}
+
+	public static String deleteMessage(String path, String filename) {
+		try {
+			File file = new File(path + File.separator + filename+".txt");			
+			if(!file.exists()) {
+				return "삭제할 파일이 없습니다";
+			}			
+			boolean sucNFai;
+			while(true) {
+				sucNFai = file.delete();
+				if(sucNFai)
+					break;
+			}
+			if(sucNFai)
+				return "삭제 성공";
+			else
+				return "삭제 실패";
+		}catch (SecurityException e) {
+			e.printStackTrace();
+			return "삭제 오류";
+		}
+	}
 }

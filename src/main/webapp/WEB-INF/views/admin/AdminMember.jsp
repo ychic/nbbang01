@@ -50,13 +50,14 @@
 											<th>Preference</th>
 											<th>Registdate</th>
 											<th>Authority</th>
+											<th>회원정지</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:if test="${! empty listPagingData.lists}" var="isEmpty">
 											<c:forEach items="${listPagingData.lists}" var="dto">
 												<tr>
-													<td>${dto.email}</td>
+													<td name="email" id="emailAdmin">${dto.email}</td>
 													<td>${dto.name}</td>
 													<td>${dto.nickname}</td>
 													<td>${dto.birthdate}</td>
@@ -66,6 +67,7 @@
 													<td>${dto.preference}</td>
 													<td>${dto.registdate}</td>
 													<td>${dto.authority}</td>
+													<td class="emailSubmit"><a href="#" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle" ></i></a></td>
 												</tr>
 											</c:forEach>
 										</c:if>
@@ -107,6 +109,35 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-
+	
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+	
+	<script>
+	/*
+	$(function(){
+		$('.emailSubmit').click(function(){
+			console.log("------------------");
+			console.log("클릭 이벤트 발생:",$("#emailAdmin").val());
+			console.log("파라미터값들:",$("#emailAdmin").html());
+			
+			//ajax로 요청]
+			$.ajax({
+				url:"<c:url value='/blackMember.do'/>",
+				data:$("#emailAdmin").html(),
+				dataType:"text",
+				type:"post",
+				success:function(data){
+					console.log("서버로부터 받은 데이타:",data);
+				}
+			});
+		});//click
+		
+		
+		
+	});
+	*/
+	
+	
+	</script>
 
 	<%@ include file="/WEB-INF/views/template/AdminFooter.jsp"%>

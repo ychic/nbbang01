@@ -121,12 +121,12 @@ public class IndexController {
 	public String recommandBbs() {
 		return "recommand/RecommandList.tiles";
 	}//추천 게시판
-	*/
+	
 	@RequestMapping("/freeList.do")
 	public String freeBbs() {
 		return "recommand/FreeList.tiles";
 	}//자유 게시판
-	/*
+	
 	@RequestMapping("/recommandWrite.do")
 	public String recommandWrite() {
 		return "recommand/RecommandWrite.tiles";
