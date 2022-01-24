@@ -90,10 +90,11 @@ public class BankingCallbackController {
 		
 			}
 			
-			return "<script>\n"
-					+ "getAllAccount()\n"
-					+ "openner.tmpWindow.close()\n"
-					+ "</script>";
+
+			return "<script>"
+					+ "\n opener.getAccount()\n"
+					+ "opener.tmpWindow.close()</script>";
+
 		}
 		
 }

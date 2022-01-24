@@ -63,7 +63,7 @@
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="<c:url value='/secondFold.do' />" class="list-group-item" id="dFolder2">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span id="dfdn1" style="padding: 0px; margin: 0px;">Watch</span>
+					   <span id="dfdn1" style="padding: 0px; margin: 0px;">${folderName.sfname}</span>
 						   <form id="frmEditname1">
 						   <input type="text" id="inp1" name="dfldrName2" style="width:90px; border: none; display: none;">
 						   </form>
@@ -78,7 +78,7 @@
 					   	</div>
  					   </a>
 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
-					   <a href="#" class="list-group-item" id="dFolder3">
+					   <a href="<c:url value='/thirdFold.do' />" class="list-group-item" id="dFolder3">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
 					   <span id="dfdn2" style="padding: 0px; margin: 0px;">Life</span>
 						   <form id="frmEditname2">
@@ -298,8 +298,8 @@
 				      </div>
 				      <div class="modal-body">
 					      	<form action="<c:url value='/manual.do'/>" method="post">
-					          <div class="form-group">
-					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" id="subLogo">
+					          <div class="form-group" style="padding-left: 165px;">
+					            <img src="..." alt="로고이미지" class="img-thumbnail" id="subLogo" style="display: none;"> <!-- visibility: hidden; -->
 					          </div>
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">구독서비스명</label>
@@ -413,8 +413,8 @@
 						<table class="table table-hover" >
 						  <thead>
 						    <tr>
-						      <th class="col-sm-2" scope="col" >폴더 밸류(월)</th>
-						      <th class="col-sm-3" scope="col" >ex 120,000원</th>
+						      <th class="col-sm-2" scope="col" >${folderName.sfname}</th>
+						      <th class="col-sm-3" scope="col" >120,000원(월)</th>
 						      <th class="col-sm-3" scope="col" ></th>
 						      <th class="col-sm-3" scope="col" ></th>
 						      <th class="col-sm-1" scope="col" ></th>
@@ -856,6 +856,23 @@
 			['핀즐','<%=request.getContextPath()%>/resources/images_sub/lecture/033_pinzle.png','20,000원','핀즐은 국내 최다 해외 아티스트를 보유한 국내 유일 글로벌 아트 에이전시입니다. 삶과 예술에 대한 아티스트 인터뷰와 지면으로만 만날 수 있었던 콘텐츠까지, 바야흐로 그림을 정기구독하는 시대입니다.','https://pinzle.net/']
 			
 	];
+	
+	//로고 뿌려주기
+	$('.subServiceList').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('#subLogo').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	
 	
 	//구독 리스트 선택값 넘기기
 	

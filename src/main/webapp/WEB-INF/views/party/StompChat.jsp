@@ -25,8 +25,8 @@
 		<ul class="nav nav-pills nav-stacked col-sm-3"
 			style="overflow: auto; height: 457px;">
 			<c:if test="${not empty chatList}" var="emptyList">
-				<c:forEach items="${chatList}" var="item">
-					<li><a id="p_${item.partyno}_${item.chatno}">${pnickname.get(item.chatpartnerid)}님과
+				<c:forEach items="${chatList}" var="item" varStatus="loop">
+					<li><a id="p_${item.partyno}_${item.chatno}">${pnickname.get(loop.index)}님과
 							채팅중입니다</a></li>
 				</c:forEach>
 			</c:if>
@@ -40,9 +40,9 @@
 					<h4>대화내용</h4>
 				</div>
 				<div class="col-md-offset-9" style="padding-left: 20px;">
-					<button type="button" class="btn btn-danger">신고</button>
+					<button id="report" type="button" class="btn btn-danger">신고</button>
 					<button id="confirm" type="button" class="btn btn-success" disabled="disabled">확정</button>
-					<button type="button" class="btn btn-waring">나가기</button>
+					<button id="quit" type="button" class="btn btn-waring">나가기</button>
 				</div>
 			</div>
 			<div class="col-md-12" style="padding-bottom: 5px;">
@@ -63,11 +63,7 @@
 				</div>
 			</div>
 			<div class="col-md-12" style="padding-top: 5px; padding-bottom: 5px;">
-				<div class="form-inline">
-					<div class="form-group">
-						<input class="btn btn-info" type="button" id="sendImgBtn"
-							value="이미지전송">
-					</div>
+				<div class="form-inline">					
 					<div class="form-group"
 						style="width: 80%; margin-left: 3px; margin-right: 3px;">
 						<label class="sr-only" for="message">메시지</label> <input
@@ -105,6 +101,7 @@
 			'client-id' : 'my-client-id'
 		};
 		var count = 0;
+		var isBbsWriter;
 		function connect() {
 			sock = new SockJS("<c:url value='/endpoint'/>");
 			client = Stomp.over(sock);
@@ -174,6 +171,60 @@
 				sendMessage();
 			}
 		});
+		
+		//채팅방 나가기
+		$('#quit').click(function(e) {
+			client.send("/roomIn/" + roomNo, {}, JSON.stringify({
+				"nickname" : nickname,
+				"message" : '채팅을 나갔습니다.',
+				"roomNo" : '' + roomNo
+			}));
+			var sendData;
+			if(isBbsWriter){	
+				sendData = {
+					"roomNo" : roomNo,					
+					'bbswriter' : '${email}' 
+				};
+			}else{
+				sendData = {
+					"roomNo" : roomNo,					
+					'participant' : '${email}' 
+				};
+			}
+			$.ajax({
+				url : "<c:url value="/roomout/quit.do"/>",
+				data : sendData,
+				type : 'post'				
+			}).done(function() {
+				client.disconnect(function() {	
+					console.log("연결종료");
+				});
+				//setTimeout(function() {
+				location.reload();
+				//}, 1000000);
+				
+			});			
+		});
+		
+		$('#confirm').click(function() {
+			client.send("/roomIn/" + roomNo, {}, JSON.stringify({
+				"nickname" : nickname,
+				"message" : '파티원으로 확정되셨습니다.',
+				"roomNo" : '' + roomNo
+			}));
+			$.ajax({
+				url : "<c:url value="/partybbs/addMember.do"/>",
+				data : {
+					"roomNo" : '' + roomNo,
+					"partyNo" : '' + partyNo
+				},
+				type : 'post'				
+			})
+			.done(function(data) {
+				alert(data);				
+			})			
+			.fail(function(e){ console.log(e)});
+		});
 
 		//입장버튼 클릭시 ]-서버와 연결된 웹소켓 클라이언트 생성
 		$('body > div.container > div.row > ul > li > a').click(
@@ -200,7 +251,7 @@
 					count++;
 					connect();
 					$.ajax({
-						url : "<c:url value="/message/getMessage.do"/>",
+						url : "<c:url value="/message/getData.do"/>",
 						data : {
 							"roomNo" : roomNo,
 							"partyNo" : partyNo
@@ -209,8 +260,8 @@
 						dataType : 'json'
 					}).done(function(data) {
 						//console.log(data);
-						if (data != "fail")
-							$('#chatMessage').append(data.message);
+						if (data.message != "fail")
+							$('#chatMessage').append(data.message);						
 						console.log(data.partyBbs);
 						$('#bbsTitle').text(data.partyBbs.partyTitle);
 						$('#leader').text(data.partyBbs.nickname);
@@ -233,8 +284,14 @@
 							default:
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/006_icon_wavve.png"/>', "hidden": false})
 						}
-						if(data.partyBbs.email == '${email}')
-							$('#confirm').removeProp('disabled');
+						if(data.partyBbs.email == '${email}'){
+							isBbsWriter = true;
+							if(data.confirmMember == 'abled'){
+								$('#confirm').removeProp('disabled');								
+							}							
+						}
+						if(data.confirmMember == 'disabled')
+							$('#quit').prop('disabled', 'disabled');
 					}).fail(
 							function(req, error) {
 								console.log('응답코드:%s,에러 메시지:%s,error:%s',

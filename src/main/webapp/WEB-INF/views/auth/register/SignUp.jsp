@@ -143,7 +143,7 @@
 												</div>
 											</div>
 											<!-- (DB순서상)usertype -->
-
+											
 											<!-- preference -->
 											<div class="col-md-10">
 												<div class="form-group">
@@ -174,6 +174,24 @@
 													</span>
 												</div>
 											</div>
+											
+											
+											<input type="hidden" name="authority" value="normal" />
+                          					<input type="hidden" name="oringinprofile" value="profile_image.png" />
+											<!-- (DB순서상)usertype -->
+											<!-- <div class="col-md-10" style="display: none;">
+												<div class="form-group">
+													<input type="text" class="form-control" name=authority value="normal" />
+												</div>
+											</div>
+											
+											
+											<div class="col-md-10" style="display: none;">
+												<div class="form-group">
+													<input type="text" class="form-control" name="oringinprofile" value="profile_image.png" />
+												</div>
+											</div> -->
+											
 										<!--  
 											<div class="col-md-12 my-4">
 												<div class="form-group">
@@ -186,6 +204,9 @@
 												</div>
 											</div>
 										-->
+											<!-- oringinprofile -->
+											
+											
 											<div class="col-md-12">
 												<div class="form-group" id="my-btn-signup">
 													<button type="submit" id="btnJoinOk" class="btn btn-primary submit p-3"

@@ -49,21 +49,23 @@ public class PartyController {
 	// 파티 채팅
 	@RequestMapping("/partyChat.do")
 	public String partyChat(@ModelAttribute("email") String email,Model model) {
-		//System.out.println("이메일:"+email);
-		List<PartyChatDTO> chatList = partyService.getMyChat(email);
+		System.out.println(email);
+		List<PartyChatDTO> chatList = partyService.getMyChatList(email);
 		String myNickName = partyService.getNickName(email);
-		Map map = new HashMap();		
+		List<String> partnerList = new Vector<>();		
 		for(PartyChatDTO dto : chatList) {
-			/*System.out.println(dto.getChatno());
-			System.out.println(dto.getPartyno());
-			System.out.println(dto.getChatpartnerid());
-			System.out.println(dto.getEmail());*/
-			String partner = partyService.getNickName(!email.equals(dto.getChatpartnerid()) ? dto.getChatpartnerid() : dto.getEmail());
-			//System.out.println(partner);
-			map.put(dto.getChatpartnerid(), partner);
+			String partnerId = email.equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
+			String partnerNickname;
+			if(partnerId != null)
+				partnerNickname = partyService.getNickName(partnerId);
+			else {
+				partnerNickname = "null";
+			}
+			System.out.println(partnerNickname);
+			partnerList.add(partnerNickname);
 		}		
 		model.addAttribute("nickname", myNickName);
-		model.addAttribute("pnickname", map);
+		model.addAttribute("pnickname", partnerList);
 		model.addAttribute("chatList", chatList);
 		//return "party/PartyChat.tiles";
 		return "party/StompChat.tiles";
@@ -84,15 +86,43 @@ public class PartyController {
 		return PartyChatUtil.saveMessage(path, roomNo, message);
 	}
 	
-	@RequestMapping(value = "/message/getMessage.do", produces = "text/plain; charset=UTF-8")
+	@RequestMapping(value = "/message/getData.do", produces = "text/plain; charset=UTF-8")
 	@ResponseBody
-	public String getData(@RequestParam String roomNo, @RequestParam String partyNo, HttpServletRequest req) throws JsonProcessingException {
+	public String getData(@ModelAttribute("email") String email, @RequestParam String roomNo, @RequestParam String partyNo, HttpServletRequest req) throws JsonProcessingException {
 		Map map = new HashMap();
 		String path=req.getServletContext().getRealPath("/chatList");		
 		String message = PartyChatUtil.getMessage(path, roomNo);
 		PartyBbsDTO partyBbs = partyService.getPartyBbs(partyNo);
+		PartyChatDTO dto = partyService.getMyChat(roomNo);
+		String partnerId = email.equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
+		String confirmMember;
+		if(partnerId != null) { 
+			confirmMember = partyService.getMember(partyNo, partnerId);
+			map.put("confirmMember", confirmMember);
+		}
 		map.put("message", message);
 		map.put("partyBbs", partyBbs);
 		return mapper.writeValueAsString(map);
+	}
+	
+	@RequestMapping(value = "/roomout/quit.do", produces = "text/plain; charset=UTF-8")
+	@ResponseBody
+	public void quit(@RequestParam Map map, HttpServletRequest req) {
+		String path=req.getServletContext().getRealPath("/chatList");
+		System.out.println(map.get("roomNo"));
+		String command = partyService.quitRoom(map);
+		if(command == "delete") {
+			System.out.println(PartyChatUtil.deleteMessage(path, map.get("roomNo").toString()));
+		}
+	}
+	
+	@RequestMapping(value = "/partybbs/addMember.do", produces = "text/plain; charset=UTF-8")
+	@ResponseBody
+	public String addMember(@ModelAttribute("email") String email, @RequestParam Map map) {
+		PartyChatDTO dto = partyService.getMyChat(map.get("roomNo").toString());
+		String partnerId = email.equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
+		map.put("partnerId", partnerId);
+		String message = partyService.addMember(map);
+		return message;
 	}
 }

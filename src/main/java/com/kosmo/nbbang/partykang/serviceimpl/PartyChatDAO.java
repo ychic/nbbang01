@@ -1,6 +1,8 @@
 package com.kosmo.nbbang.partykang.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +17,54 @@ public class PartyChatDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public List<PartyChatDTO> getMyChat(String email) {
-		return template.selectList("getMyChat", email);
+	public List<PartyChatDTO> getMyChatList(String email) {
+		return template.selectList("getMyChatList", email);
 	}
 
-	public String getNickName(String chatpartnerid) {
-		return template.selectOne("getNickName", chatpartnerid);
+	public String getNickName(String email) {
+		return template.selectOne("getNickName", email);
 	}
 
 	public PartyBbsDTO getPartyBbs(String partyNo) {
 		return template.selectOne("getPartyBbs", partyNo);
+	}
+
+	public void quitRoom(Map map) {
+		if(map.containsKey("bbswriter")) {
+			template.update("b_quitRoom", map);
+		}else {
+			template.update("p_quitRoom", map);
+		}				
+	}
+
+	public int checkNull(Map map) {		
+		return template.selectOne("checkNull", map);
+	}
+
+	public void deleteChat(Map map) {
+		template.selectOne("deleteChat", map);
+	}
+
+	public PartyChatDTO getMyChat(String roomNo) {
+		return template.selectOne("getMyChat", roomNo);
+	}
+
+	public void addMember(Map map) {
+		template.selectOne("addMember", map);
+	}
+
+	public int getMemberCount(String partyNo) {
+		return template.selectOne("getMemberCount", partyNo);
+	}
+
+	public int getBbsMemberCount(String partyNo) {
+		return template.selectOne("getBbsMemberCount", partyNo);
+	}
+
+	public int getMember(String partyNo, String partnerId) {
+		Map map = new HashMap();
+		map.put("partnerId", partnerId);
+		map.put("partyNo", partyNo);
+		return template.selectOne("getMember", map);
 	}
 }

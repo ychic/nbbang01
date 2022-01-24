@@ -130,6 +130,10 @@
 						<ul style="list-style: none; padding-left:0px; text-align: center;">
 							<li>
 								<!-- Kakao Button -->
+								<input type="hidden" id="kakaonickname" name="kakaonickname"/>
+								<input type="hidden" id="kakaoemail" name="kakaoemail"/>
+								<input type="hidden" id="kakaobirthday" name="kakaobirthday"/>
+								<input type="hidden" id="kakaogender" name="kakaogender"/>
 								<a href="javascript:kakaoLogin();"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_btn.png" alt="카카오 로그인"/></a>
 	                   		</li>
 	                   		<li>
@@ -155,24 +159,73 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script>
 		//315727d24edb4c7412171ffec5f8d047
-		window.Kakao.init("315727d24edb4c7412171ffec5f8d047");
-
+		Kakao.init('315727d24edb4c7412171ffec5f8d047');
+		console.log(Kakao.isInitialized())
+		//카카오로그인
 		function kakaoLogin() {
-		    console.log('시작')
-		    window.Kakao.Auth.login({
-		      scope:'account_email,gender,age_range,birthday',
-		      success: function(authObj){
-		        console.log(authObj);
-		        window.Kakao.API.request({
-		          url:'/v2/user/me',
-		          success: res=> {
-		            const kakao_account = res.kakao_account;
-		            console.log(kakao_account);
-		          }
-		        });
-		      }
-		    });
+		    Kakao.Auth.login({
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  console.log(response)
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })
+		  }
+		//카카오로그아웃  
+		function kakaoLogout() {
+		    if (Kakao.Auth.getAccessToken()) {
+		      Kakao.API.request({
+		        url: '/v1/user/unlink',
+		        success: function (response) {
+		        	console.log(response)
+		        },
+		        fail: function (error) {
+		          console.log(error)
+		        },
+		      })
+		      Kakao.Auth.setAccessToken(undefined)
+		    }
+		  }
+		
+		/*
+		Kakao.init("315727d24edb4c7412171ffec5f8d047");
+		function kakaoLogin(){
+			Kakao.Auth.login({
+				scope:'profile_nickname,account_email,gender,birthday',
+				success: function(authObj){
+					Kakao.API.request({
+						url:'/v2/user/me',
+				        success: res=> {
+				        	const kakaoNickname = res.kakao_profile_nickname;
+				        	const kakaoEmail = res.kakao_account.email;
+				        	const kakaoGender = res.kakao_gender;
+				        	const kakaoBirthday = res.kakao_birthday;
+				        	
+				        	console.log("kakaonickname:",kakaonickname);
+				        	console.log("kakaoemail:",kakaoemail);
+				        	console.log("kakaogender:",kakaogender);
+				        	console.log("kakaobirthday:",kakaobirthday);
+				        	
+				        	$('#kakaonickname').val(kakaonickname);
+				        	$('#kakaoemail').val(kakaoemail);
+				        	$('#kakaobirthday').val(kakaogender);
+				        	$('#kakaogender').val(kakaobirthday);
+				        	document.login_frm.submit();
+				        }
+					})
+				}
+			})
 		}
+		*/
 	</script>
 	<!-- 네이버로그인 스크립트
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>

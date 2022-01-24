@@ -34,13 +34,14 @@ public class OneByOneController {
 	
 	//문의 작성
 	@RequestMapping("/saveOBO.do")
-	public String writeOk(@RequestParam Map map,Model model) {
+	public String writeOk(@ModelAttribute("email") String email,@RequestParam Map map,Model model) {
 //		for(Map.Entry<String, String> entry : map.entrySet()) {
 //	         System.out.println(entry.getKey()+"-"+entry.getValue());
 //	      }
-		
+		map.put("email", email);
 		int affected = inquiryBbsService.insert(map);
 		System.out.println("affected:"+affected);
+		
 		
 		return "forward:/OBOList.do";
 	}

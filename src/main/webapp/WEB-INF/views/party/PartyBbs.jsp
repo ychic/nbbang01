@@ -113,9 +113,20 @@
 		position: absolute;
 		right: 20px;
 	}
+	.partyEnd{
+		position: absolute;
+		padding-top: 60px;
+		padding-left: 50px;
+	}
 	#bbsList{
 		width: 600px;
 		color: black
+	}
+	#addBt{
+		position:fixed;
+		right:400px;
+		top:600px;
+		z-index:10000;
 	}
 	.listBox{
 		border: 1px solid gray;
@@ -177,6 +188,7 @@
 		width: 100%;
 		float: left;
 		font-weight: bold;
+		font-size: 18px;
 	}
 	.detailBlank{
 		width: 100%;
@@ -198,71 +210,76 @@
 		width: 100%;
 		text-align: right;
 	}
+	.content_none{
+		width: 308px;
+		height: 156px;
+	}
 </style>
 
 <div id="bbs" class="container">
-		<div class="selectOTT">
-			<h4 class="ottText">보고싶은 OTT를 선택해주세요</h4>
+		<!-- <div class="selectOTT">
+			<h4 class="ottText">보고싶은 OTT를 선택해주세요</h4> -->
 			
 			<div class="blankSpace"></div>
 			
 			<div class="ottBox">
-				<div class="ottIcon" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
-					<div>
-						<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/001_icon_netflix.png" alt="">
-					</div>
-					<div class="ottName">넷플릭스</div>
-				</div>
+			
+				<a class="ottIcon" href="<c:url value="/netplixList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
+						<div>
+							<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/001_icon_netflix.png" alt="">
+						</div>
+						<div class="ottName">넷플릭스</div>
+				</a>
 				
-				<div class="ottIcon" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
+				<a class="ottIcon" href="<c:url value="/whatchaList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 					<div>
 						<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/002_icon_watcha.png" alt="">
 					</div>
 					<div class="ottName">왓챠</div>
-				</div>
+				</a>
 				
-				<div class="ottIcon" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
+				<a class="ottIcon" href="<c:url value="/disneyList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 					<div>
 						<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/003_icon_disney.png" alt="">
 					</div>
 					<div class="ottName">디즈니</div>
-				</div>
+				</a>
 				
-				<div class="ottIcon" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
+				<a class="ottIcon" href="<c:url value="/laftelList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 					<div>
 						<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/004_icon_laftel.png" alt="">
 					</div>
 					<div class="ottName">라프텔</div>
-				</div>
+				</a>
 				
-				<div class="ottIcon" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
+				<a class="ottIcon" href="<c:url value="/tvingList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 					<div>
 						<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/005_icon_tving.png" alt="">
 					</div>
 					<div class="ottName">티빙</div>
-				</div>
+				</a>
 				
-				<div class="ottIcon" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
+				<a class="ottIcon" href="<c:url value="/wavveList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 					<div>
 						<img class="ottImage" src="<%=request.getContextPath()%>/resources/party/006_icon_wavve.png" alt="">
 					</div>
 					<div class="ottName">웨이브</div>
-				</div>
+				</a>
 			</div>				
 		</div>
 	
 	<div class="blankSpace"></div>
 	
-	<div class="listCheck">
+<%-- 	<div class="listCheck">
 		<div class="twoImage">
 			<img src="<%=request.getContextPath()%>/resources/party/no2_image.png" alt="">
 		</div>
 		<div>
 			<h4 class="listCheckText">파티 매칭 리스트를 확인하시고 모집 또는 참여하세요!</h4>
 		</div>
-	</div>
+	</div> --%>
 	
-	<div class="watchingCategory">
+<%-- 	<div class="watchingCategory">
 		<div class="miniIcon">
 			<img class="miniIconImage" src="<%=request.getContextPath()%>/resources/party/001_icon_netflix.png" alt="">
 		</div>
@@ -272,70 +289,115 @@
 		<div class="watchingChange">
 		변경
 		</div>
-	</div>
+	</div> --%>
 	
 	<div id="bbsList" class="container">
 		<div class="blankSpace"></div>
 		<!-- 작성하기 버튼 -->
 		<div class="row">
 			<div class="col-md-12 text-right">
-				<a href="<c:url value="/partyBbsWrite.do"/>"
-					class="btn btn-warning">등록</a>
+				<a href="<c:url value="/partyBbsWrite.do"/>" id="addBt" class="btn btn-warning">등록</a>
 			</div>
 		</div>
 		
 		<div class="blankSpace"></div>
-		
-		<!-- 리스트 출력 -->
-		<c:forEach var="item" items="${partyBbsListPagingData.lists}" varStatus="loop">
+
+	<!-- 리스트 출력 -->
+	<c:if test="${not empty partyBbsListPagingData.lists}">
+
+		<c:forEach var="item" items="${partyBbsListPagingData.lists}"
+			varStatus="loop">
+			<div hidden="hidden">${item.partyNo }</div>
+			<c:if test="${item.partyActivation eq 'false'}">
+				<img class="partyEnd" alt=""
+					src="<%=request.getContextPath()%>/resources/party/party_end.png">
+			</c:if>
 			<div class="listBox">
 				<div class="blankSpace"></div>
 				<div class="profileBox">
-			   		<div>
-			   			<div class="userProfile">
-			   				<img class="userProfileImg" src="<%=request.getContextPath()%>/resources/images/profile/profile_image.png" alt="">
-			   			</div>
-			   			<div class="nickname">
-			   				${item.nickname }
-			   			</div>
-			   		</div>
+					<div>
+						<div class="userProfile">
+							<img class="userProfileImg"
+								src="<%=request.getContextPath()%>/resources/images/profile/<c:choose><c:when test="${not empty item.profile }">${item.profile }</c:when><c:otherwise>${item.oringinProfile }</c:otherwise> </c:choose>"
+								alt="">
+						</div>
+						<div class="nickname">${item.nickname }</div>
+					</div>
 				</div>
-				
+
 				<div class="partyTitleNCapa">
 					<h1 class="partyTitleText">${item.partyTitle }</h1>
 					<h2 class="partyMaxCapacity">(1/${item.partyMaxCapacity })</h2>
 				</div>
-				<div class="partyCategoryNameNMem">${item.partyCategoryName} / ${item.partyMembership}</div>
-				<div class="partyPostdate">${item.partyPostdate }</div>
-				<div class="price">${item.partyAllotmentPrice }원 / 1인당 <fmt:parseNumber var="price" integerOnly="true" value="${item.partyAllotmentPrice / item.partyMaxCapacity }"/>${price }원</div>
-				<div class="detailBlank"></div>
-				<div class="partyContent">
-					${item.partyContent }
+				<div class="partyCategoryNameNMem">
+					<c:choose>
+						<c:when test="${item.partyCategoryName eq 'netplix'}">
+											넷플릭스
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'whatcha'}">
+											왓챠
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'disney'}">
+											디즈니
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'laftel'}">
+											라프텔
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'tiving'}">
+											티빙
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'wavve'}">
+											웨이브
+										</c:when>
+					</c:choose>
 				</div>
+				
+				
+				
+				<div class="partyPostdate">${item.partyPostdate }</div>
+				<div class="price"><fmt:formatNumber value="${item.partyAllotmentPrice }" pattern="#,###" />원 / 1인당 <fmt:parseNumber var="price" integerOnly="true" value="${item.partyAllotmentPrice / item.partyMaxCapacity }" /><fmt:formatNumber value="${price }" pattern="#,###" />원</div>
+				<div class="detailBlank"></div>
+				<div class="partyContent">${item.partyContent }</div>
 				<div id="buttonArea" class="row">
 					<div class="col-md-12 text-right">
-						<c:if test="${email eq item.email || email eq 'nbbang@nbbang.com'}"><!-- 어드민 코드 수정하기 -->
-							<a href="<c:url value="#"/>" class="btn btn-warning">삭제</a>
+						<c:if
+							test="${email eq item.email || email eq 'nbbang@nbbang.com'}">
+							<!-- 어드민 코드 수정하기 -->
+							<a href="javascript:isDelete(${item.partyNo });"
+								class="btn btn-warning"
+								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>삭제</a>
 						</c:if>
-						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>"  class="btn btn-warning" >신고</a>
-						<a href="<c:url value="#"/>" class="btn btn-warning">대화하기</a>
+						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>" class="btn btn-warning"
+							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>신고</a>
+						<a href="<c:url value="#"/>" class="btn btn-warning"
+							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>대화하기</a>
 					</div>
 				</div>
 				<div class="blankSpace"></div>
 			</div>
 			<div class="blankSpace"></div>
+
 		</c:forEach>
-		<!-- 리스트 출력 끝 -->
-		<div class="blankSpace"></div>
+	</c:if>
+	<!-- 리스트 출력 끝 -->
+	<c:if test="${empty partyBbsListPagingData.lists}">
+		<div class="listBox">
+			<div style="text-align: center; padding-top: 100px; padding-bottom: 100px;">
+				<img class="contentNone"
+					src="<%=request.getContextPath()%>/resources/party/content_none.png"
+					alt="">
+			</div>
+		</div>
+	</c:if>
+	<div class="blankSpace"></div>
 	</div>
 </div>
 
-<!--
 <script>
-	function isDelete() {
-		if(confirm("정말로 삭제 하시겠습니까?")) {
-			location.replace("<c:url value="/partyBbsDelete.do?partyNo=${record.partyNo }"/>");
+	function isDelete(partyNo) {
+		if (confirm("정말로 삭제 하시겠습니까?")) {
+			location.replace("<c:url value='/partyBbsDelete.do?partyNo='/>"
+					+ partyNo);
 		}
 	}
 </script>
--->
