@@ -42,7 +42,7 @@
 				<div class="col-md-offset-9" style="padding-left: 20px;">
 					<button id="report" type="button" class="btn btn-danger">신고</button>
 					<button id="confirm" type="button" class="btn btn-success" disabled="disabled">확정</button>
-					<button id="quit" type="button" class="btn btn-waring">나가기</button>
+					<button id="quit" type="button" class="btn btn-waring" disabled="disabled">나가기</button>
 				</div>
 			</div>
 			<div class="col-md-12" style="padding-bottom: 5px;">
@@ -127,6 +127,10 @@
 			$('#chatMessage').append(
 					message.nickname + ">>" + message.message + "<br/>");
 			//}
+			if(message.message == '파티원으로 확정되셨습니다.'){
+				$('#confirm').prop("disabled", "disabled");
+				$('#quit').prop("disabled", "disabled");
+			}
 			$.ajax({
 				url : "<c:url value="/message/saveMessage.do"/>",
 				data : {
@@ -266,32 +270,45 @@
 						$('#bbsTitle').text(data.partyBbs.partyTitle);
 						$('#leader').text(data.partyBbs.nickname);
 						switch(data.partyBbs.partyCategoryName){
-							case '넷플릭스':
+							case 'netflix':
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/001_icon_netflix.png"/>', "hidden": false})
 								break;
-							case '왓챠':
+							case 'whtcha':
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/002_icon_watcha.png"/>', "hidden": false})
 								break;
-							case '디즈니':
+							case 'disney':
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/003_icon_disney.png"/>', "hidden": false})
 								break;
-							case '라프텔':
+							case 'laftel':
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/004_icon_laftel.png"/>', "hidden": false})
 								break;
-							case '티빙':
+							case 'tving':
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/005_icon_tving.png"/>', "hidden": false})
 								break;
 							default:
 								$('#ottimg').attr({"src":'<c:url value="/resources/party/006_icon_wavve.png"/>', "hidden": false})
 						}
 						if(data.partyBbs.email == '${email}'){
-							isBbsWriter = true;
-							if(data.confirmMember == 'abled'){
-								$('#confirm').removeProp('disabled');								
-							}							
+							isBbsWriter = true;														
 						}
-						if(data.confirmMember == 'disabled')
-							$('#quit').prop('disabled', 'disabled');
+						console.log(data.isMePartyMember)
+						if(data.partnerIsPartyMember.indexOf("아니다") == -1 ? false : true){
+							if(data.isMePartyMember.indexOf('맞다_파티장') == -1 ? false : true){
+								$('#confirm').removeProp("disabled");
+								$('#quit').removeProp("disabled");
+							}
+						}else if(data.partnerIsPartyMember.indexOf("맞다_멤버") == -1 ? false : true){
+							$('#confirm').prop("disabled", "disabled");
+							$('#quit').prop("disabled", "disabled");
+						}else if(data.partnerIsPartyMember.indexOf("맞다_파티장") == -1 ? false : true){
+							$('#confirm').prop("disabled", "disabled");
+							if(data.isMePartyMember.indexOf('아니다') == -1 ? false : true){
+								$('#quit').removeProp("disabled");
+							}
+							else if(data.isMePartyMember.indexOf('맞다_멤버') == -1 ? false : true){
+								$('#quit').prop("disabled", "disabled");
+							}
+						}
 					}).fail(
 							function(req, error) {
 								console.log('응답코드:%s,에러 메시지:%s,error:%s',

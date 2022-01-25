@@ -31,7 +31,7 @@ import com.kosmo.nbbang.partykang.serviceimpl.PartyServiceImpl;
 
 @SessionAttributes({"email","password"})
 @Controller
-public class PartyController {
+public class PartyChatController {
 	
 	@Autowired
 	private PartyServiceImpl partyService;
@@ -39,7 +39,7 @@ public class PartyController {
 	private SimpMessagingTemplate simpMessagingTemplate;
 
 	@Autowired
-	public PartyController(SimpMessagingTemplate simpMessagingTemplate) {
+	public PartyChatController(SimpMessagingTemplate simpMessagingTemplate) {
 		this.simpMessagingTemplate = simpMessagingTemplate;
 	}
 	
@@ -48,8 +48,11 @@ public class PartyController {
 	
 	// 파티 채팅
 	@RequestMapping("/partyChat.do")
-	public String partyChat(@ModelAttribute("email") String email,Model model) {
-		System.out.println(email);
+	public String partyChat(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
+		//System.out.println(email);
+		if(map.containsKey("partyNo")) {
+			partyService.createChat(map);
+		}
 		List<PartyChatDTO> chatList = partyService.getMyChatList(email);
 		String myNickName = partyService.getNickName(email);
 		List<String> partnerList = new Vector<>();		
@@ -95,11 +98,10 @@ public class PartyController {
 		PartyBbsDTO partyBbs = partyService.getPartyBbs(partyNo);
 		PartyChatDTO dto = partyService.getMyChat(roomNo);
 		String partnerId = email.equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
-		String confirmMember;
-		if(partnerId != null) { 
-			confirmMember = partyService.getMember(partyNo, partnerId);
-			map.put("confirmMember", confirmMember);
-		}
+		String partnerIsPartyMember = partyService.getMember(partyNo, partnerId);
+		String isMePartyMember = partyService.getMember(partyNo, email);
+		map.put("partnerIsPartyMember", partnerIsPartyMember);
+		map.put("isMePartyMember", isMePartyMember);
 		map.put("message", message);
 		map.put("partyBbs", partyBbs);
 		return mapper.writeValueAsString(map);
@@ -124,5 +126,10 @@ public class PartyController {
 		map.put("partnerId", partnerId);
 		String message = partyService.addMember(map);
 		return message;
+	}
+	
+	@RequestMapping("")
+	public String report(@RequestParam Map map, Model model) {
+		return "party/PartyBbsViewForReport.tiles";
 	}
 }
