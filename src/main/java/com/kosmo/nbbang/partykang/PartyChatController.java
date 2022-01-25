@@ -72,7 +72,6 @@ public class PartyChatController {
 		model.addAttribute("chatList", chatList);
 		//return "party/PartyChat.tiles";
 		return "party/StompChat.tiles";
-		//return "party/springex.tiles";
 	}
 	
 	@MessageMapping("roomIn/{roomNo}")
@@ -128,8 +127,4 @@ public class PartyChatController {
 		return message;
 	}
 	
-	@RequestMapping("")
-	public String report(@RequestParam Map map, Model model) {
-		return "party/PartyBbsViewForReport.tiles";
-	}
 }

@@ -45,13 +45,12 @@
 											<th>Title</th>
 											<th>Conversation Id-1</th>
 											<th>Conversation Id-2</th>
-											<th>Confirm No</th>
-											<th>ConfirmParty No</th>
-											
+											<th>Join</th>											
 										</tr>
 									</thead>
 									<tbody>
 										<!-- 중간발표용 데이터 수동입력 - 나중에 삭제해 주세요 -->
+										<!--  
 													<td>12</td>
 													<td>57</td>
 													<td>디즈니 함께봐요</td>
@@ -59,20 +58,16 @@
 													<td>park@google.com</td>
 													<td>33</td>
 													<td>24</td>
-													
-										<!--<c:if test="${! empty listPagingData.lists}" var="isEmpty">
+										-->			
+										<c:if test="${! empty listPagingData.lists}" var="isEmpty">
 											<c:forEach items="${listPagingData.lists}" var="dto">
 												<tr>
-													<td>${dto.email}</td>
-													<td>${dto.name}</td>
-													<td>${dto.nickname}</td>
-													<td>${dto.birthdate}</td>
-													<td>${dto.gender}</td>
-													<td>${dto.tel}</td>
-													<td>${dto.usertype}</td>
-													<td>${dto.preference}</td>
-													<td>${dto.registdate}</td>
-													<td>${dto.authority}</td>
+													<td>${dto.chatno}</td>
+													<td>${dto.partyno}</td>
+													<td>${dto.partytitle}</td>
+													<td>${dto.participant}</td>
+													<td>${dto.bbswriter}</td>
+													<td>${dto.member eq '1' ? 'Y' : 'N'}</td>
 												</tr>
 											</c:forEach>
 										</c:if>
@@ -80,7 +75,7 @@
 											<tr>
 												<td colspan="9">멤버를 불러오는데 실패했습니다</td>
 											</tr>
-										</c:if>-->
+										</c:if>
 									</tbody>
 								</table>
 							</div>

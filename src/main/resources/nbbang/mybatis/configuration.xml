@@ -48,6 +48,7 @@
 		<typeAlias type="com.kosmo.nbbang.park.web.SfnoDTO" alias="sfnoDTO"/>
 		<typeAlias type="com.kosmo.nbbang.mysub.SecondFolderDTO" alias="secondFolderDTO"/>
 		<typeAlias type="com.kosmo.nbbang.mysub.FolderNameDTO" alias="folderNameDTO"/>
+		<typeAlias type="com.kosmo.nbbang.service.AdminChatDTO" alias="adminChat"/>
 		
 		
 		<typeAlias type="com.kosmo.nbbang.service.ReportDTO" alias="reportDTO"/>

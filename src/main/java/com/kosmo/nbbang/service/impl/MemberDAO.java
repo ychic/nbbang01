@@ -35,8 +35,8 @@ public class MemberDAO {
 		return template.selectOne("findEmail", map);
 	}
 
-	public int getTotalRowCount(Map map) {		
-		return template.selectOne("getTotalRowCount", map);
+	public int getTotalRowCount() {		
+		return template.selectOne("getTotalRowCount");
 	}
 
 	public List selectAllMember(Map map) {		
@@ -53,6 +53,12 @@ public class MemberDAO {
 	}
 	public String authorityByEmail(Map map) {
 		return template.selectOne("getAuthorityByEmail", map);
+	}
+	public int getChatTotalRowCount() {
+		return template.selectOne("getChatTotalRowCount");
+	}
+	public List selectAllChat(Map map) {
+		return template.selectList("selectAllChat", map);
 	}
 	
 }//MemberDAO
