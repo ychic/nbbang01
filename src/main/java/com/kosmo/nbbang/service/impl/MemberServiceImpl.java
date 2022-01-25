@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.ls.LSOutput;
 
+import com.kosmo.nbbang.service.AdminChatDTO;
 import com.kosmo.nbbang.service.MemberDTO;
 import com.kosmo.nbbang.service.MemberListPaging;
 import com.kosmo.nbbang.service.MemberService;
@@ -58,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberListPaging<MemberDTO> selectAllMember(Map map, HttpServletRequest req, int nowPage) {
 		// 페이징을 위한 로직 시작]
 		// 전체 레코드수
-		int totalRecordCount = dao.getTotalRowCount(map);
+		int totalRecordCount = dao.getTotalRowCount();
 		// 전체 페이지수
 		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 		// 시작 및 끝 ROWNUM구하기
@@ -72,6 +73,25 @@ public class MemberServiceImpl implements MemberService {
 		String pagingString = PagingUtil.pagingMemberList(totalRecordCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/adminmember.do?");
 		// Lombok사용시
+		return MemberListPaging.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString)
+				.totalRecordCount(totalRecordCount).build();
+	}
+
+	@Override
+	public MemberListPaging<AdminChatDTO> selectAllChat(Map map, HttpServletRequest req, int nowPage) {
+		int totalRecordCount = dao.getChatTotalRowCount();
+		// 전체 페이지수
+		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
+		// 시작 및 끝 ROWNUM구하기
+		int start = (nowPage - 1) * pageSize + 1;
+		int end = nowPage * pageSize;
+		// 페이징을 위한 로직 끝]
+		map.put("start", start);
+		map.put("end", end);
+		// 글 전체 목록 얻기
+		List lists = dao.selectAllChat(map);
+		String pagingString = PagingUtil.pagingMemberList(totalRecordCount, pageSize, blockPage, nowPage,
+				req.getContextPath() + "/adminChat.do?");
 		return MemberListPaging.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString)
 				.totalRecordCount(totalRecordCount).build();
 	}

@@ -200,10 +200,10 @@ public class IndexController {
 		return "admin/AdminOneByOne";
 	}
 	*/
-	@RequestMapping("/adminChat.do")
+	/*@RequestMapping("/adminChat.do")
 	public String adminChat() {
 		return "admin/AdminChat";
-	}
+	}*/
 	
 	
 }//IndexController

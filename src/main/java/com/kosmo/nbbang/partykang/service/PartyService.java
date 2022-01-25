@@ -14,4 +14,5 @@ public interface PartyService {
 	PartyChatDTO getMyChat(String roomNo);
 	public String addMember(Map map);
 	String getMember(String partyNo, String partnerId);
+	void createChat(Map map);
 }

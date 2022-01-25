@@ -8,4 +8,6 @@ public interface MemberService {
 	int isLogin(Map map);
 	//멤버리스트
 	MemberListPaging<MemberDTO> selectAllMember(Map map, HttpServletRequest req, int nowPage);
+	//채팅리스트
+	MemberListPaging<AdminChatDTO> selectAllChat(Map map, HttpServletRequest req, int nowPage);
 }

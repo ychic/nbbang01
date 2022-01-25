@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kosmo.nbbang.service.AdminChatDTO;
 import com.kosmo.nbbang.service.MemberDTO;
 import com.kosmo.nbbang.service.MemberListPaging;
 import com.kosmo.nbbang.service.impl.MemberServiceImpl;
@@ -59,5 +60,16 @@ public class AdminMemberController {
 		}*/
 		model.addAttribute("listPagingData", listPagingData);
 		return "admin/AdminMain";
+	}
+	
+	@RequestMapping("/adminChat.do")
+	public String adminChat(
+			@RequestParam Map map,//검색 파라미터 및 페이징용 키값 저장용
+			@RequestParam(required = false,defaultValue = "1") int nowPage,
+	        HttpServletRequest req,//페이징에 사용할 컨텍스트 루트 경로 얻기용
+			Model model) {
+		MemberListPaging<AdminChatDTO> listPagingData = memberService.selectAllChat(map, req, nowPage);
+		model.addAttribute("listPagingData", listPagingData);
+		return "admin/AdminChat";
 	}
 }
