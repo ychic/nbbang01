@@ -85,14 +85,16 @@ public class BankingCallbackController {
 				//Test
 //				String email = "jsik@naver.com";
 				res.put("email", email);
-
+				int remove = innerservice.deleteToken(res);
 				int affect = innerservice.setAuth(res);
 		
 			}
 			
+
 			return "<script>"
 					+ "\n opener.getAccount()\n"
 					+ "opener.tmpWindow.close()</script>";
+
 		}
 		
 }

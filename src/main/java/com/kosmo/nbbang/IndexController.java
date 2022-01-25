@@ -61,7 +61,8 @@ public class IndexController {
 	public String schedule() {
 		return "schedule/ManagingSubMain.tiles";
 	}	
-
+	
+	/************************ P J H ****************************/
 	//내 구독 초기화면
 	@RequestMapping("/mySub.do")
 	public String mySub() {
@@ -74,6 +75,12 @@ public class IndexController {
 		return "forward:/mysub/secondFolderView.do";
 	}
 	
+	//mysub thirdFolder(Life)클릭 후 랜딩
+	@RequestMapping("/thirdFold.do")
+	public String thirdFold() {
+		return "forward:/mysub/thirdFolderView.do";
+	}
+	/************************      ****************************/
 	//내 스케쥴
 	@RequestMapping("/mySchedule.do")
 	public String mySchedule() {

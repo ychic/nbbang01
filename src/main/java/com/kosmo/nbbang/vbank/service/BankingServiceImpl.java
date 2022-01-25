@@ -19,6 +19,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.kosmo.nbbang.aoputils.NumUtils;
 
 @Service("bankingservice")
@@ -39,11 +42,25 @@ public class BankingServiceImpl implements BankingService {
 		Map result = new HashMap();
 		String url = "http://localhost:9125/oauth";
 
+		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setAccessControlAllowOrigin("*");
-		headers.setAccessControlAllowCredentials(true);
-		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(new LinkedMultiValueMap<String, String>(),headers);
+		headers.setAccessControlAllowCredentials(true);;
+		if(map.get("USER_CI")!=null) {
+			Set<String> keys = map.keySet();
+			for(String key : keys) {
+				headers.set(key,map.get(key).toString());
+			}
+			ObjectMapper mapper = new ObjectMapper();
+
+			System.out.println("여기 넣음 ! :");
+		
+		}
+		
+	
+		HttpEntity<String> entity = new HttpEntity("",headers);
+		System.out.println("entity 확인 : " + entity.getBody());
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<Map> response = rt.exchange(url, HttpMethod.GET, entity, Map.class);
 		result = response.getBody();
@@ -52,6 +69,7 @@ public class BankingServiceImpl implements BankingService {
 			System.out.println(entry + " - " + result.get(entry));
 		}
 
+		
 		if (result.get("resp_code").toString() != ResponeCode.OK) {
 			// 실패시 추가로 반환할게 있다면 이쪽으로
 

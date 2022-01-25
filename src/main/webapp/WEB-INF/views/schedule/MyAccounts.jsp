@@ -92,6 +92,7 @@
 		</div>
 	</c:if>
 
+	<input type="button" onclick="getAllAccount()" value="귀차낭이거쓸랭"/>
 	<div class="account-container" id="accountContainer">
 		<div class="account-new">
 			<span class="account-new-word">
@@ -151,7 +152,26 @@
            })
                                     
      })
+     
 	
-	
+	function getAllAccount(){
+		$.ajax({
+            url: '<c:url value="/user/account.do"/>',
+            type: 'GET',
+            cache : false,
+            data:{'email':'${sessionScope.email}'},
+            dataType: 'json',
+            success:function(data){
+         	   		console.log('success진입');
+                    // url을 담고 있음
+                    console.log(data);
+                    
+            },
+            error:function(e){
+                    console.log(e)
+            }
+                              
+        })
+	}
 
 </script>

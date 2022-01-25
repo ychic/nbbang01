@@ -25,6 +25,12 @@ public class InnerServiceImpl implements InnerService {
 		// TODO Auto-generated method stub
 		return dao.selectAuth(map);
 	}
+
+	@Override
+	public int deleteToken(Map res) {
+		// TODO Auto-generated method stub
+		return dao.deleteToken(res);
+	}
 	
 
 }

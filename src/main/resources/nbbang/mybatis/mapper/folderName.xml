@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.folderName">
+	
+	<select id="folderNameSlecOne" parameterType="Map" resultType="folderNameDTO">
+	<!-- 해당계정의 폴더의 정보 가져오기 -->
+		SELECT sfname FROM subfolder WHERE email=#{email} AND sfno=#{sfno} <!-- sfno으로 sfname 가져오기 -->
+	</select>
+</mapper> 

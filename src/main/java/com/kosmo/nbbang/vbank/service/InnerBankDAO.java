@@ -22,6 +22,11 @@ public class InnerBankDAO {
 		// TODO Auto-generated method stub
 		return template.selectOne("selectAuth", map);
 	}
+
+	public int deleteToken(Map res) {
+		// TODO Auto-generated method stub
+		return template.delete("deleteToken",res);
+	}
 	
 	
 
