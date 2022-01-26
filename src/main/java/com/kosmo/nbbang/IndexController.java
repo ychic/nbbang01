@@ -42,14 +42,6 @@ public class IndexController {
 	}
 	*/
 	
-	
-	
-	//파티원 메인
-	@RequestMapping("/party.do")
-	public String party() {
-		return "party/PartyMain.tiles";
-	}
-	
 	/*
 	//파티 채팅
 	@RequestMapping("/partyChat.do")
@@ -88,11 +80,7 @@ public class IndexController {
 	public String mySchedule() {
 		return "schedule/MySchedule.tiles";
 	}
-	//내 파티
-	@RequestMapping("/myParty.do")
-	public String myParty() {
-		return "schedule/MyParty.tiles";
-	}
+
 	/*
 	//내 리포트
 	@RequestMapping("/myReport.do")

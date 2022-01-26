@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.kosmo.nbbang.partybbs.service.PartyBbsListPagingData;
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
 import com.kosmo.nbbang.partybbs.service.PartyBbsService;
+import com.kosmo.nbbang.partykang.service.PartyChatDTO;
 import com.kosmo.nbbang.service.PagingUtil;
 
 @Service
@@ -50,7 +51,7 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 
 	// 넷플릭스 리스트
 	@Override
-	public PartyBbsListPagingData<PartyBbsDTO> netplixList(Map map, HttpServletRequest req, int nowPage) {
+	public PartyBbsListPagingData<PartyBbsDTO> netflixList(Map map, HttpServletRequest req, int nowPage) {
 		// 전체 레코드수
 		int totalRecordCount = dao.getTotalRowCount(map);
 		// 전체 페이지수
@@ -62,7 +63,7 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 		map.put("start", start);
 		map.put("end", end);
 		// 글 전체 목록 얻기
-		List lists = dao.netplixList(map);
+		List lists = dao.netflixList(map);
 		String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/party/PartyBbs.tiles?");
 
@@ -73,7 +74,7 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 
 	// 왓챠 리스트
 	@Override
-	public PartyBbsListPagingData<PartyBbsDTO> whatchaList(Map map, HttpServletRequest req, int nowPage) {
+	public PartyBbsListPagingData<PartyBbsDTO> watchaList(Map map, HttpServletRequest req, int nowPage) {
 		// 전체 레코드수
 		int totalRecordCount = dao.getTotalRowCount(map);
 		// 전체 페이지수
@@ -85,7 +86,7 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 		map.put("start", start);
 		map.put("end", end);
 		// 글 전체 목록 얻기
-		List lists = dao.whatchaList(map);
+		List lists = dao.watchaList(map);
 		String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/party/PartyBbs.tiles?");
 
@@ -188,11 +189,6 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 	}
 
 	@Override
-	public int getPartyMemberCount(Map map) {
-		return 0;
-	}
-
-	@Override
 	public int getTotalRecord(Map map) {
 		return 0;
 	}
@@ -208,14 +204,48 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 		return affected;
 	}
 
+	// 게시글 삭제
 	public int delete(Map map) {
 		return dao.delete(map);
 	}
 	
-	
 	//파티게시판 신고용
 	public PartyBbsDTO partySelectOne(Map map) {
 		return dao.partySelectOne(map);
+	}
+
+	// 게시글 활성화 확인
+	public String getActivation(Map map) {
+		return dao.getActivation(map);
+	}
+
+	// 마감하기
+	public int setActivation(Map map) {
+		return dao.setActivation(map);
+	}
+	
+	// 현재 참여중인 파티 리스트
+	public List<PartyBbsDTO> getList(String email) {
+		return dao.getList(email);
+	}
+
+	// 현재 파티 참여중인 인원수
+	public String nowPartyMember(String partyNo) {
+		return dao.nowPartyMember(partyNo);
+	}
+
+	// 해당 게시글 채팅에 참여중인지 확인
+	public String chatCheck(Map map) {
+		return dao.chatCheck(map);
+	}
+	// 게시글 내용 엔터 처리
+	public String getPartyContent(String partyNo) {
+		return dao.getPartyContent(partyNo);
+	}
+
+	// 신고 상제 현재 인원 표시
+	public String nowPartyMemberReport(Map map) {
+		return dao.nowPartyMemberReport(map);
 	}
 
 } // end PartyBbsServiceImpl

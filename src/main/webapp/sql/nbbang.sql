@@ -7,7 +7,7 @@ ALTER TABLE member MODIFY authority NULL;
 /* partybbs 컬럼추가 및 수정_김형태 */
 ALTER TABLE partybbs ADD partymatchdate DATE;
 ALTER TABLE partybbs RENAME COLUMN partytile TO partytitle;
-/* 2022-01-23 17:20 제약조건 수정_김형태 */
+/* 2022-01-23 17:20 제약조건 수정 시퀀스 이름 확인하기_김형태 */
 ALTER TABLE partymember DROP CONSTRAINT SYS_C007281;
 ALTER TABLE partymember add FOREIGN KEY(partyno) REFERENCES partybbs(partyno) ON DELETE CASCADE;
 /* ussrbbs 칼럼추가_황태환 */
