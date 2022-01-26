@@ -14,11 +14,16 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/first/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<!-- font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gugi&family=Jua&family=Montserrat:ital,wght@0,100;1,500&family=Nanum+Gothic&family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+	<!-- SocialLogin -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="84685836012-liev1gs62jmnf58m5k4iq7bd04usemdd.apps.googleusercontent.com">
+	<script src="<c:url value="/resources/js/socialLogin.js"/>"></script>
 </head>
 <style>
 	body{
@@ -124,137 +129,53 @@
 								</div>
 							</div>
 						</form>
-						
-						<!-- 소셜 로그인 영역 -->
-						<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-						<ul style="list-style: none; padding-left:0px; text-align: center;">
-							<li>
-								<!-- Kakao Button -->
-								<input type="hidden" id="kakaonickname" name="kakaonickname"/>
-								<input type="hidden" id="kakaoemail" name="kakaoemail"/>
-								<input type="hidden" id="kakaobirthday" name="kakaobirthday"/>
-								<input type="hidden" id="kakaogender" name="kakaogender"/>
-								<a href="javascript:kakaoLogin();"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_btn.png" alt="카카오 로그인"/></a>
-	                   		</li>
-	                   		<li>
-	                   			<!-- Naver Button -->
-	                   			<!-- 네이버 로그인 버튼 노출 영역 -->
-    							<div id="naver_id_login"></div>
-							</li>
-						</ul>
-						<!-- 소셜 로그인 아래 아이콘으로 대체 가능 -->
-						<!-- 
-				          <p class="social-media d-flex justify-content-center">
-							<a href="#" class="social-icon google d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a>
-							<a href="#" class="social-icon facebook d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-							<a href="#" class="social-icon twitter d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-						  </p>
-						-->
+						<form action="<c:url value='/sociallogin.do'/>" class="signin-form" method="post" id="form">
+							<!-- 소셜 로그인 영역 -->
+							<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+							<a href="#" onclick="social.kakao.login()"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_medium_wide.png" alt="카카오로그인"></a>
+							<div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn" data-width="300px" data-height="45px;" data-longtitle="true"></div>
+							<input type="hidden" name="loginType" id="loginType">
+							<input type="hidden" name="nickname" id="nickname">
+							<input type="hidden" name="email" id="email">
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- 카카오로그인 스크립트 -->
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script>
-		//315727d24edb4c7412171ffec5f8d047
-		Kakao.init('315727d24edb4c7412171ffec5f8d047');
-		console.log(Kakao.isInitialized())
-		//카카오로그인
-		function kakaoLogin() {
-		    Kakao.Auth.login({
-		      success: function (response) {
-		        Kakao.API.request({
-		          url: '/v2/user/me',
-		          success: function (response) {
-		        	  console.log(response)
-		          },
-		          fail: function (error) {
-		            console.log(error)
-		          },
-		        })
-		      },
-		      fail: function (error) {
-		        console.log(error)
-		      },
-		    })
-		  }
-		//카카오로그아웃  
-		function kakaoLogout() {
-		    if (Kakao.Auth.getAccessToken()) {
-		      Kakao.API.request({
-		        url: '/v1/user/unlink',
-		        success: function (response) {
-		        	console.log(response)
-		        },
-		        fail: function (error) {
-		          console.log(error)
-		        },
-		      })
-		      Kakao.Auth.setAccessToken(undefined)
-		    }
-		  }
-		
-		/*
-		Kakao.init("315727d24edb4c7412171ffec5f8d047");
-		function kakaoLogin(){
-			Kakao.Auth.login({
-				scope:'profile_nickname,account_email,gender,birthday',
-				success: function(authObj){
-					Kakao.API.request({
-						url:'/v2/user/me',
-				        success: res=> {
-				        	const kakaoNickname = res.kakao_profile_nickname;
-				        	const kakaoEmail = res.kakao_account.email;
-				        	const kakaoGender = res.kakao_gender;
-				        	const kakaoBirthday = res.kakao_birthday;
-				        	
-				        	console.log("kakaonickname:",kakaonickname);
-				        	console.log("kakaoemail:",kakaoemail);
-				        	console.log("kakaogender:",kakaogender);
-				        	console.log("kakaobirthday:",kakaobirthday);
-				        	
-				        	$('#kakaonickname').val(kakaonickname);
-				        	$('#kakaoemail').val(kakaoemail);
-				        	$('#kakaobirthday').val(kakaogender);
-				        	$('#kakaogender').val(kakaobirthday);
-				        	document.login_frm.submit();
-				        }
-					})
-				}
-			})
-		}
-		*/
-	</script>
-	<!-- 네이버로그인 스크립트
-	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-	<script type="text/javascript">
-		var naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "IDTJqfsvpsBdWUOIxuQ6",
-				callbackUrl: "http://127.0.0.1:5500/Login/Naver_callback.html",
-				isPopup: false, /* 팝업을 통한 연동처리 여부 */
-				loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
-			}
-		);
-		
-		/* 설정정보를 초기화하고 연동을 준비 */
-		naverLogin.init();
-		
-	</script> -->
+	/*
+	function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  var id_token = googleUser.getAuthResponse().id_token;
+		  var xhr = new XMLHttpRequest();
+		  console.log('ID: ' + profile.getId());
+		  console.log('Full Name: ' + profile.getName());
+		  console.log('Email: ' + profile.getEmail());		  
+		  xhr.open('POST', 'http://localhost:9575/nbbang/login/oauth2/code/google/tokensignin');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+		    console.log('Signed in as: ' + xhr.responseText);
+		  };
+		  console.log('idtoken=' + id_token);
+		  xhr.send('idtoken=' + id_token);
+	}
+	*/
+	$(function () {
+		social.kakao.init();
+		social.google.init("googleBtn");
+	});
 	
-    <!-- //네이버 로그인 버튼 노출 영역 -->
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <script type="text/javascript">
-  		var naver_id_login = new naver_id_login("5vJ27b1p_lyH_cEGabdU", "lLz670SL2n");
-	  	var state = naver_id_login.getUniqState();
-	  	naver_id_login.setButton("green",3,60);
-	  	naver_id_login.setDomain("http://localhost:8080/nbbang/index.do");
-	  	naver_id_login.setState(state);
-	  	naver_id_login.setPopup();
-	  	naver_id_login.init_naver_id_login();
-    </script>
+	function socialGetInfo(info) {
+		console.log("info.type:",info.type);
+		console.log("info.nm:",info.nm);
+		console.log("info.email:",info.email);
+		$('#loginType').val(info.type);
+		$('#nickname').val(info.nm);
+		$('#email').val(info.email);
+		setTimeout($('#form').submit(), 2000);
+	}
+	</script>
 </body>
 </html>
 

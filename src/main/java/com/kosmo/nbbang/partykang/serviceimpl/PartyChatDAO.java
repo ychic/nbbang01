@@ -61,10 +61,15 @@ public class PartyChatDAO {
 		return template.selectOne("getBbsMemberCount", partyNo);
 	}
 
-	public int getMember(String partyNo, String partnerId) {
+	public String getMember(String partyNo, String partnerId) {
 		Map map = new HashMap();
 		map.put("partnerId", partnerId);
 		map.put("partyNo", partyNo);
+		System.out.println(partyNo);
 		return template.selectOne("getMember", map);
+	}
+
+	public void createChat(Map map) {
+		template.insert("createChat", map);
 	}
 }

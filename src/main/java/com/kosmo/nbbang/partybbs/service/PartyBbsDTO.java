@@ -18,6 +18,9 @@ public class PartyBbsDTO {
 	private String nickname;
 	private String profile;
 	private String oringinProfile;
+	private String partyLeader;
+	private String count;
+	private String chatExists;
 	
 	// 생성자
 	public PartyBbsDTO() {
@@ -25,7 +28,7 @@ public class PartyBbsDTO {
 	
 	public PartyBbsDTO(String partyNo, String partyTitle, String partyContent, Date partyPostdate,
 			String partyMaxCapacity, String partyActivation, String partyAllotmentPrice, String partyCategoryName,
-			String partyMembership, String email, Date partyMatchdate, String nickname, String profile, String oringinProfile) {
+			String partyMembership, String email, Date partyMatchdate, String nickname, String profile, String oringinProfile, String partyLeader, String count, String chatExists) {
 		super();
 		this.partyNo = partyNo;
 		this.partyTitle = partyTitle;
@@ -41,6 +44,9 @@ public class PartyBbsDTO {
 		this.nickname = nickname;
 		this.profile = profile;
 		this.oringinProfile = oringinProfile;
+		this.partyLeader = partyLeader;
+		this.count = count;
+		this.chatExists = chatExists;
 	}
 
 	// Getter, Setter
@@ -128,6 +134,30 @@ public class PartyBbsDTO {
 	}
 	public void setOringinProfile(String oringinProfile) {
 		this.oringinProfile = oringinProfile;
+	}
+
+	public String getPartyLeader() {
+		return partyLeader;
+	}
+
+	public void setPartyLeader(String partyLeader) {
+		this.partyLeader = partyLeader;
+	}
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	public String getChatExists() {
+		return chatExists;
+	}
+
+	public void setChatExists(String chatExists) {
+		this.chatExists = chatExists;
 	}
 	
 } // end PartyBbsDTO 

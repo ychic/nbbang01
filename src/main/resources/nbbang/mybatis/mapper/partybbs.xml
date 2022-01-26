@@ -29,22 +29,22 @@
 		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	
-	<select id="netplixList" parameterType="Map" resultType="partyBbsDTO">
+	<select id="netflixList" parameterType="Map" resultType="partyBbsDTO">
 		SELECT * FROM 
 		(SELECT T.*, ROWNUM R FROM 
 			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
 				partybbs p JOIN member m ON m.email = p.email
 				ORDER BY partyactivation DESC, partyno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'netplix'
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'netflix'
 	</select>
 	
-	<select id="whatchaList" parameterType="Map" resultType="partyBbsDTO">
+	<select id="watchaList" parameterType="Map" resultType="partyBbsDTO">
 		SELECT * FROM 
 		(SELECT T.*, ROWNUM R FROM 
 			(SELECT p.*, m.nickname, m.profile, m.oringinprofile FROM 
 				partybbs p JOIN member m ON m.email = p.email
 				ORDER BY partyactivation DESC, partyno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'whatcha'
+		WHERE R BETWEEN #{start} AND #{end} AND partyCategoryName = 'watcha'
 	</select>
 	
 	<select id="disneyList" parameterType="Map" resultType="partyBbsDTO">
@@ -86,11 +86,7 @@
 	<select id="partyBbsTotalRowCount" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM partybbs p JOIN member m ON m.email = p.email
 	</select>
-<!-- 	
-	<select id="selectPartyMember" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo}
-	</select>
- -->
+
 	<insert id="partyBbsInsert" parameterType="Map">
 		INSERT INTO partybbs
 		VALUES(SEQ_partybbs_partyno.NEXTVAL,#{partyTitle},
@@ -103,7 +99,40 @@
 	</delete>
 	
 	<select id="partybbsSelectOne" parameterType="Map" resultMap="partyBbsDTOResult">
-		SELECT p.*,m.name FROM member m JOIN partybbs p ON m.email=p.email WHERE partyNo=#{partyNo}	
+		SELECT p.*,m.nickname,m.profile, m.oringinprofile FROM member m JOIN partybbs p ON m.email=p.email WHERE partyNo=#{partyNo}	
+	</select>
+	
+	<select id="getActivation" parameterType="Map" resultType="String">
+		SELECT partyactivation FROM partybbs WHERE partyno = #{partyNo}
+	</select>
+	
+	<update id="setActivation" parameterType="Map" >
+		UPDATE partybbs SET partyactivation ='false' WHERE partyno=#{partyNo}
+	</update>
+	
+	<select id="getList" parameterType="String" resultType="partyBbsDTO">
+		SELECT p.*, pm.pmmember, pm.partyleader FROM
+		partybbs p JOIN partymember pm ON p.partyno = pm.partyno
+		WHERE pm.pmmember = #{email}
+	</select>
+	
+	<select id="nowPartyMember" parameterType="Map" resultType="String">
+		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo}
+	</select>
+	
+	<select id="nowPartyMemberReport" parameterType="Map" resultType="String">
+		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo}
+	</select>
+	
+	<select id="getPartyContent" parameterType="Map" resultType="String">
+		SELECT partycontent FROM partybbs WHERE partyno = #{partyNo}
+	</select>
+	
+	<select id="chatCheck" parameterType="Map" resultType="String">
+		SELECT count(*) FROM chat
+		WHERE partyno = #{partyNo} AND 
+		participant= #{participant} AND
+		bbswriter= #{bbswriter}
 	</select>
 	
 </mapper> 

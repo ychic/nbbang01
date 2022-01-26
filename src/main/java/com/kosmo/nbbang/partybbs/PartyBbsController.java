@@ -1,6 +1,8 @@
 package com.kosmo.nbbang.partybbs;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo.nbbang.partybbs.service.PartyBbsListPagingData;	
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
+import com.kosmo.nbbang.partybbs.service.PartyBbsListPagingData;
 import com.kosmo.nbbang.partybbs.service.impl.PartyBbsServiceImpl;
 import com.kosmo.nbbang.service.impl.PartyMemberServiceImpl;
 
@@ -29,56 +31,114 @@ public class PartyBbsController {
 	@Autowired
 	private PartyMemberServiceImpl partyMemberService;
 
+
 	// 파티원 게시판
 	@RequestMapping("/partyBbs.do")
-	public String partyBbs(@ModelAttribute("email") String email, @RequestParam Map map,
-			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+	public String partyBbs(@ModelAttribute("email") String email, @ModelAttribute("partyNo") String partyNo,
+			@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage,
+			HttpServletRequest req, Model model) {
 
 		// 서비스 호출
 		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.selectList(map, req, nowPage);
-		
+
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
+		
 		return "party/PartyBbs.tiles";
 	}
+	
 
 	// 파티원 게시판-넷플릭스
-	@RequestMapping("/netplixList.do")
-	public String partyBbsNetplix(@ModelAttribute("email") String email, @RequestParam Map map,
+	@RequestMapping("/netflixList.do")
+	public String partyBbsNetflix(@ModelAttribute("email") String email, @RequestParam Map map,
 			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
 
 		// 서비스 호출
-		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.netplixList(map, req,
-				nowPage);
-
+		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.netflixList(map, req, nowPage);
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
 		return "party/PartyBbs.tiles";
 	}
-	
+
 	// 파티원 게시판-왓챠
-	@RequestMapping("/whatchaList.do")
-	public String partyBbsWhatcha(@ModelAttribute("email") String email, @RequestParam Map map,
+	@RequestMapping("/watchaList.do")
+	public String partyBbsWatcha(@ModelAttribute("email") String email, @RequestParam Map map,
 			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
 
 		// 서비스 호출
-		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.whatchaList(map, req,
-				nowPage);
-
+		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.watchaList(map, req, nowPage);
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
 		return "party/PartyBbs.tiles";
 	}
-	
+
 	// 파티원 게시판-디즈니
 	@RequestMapping("/disneyList.do")
 	public String partyBbsDisney(@ModelAttribute("email") String email, @RequestParam Map map,
 			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
 
 		// 서비스 호출
-		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.disneyList(map, req,
-				nowPage);
-
+		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.disneyList(map, req, nowPage);
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
 		return "party/PartyBbs.tiles";
@@ -90,13 +150,22 @@ public class PartyBbsController {
 			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
 
 		// 서비스 호출
-		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.laftelList(map, req,
-				nowPage);
-
-//		
-//		partyBbsListPagingData.setContent(partyBbsListPagingData.getLists();
-//		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
-//		
+		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.laftelList(map, req, nowPage);
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
 		return "party/PartyBbs.tiles";
@@ -108,28 +177,54 @@ public class PartyBbsController {
 			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
 
 		// 서비스 호출
-		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.tvingList(map, req,
-				nowPage);
-
+		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.tvingList(map, req, nowPage);
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
 		return "party/PartyBbs.tiles";
 	}
-	
+
 	// 파티원 게시판-웨이브
 	@RequestMapping("/wavveList.do")
 	public String partyBbsWavve(@ModelAttribute("email") String email, @RequestParam Map map,
 			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
 
 		// 서비스 호출
-		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.wavveList(map, req,
-				nowPage);
-
+		PartyBbsListPagingData<PartyBbsDTO> partyBbsListPagingData = partyBbsService.wavveList(map, req, nowPage);
+		List<PartyBbsDTO> lists = partyBbsListPagingData.getLists();
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : lists) {
+			map.put("partyNo", dto.getPartyNo());
+			map.put("bbswriter", dto.getEmail());
+			map.put("participant", email);
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			String content = partyBbsService.getPartyContent(dto.getPartyNo());
+			String chatExists = partyBbsService.chatCheck(map);
+			dto.setChatExists(chatExists);
+			dto.setCount(count);
+			dto.setPartyContent(content.replace("\r\n","<br/>"));
+			temp.add(dto);
+		}
+		partyBbsListPagingData.setLists(temp);
 		// 데이터 저장
 		model.addAttribute("partyBbsListPagingData", partyBbsListPagingData);
 		return "party/PartyBbs.tiles";
 	}
-	
+
 	// 파티원 게시판 글 작성으로 이동
 	@RequestMapping(value = "/partyBbsWrite.do", method = RequestMethod.GET)
 	public String partyBbsWrite(@ModelAttribute("email") String email) {
@@ -145,23 +240,36 @@ public class PartyBbsController {
 		return "forward:/partyBbs.do";
 	}
 
-	// 삭제처리]
+	// 파티원 게시판 글 삭제 (자식까지 모두)
 	@RequestMapping("/partyBbsDelete.do")
 	public String delete(@ModelAttribute("email") String email, @RequestParam Map map) throws Exception {
 		partyBbsService.delete(map);
 		return "forward:/partyBbs.do";
 	}
 
-	// 신고를 위한 뷰페이지
-	// 상세보기]
+	// 파티원 게시판 신고된 게시글 상세
 	@RequestMapping("/partyBbsView.do")
 	public String partyBbsView(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 		PartyBbsDTO record = partyBbsService.partySelectOne(map);
-
 		record.setPartyContent(record.getPartyContent().replace("\r\n", "<br/>"));
 		model.addAttribute("record", record);
-
+		String nowPartyMemberReport = partyBbsService.nowPartyMemberReport(map);
+		System.out.println("nowPartyMemberReport : " + nowPartyMemberReport);
+		model.addAttribute("nowPartyMemberReport", nowPartyMemberReport);
 		return "party/PartyBbsViewForReport.tiles";
+	}
+
+	// 신고된 게시글 마감 처리
+	@RequestMapping("/closedParty.do")
+	public String ClosedParty(@RequestParam Map map, Model model) {
+		String strPartyNo = (String) map.get("partyNo");
+		int partyNo = Integer.parseInt(String.valueOf(strPartyNo));
+		String partyActivation = partyBbsService.getActivation(map);		
+		int affected = partyBbsService.setActivation(map);
+		if (affected == 1) {
+			return "admin/AdminMain";
+		}
+		return "first";
 	}
 
 } // end PartyBbsController

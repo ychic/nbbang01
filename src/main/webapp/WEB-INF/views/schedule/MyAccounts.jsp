@@ -8,19 +8,21 @@
 .account-title {
 	width: 500px;
 	font-family: 'Jua', sans-serif;
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 500;
 	margin: 50px auto 20px auto;
 }
 
-.account-container {
-	width: 500px;
-	height: 800px;
-	margin: 0 auto 50px auto;
-	border: none 1px #A1A1A1;
-	border-radius: 20px;
+
+.account-container{
+	width:600px;
+	height:800px;
+	margin:0 auto 50px auto;
+	border:none 1px #A1A1A1;
+	border-radius:20px;
 	overflow: auto;
-	background-color: #95e1d3;
+	background-color:#d3d3d3;
+
 }
 
 .account-new {
@@ -36,20 +38,57 @@
 
 .account-new-word {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 700;
 }
 
-.account-card {
-	width: 300px;
-	height: 185px;
-	border: solid 2px #A1A1A1;
-	border-radius: 20px;
-	text-align: center;
-	line-height: 100px;
-	margin: 50px auto 0px auto;
-	background-color: #fff;
+.account-card{
+	position:relative;
+	width:300px;
+	height:185px;
+	border-radius:20px;
+	text-align:center;
+	line-height:30px;
+	margin:50px auto 0px auto;
+	background-color:#fff;
+
 }
+.accountNum, .bankName, .accountNickname{
+	position:absolute;
+	font-size: 18px;
+}
+.bankName{
+	top:20px;
+	right:10px;
+	position:absolute;
+}
+.accountNum{
+	top:80px;
+	left:60px;
+	position:absolute;
+	font-size: 18px;
+}
+.accountNickname{
+	top:140px;
+	left:10px;
+	position:absolute;
+}
+
+/* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
+.account-container::-webkit-scrollbar {
+    width: 15px;
+}
+.account-container::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+.account-container::-webkit-scrollbar-track {
+    background-color: #f38181;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 
 /* 광고 영역 */
 .ad_one, .ad_two {
@@ -101,14 +140,19 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 
 <!-- 본문 -->
 <div class="container">
+	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">계좌등록</h1>
+	<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">계좌를 등록하고 편하게 이용하세요.</h4>
+	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 
 	<c:if test="${not empty sessionScope.email}" var="isLogin">
 		<div class="account-title">
+
 			'<span style="color: #f38181">${sessionScope.email}</span>' 님의 계좌 조회
 		</div>
 	</c:if>
 
 <%-- 	<input type="button" onclick="getAllAccount()" value="귀차낭이거쓸랭" />--%>
+
 	<div class="account-container" id="accountContainer">
 		<div class="account-new" id="accountNew">
 			<span class="account-new-word"> <a
@@ -222,6 +266,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
             success:function(data){
          	   		console.log('success진입');
                     // url을 담고 있음
+                    console.log(data.Location);
                     console.log(data);
                     if(data.resp_code=='A0000'){
                     	 var list = data.res_list;
@@ -231,16 +276,15 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
                          })
                     }else{
                     	console.log('데이터가 없습니다.')
-                    }
- 
-                    
+                    }          
             },
             error:function(e){
                     console.log(e)
-            }
-                              
-        })
+            }          
+            
+        });  
 	}
+
 	
 	function setIgnoreCases(data){
 		var item= new Object(); 
@@ -256,7 +300,6 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
-
 
 
 </script>

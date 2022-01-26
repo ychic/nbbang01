@@ -35,4 +35,8 @@ public class InquiryCommentDAO {
 		return template.update("inqCommentUpdate",map);
 	}
 
+	public String getNickname(Map map) {
+		return template.selectOne("inqCommentGetNickname",map);
+	}
+
 }

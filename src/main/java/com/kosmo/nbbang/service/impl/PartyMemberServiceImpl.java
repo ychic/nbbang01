@@ -23,5 +23,4 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 		}
 		return affected;
 	}
-
 }

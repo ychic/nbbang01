@@ -61,11 +61,21 @@ public class PartyServiceImpl implements PartyService{
 	}
 	@Override
 	public String getMember(String partyNo, String partnerId) {
-		int isMember = dao.getMember(partyNo, partnerId);
-		if(isMember == 1)
-			return "disabled";
-		else
-			return "abled";
+		String isMember = dao.getMember(partyNo, partnerId);
+		if(isMember != null) {
+			if(isMember.equals("Y")) {
+				return "맞다_파티장";
+			}else {
+				return "맞다_멤버";
+			}
+		}else {
+			return "아니다";
+		}		
+	}
+
+	@Override
+	public void createChat(Map map) {
+		dao.createChat(map);		
 	}
 
 }

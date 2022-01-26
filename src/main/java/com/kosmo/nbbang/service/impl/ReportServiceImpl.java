@@ -29,13 +29,15 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public int insert(Map map) {
-		// TODO Auto-generated method stub
 		return dao.insert(map);
 	}
 	@Override
 	public int insertParty(Map map) {
-		// TODO Auto-generated method stub
 		return dao.insertParty(map);
+	}
+	@Override
+	public int insert404(Map map) {
+		return dao.insert404(map);
 	}
 
 	@Override
@@ -54,14 +56,6 @@ public class ReportServiceImpl implements ReportService {
 		// 키값으로 얻기위함
 		map.put("start", start);
 		map.put("end", end);
-
-		System.out.println("totalRecordCount: " + totalRecordCount);
-		System.out.println("totalPage: " + totalPage);
-		System.out.println("start: " + start);
-		System.out.println("end: " + end);
-		System.out.println("pageSize: " + pageSize);
-		System.out.println("blockPage: " + blockPage);
-		System.out.println("nowPage" + nowPage);
 
 		// 글 전체 목록 얻기
 		List lists = dao.selectList(map);
@@ -89,6 +83,7 @@ public class ReportServiceImpl implements ReportService {
 	public int getTotalRecord(Map map) {
 		return 0;
 	}
+	
 
 	
 	
