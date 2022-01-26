@@ -29,6 +29,10 @@
 		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
 		null,#{partyNo})
 	</insert>
+	<insert id="reportInsert404" parameterType="Map" >
+		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
+		null,null)
+	</insert>
 	
 	<select id="reportSelectList" parameterType="Map" resultType="reportDTO">
 		SELECT * FROM 

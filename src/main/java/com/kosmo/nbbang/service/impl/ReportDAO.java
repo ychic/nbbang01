@@ -20,9 +20,15 @@ public class ReportDAO {
 	private SqlSessionTemplate template;
 	
 	public int insert(Map map) {	
-		
 		return template.insert("reportInsert", map);
 	}//insert
+	public int insertParty(Map map) {
+		return template.insert("reportInsertParty", map);
+	}
+
+	public int insert404(Map map) {
+		return template.insert("reportInsert404", map);
+	}
 
 	public int getTotalRowCount(Map map) {
 		SqlSession session = sqlMapper.openSession();
@@ -40,9 +46,6 @@ public class ReportDAO {
 		return lists;
 	}
 
-	public int insertParty(Map map) {
-		// TODO Auto-generated method stub
-		return template.insert("reportInsertParty", map);
-	}
+	
 
 }

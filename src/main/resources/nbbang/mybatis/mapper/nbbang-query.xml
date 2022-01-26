@@ -8,19 +8,22 @@
 <mapper namespace="nbbang.mybatis.mapper.nbbang-query">
 
 	<select id="memberIsLogin" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM member WHERE email=#{email} AND password=#{password}
+		SELECT COUNT(*) FROM member WHERE email=#{email} AND password=#{password, jdbcType=VARCHAR}
+	</select>
+	<select id="socialLogin" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM member WHERE email=#{email}
 	</select>
 	<select id="findEmail" parameterType="Map" resultType="String">
 		SELECT email FROM member WHERE name=#{name} AND tel=#{tel}
 	</select>
 	<select id="getNickname" parameterType="Map" resultType="String">
-		SELECT nickname FROM member WHERE email=#{email} AND password=#{password}
+		SELECT nickname FROM member WHERE email=#{email} AND password=#{password, jdbcType=VARCHAR}
 	</select>
 	<delete id="memberDelete" parameterType="Map">
 		DELETE member WHERE email=#{email} AND password=#{password}
 	</delete>
 	<select id="getBlackMember" parameterType="Map" resultType="String">
-		SELECT authority FROM member WHERE email=#{email} AND password=#{password}
+		SELECT authority FROM member WHERE email=#{email} AND password=#{password, jdbcType=VARCHAR}
 	</select>
 	<update id="setBlackMember" parameterType="Map" >
 		UPDATE member SET authority='black' WHERE email=#{email}

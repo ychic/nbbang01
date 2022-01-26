@@ -51,10 +51,20 @@ public class BankingController {
 	 */
 	
 	@GetMapping(value="/user/auth.do",produces = {"application/json"})
-	public Map getUrl(@RequestParam Map map) {
+	public Map getUrl(@RequestParam Map map,HttpSession session) {
+		map.put("email", session.getAttribute("email").toString());
+		Map<String,String> res = innerservice.getAuth(map);
+//		res.put("email", session.getAttribute("email").toString());
+		res.put("location",map.get("location").toString());
+		if( res !=null) {
+			for(Map.Entry<String, String> entry : res.entrySet()) {
+				System.out.println(entry.getKey() + " - " + String.valueOf(entry.getValue()));
+			}
+		}
+		
 		System.out.println("getUrl메소드 진입");
-		System.out.println("res: "+map.get("location"));
-		Map test = bankingservice.requestAuthUrl(map);
+		System.out.println("res: "+res.get("location"));
+		Map test = bankingservice.requestAuthUrl(res);
 		System.out.println("도착!");
 		return test;
 	}
@@ -82,6 +92,12 @@ public class BankingController {
 //	         System.out.println(entry.getKey()+"-"+entry.getValue());
 //	      }
 //		System.out.println("=========================res========================");
+		
+		Set<String> keys =res.keySet();
+		
+		for(String key : keys) {
+			System.out.println(key+ " - " + map.get(key));
+		}
 		
 		return bankingservice.getUserAccounts(res);
 	}

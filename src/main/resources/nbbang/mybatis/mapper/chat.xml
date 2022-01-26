@@ -36,7 +36,10 @@
 	<insert id="addMember" parameterType="Map">
 		INSERT INTO partymember VALUES(SEQ_PARTYMEMBER_PMNO.NEXTVAL, #{partyNo}, #{partnerId}, 'N')
 	</insert>
-	<select id="getMember" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM partymember WHERE partyno = #{partyNo} AND pmmember = #{partnerId}
+	<select id="getMember" parameterType="Map" resultType="String">
+		SELECT partyleader FROM partymember WHERE partyno = #{partyNo} AND pmmember = #{partnerId}
 	</select>
+	<insert id="createChat" parameterType="Map">
+		INSERT INTO chat VALUES(SEQ_CHAT_CHATNO.NEXTVAL, #{partyNo}, #{participant}, #{bbsWriter})
+	</insert>
 </mapper>

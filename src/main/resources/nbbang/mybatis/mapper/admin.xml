@@ -8,7 +8,20 @@
 		(SELECT T.*,ROWNUM R FROM (SELECT * FROM member ORDER BY registdate DESC) T) 
 		WHERE R BETWEEN #{start} AND #{end}
 	</select>
-	<select id="getTotalRowCount" parameterType="Map" resultType="int">
+	<select id="getTotalRowCount" resultType="int">
 		SELECT COUNT(*) FROM member
+	</select>
+	<select id="getChatTotalRowCount" resultType="int">
+		SELECT COUNT(*) FROM chat
+	</select>
+	<select id="selectAllChat" parameterType="Map" resultType="adminChat">
+		SELECT * FROM
+		(SELECT T.*,ROWNUM R FROM 
+		(SELECT c.chatno, b.partyno, b.partytitle, c.participant, c.bbswriter, 
+		(SELECT COUNT(*) from partymember 
+		WHERE pmmember = c.participant AND partyno = c.partyno) member 
+		FROM partybbs b JOIN chat c ON b.partyno = c.partyno
+        ORDER BY c.chatno DESC) T)
+        WHERE R BETWEEN #{start} AND #{end}		 
 	</select>
 </mapper>

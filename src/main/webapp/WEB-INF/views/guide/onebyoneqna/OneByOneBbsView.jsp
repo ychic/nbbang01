@@ -11,6 +11,7 @@
 	margin-top:80px;
 	font-size:15px;
 	color:black;
+
 }
 
 th, td{
@@ -22,7 +23,6 @@ th, td{
 	text-align:center;
 }
 .isReport{
-	margin-right:500px;
 }
 th{
 	background-color:#95e1d3;
@@ -47,6 +47,22 @@ td{
 .resultComment{
 	margin-bottom:20px;
 }
+
+/* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
+.scollDesign::-webkit-scrollbar {
+    width: 15px;
+}
+.scollDesign::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+.scollDesign::-webkit-scrollbar-track {
+    background-color: #f38181;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 
 
 /* 광고 영역 */
@@ -93,18 +109,17 @@ td{
 		<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 		
 		<div class="row">
-			<!-- 버튼과 거리두기 스타일 -->
-			<div class="col-md-offset-2 col-md-8" style="margin-bottom:50px;">
-					<!-- 제목 -->
-					<div style="font-size:30px;font-weight:bold;">${record.inqtitle}</div>
-					<!-- 작성자 및 게시일 -->
-					<span>${record.nickname}</span><div style="float:right">${record.inqpostdate}</div>
-					<!-- 구분선  -->
-					<hr class="col-md-offset-2 col-md-8" style="width:725px;margin-left:0px;"/>
-					<!-- 내용 -->
-					<div style="font-size:20px;">${record.inqcontent}</div>
-			</div>
-			
+				<!-- 버튼과 거리두기 스타일 -->
+				<div class="col-md-offset-2 col-md-8" style="margin-bottom:50px; ">
+						<!-- 제목 -->
+						<div style="font-size:30px;font-weight:bold;">${record.inqtitle}</div>
+						<!-- 작성자 및 게시일 -->
+						<span>${record.nickname}</span><div style="float:right">${record.inqpostdate}</div>
+						<!-- 구분선  -->
+						<hr class="col-md-offset-2 col-md-8" style="width:725px;margin-left:0px;"/>
+						<!-- 내용 -->
+						<div class="scollDesign" style="font-size:20px;height:290px;overflow:auto;width:770px;">${record.inqcontent}</div>
+				</div>
 			<!-- 버튼 위치 스타일 -->
 			<div class="btns1">
 					<button class="btn btn-info isList" onclick="javascript:isList();">목록</button>
@@ -143,9 +158,9 @@ td{
 									<div>
 										<c:if test="${sessionScope.email==comment.email}" var="isOwn">
 											<span class='update' style="cursor: pointer;margin-left:665px;font-size:12px">수정</span> | 
-											<span class='delete' style="cursor: pointer;font-size:12px">삭제</span>
+											<a onclick="javascript:isComDelete();"><span class='delete' style="cursor: pointer;font-size:12px">삭제</span></a>
 										</c:if>
-										<c:if test="${not isOwn}">작성자가 아닙니다.</c:if>
+										
 									</div>
 								</div>
 								
@@ -187,12 +202,11 @@ td{
 					
 					<div class="card mb-3">
 						<h5 class="card-header">Leave a Comment:</h5>
-						<div class="card-body">
-							<form name="comment-form" action="<c:url value='/oneByOneBbsView.do?inqno=${record.inqno}'/>" method="post" autocomplete="off">
-								<div class="form-group">
+						<div class="card-body"><!-- action="<c:url value='/oneByOneBbsView.do?inqno=${record.inqno}'/>" -->
+							<form name="comment-form" id="frm" action="<c:url value='/oneByOneBbsView.do?inqno=${record.inqno}'/>" method="post" autocomplete="off">
 									<input type="hidden" name="inqno" value="${record.inqno}" />
 									<input type="hidden" name="comno"/>
-									<textarea name="comcontent" cols="97" rows="3"></textarea>
+									<textarea name="comcontent" id="comcontent" cols="97" rows="3"></textarea>
 								</div>
 								<button type="submit" id="submit" class="btn btn-primary" value="등록">댓글등록</button>
 							</form>
@@ -255,6 +269,14 @@ td{
 			location.replace("<c:url value='/OBODelete.do?inqno=${record.inqno}&nowPage=${param.nowPage}'/>");
 		}
 	}
+	//댓글삭제
+	function isComDelete(){
+		if(confirm("댓글을 정말로 삭제하시겠습니까?")){
+			location.replace("<c:url value='/inqCommentDelete.do?comno=${comno}'/>");
+		}
+	}
+	
+	
 	function isReport(){
 		if(confirm("정말로 신고하시겠습니까?")){
 			location.replace("<c:url value='/oboReport.do?inqno=${record.inqno}&inqtitle=${record.inqtitle}&email=${record.email}&inqpostdate=${record.inqpostdate}&inqcontent=${record.inqcontent}'/>");
@@ -308,6 +330,7 @@ td{
 	$("#submit").click(function(){
 		console.log("클릭 이벤트 발생:",$(this).val());
 		console.log("파라미터값들:",$("#frm").serialize());
+		console.log("내용:",$('#comcontent').val());
 		
 		if($(this).val()==='등록'){
 			action="<c:url value="/inqCommentWrite.do"/>";
@@ -361,6 +384,7 @@ td{
 		*/
 	});
 	//삭제 클릭시 삭제처리하기
+	/*
 	$(document).on('click','.delete',function(){
 		var comno = $(this).attr('title').split(":")[0];
 		if(confirm("정말로 삭제 하시겠습니까?")){
@@ -377,4 +401,5 @@ td{
 			});
 		}
 	});
+	*/
 </script>

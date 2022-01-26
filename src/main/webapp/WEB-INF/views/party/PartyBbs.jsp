@@ -363,12 +363,24 @@
 				</div>
 				<div class="partyCategoryNameNMem">
 					<c:choose>
-						<c:when test="${item.partyCategoryName eq 'netflix'}">넷플릭스</c:when>
-						<c:when test="${item.partyCategoryName eq 'watcha'}">왓챠</c:when>
-						<c:when test="${item.partyCategoryName eq 'disney'}">디즈니</c:when>
-						<c:when test="${item.partyCategoryName eq 'laftel'}">라프텔</c:when>
-						<c:when test="${item.partyCategoryName eq 'tving'}">티빙</c:when>
-						<c:when test="${item.partyCategoryName eq 'wavve'}">웨이브</c:when>
+						<c:when test="${item.partyCategoryName eq 'netflix'}">
+											넷플릭스
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'watcha'}">
+											왓챠
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'disney'}">
+											디즈니
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'laftel'}">
+											라프텔
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'tiving'}">
+											티빙
+										</c:when>
+						<c:when test="${item.partyCategoryName eq 'wavve'}">
+											웨이브
+										</c:when>
 					</c:choose>
 				</div>
 				<div class="partyPostdate">${item.partyPostdate }</div>
@@ -393,19 +405,20 @@
 								class="btn btn-warning"
 								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>삭제</a>
 						</c:if>
-						<a
-							href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>"
-							class="btn btn-warning"
-							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>신고</a>
-						<c:if test="${email ne item.email && item.chatExists ne '1'}">
+						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>" class="btn btn-warning"
+							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>신고</a>		
+						<c:if test="${email ne item.email}">				
 							<form style="display: inline-flex;" action="<c:url value='/partyChat.do'/>" method="post">
-								<input hidden="hidden" name="partyNo" value="${item.partyNo}" />
-								<input hidden="hidden" name="participant" value="${email}" />
-								<input hidden="hidden" name="bbsWriter" value="${item.email}" />
-								<input class="btn btn-warning" type="submit" value="대화하기"
-								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if> />
+								<input hidden="hidden" name="partyNo" value="${item.partyNo}"/>							
+								<input hidden="hidden" name="participant" value="${email}"/>
+								<input hidden="hidden" name="bbsWriter" value="${item.email}"/>
+								<input class="btn btn-warning" type="submit" value="대화하기" <c:if test="${item.partyActivation eq 'false'}">disabled</c:if>/>							
 							</form>
 						</c:if>
+						<!--  
+						<a href="<c:url value="#"/>" class="btn btn-warning"
+							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>대화하기</a>
+						-->
 					</div>
 				</div>
 				<div class="blankSpace"></div>
