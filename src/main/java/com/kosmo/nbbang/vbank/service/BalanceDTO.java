@@ -21,7 +21,16 @@ public class BalanceDTO {
 	public String accountIssueDate;
 	public String maturityDate;
 	public String lastTranDate;
+	public String email;
 	
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getApiTranId() {
 		return apiTranId;
 	}

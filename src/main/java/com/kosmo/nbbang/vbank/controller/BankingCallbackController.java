@@ -46,10 +46,10 @@ public class BankingCallbackController {
 				System.out.println(entry.getKey()+" - " + entry.getValue());
 			}
 			
-			
-			
+	
 			//callback Eventhanlder
 			Map res  =bankingservice.setAuthToken(map);
+			String fintech_use_num = res.get("fintech_use_num").toString();
 			
 			//Test
 //			String result = "{\r\n"
@@ -90,10 +90,11 @@ public class BankingCallbackController {
 		
 			}
 			
-
 			return "<script>"
-					+ "\n opener.getAccount()\n"
-					+ "opener.tmpWindow.close()</script>";
+					+ "\n var data = String(\"" + fintech_use_num + "\")"
+					+ "\n alert(data)"
+					+ "\n opener.getAccount(data)\n"
+					+ "this.close()\n</script>";
 
 		}
 		

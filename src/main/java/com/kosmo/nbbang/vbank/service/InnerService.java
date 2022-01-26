@@ -15,6 +15,9 @@ public interface InnerService {
 
 
 	public int deleteToken(Map res);
+
+
+	public Map test(Map map);
 	
 	
 }
