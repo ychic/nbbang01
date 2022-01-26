@@ -47,5 +47,9 @@
 		DELETE inquirycomment WHERE comno=#{comno}
 	</delete>
 	
+	<select id="inqCommentGetNickname" parameterType="Map" resultType="String">
+		SELECT m.nickname, ic.* from member m join inquirycomment ic on ic.email=m.email WHERE comno=#{comno}
+	</select>
+	
 	
 </mapper>

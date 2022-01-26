@@ -14,6 +14,8 @@ ALTER TABLE partymember add FOREIGN KEY(partyno) REFERENCES partybbs(partyno) ON
 ALTER TABLE ussrbbs ADD NAVCATEGORY nvarchar2(30) NOT NULL;
 /* report 테이블에 컬럼추가_김수연 */
 ALTER TABLE report ADD inqno number
+ALTER TABLE report ADD partyno number
+ALTER TABLE report RENAME COLUMN reportbbsno TO reportbbs;
 
 /* Drop Tables */
 

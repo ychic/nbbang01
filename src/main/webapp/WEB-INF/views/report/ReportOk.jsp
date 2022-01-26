@@ -5,16 +5,21 @@
 
 <!-- 신고 확인 페이지 -->
 <style>
+/*
 .reportTitle{
 	color:black;
 	font-size:50px;
-	height: 500px;
+	height: 600px;
 }
+*/
 
 </style>
 <div class="container">
-	<div class="reportTitle">
-	신고가 성공적으로 접수되었습니다. 감사합니다.
+	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;font-size:50px;height: 100px;">신고가 성공적으로 접수되었습니다. 감사합니다.</h1>
+	<div>
+		<button class="btn btn-warning isUpdate" onclick="location.href='first.do'" style="margin-left:50px">대문으로 가기</button>
 	</div>
+	<hr class="col-md-12" style="width:900px;margin-left:50px;margin-bottom:300px;"/>
+	
 </div>
 

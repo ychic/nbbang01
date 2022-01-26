@@ -2,7 +2,6 @@ package com.kosmo.nbbang.service;
 
 import java.sql.Date;
 
-import org.springframework.stereotype.Component;
 
 /*
 @Getter

@@ -44,7 +44,7 @@ public class LoginNoutController {
 			model.addAttribute("NotMember","아이디와 비밀번호가 일치하지 않습니다.");
 			return "auth/login/Login";
 		} else if(map.get("email").equals("nbbang@nbbang.com")) {
-			//관리자 로그인
+			//관리자 로그인, 아래 modal 확인해서 필요없으면 지우기 
 			model.addAttribute("nickname",nickname);
 			return "admin/AdminMain";
 		} else if(blackMember.equals("black")) {

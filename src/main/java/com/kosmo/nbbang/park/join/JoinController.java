@@ -43,7 +43,7 @@ public class JoinController {
 	public String joinCheck(JoinFormCommand cmd,Model model,@RequestParam Map map,
 							DefaultDTO dfcmd, DefWatchDTO dfcmd2, DefLifeDTO dfcmd3) {
 		
-		if(!validate(cmd,model)) {	//유효성 실패
+		if(!validate(cmd,model,map)) {	//유효성 실패
 			model.addAttribute("preference",Arrays.toString(cmd.getPreference()));	//체크된거 유지
 			return "auth/register/SignUp";
 		}
@@ -66,7 +66,7 @@ public class JoinController {
 	}
 	
 	//유효성 검증 메소드
-	private boolean validate(JoinFormCommand cmd,Model model) {
+	private boolean validate(JoinFormCommand cmd,Model model,Map map) {
 		if(cmd.getEmail().trim().equals("")) {
 			model.addAttribute("emailError","이메일을 입력하세요");
 			return false;
@@ -76,10 +76,14 @@ public class JoinController {
 			model.addAttribute("emailError","이메일형식이 아닙니다");
 			return false;
 		}
-		if(cmd.getPassword().trim().equals("")) {
+		if(cmd.getPassword().trim().equals("") && map.get("loginType")==null) {
 			model.addAttribute("passwordError","비밀번호를 입력하세요");
 			return false;
 		}
+		else if(cmd.getPassword().trim().equals("") && map.get("loginType")!=null) {
+			return true;
+		}
+		
 		String patternPassword = "^[a-z0-9A-Z]{4,20}$";
 		if(!(Pattern.matches(patternPassword, cmd.getPassword()))) {
 			model.addAttribute("passwordError","4자 이상 입력해주세요");

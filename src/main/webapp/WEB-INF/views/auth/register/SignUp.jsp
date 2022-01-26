@@ -84,7 +84,7 @@
 											<!-- name -->
 											<div class="col-md-10">
 												<div class="form-group">
-													<input type="text" id="id_name" class="form-control" placeholder=이름 name="name" value="${param.name}" />
+													<input type="text" id="id_name" class="form-control" placeholder=이름 name="name" value="${param.name}${param.nickname}" />
 													<span style="color: red; font-size: .8em">${nameError}
 															<form:errors path="formCommand.name" />
 													</span>
