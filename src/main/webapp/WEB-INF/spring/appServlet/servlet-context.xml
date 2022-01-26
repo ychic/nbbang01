@@ -58,4 +58,6 @@
     </websocket:message-broker>
     
 	<beans:bean id="mapper" class="com.fasterxml.jackson.databind.ObjectMapper"></beans:bean>
+	
+	
 </beans:beans>

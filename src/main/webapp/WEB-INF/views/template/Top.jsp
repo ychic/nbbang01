@@ -187,7 +187,7 @@
 							
 							
 							
-							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${sessionScope.nickname} 님</a>
+							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${sessionScope.nickname}${param.nickname} 님</a>
 							
 							
 							

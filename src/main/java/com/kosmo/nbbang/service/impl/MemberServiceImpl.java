@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.ls.LSOutput;
 
 import com.kosmo.nbbang.service.MemberDTO;
 import com.kosmo.nbbang.service.MemberListPaging;
@@ -24,6 +23,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int isLogin(Map map) {
 		return dao.isLogin(map);
+	}// isLogin
+	
+	@Override
+	public int socialLogin(Map map) {
+		return dao.socialLogin(map);
 	}// isLogin
 
 	public String getNickname(Map map) {
@@ -75,11 +79,5 @@ public class MemberServiceImpl implements MemberService {
 		return MemberListPaging.builder().lists(lists).nowPage(nowPage).pageSize(pageSize).pagingString(pagingString)
 				.totalRecordCount(totalRecordCount).build();
 	}
-
-	
-	
-
-	
-
 	
 }
