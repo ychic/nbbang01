@@ -35,10 +35,12 @@ public class IndexController {
 		return "auth/register/SignUp";
 	}
 	//신고하기
+	/*
 	@RequestMapping("/reportPage.do")
 	public String reportPage() {
 		return "report/Report.tiles";
 	}
+	*/
 	
 	
 	
@@ -110,7 +112,11 @@ public class IndexController {
 	}
 	
 	
-	
+	//이미지분석 test
+	@RequestMapping("/imageAnalysis.do")
+	public String imageAnalysis() {
+		return "recommand/ImageAnalysis.tiles";
+	}
 	/*//추천 메인
 	@RequestMapping("/recommand.do")
 	public String recommand() {

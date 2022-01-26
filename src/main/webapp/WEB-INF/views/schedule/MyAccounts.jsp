@@ -7,19 +7,19 @@
 .account-title{
 	width:500px;
 	font-family: 'Jua', sans-serif;
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 500;
 	margin:50px auto 20px auto;
 }
 
 .account-container{
-	width:500px;
+	width:600px;
 	height:800px;
 	margin:0 auto 50px auto;
 	border:none 1px #A1A1A1;
 	border-radius:20px;
 	overflow: auto;
-	background-color:#95e1d3;
+	background-color:#d3d3d3;
 }
 .account-new{
 	width:300px;
@@ -33,19 +33,55 @@
 }
 .account-new-word{
 	font-family: 'Montserrat', sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 700;
 }
 .account-card{
+	position:relative;
 	width:300px;
 	height:185px;
-	border:solid 2px #A1A1A1;
 	border-radius:20px;
 	text-align:center;
-	line-height:100px;
+	line-height:30px;
 	margin:50px auto 0px auto;
 	background-color:#fff;
 }
+.accountNum, .bankName, .accountNickname{
+	position:absolute;
+	font-size: 18px;
+}
+.bankName{
+	top:20px;
+	right:10px;
+	position:absolute;
+}
+.accountNum{
+	top:80px;
+	left:60px;
+	position:absolute;
+	font-size: 18px;
+}
+.accountNickname{
+	top:140px;
+	left:10px;
+	position:absolute;
+}
+
+/* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
+.account-container::-webkit-scrollbar {
+    width: 15px;
+}
+.account-container::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+.account-container::-webkit-scrollbar-track {
+    background-color: #f38181;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 
 /* 광고 영역 */
 .ad_one, .ad_two{
@@ -85,14 +121,16 @@
 
 <!-- 본문 -->
 <div class="container">
+	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">계좌등록</h1>
+	<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">계좌를 등록하고 편하게 이용하세요.</h4>
+	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 
 	<c:if test="${not empty sessionScope.email}" var="isLogin">
 		<div class="account-title">
-		'<span style="color:#f38181">${sessionScope.email}</span>' 님의 계좌 조회
+		'<span style="color:#f38181">${sessionScope.nickname}</span>' 님의 계좌 조회
 		</div>
 	</c:if>
 
-	<input type="button" onclick="getAllAccount()" value="귀차낭이거쓸랭"/>
 	<div class="account-container" id="accountContainer">
 		<div class="account-new">
 			<span class="account-new-word">
@@ -112,11 +150,19 @@
 </div>
 
 <script>
-	//동적 div
+	//
 	function createCardDiv(){
 		var accountContainer = document.getElementById("accountContainer");
 		var accoundCard = `<div class="account-card" id="accoundCard">
-								<span class="account-new-word">카드1</span>
+								<div><img src="<%=request.getContextPath()%>/resources/account/credit1.png" style="width:48px; left:10px; top:10px; position:absolute;"></div>
+										
+										<div class="bankName" style="float:right">은행명</div>
+										
+										<div class="accountNum">0000-0000-0000-0000</div>
+										
+										<div class="accountNickname" style="float:left">계좌별칭</div>
+										
+								<div><img src="<%=request.getContextPath()%>/resources/account/credit2.png" style="width:60px; right:10px; bottom:10px; position:absolute;"></div>	
 							</div>`
 		
 		accountContainer.innerHTML += accoundCard;
@@ -125,36 +171,9 @@
 		
 	}
 	
-	//계좌 인증을 위한 본인 인증, 계좌 추가 요청하는 ajax 
-	//실행 되면 url을 주는데 윤식님이 주심 
-	//콜백 url 
-	$("#getAjax").on('click',function(){
-          console.log("Ajax 수행")
-          console.log('타겟 요청','<c:url value="/user/auth.do"/>')
-          $.ajax({
-               url: '<c:url value="/user/auth.do"/>',
-               type: 'GET',
-               cache : false,
-               data:{location:$('#location').val()},
-               dataType: 'json',
-               success:function(data){
-            	   		console.log('success진입');
-                       // url을 담고 있음
-                       console.log(data.Location);
-                       //
-                       var tmpWindow=window.open(data.Location,"",'_blank,width=900,height=880,menubar=false')
-                       
-               },
-               error:function(e){
-                       console.log(e)
-               }
-                                 
-           })
-                                    
-     })
-     
-	
-	function getAllAccount(){
+	//계좌 조회 메소드 (등록된 모든 계좌를 가져온다)
+	/*
+	function getAccount(){
 		$.ajax({
             url: '<c:url value="/user/account.do"/>',
             type: 'GET',
@@ -164,14 +183,28 @@
             success:function(data){
          	   		console.log('success진입');
                     // url을 담고 있음
+                    console.log(data.Location);
                     console.log(data);
+                    // 새창
+                    tmpWindow = window.open(data.Location,"",'_blank,width=900,height=880,menubar=false');
+                    //add(tmpWindow)
+                    console.log('이벤트 생성')
+                    tmpWindow.addEventListener('beforeunload',function(data){
+                 	   console.log('꺼졌습니당!')
+                 	   
+                    })
+                    
+                    console.log('이벤트 생성완료')
                     
             },
             error:function(e){
                     console.log(e)
-            }
-                              
-        })
+            }          
+            
+        });  
 	}
+	*/
+	
+	
 
 </script>

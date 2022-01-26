@@ -48,26 +48,38 @@ public class ReportController {
 	return "admin/AdminWarning";
 	}
 	
+	//404페이지 신고받아오기
+	@RequestMapping("/reportPage.do")
+	public String report404Page(@RequestParam Map map, Model model) {
+		return "report/Report.tiles";
+	}
+
+	//404페이지 신고처리
+	@RequestMapping("/reportInsert404.do")
+	public String report404PageOk(@RequestParam Map map, Model model) {
+		int affected = reportService.insert404(map);
+
+		return "report/ReportOk.tiles";
+	}
+	
+	
 	//문의 게시판 신고받아오기
 	@RequestMapping("/oboReport.do")
-	public String OBOreport(@ModelAttribute("email") String email,@RequestParam Map map,Model model){
+	public String OBOreport(@RequestParam Map map,Model model){
 		
 		InquiryBbsDTO record = inquiryBbsService.inqSelectOne(map);
 		model.addAttribute("record", record);
-		
 
 		return "guide/onebyoneqna/Report.tiles";
 	}
 	//문의 게시판 신고처리 
 	@RequestMapping("/oboReportOk.do")
-	public String OBOreportOk(@ModelAttribute("inqno") String inqno,@RequestParam Map<String,String> map,Model model){
+	public String OBOreportOk(@ModelAttribute("inqno") String inqno,@RequestParam Map map,Model model){
 		
+		System.out.println("OBOreportOk의 이메일"+map.get("email"));
 		
 		int affected = reportService.insert(map);
 		model.addAttribute("inqno:"+inqno);
-		
-		System.out.println("inqno:"+inqno);
-		System.out.println("신고affected:"+affected);
 		
 		return "report/ReportOk.tiles";
 	}
@@ -91,8 +103,6 @@ public class ReportController {
 		int affected = reportService.insertParty(map);
 		model.addAttribute("partyNo:" + partyNo);
 
-		System.out.println("partyNo:" + partyNo);
-		System.out.println("파티affected:" + affected);
 
 		return "report/ReportOk.tiles";
 	}
@@ -104,13 +114,10 @@ public class ReportController {
 	public String findReport(@ModelAttribute("reportbbs") String reportbbs,@ModelAttribute("inqno") String inqno,
 			@ModelAttribute("partyNo") String partyNo,@RequestParam Map map,Model model) {
 		
-		
 		//넘어오는 게시판 키값 받기
-		System.out.println("게시판키값: "+reportbbs);
 		model.addAttribute("reportbbs:"+reportbbs);
 		model.addAttribute("inqno:"+inqno);
 		model.addAttribute("partyNo:"+partyNo);
-		System.out.println("inqno:"+inqno);
 		
 		//문의게시판
 		if(reportbbs.equals("문의게시판")) {

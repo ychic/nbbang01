@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - 404</title>
+    <title>404</title>
 
     <!-- Custom fonts for this template-->
     <link href="<%=request.getContextPath()%>/resources/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,11 +37,12 @@
             <!-- Main Content -->
             <div id="content">
                     <!-- 404 Error Text -->
-                    <div class="text-center">
+                    <div class="text-center" style="margin-top:150px;margin-bottom:400px;">
                         <div class="error mx-auto" data-text="404">404</div>
                         <p class="lead text-gray-800 mb-5">Page Not Found</p>
                         <p class="text-gray-500 mb-0">당신은 접근권한이 없는 회원입니다.</p>
                         <a href="<c:url value='/first.do'/>">&larr; 대문으로 가기</a>
+                        <a href="<c:url value='/reportPage.do'/>">&larr; 문의 신고하기</a>
                     </div>
 
             </div>

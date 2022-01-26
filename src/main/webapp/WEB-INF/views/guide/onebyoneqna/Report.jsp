@@ -26,7 +26,39 @@
 		text-align:center;
 		margin-left:100px;
 	}
+	/* 광고 영역 */
+	.ad_one, .ad_two{
+		background-color:red;
+		width: 188.5px;
+		height:377px;
+		display: inline-block;
+		position: fixed;
+		top:150px;
+		background-size: cover;
+		background-position: center;
+		background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+		animation: ad_one_ani 16s infinite;
+	}
+	
+	.ad_one{
+		left:30px;
+	}
+	
+	.ad_two{
+		right:30px;
+	}
+	
+	@keyframes ad_one_ani {
+		33%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")}
+		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
+		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
+	}
 </style>
+
+<!-- 광고 1 -->
+<div class="ad_one">
+	
+</div>
 
 <div class="container">
 	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">신고</h1>
@@ -38,23 +70,23 @@
    		<div class="form-group">
             <label class="col-sm-2 control-label">신고글 NO</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqno" value="${record.inqno}" disabled>
+               <input type="text" class="form-control" name="inqno" value="${record.inqno}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 제목</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqtitle" value="${record.inqtitle}" disabled>
+               <input type="text" class="form-control" name="inqtitle" value="${record.inqtitle}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 날짜</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqpostdate" value="${record.inqpostdate}" disabled>
+               <input type="text" class="form-control" name="inqpostdate" value="${record.inqpostdate}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 작성자</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="email" value="${record.email}" disabled>
+               <input type="text" class="form-control" name="emailwriter" value="${record.email}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 내용</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqcontent" value="${record.inqcontent}" disabled>
+               <input type="text" class="form-control" name="inqcontent" value="${record.inqcontent}" readonly>
             </div>
     	</div>
    
@@ -63,7 +95,7 @@
             <label class="col-sm-2 control-label">신고자 ID</label>
             
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="email" value="${sessionScope.email}" disabled>
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}" readonly>
                <input type="hidden" class="form-control" name="inqno" value="${record.inqno}">
             </div>
          </div>
@@ -110,6 +142,11 @@
          </div>
       </form>
    </div>
+</div>
+
+<!-- 광고 2 -->
+<div class="ad_two">
+	
 </div>
 
 <script>

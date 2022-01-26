@@ -175,6 +175,7 @@
 									  <div class="dropdown-content">
 									    <a onclick="location.href='recommandList.do?ussrcategoryname=recommand'">추천게시판</a>
 									    <a onclick="location.href='freeList.do?ussrcategoryname=free'">자유게시판</a>
+									    <a onclick="location.href='imageAnalysis.do'">이미지분석TEST</a>
 									  </div>
 								</li>
 								<li class="guide_menu dropdown" style="float:right">
