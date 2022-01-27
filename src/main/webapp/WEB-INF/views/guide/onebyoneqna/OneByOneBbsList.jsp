@@ -104,7 +104,7 @@
 			</tbody>
 		</table>
 
-		<a class="btn btn-warning pull-right"
+		<a class="btn btn-primary pull-right"
 			href="<c:url value='/oneByOneBbsWrite.do'/>">글쓰기</a>
 
 		<!-- 페이징 -->
@@ -129,7 +129,7 @@
 					<div class="form-group">
 						<input type="text" name="searchWord" class="form-control" />
 					</div>
-					<button type="submit" class="btn btn-primary">검색</button>
+					<button type="submit" class="btn btn-default">검색</button>
 				</form>
 			</div>
 		</div>
