@@ -29,6 +29,7 @@
 		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
 	}
 	
+	
 	.containerAnalysis{
 		margin-left:60px;
 		width:80%;
@@ -52,6 +53,26 @@
 	.btnWrap{
 		text-align: center;
 	}
+	#filmography_watcha{
+		background-color:grey;width:100%;
+	}
+	#filmography_netflix{
+		background-color:black;width:100%;
+	}
+	#filmography_watcha_img{
+		background-color:blue;width:100%;
+	}
+	#filmography_netflix_img{
+		background-color:yellow;width:100%;
+	}
+	.actorImg_watcha{
+		width:250px;
+		height:300px;
+	}
+	.actorImg_netflix{
+		width:300px;
+		height:250px;
+	}
 </style>
 
 <!-- 광고 1 -->
@@ -71,10 +92,22 @@
 		<input type="file" id="test_image" accept=".png,.jpg,.jpeg" multiple/>
 		<div class="btnWrap">
 			<button class="btn btn-warning" id="btnCheck" type="button" onclick="predict()">확인하기</button>
+			<button class="btn btn-warning" id="btnRe" type="button">다시</button>
 		</div>
 		<h3 id="actorInfo"></h3>
-
+		<h3 id="filmography_title"></h3>
 		
+		<div style="width:50%;float:left;">
+			<h3 id="filmography_netflix" >넷플영역</h3>
+			<div id="filmography_netflix_img" >
+			</div>
+		</div>
+		<!--  <div id="filmography_netflix_title" style="background-color:red;width:30%;display:inline-block;">넷플제목영역</div> -->
+		<div style="width:50%;float:left;">
+			<h3 id="filmography_watcha" >왓챠영역</h3>
+			<div id="filmography_watcha_img" >
+			</div>
+		</div>
 		<!-- <div id="webcam-container"></div> -->
 		<div id="label-container"></div>
 		<!-- 
@@ -160,13 +193,158 @@
 	        	
 	            const classPrediction =
 	                prediction[i].className + ": " + prediction[i].probability.toFixed(2)*100+'%';
-	            labelContainer.childNodes[i].innerHTML = classPrediction;
+	            //labelContainer.childNodes[i].innerHTML = classPrediction;
 	        }
 	        
-	        console.log(maxPercentage + "의 확률로 " + actorName + "(으)로 확인되었습니다.");
+	        console.log(maxPercentage + "% 의 확률로 " + actorName + "(으)로 확인되었습니다.");
 	        //view에 뿌리기
 	        actorInfo = document.getElementById("actorInfo");
-	        actorInfo.innerHTML = maxPercentage + "의 확률로 " + actorName + "(으)로 확인되었습니다.";
+	        actorInfo.innerHTML = maxPercentage + "% 의 확률로 " + actorName + "(으)로 확인되었습니다.";
+	        
+	        //필모그라피 제목
+	        filmography_title = document.getElementById("filmography_title");
+	        filmography_title.innerHTML = actorName + '필모그라피 결과를 찾았습니다.';
+	        
+	        //넷플릭스 dom
+	        filmography_netflix = document.getElementById("filmography_netflix");
+	        filmography_netflix_img = document.getElementById("filmography_netflix_img");
+	        filmography_netflix_title = document.getElementById("filmography_netflix_title");
+	        filmography_watcha_img = document.getElementById("filmography_watcha_img");
+	        
+	        if(actorName == '김고은'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/KimGoEun/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=7; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/KimGoEun/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '한효주'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/HanHyoJu/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=9; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/HanHyoJu/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '한지민'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/HanJiMin/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=9; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/HanJiMin/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '한소희'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/HanSoHee/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=5; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/HanSoHee/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '아이유'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/Iu/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=7; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/Iu/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '전지현'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/JeonJiHyun/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=7; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/JeonJiHyun/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '정유미'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/JungYooMi/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=9; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/JungYooMi/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '김혜수'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/KimHyeSoo/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=6; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/KimHyeSoo/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '김유정'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/KimYooJung/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=9; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/KimYooJung/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '공효진'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/KongHyoJin/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=9; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/KongHyoJin/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '라미란'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/RaMiRan/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=8; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/RaMiRan/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '송혜교'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/SongHyeKyo/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=9; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/SongHyeKyo/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        } else if(actorName == '수지'){
+	        	for(var i=1; i<=9; i++) {
+                    filmography_netflix_img.innerHTML += 
+                    	'<img class="actorImg_netflix" src="<%=request.getContextPath()%>/resources/ott/netflix/Suji/'+i+'.jpg"/>';
+	            }
+		        for(var i=1; i<=8; i++) {
+		        	filmography_watcha_img.innerHTML += 
+	                	'<img class="actorImg_watcha" src="<%=request.getContextPath()%>/resources/ott/watcha/Suji/'+i+'.jpeg"/>';
+	        	}
+	        	
+	        }
+	        
+	        
+	        
 	    }
 		
 		//페이지 로드시 모델 로드
@@ -192,5 +370,10 @@
 	    $('#test_image').on('change',function(){
 	    	previewImage(this);
 	    })
+	    
+	    $('#btnRe').on('click',function(){
+	    	location.reload();
+	    })
+	    
 	    
 	</script>
