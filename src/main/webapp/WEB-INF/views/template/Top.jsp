@@ -141,7 +141,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="<c:url value="/index.do"/>" >Nbbang</a>
+						<a href="<c:url value="/index.do"/>" ><img src="<%=request.getContextPath()%>/resources/logo/Nbread_01_2_cut.png" style="height:40px;"/></a>
 					</div>
 					
 					

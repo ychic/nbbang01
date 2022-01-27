@@ -136,7 +136,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 </style>
 
 <!-- 광고 1 -->
-<%-- <div class="ad_one"></div>--%>
+<div class="ad_one"></div>
 
 <!-- 본문 -->
 <div class="container">
@@ -147,7 +147,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 	<c:if test="${not empty sessionScope.email}" var="isLogin">
 		<div class="account-title">
 
-			'<span style="color: #f38181">${sessionScope.email}</span>' 님의 계좌 조회
+			'<span style="color: #f38181">${sessionScope.nickname}</span>' 님의 계좌 조회
 		</div>
 	</c:if>
 
@@ -166,7 +166,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 </div>
 
 <!-- 광고 2 -->
-<%--<div class="ad_two"></div> --%>
+<div class="ad_two"></div>
 
 <script>
 
