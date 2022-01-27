@@ -118,7 +118,7 @@ tr {
 			</tbody>
 		</table>
 
-		<a class="btn btn-default pull-right" href="<c:url value='/ussrWrite.do'/>">글쓰기</a>
+		<a class="btn btn-primary pull-right" href="<c:url value='/ussrWrite.do'/>">글쓰기</a>
 
 		<div class="text-center">
 			<!-- 페이징 -->
