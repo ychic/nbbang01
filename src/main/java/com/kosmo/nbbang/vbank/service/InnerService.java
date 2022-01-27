@@ -12,6 +12,12 @@ public interface InnerService {
 	
 	//이메일으로 fintec or seq 가져오는 것이 목적 
 	public Map getAuth(Map map);
+
+
+	public int deleteToken(Map res);
+
+
+	public Map test(Map map);
 	
 	
 }

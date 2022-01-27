@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.builder.xml.XMLMapperEntityResolver;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -49,15 +50,39 @@ public class BankingController {
 	 * 
 	 * 
 	 */
-	
 	@GetMapping(value="/user/auth.do",produces = {"application/json"})
-	public Map getUrl(@RequestParam Map map) {
+	public Map getUrl(@RequestParam Map map,HttpSession session) {
+		map.put("email", session.getAttribute("email").toString());
+		Map<String,String> res = innerservice.getAuth(map);
+//		res.put("email", session.getAttribute("email").toString());
+		res.put("location",map.get("location").toString());
+		if( res !=null) {
+			for(Map.Entry<String, String> entry : res.entrySet()) {
+				System.out.println(entry.getKey() + " - " + String.valueOf(entry.getValue()));
+			}
+		}
+		
 		System.out.println("getUrl메소드 진입");
-		System.out.println("res: "+map.get("location"));
-		Map test = bankingservice.requestAuthUrl(map);
+		System.out.println("res: "+res.get("location"));
+		Map test = bankingservice.requestAuthUrl(res);
 		System.out.println("도착!");
 		return test;
 	}
+	
+	@GetMapping("/test/account.do")
+	public String test(@RequestParam Map map) {
+		System.out.println(map.get("email"));
+		Map data = innerservice.getAuth(map);
+		
+		Map data2 = innerservice.test(map);
+		Set<String> keys =data.keySet();
+		
+		for(String key : keys) {
+			System.out.println(key+ " - " + data.get(key));
+		}
+		return "ok";
+	}
+	
 	
 	
 	/* 계좌등록 새창 꺼지고 나서
@@ -67,22 +92,12 @@ public class BankingController {
 	 *  필수 파라미터 : 사용자 ID
 	 */ 
 	@GetMapping("/user/account.do")
-	public Map getUserAllaccounts(@RequestParam Map map,Model model) {
+	public Map getUserAllaccounts(@RequestParam Map map) {
 		
-		System.out.println(map.get("email"));
 		
-		Map<String,String> res = innerservice.getAuth(map);
-		System.out.println(res.get("access_token"));
-		System.out.println(res.get("user_seq_no"));
+		Map res = innerservice.getAuth(map);
 
-//		model.addAttribute(res);
-//		
-//		System.out.println("=========================res========================");
-//		for(Map.Entry<String, String> entry : map.entrySet()) {
-//	         System.out.println(entry.getKey()+"-"+entry.getValue());
-//	      }
-//		System.out.println("=========================res========================");
-		
+	
 		return bankingservice.getUserAccounts(res);
 	}
 	
@@ -94,13 +109,18 @@ public class BankingController {
 	 *  필수 파라미터 : 사용자 ID(email), 사용자 fintech(서버에 저장 안되어있음. )
 	 */
 	@GetMapping("/user/account/{fin_num}.do")
-	public Map getUseraccount(@RequestParam Map map,@PathVariable("fin_num") int  fin_num) {
+	public Map getUseraccount(@RequestParam Map map,@PathVariable("fin_num") String  fin_num) {
 		
-		
+		System.out.println(map.get("email"));
+		System.out.println("fin : "+fin_num);
 		Map res = innerservice.getAuth(map);
-		res.put("fintect_use_num", fin_num);
+		res.put("fintech_use_num", fin_num);
+		Set<String> keys =res.keySet();
 		
-		return bankingservice.getUserAccount(map);
+		for(String key : keys) {
+			System.out.println(key+ " - " + res.get(key));
+		}
+		return bankingservice.getUserAccount(res);
 	}
 	
 	
@@ -110,13 +130,13 @@ public class BankingController {
 	 *  Scenario : 사용자 전체조회 계좌 요청-> vbankServer 전체 계좌 요청 및 응답 -> 브라우저로 응답[JSON] - Array 형식
 	 *  필수 파라미터 : 사용자 ID ,fin_num
 	 */
-	@GetMapping("/user/account/trading.do")
-	public Map getUserTrading(@RequestParam Map map) {
+	@GetMapping(value="/user/account/trading.do",produces = "application/json; charset=utf8")
+	public String getUserTrading(@RequestParam Map map) {
 		Map res = innerservice.getAuth(map);
-		res.put("fintect_use_num", map.get("fintech_use_num"));
-		
-		
-		return bankingservice.getTradingStatement(res);
+		res.put("fintech_use_num", map.get("fintech_use_num"));
+		JSONArray test = bankingservice.getTradingStatement(res);
+		System.out.println(test);
+		return test.toString();
 	}
 	
 	

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kosmo.nbbang.service.impl.InquiryBbsServiceImpl;
@@ -37,9 +39,13 @@ public class InquiryCommentController {
 	//코멘트 입력처리]
 	@PostMapping(value = "/inqCommentWrite.do", produces = "text/plain; charset=UTF-8")
 	public String inqCommentWrite(@ModelAttribute("comcontent") String comcontent,@ModelAttribute("email") String email, @RequestParam Map map) {
-		
+		System.out.println("코멘트comcontent:"+comcontent);
+		System.out.println("코멘트no:"+map.get("comno"));
 		map.put("email", email);
+		String nickname = commentService.getnickname(map);
 		String commentInfo = commentService.insert(map);
+		
+		System.out.println("nickname:"+nickname);
 		System.out.println("코멘트insert/commentInfo:"+commentInfo);
 		System.out.println("코멘트comcontent:"+comcontent);
 		
@@ -57,7 +63,7 @@ public class InquiryCommentController {
 	}
 
 	// 코멘트 삭제처리]
-	@PostMapping(value = "/inqCommentDelete.do", produces = "text/plain; charset=UTF-8")
+	@RequestMapping("/inqCommentDelete.do")
 	public String delete(@ModelAttribute("email") String email, @RequestParam Map map) {
 		
 		int affected = commentService.delete(map);

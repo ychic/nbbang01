@@ -20,7 +20,21 @@ public class InnerBankDAO {
 
 	public Map selectAuth(Map map) {
 		// TODO Auto-generated method stub
-		return template.selectOne("selectAuth", map);
+		System.out.println("이게 말이야 막걸리야 : " + map.get("email"));
+		map.put("fuck", "fucking");
+		return template.selectOne("selectAuthMYOB", map);
+	}
+
+	public int deleteToken(Map map) {
+		// TODO Auto-generated method stub
+		return template.delete("deleteToken",map);
+	}
+
+	public Map test(Map map) {
+		// TODO Auto-generated method stub
+		
+		
+		return template.selectOne("testInfo",map);
 	}
 	
 	

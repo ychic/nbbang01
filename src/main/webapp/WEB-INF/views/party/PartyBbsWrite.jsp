@@ -20,7 +20,7 @@
 <script>
 function categoryChange(e) {
   var partyAllotmentPrice_2 = ["12000"];
-  var partyAllotmentPrice_3 = ["12000"];
+  var partyAllotmentPrice_3 = ["16000"];
   var partyAllotmentPrice_4 = ["16000"];
   var target = document.getElementById("partyAllotmentPrice");
 
@@ -52,11 +52,11 @@ function categoryChange(e) {
             <div class="col-sm-4">
 				<select style="width: 595px;" class="form-control" name="partyCategoryName">
 	         		<option value="" disabled selected hidden>* 파티 모집할 서비스를 선택하세요</option>
-		            <option value="netplix">넷플릭스</option>
-	    	        <option value="whatcha">왓챠</option>
+		            <option value="netflix">넷플릭스</option>
+	    	        <option value="watcha">왓챠</option>
 	       	        <option value="disney">디즈니</option>
 	       	  		<option value="laftel">라프텔</option>
-	       		    <option value="tivin">티빙</option>
+	       		    <option value="tving">티빙</option>
 	       		    <option value="wavve">웨이브</option>
 				</select>
             </div>
@@ -95,7 +95,7 @@ function categoryChange(e) {
             <div class="col-sm-10">
                <div class="row">
                   <div class="col-sm-12">
-                 	 <textarea class="summernote" name="ussrcontent"></textarea>
+                 	 <textarea style="resize:none;" class="summernote" name="partyContent"></textarea>
                      <!-- <textarea cols="50" rows="8" style="width: 100%; resize:none;" class="form-control" name="partyContent" placeholder="내용을 입력하세요"></textarea>  
                    --></div>
                </div>
@@ -123,11 +123,6 @@ function categoryChange(e) {
                 ['fontsize', ['fontsize']],
                 ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                 ['color', ['forecolor','color']],
-                ['table', ['table']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['insert',['picture','link','video']],
-                ['view', ['fullscreen', 'help']]
               ],
          fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
          fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']

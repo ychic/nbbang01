@@ -34,5 +34,9 @@ public class InquiryCommentServiceImpl implements InquiryCommentService {
 	public int update(Map map) {
 		return dao.update(map);
 	}
+	//댓글작성자 닉네임얻기
+	public String getnickname(Map map) {
+		return dao.getNickname(map);
+	}
 
 }

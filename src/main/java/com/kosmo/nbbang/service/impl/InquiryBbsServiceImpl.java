@@ -26,9 +26,9 @@ public class InquiryBbsServiceImpl implements InquiryBbsService {
 	private UssrCommentDAO ucdao;
 	
 	//리소스파일(onememo.properties)에서 읽어오기
-	@Value("${UPAGE_SIZE}")
+	@Value("${IPAGE_SIZE}")
 	private int pageSize;
-	@Value("${UBLOCK_PAGE}")
+	@Value("${IBLOCK_PAGE}")
 	private int blockPage;
 	
 	@Override

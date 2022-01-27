@@ -3,6 +3,7 @@ package com.kosmo.nbbang.vbank.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 @Service
@@ -27,7 +28,7 @@ public interface BankingService {
 	
 	public Map getUserAccount(Map map);
 	
-	public Map getTradingStatement(Map map);
+	public JSONArray getTradingStatement(Map map);
 	
 	
 	//거래

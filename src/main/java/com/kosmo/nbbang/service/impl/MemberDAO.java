@@ -1,25 +1,16 @@
 package com.kosmo.nbbang.service.impl;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo.nbbang.service.MemberDTO;
-
 
 @Repository
 public class MemberDAO {	
+	
 	
 	@Autowired
 	private SqlSessionTemplate template;
@@ -35,8 +26,8 @@ public class MemberDAO {
 		return template.selectOne("findEmail", map);
 	}
 
-	public int getTotalRowCount(Map map) {		
-		return template.selectOne("getTotalRowCount", map);
+	public int getTotalRowCount() {		
+		return template.selectOne("getTotalRowCount");
 	}
 
 	public List selectAllMember(Map map) {		
@@ -53,6 +44,17 @@ public class MemberDAO {
 	}
 	public String authorityByEmail(Map map) {
 		return template.selectOne("getAuthorityByEmail", map);
+	}
+
+	public int socialLogin(Map map) {
+		return template.selectOne("socialLogin", map);
+	}
+	
+	public int getChatTotalRowCount() {
+		return template.selectOne("getChatTotalRowCount");
+	}
+	public List selectAllChat(Map map) {
+		return template.selectList("selectAllChat", map);
 	}
 	
 }//MemberDAO
