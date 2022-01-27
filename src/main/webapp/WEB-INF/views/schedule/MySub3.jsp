@@ -44,7 +44,7 @@
 				<div class="col-sm-12"></div>
 				<div class="col-sm-10">
 					<div class="list-group">
-					   <a href="#" class="list-group-item active">Folder${folder.email}</a>
+					   <a href="#" class="list-group-item active">${folder.email}</a>
 					   
 					   <a href="#" class="list-group-item">
 					   
@@ -57,7 +57,7 @@
 					   <!-- 필수 폴더(수정/삭제 불가)--> 
 					   <a href="<c:url value='/mySub.do' />" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span>${folder.sfname}</span><span class="badge bg-primary rounded-pill">14</span></a>
+					   <span>${folder.sfname}</span><span class="badge bg-primary rounded-pill">${badgeAll.count}</span></a>
 					   
 					   
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
@@ -68,7 +68,7 @@
 						   <input type="text" id="inp1" name="dfldrName2" style="width:90px; border: none; display: none;">
 						   </form>
 					   <span id="hvDotDFolder2" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">3</span></a>
+					   <span class="badge bg-primary rounded-pill">${mysubBadgeWatch.count}</span></a>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder2" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
 					   	<div class="row" style="padding: 0px; margin: 0px;">
@@ -85,7 +85,7 @@
 						   <input type="text" id="inp2" name="dfldrName3" style="width:90px; border: none; display: none;">
 						   </form>
 					   <span id="hvDotDFolder3" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">7</span></a>
+					   <span class="badge bg-primary rounded-pill">${fldrCount.count}</span></a>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder3" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
 					   	<div class="row" style="padding: 0px; margin: 0px;">
@@ -269,9 +269,1511 @@
 				</div>
 			</div>
 		</div>
+				<!-- 작업중 -->
 		<div class="col-sm-9">
-			<div class="row">
-				<div class="col-sm-12 col-md-offset-11">
+		
+		<!-- 목록 최상단 (폴더명 , 총합계) -->
+		<div class="col-sm-11">
+			<c:if test="${not empty folderCost.foldercost}">
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  Total  ${folderCost.foldercost}원 입니다
+			</h4>
+			</c:if>
+			<c:if test="${empty folderCost.foldercost}">
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  Total  0원 입니다
+			</h4>
+			</c:if>
+			
+			<div class="col-sm-12">
+					<div class="row">
+					<!-- sortable적용 
+					<ul id="sortable">
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					  <li class="ui-state-default"></li>
+					</ul>
+					-->
+					
+							
+					<!-- 목록 -->
+					<!-- 마이바티스 resultMap의 collection 태그사용 -->
+					<c:if test="${not empty secondRecord}">
+						<c:forEach items="${secondRecord}" var="mysub3">
+						
+							<div class="col-md-3" style="padding-left: 0px;">
+							
+								<c:if test="${mysub3.subservice eq '멜론'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/010_melon.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								    <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditSub" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditSub" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo" --><!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName2" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn2"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy2"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList2"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf2"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker2" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay2" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								     
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								
+								<c:if test="${mysub3.subservice eq '넷플릭스'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/003_netflix.jpeg" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								    <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditNetflix" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditNetflix" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel2" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel2">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName3" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn3"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy3"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList3"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf3"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker3" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay3" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								     
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								
+								<c:if test="${mysub3.subservice eq '웨이브'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/007_wave.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditWave" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditWave" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel3" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel3">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName4" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn4"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy4"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList4"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf4"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker4" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay4" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								 
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>   
+								  </ul>
+								</c:if> 
+								
+								<c:if test="${mysub3.subservice eq '디즈니+'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/005_disney.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								    
+								    <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditDisney" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditDisney" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel4" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel4">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName5" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn5"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy5"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList5"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf5"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker5" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay5" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+	
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if> 
+								
+								<c:if test="${mysub3.subservice eq '월간과자'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/017_monthlysnack.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditWarganGuaza" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditWarganGuaza" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel5" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel5">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName6" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn6"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy6"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList6"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf6"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker6" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay6" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								
+								<c:if test="${mysub3.subservice eq '닌텐도스위치'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/014_nintendo.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditNintendoswitch" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditNintendoswitch" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel6" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel6">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName7" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn7"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy7"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList7"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf7"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker7" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay7" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								<!-- 여기까지 -->
+								
+								<c:if test="${mysub3.subservice eq '벅스'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/011_bugs.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditbucks" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditbucks" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel7" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel7">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName8" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn8"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy8"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList8"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf8"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker8" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay8" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								<!-- 여기까지 -->
+								
+								<c:if test="${mysub3.subservice eq '스포티비나우'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/001_spotvnow.jpg" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditspotvnow" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditspotvnow" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel8" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel8">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName9" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn9"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy9"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList9"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf9"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker9" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay9" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								<!-- 여기까지 -->
+								
+								<c:if test="${mysub3.subservice eq '아이클라우드'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/009_icloud.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditiclude" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditiclude" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel9" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel9">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName10" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn10"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy10"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList10"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf10"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker10" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay10" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								<!-- 여기까지 -->
+								
+								<c:if test="${mysub3.subservice eq '유튜브프리미엄'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/002_youtube.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdityoutube" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEdityoutube" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel10" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel10">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName11" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn11"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy11"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList11"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf11"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker11" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay11" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								<!-- 여기까지 -->
+								
+								<c:if test="${mysub3.subservice eq '애플뮤직'}">
+								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
+									<img src="<%=request.getContextPath()%>/resources/images_sub/media/015_AppleMusic.png" alt="로고이미지">
+								  </div>
+								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  
+								  <li class="list-group-item">${mysub3.subservice}
+								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditapplemusic" aria-hidden="true" id="btnSubEdit"
+								     style="background:none; border: none;"></button></li>
+								     
+								     <!-- modal -->
+								     <div class="modal fade" id="modalEditapplemusic" tabindex="-1" role="dialog" aria-labelledby="modalEditSubLabel11" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="modalEditSubLabel11">Edit   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+									      </div>
+									      <div class="modal-body">
+									        <form action="<c:url value='/mysub/edit.do'/>" method="post">
+									          <div class="form-group" style="padding-left: 165px;">
+									            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- id="subLogo2" --> <!-- visibility: hidden; -->
+									          </div>
+									         
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">구독서비스명</label>
+									            <input type="text" class="form-control" id="subName12" name="subservice" value="${mysub3.subservice}" style="width:450px;display: inline-block;">
+									            <!-- 구독 리스트 클릭 버튼 -->
+									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn12"/>
+									            
+									            
+									            
+									             <!-- 구독 리스트 -->
+									            <div class="list-group" id="subListKsy12"> 
+									            	<!-- 미디어 리스트 -->
+									            	<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Media</a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">넷플릭스</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">닌텐도스위치</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">디즈니+</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">멜론</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">벅스</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">스포티비나우</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">아이클라우드</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">유튜브프리미엄</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">애플뮤직</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">왓챠</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">웨이브</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">티빙</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">플로</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">플레이스테이션</span></a>
+													<!-- 라이프 스타일 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Life Style</a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">카카오이모티콘+</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">꾸까</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">네이버+</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">더반찬</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">런드리고</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">쏘카</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">와이즐리</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">월간과자</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">위클리 셔츠</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">잡플래닛</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">쿠팡 와우</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">필리</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">하비인더박스</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">해피문데이</span></a>
+													<!-- 렉쳐 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">Lecture</a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">BBC사이언스</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">리디셀렉트</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">밀리의 서재</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">매경e신문</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">빅이슈</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">예스24북클럽</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">윌라</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">조인스 프라임</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">퍼블리</span></a>
+													<a href="#" class="list-group-item subServiceList12"><span class="subListSpan">핀즐</span></a>
+													<!-- 기타 리스트 -->
+													<a href="#" class="list-group-item" style="background-color:rgba(241, 114, 114, 0.96);color:#fff">ETC</a>
+													<a href="#" class="list-group-item subServiceListSelf12"><span>직접 입력하기</span></a>
+													
+												</div> 
+				
+												
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">결제일</label>
+									            <input type="text" class="form-control" id="datepicker12" name="paymentday">기존 결제일: ${mysub3.paymentday}
+									          </div>
+									          <div class="form-group">
+									            <label for="recipient-name" class="control-label">월 구독료</label>
+									            <input type="text" class="form-control" id="subPay12" name="money" value="${mysub3.money}">
+									          </div>
+									          
+									          <div>
+									          	<label for="recipient-name" class="control-label">관리 폴더 선택</label>
+										          	<select class="form-control" name="folderSelect">
+													  <option value="Watch">Watch</option>
+													  <option value="Life">Life</option>
+													</select>
+									          </div>
+									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
+									          <input type="hidden" name="orisubname" value="${mysub3.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub3.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub3.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub3.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub3.subno}" />
+									          
+									          
+									          <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+										        <button type="submit" class="btn btn-primary">수정</button>
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub3.subno}'/>"
+													class="btn btn-danger">삭제</a>
+										        
+										      </div>
+									          
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
+									</div>
+								      <!-- modal 끝 -->
+								  
+								  
+								    <li class="list-group-item">${mysub3.paymentday}</li>
+								    <li class="list-group-item">${mysub3.money}원</li>
+								  </ul>
+								</c:if>
+								<!-- 여기까지 -->
+								
+								
+								
+							</div>
+							
+						</c:forEach>
+					</c:if>
+
+						
+					</div>
+				</div>
+		</div>
+		
+		
+		
+		<div class="row col-sm-1">
+			
+				<div class="col-sm-3 col-md-offset-11">
 				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub1" style="background-color:#95E1D3;"><strong>+ New</strong></button>
 				<!-- 사용자 등록 Modal -->
 				<div class="modal" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
@@ -299,8 +1801,9 @@
 				      <div class="modal-body">
 					      	<form action="<c:url value='/manual.do'/>" method="post">
 					          <div class="form-group" style="padding-left: 165px;">
-					            <img src="..." alt="로고이미지" class="img-thumbnail" id="subLogo" style="display: none;"> <!-- visibility: hidden; -->
+					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- visibility: hidden; --> <!-- id="subLogo" -->
 					          </div>
+					         
 					          <div class="form-group">
 					            <label for="recipient-name" class="control-label">구독서비스명</label>
 					            <input type="text" class="form-control" id="subName" name="subservice" value="" style="width:450px;display: inline-block;">
@@ -365,7 +1868,7 @@
 								
 					          </div>
 					          <div class="form-group">
-					            <label for="recipient-name" class="control-label">다음 결제일</label>
+					            <label for="recipient-name" class="control-label">결제일</label>
 					            <input type="text" class="form-control" id="datepicker" name="paymentday">
 					          </div>
 					          <div class="form-group">
@@ -393,89 +1896,41 @@
 				    </div>
 				  </div>
 				</div>
-				
+				<!-- 모달끝 -->
 				
 				
 				</div>
-				<div class="col-sm-12">
-					<div class="row">
-					<!-- sortable적용 
-					<ul id="sortable">
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					</ul>
-					-->
-						<table class="table table-hover" >
-						  <thead>
-						    <tr>
-						      <th class="col-sm-2" scope="col" >${folderName.sfname}</th>
-						      <th class="col-sm-3" scope="col" >120,000원(월)</th>
-						      <th class="col-sm-3" scope="col" ></th>
-						      <th class="col-sm-3" scope="col" ></th>
-						      <th class="col-sm-1" scope="col" ></th>
-						    </tr>
-						  </thead>
-						  <tbody id="sortable">
-						  <!-- class="table-active" 아래tr에서 삭제한상태 -->
-						
-						  <!-- 마이바티스 resultMap의 collection 태그사용 -->
-						  <%-- <c:if test="${not empty folder.mysubs}">
-						  		<c:forEach items="${folder.mysubs}" var="mysub">
-								    <tr class="ui-state-default">
-								      <td>로고</td>
-								      <td>${mysub.subservice}</td>
-								      <td>${mysub.paymentday}</td>
-								      <td>${mysub.money}원</td>
-								      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-								    </tr>
-							    </c:forEach>
-						  </c:if> --%>
-						  <c:if test="${not empty secondRecord}">
-						<!-- <script>
-						console.log(${secondRecord});
-						</script> -->
-						  		<c:forEach items="${secondRecord}" var="mysub2">
-								    <tr class="ui-state-default">
-								      <td>로고</td>
-								      <td>${mysub2.subservice}</td>
-								      <td>${mysub2.paymentday}</td>
-								      <td>${mysub2.money}원</td>
-								      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-								    </tr>
-							    </c:forEach>
-						  </c:if>
-						  
-						    <!-- <tr class="ui-state-default">
-						      <td>로고</td>
-						      <td>쿠팡</td>
-						      <td>5일</td>
-						      <td>2900원</td>
-						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-						    </tr>
-		  
-						    <tr class="ui-state-default">
-						      <td>로고</td>
-						      <td>리디북스</td>
-						      <td>1일</td>
-						      <td>10000원</td>
-						      <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-						    </tr> -->		
-						  </tbody>
-						</table>
-						
-						<!--  
-						<div class="col-sm-12" id="item_1" style="border: solid orange 1px">item_1</div>
-						-->
-					</div>
-				</div>
+				
 				
 			</div>
-		</div>
+		</div> <!-- row 꽉차면내려간다? -->
+		
+		<%-- <div class="row">
+							  <div class="col-sm-6 col-md-4">
+							    <div class="thumbnail">
+							      <img src="<%=request.getContextPath()%>/resources/images_sub/media/010_melon.png" alt="로고이미지">
+							      <div class="caption">
+							        <h3>멜론</h3>
+							        <p>...</p>
+							        <p><a href="#" class="btn btn-primary" role="button">수정</a> <a href="#" class="btn btn-default" role="button">삭제</a></p>
+							      </div>
+							    </div>
+							  </div>
+						  </div>
+						  <div class="row">
+							  <div class="col-sm-6 col-md-4">
+							    <div class="thumbnail">
+							      <img src="<%=request.getContextPath()%>/resources/images_sub/logo_horizontal/kukka.png" alt="로고이미지">
+							      <div class="caption">
+							        <h3>Thumbnail label</h3>
+							        <p>...</p>
+							        <p><a href="#" class="btn btn-primary" role="button">수정</a> <a href="#" class="btn btn-default" role="button">삭제</a></p>
+							      </div>
+							    </div>
+							  </div>
+		</div> --%>
+		
+		
 	</div>
 </div>
 
@@ -518,6 +1973,41 @@
 	//데이트피커
 	$("#datepicker").datepicker();
 	$("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
+	//edit 데이트피커
+	$("#datepicker2").datepicker();
+	$("#datepicker2").datepicker("option", "dateFormat", "yy-mm-dd");
+	//nextflix 데이트피커
+	$("#datepicker3").datepicker();
+	$("#datepicker3").datepicker("option", "dateFormat", "yy-mm-dd");
+	//wave 데이트피커
+	$("#datepicker4").datepicker();
+	$("#datepicker4").datepicker("option", "dateFormat", "yy-mm-dd");
+	//disney 데이트피커
+	$("#datepicker5").datepicker();
+	$("#datepicker5").datepicker("option", "dateFormat", "yy-mm-dd");
+	//월간과자 데이트피커
+	$("#datepicker6").datepicker();
+	$("#datepicker6").datepicker("option", "dateFormat", "yy-mm-dd");
+	//닌텐도스위치 데이트피커
+	$("#datepicker7").datepicker();
+	$("#datepicker7").datepicker("option", "dateFormat", "yy-mm-dd");
+	//벅스 데이트피커
+	$("#datepicker8").datepicker();
+	$("#datepicker8").datepicker("option", "dateFormat", "yy-mm-dd");
+	//스포티비나우 데이트피커
+	$("#datepicker9").datepicker();
+	$("#datepicker9").datepicker("option", "dateFormat", "yy-mm-dd");
+	//아이클라우드 데이트피커
+	$("#datepicker10").datepicker();
+	$("#datepicker10").datepicker("option", "dateFormat", "yy-mm-dd");
+	//유튜브프리미엄 데이트피커
+	$("#datepicker11").datepicker();
+	$("#datepicker11").datepicker("option", "dateFormat", "yy-mm-dd");
+	//애플뮤직 데이트피커
+	$("#datepicker12").datepicker();
+	$("#datepicker12").datepicker("option", "dateFormat", "yy-mm-dd");
+	
+	
 	// 생성폴더 옵션아이템 호버:보이기/숨기기
 	$('#dFolder2').hover(function() {
 		$('#hvDotDFolder2').css("visibility", "visible");
@@ -804,6 +2294,138 @@
 			subListbtn = false;
 		}
 	});//
+	//edit 멜론 동작
+	var subListbtn2 = false;
+	
+	$('#subListbtn2').click(function() {
+		if (!subListbtn2) {
+			$('#subListKsy2').css("display", "block");
+			subListbtn2 = true;
+		} else{
+			$('#subListKsy2').css("display", "none");
+			subListbtn2 = false;
+		}
+	});//
+	//edit 넷플릭스 동작
+	var subListbtn3 = false;
+	
+	$('#subListbtn3').click(function() {
+		if (!subListbtn3) {
+			$('#subListKsy3').css("display", "block");
+			subListbtn3 = true;
+		} else{
+			$('#subListKsy3').css("display", "none");
+			subListbtn3 = false;
+		}
+	});//
+	//edit 웨이브 동작
+	var subListbtn4 = false;
+	
+	$('#subListbtn4').click(function() {
+		if (!subListbtn4) {
+			$('#subListKsy4').css("display", "block");
+			subListbtn4 = true;
+		} else{
+			$('#subListKsy4').css("display", "none");
+			subListbtn4 = false;
+		}
+	});//
+	//edit 디즈니+ 동작
+	var subListbtn5 = false;
+	
+	$('#subListbtn5').click(function() {
+		if (!subListbtn5) {
+			$('#subListKsy5').css("display", "block");
+			subListbtn5 = true;
+		} else{
+			$('#subListKsy5').css("display", "none");
+			subListbtn5 = false;
+		}
+	});//
+	//edit 월간과자 동작
+	var subListbtn6 = false;
+	
+	$('#subListbtn6').click(function() {
+		if (!subListbtn6) {
+			$('#subListKsy6').css("display", "block");
+			subListbtn6 = true;
+		} else{
+			$('#subListKsy6').css("display", "none");
+			subListbtn6 = false;
+		}
+	});//
+	//edit 닌텐도스위치 동작
+	var subListbtn7 = false;
+	
+	$('#subListbtn7').click(function() {
+		if (!subListbtn7) {
+			$('#subListKsy7').css("display", "block");
+			subListbtn7 = true;
+		} else{
+			$('#subListKsy7').css("display", "none");
+			subListbtn7 = false;
+		}
+	});//
+	//edit 벅스 동작
+	var subListbtn8 = false;
+	
+	$('#subListbtn8').click(function() {
+		if (!subListbtn8) {
+			$('#subListKsy8').css("display", "block");
+			subListbtn8 = true;
+		} else{
+			$('#subListKsy8').css("display", "none");
+			subListbtn8 = false;
+		}
+	});//
+	//edit 스포티비나우 동작
+	var subListbtn9 = false;
+	
+	$('#subListbtn9').click(function() {
+		if (!subListbtn9) {
+			$('#subListKsy9').css("display", "block");
+			subListbtn9 = true;
+		} else{
+			$('#subListKsy9').css("display", "none");
+			subListbtn9 = false;
+		}
+	});//
+	//edit 아이클라우드 동작
+	var subListbtn10 = false;
+	
+	$('#subListbtn10').click(function() {
+		if (!subListbtn10) {
+			$('#subListKsy10').css("display", "block");
+			subListbtn10 = true;
+		} else{
+			$('#subListKsy10').css("display", "none");
+			subListbtn10 = false;
+		}
+	});//
+	//edit 유튜브프리미엄 동작
+	var subListbtn11 = false;
+	
+	$('#subListbtn11').click(function() {
+		if (!subListbtn11) {
+			$('#subListKsy11').css("display", "block");
+			subListbtn11 = true;
+		} else{
+			$('#subListKsy11').css("display", "none");
+			subListbtn11 = false;
+		}
+	});//
+	//edit 애플뮤직 동작
+	var subListbtn12 = false;
+	
+	$('#subListbtn12').click(function() {
+		if (!subListbtn12) {
+			$('#subListKsy12').css("display", "block");
+			subListbtn12 = true;
+		} else{
+			$('#subListKsy12').css("display", "none");
+			subListbtn12 = false;
+		}
+	});//
 	
 	
 	//상세페이지 모달
@@ -856,7 +2478,6 @@
 			['핀즐','<%=request.getContextPath()%>/resources/images_sub/lecture/033_pinzle.png','20,000원','핀즐은 국내 최다 해외 아티스트를 보유한 국내 유일 글로벌 아트 에이전시입니다. 삶과 예술에 대한 아티스트 인터뷰와 지면으로만 만날 수 있었던 콘텐츠까지, 바야흐로 그림을 정기구독하는 시대입니다.','https://pinzle.net/']
 			
 	];
-	
 	//로고 뿌려주기
 	$('.subServiceList').click(function(e){
 		var eachService = document.getElementsByClassName('subServiceList');
@@ -866,12 +2487,178 @@
 			if(e.target == item_3){
 				$.each(subObjectInfo, function(index_2, item_2){
 					if(index_3 == index_2){
-						$('#subLogo').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
 					}
 				});
 			}
 		});
 	});
+	//edit 멜론 로고 뿌려주기
+	$('.subServiceList2').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList2');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 넷플릭스 로고 뿌려주기
+	$('.subServiceList3').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList3');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 웨이브 로고 뿌려주기
+	$('.subServiceList4').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList4');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 디즈니+ 로고 뿌려주기
+	$('.subServiceList5').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList5');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 월간과자 로고 뿌려주기
+	$('.subServiceList6').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList6');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 닌텐도스위치 로고 뿌려주기
+	$('.subServiceList7').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList7');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 벅스 로고 뿌려주기
+	$('.subServiceList8').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList8');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 스포티비나우 로고 뿌려주기
+	$('.subServiceList9').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList9');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 아이클라우드 로고 뿌려주기
+	$('.subServiceList10').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList10');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 유튜브프리미엄 로고 뿌려주기
+	$('.subServiceList11').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList11');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	//edit 애플뮤직 로고 뿌려주기
+	$('.subServiceList12').click(function(e){
+		var eachService = document.getElementsByClassName('subServiceList12');
+		
+		$.each(eachService, function(index_3, item_3){	
+	
+			if(e.target == item_3){
+				$.each(subObjectInfo, function(index_2, item_2){
+					if(index_3 == index_2){
+						$('.img-thumbnail').attr("src",item_2[1]).attr("style","width:240px");		//style="width:240px;
+					}
+				});
+			}
+		});
+	});
+	
 	
 	//구독 리스트 선택값 넘기기
 	
@@ -879,7 +2666,6 @@
 		var btnSeeMore = document.getElementsByClassName('btnSeeMore');
 		
 		$.each(btnSeeMore, function(index_1, item_1){
-			
 			if(e.target == item_1){
 				$.each(subObjectInfo, function(index, item){
 					
@@ -892,12 +2678,15 @@
 					}
 				});
 			}
+
+			
 		});
 		if(!modalSeeMorebtn){
 			$('#modalSeeMore').css("display", "block");
 			modalSeeMorebtn = true;
 		}
 	});
+	
 	$('#modalSeeMoreDefault').click(function(){
 		if(modalSeeMorebtn){
 			$('#modalSeeMore').css("display", "none");
@@ -922,6 +2711,51 @@
 	$('.subServiceListSelf').click(function(){
 		$('#subListKsy').css("display", "none");
 	});
+	//멜론
+	$('.subServiceListSelf2').click(function(){
+		$('#subListKsy2').css("display", "none");
+	});
+	//넷플릭스
+	$('.subServiceListSelf3').click(function(){
+		$('#subListKsy3').css("display", "none");
+	});
+	//웨이브
+	$('.subServiceListSelf4').click(function(){
+		$('#subListKsy4').css("display", "none");
+	});
+	//디즈니
+	$('.subServiceListSelf5').click(function(){
+		$('#subListKsy5').css("display", "none");
+	});
+	//월간과자
+	$('.subServiceListSelf6').click(function(){
+		$('#subListKsy6').css("display", "none");
+	});
+	//닌텐도스위치
+	$('.subServiceListSelf7').click(function(){
+		$('#subListKsy7').css("display", "none");
+	});
+	//벅스
+	$('.subServiceListSelf8').click(function(){
+		$('#subListKsy8').css("display", "none");
+	});
+	//스포티비나우
+	$('.subServiceListSelf9').click(function(){
+		$('#subListKsy9').css("display", "none");
+	});
+	//아이클라우드
+	$('.subServiceListSelf10').click(function(){
+		$('#subListKsy10').css("display", "none");
+	});
+	//유튜브프리미엄
+	$('.subServiceListSelf11').click(function(){
+		$('#subListKsy11').css("display", "none");
+	});
+	//애플뮤직
+	$('.subServiceListSelf12').click(function(){
+		$('#subListKsy12').css("display", "none");
+	});
+	
 	
 	//구독 리스트 선택값 넘기기
 	var subObject = {
@@ -974,6 +2808,116 @@
 		});
     	$('#subListKsy').css("display", "none");
     });
+	//melon
+	$('.subServiceList2').click(function(e){
+		$('#subName2').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay2').val(item);
+			}
+		});
+    	$('#subListKsy2').css("display", "none");
+    });
+	//netflix
+	$('.subServiceList3').click(function(e){
+		$('#subName3').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay3').val(item);
+			}
+		});
+    	$('#subListKsy3').css("display", "none");
+    });
+	//wave
+	$('.subServiceList4').click(function(e){
+		$('#subName4').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay4').val(item);
+			}
+		});
+    	$('#subListKsy4').css("display", "none");
+    });
+	//disney+
+	$('.subServiceList5').click(function(e){
+		$('#subName5').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay5').val(item);
+			}
+		});
+    	$('#subListKsy5').css("display", "none");
+    });
+	//월간과자
+	$('.subServiceList6').click(function(e){
+		$('#subName6').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay6').val(item);
+			}
+		});
+    	$('#subListKsy6').css("display", "none");
+    });
+	//닌텐도스위치
+	$('.subServiceList7').click(function(e){
+		$('#subName7').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay7').val(item);
+			}
+		});
+    	$('#subListKsy7').css("display", "none");
+    });
+	//벅스
+	$('.subServiceList8').click(function(e){
+		$('#subName8').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay8').val(item);
+			}
+		});
+    	$('#subListKsy8').css("display", "none");
+    });
+	//스포티비나우
+	$('.subServiceList9').click(function(e){
+		$('#subName9').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay9').val(item);
+			}
+		});
+    	$('#subListKsy9').css("display", "none");
+    });
+	//아이클라우드
+	$('.subServiceList10').click(function(e){
+		$('#subName10').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay10').val(item);
+			}
+		});
+    	$('#subListKsy10').css("display", "none");
+    });
+	//유튜브프리미엄
+	$('.subServiceList11').click(function(e){
+		$('#subName11').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay11').val(item);
+			}
+		});
+    	$('#subListKsy11').css("display", "none");
+    });
+	//애플뮤직
+	$('.subServiceList12').click(function(e){
+		$('#subName12').val(this.childNodes[0].innerHTML);
+		$.each(subObject, function(index, item){
+			if(e.target.childNodes[0].innerHTML == index){
+				$('#subPay12').val(item);
+			}
+		});
+    	$('#subListKsy12').css("display", "none");
+    });
 	
 	
 	
@@ -1025,23 +2969,58 @@
 		z-index:1050;
 		top: 140px;
 	}
-	#subListKsy{
+	#subListKsy,#subListKsy2, #subListKsy3,#subListKsy4,#subListKsy5,#subListKsy6,#subListKsy7,#subListKsy8,
+	#subListKsy9,#subListKsy10,#subListKsy11,#subListKsy12{
 		display:none; 
 		position: absolute;
 		width:560px;
 		height:500px;
 		overflow:auto;
-		
 	}
 	#subListKsy > a:hover{
 		background-color:#fce38a; 
 	}
-	#subListbtn{
+	#subListKsy2 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy3 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy4 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy5 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy6 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy7 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy8 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy9 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy10 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy11 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListKsy12 > a:hover{
+		background-color:#fce38a; 
+	}
+	#subListbtn, #subListbtn2, #subListbtn3, #subListbtn4, #subListbtn5, #subListbtn6, #subListbtn7, #subListbtn8,
+	#subListbtn9, #subListbtn10, #subListbtn11, #subListbtn12{
 		width:30px;
 		height:30px;
 		display:inline-block;
 		cursor:pointer;
 	}
+	
 	#modalSeeMoreImg{
 		display: flex;
 		margin: 0 auto;
@@ -1060,6 +3039,9 @@
 		background-color:#95E1D3;
 		color:#fff;
 		border-radius: 10px;
+	}
+	#btnSubEdit:hover{
+		color:#fce38a;
 	}
 	
 	/*	sortable 적용해보기	*/

@@ -48,11 +48,19 @@
 		<typeAlias type="com.kosmo.nbbang.park.web.SfnoDTO" alias="sfnoDTO"/>
 		<typeAlias type="com.kosmo.nbbang.mysub.SecondFolderDTO" alias="secondFolderDTO"/>
 		<typeAlias type="com.kosmo.nbbang.mysub.FolderNameDTO" alias="folderNameDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.AllCostDTO" alias="allCostDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.FolderCostDTO" alias="folderCostDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.BadgeAllCountDTO" alias="badgeAllCountDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.MySubFldrCountDTO" alias="mySubFldrCountDTO"/>
+		<typeAlias type="com.kosmo.nbbang.mysub.EditSubDTO" alias="editSubDTO"/>
+		
 		
 		
 		<typeAlias type="com.kosmo.nbbang.service.ReportDTO" alias="reportDTO"/>
 		<typeAlias type="com.kosmo.nbbang.myreport.service.MyReportDTO" alias="myreport"/>
 		<typeAlias type="com.kosmo.nbbang.service.InquiryCommentDTO" alias="inquiryCommentDTO"/>
+		
+		
 
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
@@ -73,6 +81,9 @@
 		<mapper resource="nbbang/mybatis/mapper/mysubinitContents.xml" />
 		<mapper resource="nbbang/mybatis/mapper/secondFolder.xml" />
 		<mapper resource="nbbang/mybatis/mapper/folderName.xml" />
+		<mapper resource="nbbang/mybatis/mapper/allCost.xml" />
+		<mapper resource="nbbang/mybatis/mapper/etcFldrCost.xml" />
+		<mapper resource="nbbang/mybatis/mapper/badgeAllCount.xml" />
 		
 		
 		<mapper resource="nbbang/mybatis/mapper/partybbs.xml" />
