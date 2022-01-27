@@ -8,7 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo.nbbang.mysub.BadgeAllCountDTO;
 import com.kosmo.nbbang.mysub.FolderDTO;
+import com.kosmo.nbbang.mysub.MySubFldrCountDTO;
 
 @Repository
 public class FolderDAO {
@@ -29,6 +31,22 @@ public class FolderDAO {
 
 	public FolderDTO selectOne(Map map) {
 		return template.selectOne("folderSelectOne",map);
+	}
+
+	public BadgeAllCountDTO allfldrSelectOne(Map map) {
+		return template.selectOne("badgeCountAllSlecOne",map);
+	}
+
+	public BadgeAllCountDTO eachfldrSelectOne(Map map) {
+		return template.selectOne("badgeCountfldrSlecOne",map);
+	}
+
+	public BadgeAllCountDTO mysubWatchfldrSelectOne(MySubFldrCountDTO watchCmd) {
+		return template.selectOne("mysubWatchfldrSlecOne",watchCmd);
+	}
+
+	public BadgeAllCountDTO mysubLifefldrSelectOne(MySubFldrCountDTO lifeCmd) {
+		return template.selectOne("mysubLifefldrSlecOne",lifeCmd);
 	}
 	
 	

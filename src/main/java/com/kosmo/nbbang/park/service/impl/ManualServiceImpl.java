@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.kosmo.nbbang.mysub.EditSubDTO;
 import com.kosmo.nbbang.park.service.ManualService;
 import com.kosmo.nbbang.park.web.SfnoDTO;
 import com.kosmo.nbbang.park.web.SubManualDTO;
@@ -24,6 +25,16 @@ public class ManualServiceImpl implements ManualService{
 	@Override
 	public List<Map> selectList(Map map) {
 		return dao.selectList(map);
+	}
+
+	@Override
+	public int update(EditSubDTO cmdEdit) {
+		return dao.subUpdate(cmdEdit);
+	}
+
+	@Override
+	public int delete(Map map) {
+		return dao.subDelete(map);
 	}
 
 	

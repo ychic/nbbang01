@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.badgeAllCount">
+	
+	<select id="badgeCountAllSlecOne" parameterType="Map" resultType="badgeAllCountDTO" >
+	<!-- 해당계정의 모든 구독서비스 수
+		 - 필요파라미터(1) : email
+		 -->
+		SELECT COUNT(*) count FROM subscription s JOIN subfolder f
+		ON f.sfno = s.sfno
+		WHERE email=#{email}
+		
+	</select>
+	
+	<select id="badgeCountfldrSlecOne" parameterType="Map" resultType="badgeAllCountDTO" >
+	<!-- 해당계정의 Watch(or Life)폴더의 구독서비스 수
+		 - 필요파라미터(2) : email,sfno
+		 -->
+		SELECT COUNT(*)count FROM subscription s JOIN subfolder f
+		ON f.sfno = s.sfno
+		WHERE email=#{email} AND S.sfno=#{sfno}
+		
+	</select>
+	
+	<!--  -->
+	
+	<select id="mysubWatchfldrSlecOne" parameterType="mySubFldrCountDTO" resultType="badgeAllCountDTO">
+	<!-- mysub페이지에 뿌려줄 watch count -->
+		SELECT COUNT(*)count FROM subscription s JOIN subfolder f
+		ON f.sfno = s.sfno
+		WHERE email=#{email} AND S.sfno=#{sfnoW}
+	</select>
+	
+	<select id="mysubLifefldrSlecOne" parameterType="mySubFldrCountDTO" resultType="badgeAllCountDTO">
+	<!-- mysub페이지에 뿌려줄 life count -->
+		SELECT COUNT(*)count FROM subscription s JOIN subfolder f
+		ON f.sfno = s.sfno
+		WHERE email=#{email} AND S.sfno=#{sfnoL}
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper> 

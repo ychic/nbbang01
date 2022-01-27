@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.allCost">
+	
+	<select id="allCostSlecOne" parameterType="Map" resultType="allCostDTO">
+		<!-- 해당계정의 총 구독지출 금액 (All) -->
+		SELECT SUM(money) allCost FROM subscription s JOIN subfolder f
+		ON f.sfno = s.sfno
+		WHERE email=#{email}
+	</select>
+</mapper> 

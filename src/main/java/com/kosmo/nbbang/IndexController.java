@@ -74,6 +74,8 @@ public class IndexController {
 	public String thirdFold() {
 		return "forward:/mysub/thirdFolderView.do";
 	}
+	//mysub수정?
+	
 	/************************      ****************************/
 	//내 스케쥴
 	@RequestMapping("/mySchedule.do")
