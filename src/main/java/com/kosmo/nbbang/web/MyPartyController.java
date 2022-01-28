@@ -2,6 +2,7 @@ package com.kosmo.nbbang.web;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +27,19 @@ public class MyPartyController {
 	//내 파티
 	@RequestMapping("/myParty.do")
 	public String myParty(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
-		List<PartyBbsDTO> partyBbsList = partyBbsService.getList(email);
 		
-		model.addAttribute("partyBbsList", partyBbsList);
+		List<PartyBbsDTO> partyBbsList = partyBbsService.getList(email);
+		List<PartyBbsDTO> temp = new Vector();
+		for (PartyBbsDTO dto : partyBbsList) {
+			map.put("partyNo", dto.getPartyNo());
+			System.out.println("dto.getPartyNo() : " + dto.getPartyNo());
+			System.out.println(dto.getPartyCategoryName());
+			String count = partyBbsService.nowPartyMember(dto.getPartyNo());
+			System.out.println("count : " + count);
+			dto.setCount(count);
+			temp.add(dto);
+		}
+		model.addAttribute("partyBbsList", temp);
 		return "schedule/MyParty.tiles";
 	}
 	
