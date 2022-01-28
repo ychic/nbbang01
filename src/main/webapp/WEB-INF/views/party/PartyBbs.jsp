@@ -150,8 +150,7 @@
 	}
 	
 	.listBox {
-		border: 1px solid gray;
-		border-radius: 3px;
+		border-bottom : 1px solid gray;
 		padding-left: 20px;
 		padding-right: 20px;
 	}
@@ -398,9 +397,12 @@
 				<div id="buttonArea" class="row">
 					<div class="col-md-12 text-right">
 						<div class="blankSpace"></div>
+						<c:if test="${email eq 'nbbang@nbbang.com'}">
+							<a href="javascript:isDelete(${item.partyNo });"
+								class="btn btn-warning">삭제</a>
+						</c:if>
 						<c:if
-							test="${email eq item.email || email eq 'nbbang@nbbang.com'}">
-							<!-- 위에 어드민 코드 수정하기 -->
+							test="${email eq item.email }">
 							<a href="javascript:isDelete(${item.partyNo });"
 								class="btn btn-warning"
 								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>삭제</a>
@@ -415,10 +417,6 @@
 								<input class="btn btn-warning" type="submit" value="대화하기" <c:if test="${item.partyActivation eq 'false'}">disabled</c:if>/>							
 							</form>
 						</c:if>
-						<!--  
-						<a href="<c:url value="#"/>" class="btn btn-warning"
-							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>대화하기</a>
-						-->
 					</div>
 				</div>
 				<div class="blankSpace"></div>
