@@ -271,7 +271,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
                     if(data.resp_code=='A0000'){
                     	 var list = data.res_list;
                          list.forEach(function(element){
-                         	console.log(element)
+                         	//console.log(element)
                          	createCardDiv(setIgnoreCases(element))
                          })
                     }else{
