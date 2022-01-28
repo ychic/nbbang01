@@ -1,7 +1,6 @@
 package com.kosmo.nbbang.web.auth;
 
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
-import com.kosmo.nbbang.park.join.JoinFormCommand;
-import com.kosmo.nbbang.service.MemberDTO;
 import com.kosmo.nbbang.service.impl.MemberServiceImpl;
 
 
@@ -50,14 +44,14 @@ public class LoginNoutController {
 			model.addAttribute("NotMember","아이디와 비밀번호가 일치하지 않습니다.");
 			return "auth/login/Login";
 		} else if(map.get("email").equals("nbbang@nbbang.com")) {
-			//관리자 로그인
+			//관리자 로그인, 아래 modal 확인해서 필요없으면 지우기 
 			model.addAttribute("nickname",nickname);
 			return "admin/AdminMain";
 		} else if(blackMember.equals("black")) {
 			model.addAttribute("blackMember",blackMember);
 			System.out.println("blackMember확인:"+blackMember);
 			return "auth/404";
-		}
+		} 
 		return "index";
 	}
 	//로그아웃 처리]
@@ -68,6 +62,32 @@ public class LoginNoutController {
 		
 		return "first";
 	}
+	
+	@RequestMapping("/sociallogin.do")
+	public String socialProcess(@RequestParam Map map, Model model,SessionStatus status,HttpSession session,HttpServletRequest req) {
+		int flag = memberService.socialLogin(map);
+		String nickname = map.get("nickname").toString();
+		String loginType = map.get("loginType").toString();
+		String email = map.get("email").toString();
+		System.out.println("nickname:"+nickname);
+		System.out.println("loginType:"+loginType);
+		System.out.println("email:"+email);
+		model.addAttribute("email",email);
+		model.addAttribute("password",map.get("password"));
+		model.addAttribute("nickname",nickname);
+		model.addAttribute("loginType",loginType);
+		session.setAttribute("nickname", nickname);
+		session.setAttribute("email", email);
+		
+		if(loginType == null) {
+			return "forward:/memberlogin.do";
+		}
+		if(flag == 0) {
+			return "auth/register/SignUp";
+		}
+		return "index";
+	}
+	
 	
 	@RequestMapping("/findEmail.do")
 	public @ResponseBody String findEmail(@RequestParam Map map,Model model,SessionStatus status) {
@@ -148,5 +168,6 @@ public class LoginNoutController {
 
 		return "first";
 	}
+	
 	
 }

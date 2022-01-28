@@ -10,8 +10,6 @@
 	}
 	#bbs{
 		width: 750px;
-		margin-top: 50px;
-		margin-bottom: 100px;
 	}
 	.selectOTT{
 		padding: 20px 16px;
@@ -115,9 +113,20 @@
 		position: absolute;
 		right: 20px;
 	}
+	.partyEnd{
+		position: absolute;
+		padding-top: 60px;
+		padding-left: 30px;
+	}
 	#bbsList{
 		width: 600px;
 		color: black
+	}
+	#addBt{
+		position:fixed;
+		right:400px;
+		top:600px;
+		z-index:10000;
 	}
 	.listBox{
 		border: 1px solid gray;
@@ -179,6 +188,7 @@
 		width: 100%;
 		float: left;
 		font-weight: bold;
+		font-size: 18px;
 	}
 	.detailBlank{
 		width: 100%;
@@ -200,6 +210,11 @@
 		width: 100%;
 		text-align: right;
 	}
+	.content_none{
+		width: 308px;
+		height: 156px;
+	}
+	
 	/* 광고 영역 */
 	.ad_one, .ad_two{
 		background-color:red;
@@ -229,7 +244,7 @@
 	}
 </style>
 <body>
-	 <!-- 광고 1 -->
+	<!-- 광고 1 -->
 	<div class="ad_one">
 		
 	</div>
@@ -238,17 +253,18 @@
 	
 		<div id="bbs" class="container">
 			
-				
 			<div id="bbsList" class="container">
 				
 				<div class="blankSpace"></div>
-				
 					<div class="listBox">
 						<div class="blankSpace"></div>
 						<div class="profileBox">
+						<c:if test="${record.partyActivation eq 'false'}">
+							<img class="partyEnd" alt="" src="<%=request.getContextPath()%>/resources/party/party_end.png">
+						</c:if>
 					   		<div>
 					   			<div class="userProfile">
-					   				<img class="userProfileImg" src="<%=request.getContextPath()%>/resources/images/profile/profile_image.png" alt="">
+					   				<img class="userProfileImg" src="<%=request.getContextPath()%>/resources/images/profile/<c:choose><c:when test="${not empty record.profile }">${record.profile }</c:when><c:otherwise>${record.oringinProfile }</c:otherwise> </c:choose>" alt="">
 					   			</div>
 					   			<div class="nickname">
 					   				${record.nickname }
@@ -259,26 +275,44 @@
 						
 						<div class="partyTitleNCapa">
 							<h1 class="partyTitleText">${record.partyTitle }</h1>
-							<h2 class="partyMaxCapacity">(1/${record.partyMaxCapacity })</h2>
+							<h2 class="partyMaxCapacity">(${nowPartyMemberReport }/${record.partyMaxCapacity })</h2>
 						</div>
-						<div class="partyCategoryNameNMem">${record.partyCategoryName} / ${record.partyMembership}</div>
+						<div class="partyCategoryNameNMem">
+							<c:choose>
+								<c:when test="${record.partyCategoryName eq 'netflix'}">
+													넷플릭스
+												</c:when>
+								<c:when test="${record.partyCategoryName eq 'watcha'}">
+													왓챠
+												</c:when>
+								<c:when test="${record.partyCategoryName eq 'disney'}">
+													디즈니
+												</c:when>
+								<c:when test="${record.partyCategoryName eq 'laftel'}">
+													라프텔
+												</c:when>
+								<c:when test="${record.partyCategoryName eq 'tving'}">
+													티빙
+												</c:when>
+								<c:when test="${record.partyCategoryName eq 'wavve'}">
+													웨이브
+												</c:when>
+							</c:choose>
+						</div>
 						<div class="partyPostdate">${record.partyPostdate }</div>
-						<div class="price">${record.partyAllotmentPrice }원 / 1인당 <fmt:parseNumber var="price" integerOnly="true" value="${record.partyAllotmentPrice / record.partyMaxCapacity }"/>${price }원</div>
+						<div class="price"><fmt:formatNumber value="${record.partyAllotmentPrice }" pattern="#,###" />원 / 1인당 <fmt:parseNumber var="price" integerOnly="true" value="${record.partyAllotmentPrice / record.partyMaxCapacity }" /><fmt:formatNumber value="${price }" pattern="#,###" />원</div>
 						<div class="detailBlank"></div>
 						<div class="partyContent">${record.partyContent }</div>
+						<div class="blankSpace"></div>
 						<div id="buttonArea" class="row">
 							<div class="col-md-12 text-right">
-								<c:if test="${email eq record.email || email eq 'nbbang@nbbang.com'}"><!-- 어드민 코드 수정하기 -->
-									<a href="<c:url value="#"/>" class="btn btn-info">삭제</a>
-								</c:if>
-								<a href="<c:url value="#"/>" class="btn btn-primary">마감처리</a>
+							<div class="blankSpace"></div>
+								<a href="<c:url value="#"/>" class="btn btn-primary" onclick="javascript:setClosedParty();">마감하기</a>
 								<a href="#" class="btn btn-warning"  onclick="javascript:setBlackMember();">회원정지</a>
+								<div class="blankSpace"></div>
 							</div>
 						</div>
-						<div class="blankSpace"></div>
 					</div>
-					<div class="blankSpace"></div>
-				<div class="blankSpace"></div>
 			</div>
 		</div>
 	
@@ -293,6 +327,12 @@
 	function setBlackMember(){
 		if(confirm("정말로 회원 정지를 진행하시겠습니까?")){
 			location.replace("<c:url value='/partyBlackMember.do?email=${record.email}'/>");
+		}
+	}
+	
+	function setClosedParty(){
+		if(confirm("정말로 파티를 마감하시겠습니까?")){
+			location.replace("<c:url value='/closedParty.do?partyNo=${record.partyNo}'/>");
 		}
 	}
 </script>

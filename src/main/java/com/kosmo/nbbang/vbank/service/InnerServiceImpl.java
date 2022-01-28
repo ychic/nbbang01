@@ -31,6 +31,14 @@ public class InnerServiceImpl implements InnerService {
 		// TODO Auto-generated method stub
 		return dao.deleteToken(res);
 	}
+
+	@Override
+	public Map test(Map map) {
+		// TODO Auto-generated method stub
+		
+		Map result = dao.test(map);
+		return result;
+	}
 	
 
 }

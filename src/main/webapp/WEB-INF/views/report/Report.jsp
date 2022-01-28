@@ -23,15 +23,16 @@
 </style>
 
 <div class="container">
-	<div class="reportTitle">
-	신고 페이지
-	</div>
+	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">신고</h1>
+	<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">불편사항을 신고해 주시면 빠르게 처리하겠습니다.</h4>
+	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
+	
    <div>
-      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/reportInsert.do'/>">
+      <form id="myform" class="form-horizontal" method="post" action="<c:url value='/reportInsert404.do'/>">
          <div class="form-group">
             <label class="col-sm-2 control-label">신고자 ID</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}" readonly>
             </div>
          </div>
          <div class="form-group">

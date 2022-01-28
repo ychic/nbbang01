@@ -10,9 +10,9 @@
 
 <style>
 .btns1{
-	width:100%;
+	width:925px;
 	display:inline-block;
-	text-align:center;
+	text-align:right;
 	margin-left:100px;
 }
 .writeform{
@@ -60,7 +60,7 @@
 
 		<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">1:1 문의게시판</h1>
 		<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">자유롭게 문의를 남겨주시면 빠른 시간 안에 답장하겠습니다.</h4>
-		<hr class="col-md-12" style="width:1000px;margin-left:50px;"/>
+		<hr class="col-md-12" style="width:1000px; margin-left:50px;"/>
 
    <div class="writeform">
 		<form class="form-horizontal" method="post"  action="<c:url value='/saveOBO.do'/>">
@@ -93,8 +93,8 @@
 			<!-- 버튼 위치 스타일 -->
 			<div class="btns1">
 				
-				<button class="btn btn-info" onclick="location.href='OBOList.do'" >목록</button>
-				<button class="btn btn-warning" onclick="submit()" >등록</button>
+				<button class="btn btn-secondary" onclick="location.href='OBOList.do'" >취소</button>
+				<button class="btn btn-primary" onclick="submit()" >등록</button>
 			</div>
       </form>
       

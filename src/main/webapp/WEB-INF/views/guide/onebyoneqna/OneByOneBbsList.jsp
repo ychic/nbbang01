@@ -19,9 +19,9 @@
 	.table-responsive{
 		overflow: visible;
 	}
-	.container{
+	.containerinq{
 		width:60%;
-		
+		margin:auto;
 	}
 	.serchstyle{
 		margin-bottom:50px;
@@ -67,7 +67,7 @@
 <h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:240px;color:#BEBEBE;">1:1 문의게시판</h1>
 <h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:240px;color:#BEBEBE;">자유롭게 문의를 남겨주시면 빠른 시간 안에 답장하겠습니다.</h4>
 	
-<div class="container">
+<div class="containerinq">
 	
 	<br />
 	<div class="table-responsive">
@@ -104,7 +104,7 @@
 			</tbody>
 		</table>
 
-		<a class="btn btn-warning pull-right"
+		<a class="btn btn-primary pull-right"
 			href="<c:url value='/oneByOneBbsWrite.do'/>">글쓰기</a>
 
 		<!-- 페이징 -->
@@ -129,7 +129,7 @@
 					<div class="form-group">
 						<input type="text" name="searchWord" class="form-control" />
 					</div>
-					<button type="submit" class="btn btn-primary">검색</button>
+					<button type="submit" class="btn btn-default">검색</button>
 				</form>
 			</div>
 		</div>

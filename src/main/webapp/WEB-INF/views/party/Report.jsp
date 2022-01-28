@@ -26,7 +26,39 @@
 		text-align:center;
 		margin-left:100px;
 	}
+	/* 광고 영역 */
+	.ad_one, .ad_two{
+		background-color:red;
+		width: 188.5px;
+		height:377px;
+		display: inline-block;
+		position: fixed;
+		top:150px;
+		background-size: cover;
+		background-position: center;
+		background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+		animation: ad_one_ani 16s infinite;
+	}
+	
+	.ad_one{
+		left:30px;
+	}
+	
+	.ad_two{
+		right:30px;
+	}
+	
+	@keyframes ad_one_ani {
+		33%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")}
+		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
+		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
+	}
 </style>
+
+<!-- 광고 1 -->
+<div class="ad_one">
+	
+</div>
 
 <div class="container">
 	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">신고</h1>
@@ -109,6 +141,11 @@
          </div>
       </form>
    </div>
+</div>
+
+<!-- 광고 2 -->
+<div class="ad_two">
+	
 </div>
 
 <script>

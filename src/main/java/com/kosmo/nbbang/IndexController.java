@@ -35,18 +35,12 @@ public class IndexController {
 		return "auth/register/SignUp";
 	}
 	//신고하기
+	/*
 	@RequestMapping("/reportPage.do")
 	public String reportPage() {
 		return "report/Report.tiles";
 	}
-	
-	
-	
-	//파티원 메인
-	@RequestMapping("/party.do")
-	public String party() {
-		return "party/PartyMain.tiles";
-	}
+	*/
 	
 	/*
 	//파티 채팅
@@ -80,17 +74,15 @@ public class IndexController {
 	public String thirdFold() {
 		return "forward:/mysub/thirdFolderView.do";
 	}
+	//mysub수정?
+	
 	/************************      ****************************/
 	//내 스케쥴
 	@RequestMapping("/mySchedule.do")
 	public String mySchedule() {
 		return "schedule/MySchedule.tiles";
 	}
-	//내 파티
-	@RequestMapping("/myParty.do")
-	public String myParty() {
-		return "schedule/MyParty.tiles";
-	}
+
 	/*
 	//내 리포트
 	@RequestMapping("/myReport.do")
@@ -110,7 +102,11 @@ public class IndexController {
 	}
 	
 	
-	
+	//이미지분석 test
+	@RequestMapping("/imageAnalysis.do")
+	public String imageAnalysis() {
+		return "recommand/ImageAnalysis.tiles";
+	}
 	/*//추천 메인
 	@RequestMapping("/recommand.do")
 	public String recommand() {

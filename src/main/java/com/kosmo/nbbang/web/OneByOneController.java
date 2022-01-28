@@ -28,21 +28,15 @@ public class OneByOneController {
 	
 	@Autowired
 	private InquiryBbsService inquiryBbsService;
-	@Autowired
-	private ReportService reportService;
 	
+	@Autowired
+	private ReportService reportService;	
 	
 	//문의 작성
 	@RequestMapping("/saveOBO.do")
 	public String writeOk(@ModelAttribute("email") String email,@RequestParam Map map,Model model) {
-//		for(Map.Entry<String, String> entry : map.entrySet()) {
-//	         System.out.println(entry.getKey()+"-"+entry.getValue());
-//	      }
 		map.put("email", email);
 		int affected = inquiryBbsService.insert(map);
-		System.out.println("affected:"+affected);
-		
-		
 		return "forward:/OBOList.do";
 	}
 	
@@ -76,7 +70,6 @@ public class OneByOneController {
 	@RequestMapping("/oneByOneBbsView.do")
 	public String OBOview(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 		InquiryBbsDTO record = inquiryBbsService.inqSelectOne(map);
-		
 		record.setInqcontent(record.getInqcontent().replace("\r\n", "<br/>"));
 		model.addAttribute("record", record);
 		

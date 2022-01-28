@@ -14,10 +14,14 @@
 	</delete>
 	
 	
-	<select id="selectAuth" parameterType="Map" resultType="Map">
-		select * from banktoken WHERE email = #{email}
+	<select id="selectAuthMYOB" parameterType="Map" resultType="Map">
+		SELECT * FROM banktoken WHERE email=#{email}
 	</select>
 	
+	
+	<select id="testInfo" parameterType="Map" resultType="Map">
+		SELECT * FROM banktoken WHERE email=#{email}
+	</select>
 	
 	
 	
