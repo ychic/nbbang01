@@ -17,24 +17,32 @@
 <script type="text/javascript"
 	src="<c:url value="resources/party/stomp.js"/>"></script>
 <div class="container" style="height: 730px; padding-top: 25px;">
-
 	<div class="page-header">
 		<h1>채팅</h1>
 	</div>
 	<div class="row">
+		  
 		<ul class="nav nav-pills nav-stacked col-sm-3"
 			style="overflow: auto; height: 457px;">
+		
+		<!--
+		<ul class="list-group col-sm-offset-3 col-sm-6">
+			<li class="list-group-item">채팅 리스트</li>
+		-->
 			<c:if test="${not empty chatList}" var="emptyList">
 				<c:forEach items="${chatList}" var="item" varStatus="loop">
-					<li><a id="p_${item.partyno}_${item.chatno}">${pnickname.get(loop.index)}님과
-							채팅중입니다</a></li>
+					<li class="list-group-item">
+						<a id="p_${item.partyno}_${item.chatno}">
+							${pnickname.get(loop.index)}님과 채팅중입니다
+						</a>
+					</li>
 				</c:forEach>
 			</c:if>
 			<c:if test="${!emptyList}">
-				<li><a href="#">채팅이 없습니다</a></li>
+				<li class="list-group-item"><a href="#">채팅이 없습니다</a></li>
 			</c:if>
 		</ul>
-		<div class="col-sm-9 row" hidden="true" id="chatDiv">
+		<div class="col-md-9 row" hidden="true" id="chatDiv">
 			<div class="col-md-12" style="padding-bottom: 5px">
 				<div class="col-md-2" style="padding-top: 5px;">
 					<h4>대화내용</h4>
@@ -73,12 +81,10 @@
 					<div class="form-group">
 						<input class="btn btn-success" type="button" id="sendBtn"
 							value="전송">
-					</div>
-					</form>
+					</div>					
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 <script>
@@ -292,7 +298,10 @@
 							isBbsWriter = true;														
 						}
 						console.log(data.isMePartyMember)
-						if(data.partnerIsPartyMember.indexOf("아니다") == -1 ? false : true){
+						if(data.partnerIsPartyMember == null){
+							$('#quit').removeProp("disabled");
+						}
+						else if(data.partnerIsPartyMember.indexOf("아니다") == -1 ? false : true){
 							if(data.isMePartyMember.indexOf('맞다_파티장') == -1 ? false : true){
 								$('#confirm').removeProp("disabled");
 								$('#quit').removeProp("disabled");

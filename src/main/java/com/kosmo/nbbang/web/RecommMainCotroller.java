@@ -66,23 +66,23 @@ public class RecommMainCotroller {
 		for(Entry<String,Integer> entry:subs)
 			System.out.println(entry.getKey()+ " : "+entry.getValue());
 		String nickname = partyService.getNickName(email);
-		List<String> ottContent = new Vector<>();
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
-		options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
-		ChromeDriver driver = new ChromeDriver(options);		
-
-        driver.get("https://m.kinolights.com/ranking/kino");
-        List<WebElement> elements = new WebDriverWait(driver, Duration.ofSeconds(3))
-        		.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"contents\"]/div[2]/div[1]/div/div/ul[2]/li/a/span[1]/span[3]")));
-        for(WebElement element : elements)
-        	ottContent.add(element.getText());
-        driver.quit();        
+//		List<String> ottContent = new Vector<>();
+//		WebDriverManager.chromedriver().setup();
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("headless");
+//		options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
+//		ChromeDriver driver = new ChromeDriver(options);		
+//
+//        driver.get("https://m.kinolights.com/ranking/kino");
+//        List<WebElement> elements = new WebDriverWait(driver, Duration.ofSeconds(3))
+//        		.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"contents\"]/div[2]/div[1]/div/div/ul[2]/li/a/span[1]/span[3]")));
+//        for(WebElement element : elements)
+//        	ottContent.add(element.getText());
+//        driver.quit();        
 		model.addAttribute("subs", subs);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("reviews", reviews);
-		model.addAttribute("ottContent", ottContent);
+//		model.addAttribute("ottContent", ottContent);
 		return "recommand/RecommandMain.tiles";
 	}
 }

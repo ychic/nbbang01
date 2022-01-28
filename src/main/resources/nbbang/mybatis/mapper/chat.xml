@@ -42,4 +42,7 @@
 	<insert id="createChat" parameterType="Map">
 		INSERT INTO chat VALUES(SEQ_CHAT_CHATNO.NEXTVAL, #{partyNo}, #{participant}, #{bbsWriter})
 	</insert>
+	<update id="matchSuccess" parameterType="String">
+		UPDATE partybbs SET partyactivation = 'false' , partymatchdate = SYSDATE WHERE partyno = #{partyNo}
+	</update>
 </mapper>
