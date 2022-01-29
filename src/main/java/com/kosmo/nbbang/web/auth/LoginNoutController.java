@@ -65,10 +65,13 @@ public class LoginNoutController {
 	
 	@RequestMapping("/sociallogin.do")
 	public String socialProcess(@RequestParam Map map, Model model,SessionStatus status,HttpSession session,HttpServletRequest req) {
-		String nickname = memberService.getNickname(map);
 		int flag = memberService.socialLogin(map);
-		String loginType = (String)map.get("loginType");
-		String email = (String) map.get("email");
+		String nickname = map.get("nickname").toString();
+		String loginType = map.get("loginType").toString();
+		String email = map.get("email").toString();
+		System.out.println("nickname:"+nickname);
+		System.out.println("loginType:"+loginType);
+		System.out.println("email:"+email);
 		model.addAttribute("email",email);
 		model.addAttribute("password",map.get("password"));
 		model.addAttribute("nickname",nickname);

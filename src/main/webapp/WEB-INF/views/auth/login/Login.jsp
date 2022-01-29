@@ -62,6 +62,9 @@
 	 .contents{
 	 	position: relative;
 	 }
+	 .abcRioButton.abcRioButtonLightBlue {
+	 	margin: 0 auto;
+	 }
 </style>
 
 
@@ -130,13 +133,15 @@
 							</div>
 						</form>
 						<form action="<c:url value='/sociallogin.do'/>" class="signin-form" method="post" id="form">
-							<!-- 소셜 로그인 영역 -->
-							<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-							<a href="#" onclick="social.kakao.login()"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_medium_wide.png" alt="카카오로그인"></a>
-							<div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn" data-width="300px" data-height="45px;" data-longtitle="true"></div>
-							<input type="hidden" name="loginType" id="loginType">
-							<input type="hidden" name="nickname" id="nickname">
-							<input type="hidden" name="email" id="email">
+							<div style="text-align: center;">
+								<!-- 소셜 로그인 영역 -->
+								<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+								<a href="#" onclick="social.kakao.login()"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_btn.png" alt="카카오로그인"></a>
+								<div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn" data-width="300px" data-height="45px;" data-longtitle="true"></div>
+								<input type="hidden" name="loginType" id="loginType">
+								<input type="hidden" name="nickname" id="nickname">
+								<input type="hidden" name="email" id="email">
+							</div>
 						</form>
 					</div>
 				</div>
@@ -170,9 +175,12 @@
 		console.log("info.type:",info.type);
 		console.log("info.nm:",info.nm);
 		console.log("info.email:",info.email);
-		$('#loginType').val(info.type);
-		$('#nickname').val(info.nm);
-		$('#email').val(info.email);
+		var loginType = info.type;
+		var nickname = info.nm;
+		var email = info.email;
+		$('#loginType').val(loginType);
+		$('#nickname').val(nickname);
+		$('#email').val(email);
 		setTimeout($('#form').submit(), 2000);
 	}
 	</script>

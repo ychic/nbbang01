@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- 상단메뉴 시작 -->	
-<!--<jsp:include page="/WEB-INF/views/template/Top.jsp"/>-->
-<!-- 상단메뉴 끝 -->
+
+<jsp:include page="/WEB-INF/views/template/Top.jsp"/>
+
 	
-		<!-- carousel 영역 -->
+
 			<section id="nino-slider" class="carousel slide container" data-ride="carousel">
 				
 				<div class="carousel-inner" role="listbox">
@@ -1303,6 +1303,4 @@
     </section><!--/#nino-map-->
 	
 	
-<!-- 푸터 시작 -->
-<!--<jsp:include page="/WEB-INF/views/template/Footer.jsp"/>-->
-<!-- 푸터 끝 -->
+<jsp:include page="/WEB-INF/views/template/Footer.jsp"/>

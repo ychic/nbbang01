@@ -16,7 +16,11 @@ public class IndexController {
 	public String handlerMapping() {
 		return "index.tiles";
 	}
-	
+	//챗봇
+	@RequestMapping("/chatbot.do")
+	public String chatbot() {
+		return "chatbot";
+	}
 	
 	//로그인
 	@RequestMapping("/login.do")
