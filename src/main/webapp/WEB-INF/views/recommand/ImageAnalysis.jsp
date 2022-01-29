@@ -58,6 +58,9 @@
 	#preview_image{
 		display:block;
 		margin:auto;
+		width:300px;
+		height:300px;
+		border: 1px solid grey;
 	}
 	#test_image{
 		margin:auto;
@@ -111,6 +114,9 @@
 	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">이미지 분석 test 페이지</h1>
 	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 	
+	<!-- 챗봇 적용 테스트 -->
+	<img id="nbbang_chatbot" src="<%=request.getContextPath()%>/resources/logo/Nbread_02_2_cut.png" style="width:80px;height:100px;"/>
+	
    <div class="containerAnalysis">
 	    <h1 id="todo">필모그라피가 궁금한 배우의 사진을 넣어주세요.</h1>
 	    
@@ -150,6 +156,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 	<script type="text/javascript">
+		//chatbot
+		$('#nbbang_chatbot').on('click',function(){
+			window.open("chatbot.do",'_blank','width=600,height=800,menubar=false');
+	    })
+    
+	
 	    const URL = "./my_model/";
 
 	    let model, webcam, labelContainer, maxPredictions;
