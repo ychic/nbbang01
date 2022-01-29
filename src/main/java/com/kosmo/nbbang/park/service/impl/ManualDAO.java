@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo.nbbang.mysub.EditSubDTO;
 import com.kosmo.nbbang.park.web.SubManualDTO;
 
 
@@ -30,6 +31,14 @@ public class ManualDAO {
 
 	public List<Map> selectList(Map map) {
 		return template.selectList("sfnoSelectList",map);
+	}
+
+	public int subUpdate(EditSubDTO cmdEdit) {
+		return template.update("mysubUpdate",cmdEdit);
+	}
+
+	public int subDelete(Map map) {
+		return template.delete("mysubDelete",map);
 	}
 	
 	

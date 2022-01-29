@@ -1,12 +1,16 @@
 package com.kosmo.nbbang.mysub;
 
+
+import java.text.SimpleDateFormat;
+
 public class MySubDTO {
 
 	private int subno;
 	private String subservice;
-	private String paymentday;
+	private java.sql.Date paymentday;
 	private int money;
 	private int sfno;
+	//
 	public int getSubno() {
 		return subno;
 	}
@@ -19,10 +23,10 @@ public class MySubDTO {
 	public void setSubservice(String subservice) {
 		this.subservice = subservice;
 	}
-	public String getPaymentday() {
+	public java.sql.Date getPaymentday() {
 		return paymentday;
 	}
-	public void setPaymentday(String paymentday) {
+	public void setPaymentday(java.sql.Date paymentday) {
 		this.paymentday = paymentday;
 	}
 	public int getMoney() {
@@ -38,7 +42,6 @@ public class MySubDTO {
 		this.sfno = sfno;
 	}
 	
-	//
 	
 	
 	

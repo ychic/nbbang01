@@ -54,6 +54,12 @@ public class PartyServiceImpl implements PartyService{
 		int bbsMemberCount = dao.getBbsMemberCount(map.get("partyNo").toString());
 		if(memberCount != bbsMemberCount) {			
 			dao.addMember(map);
+			memberCount = dao.getMemberCount(map.get("partyNo").toString());
+			bbsMemberCount = dao.getBbsMemberCount(map.get("partyNo").toString());
+			if(memberCount == bbsMemberCount) {
+				dao.matchSuccess(map.get("partyNo").toString());
+				return "파티원을 모두 모았습니다.";
+			}
 			return "멤버추가.";
 		}
 		else

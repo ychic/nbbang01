@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nbbang.mybatis.mapper.etcFldrCost">
+	
+	<select id="folderCostSlecOne" parameterType="Map" resultType="folderCostDTO" >
+	<!-- 해당계정의 폴더별 구독지출 금액(Watch / Life) 레코드 읽어오기 (sfno 이용)
+		 - 필요파라미터(2) : email, sfno
+		 -->
+		SELECT SUM(money) foldercost FROM subscription s JOIN subfolder f
+		ON f.sfno = s.sfno
+		WHERE email=#{email} AND f.sfno=#{sfno}
+		
+	</select>
+	
+</mapper> 

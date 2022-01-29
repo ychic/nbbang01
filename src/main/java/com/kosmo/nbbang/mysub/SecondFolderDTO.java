@@ -7,7 +7,7 @@ public class SecondFolderDTO {
 	34		런드리고		22/01/08	65000	98*/
 	
 	private String subservice;
-	private String paymentday;
+	private java.sql.Date paymentday;
 	private int money;
 	private int sfno;
 	private int subno;
@@ -18,10 +18,10 @@ public class SecondFolderDTO {
 	public void setSubservice(String subservice) {
 		this.subservice = subservice;
 	}
-	public String getPaymentday() {
+	public java.sql.Date getPaymentday() {
 		return paymentday;
 	}
-	public void setPaymentday(String paymentday) {
+	public void setPaymentday(java.sql.Date paymentday) {
 		this.paymentday = paymentday;
 	}
 	public int getMoney() {
@@ -42,6 +42,7 @@ public class SecondFolderDTO {
 	public void setSubno(int subno) {
 		this.subno = subno;
 	}
+	
 	
 	
 	
