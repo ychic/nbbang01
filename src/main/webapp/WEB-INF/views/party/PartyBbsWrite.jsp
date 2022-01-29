@@ -11,6 +11,10 @@
    .container {
    	  width: 750px;
    }
+   #btns {
+	  text-align: right;
+	  padding-right: 15px;
+   }
    	/* 광고 영역 */
 	.ad_one, .ad_two{
 		background-color:red;
@@ -65,7 +69,8 @@ function categoryChange(e) {
 <div class="container">
    <h1 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집 게시판</h1>
    <h4 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집하여 구독료를 아껴보세요!</h4>
-
+	
+   <hr/>
    <div>
       <form id="myform" class="form-horizontal" method="post" action="<c:url value='/partyBbsWrite.do'/>">
       	 <input type="hidden" name="partyLeader" value="y" />
@@ -128,9 +133,9 @@ function categoryChange(e) {
          </div>
          
          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-4">
-               <button id="register" class="btn btn-warning">등록</button>
-               <button id="cancel" class="btn btn-warning">취소</button>
+            <div id="btns">
+               <button id="cancel" class="btn btn-secondary">취소</button>
+               <button id="register" class="btn btn-primary">등록</button>
             </div>
          </div>
       </form>

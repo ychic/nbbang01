@@ -105,10 +105,7 @@
 					</c:if>
 					<c:if test="${not empty item.partyMatchdate }">
 						<label>
-							<jsp:useBean id="partyMatchdate" class="java.util.Date" />
-							<jsp:setProperty name="partyMatchdate" property="time" value="${item.partyMatchdate.time + 60*60*24*1000*180}"/>
-							<fmt:formatDate var="endDate" value="${partyMatchdate}" pattern="yyyy-MM-dd"/>
-							${endDate }
+							${item.endDate }
 						</label>
 					</c:if>
 				</div>

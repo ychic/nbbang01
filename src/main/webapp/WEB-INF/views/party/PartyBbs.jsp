@@ -150,7 +150,6 @@
 	}
 	
 	.listBox {
-		border-bottom : 1px solid gray;
 		padding-left: 20px;
 		padding-right: 20px;
 	}
@@ -322,6 +321,7 @@
 			<div class="ottName">웨이브</div>
 		</a>
 	</div>
+	<hr/>
 </div>
 
 <div class="blankSpace"></div>
@@ -419,6 +419,7 @@
 						</c:if>
 					</div>
 				</div>
+				<hr/>
 				<div class="blankSpace"></div>
 			</div>
 			<div class="blankSpace"></div>
