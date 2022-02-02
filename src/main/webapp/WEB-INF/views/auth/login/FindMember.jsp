@@ -82,7 +82,7 @@
 <body class="img js-fullheight" style="background-image: url(resources/login/images/bg.jpg);">
 	<div class="contents">
 		<div id="first-navbar-logo">
-			<a href="<c:url value="/index.do"/>" style="color:white; ">Nbbang</a>
+			<a href="<c:url value="/login.do"/>" style="color:white; ">로그인</a>
 		</div>
 		<div id="first-navbar-login">
 			<a href="<c:url value='/signup.do'/>" style="color:white;">회원가입</a>

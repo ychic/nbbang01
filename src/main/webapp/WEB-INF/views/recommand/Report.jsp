@@ -66,19 +66,19 @@
 	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 	
    <div>
-   <form id="myform" class="form-horizontal" method="post" action="<c:url value='/oboReportOk.do'/>">
+   <form id="myform" class="form-horizontal" method="post" action="<c:url value='/ussrReportOk.do'/>">
    		<div class="form-group">
             <label class="col-sm-2 control-label">신고글 NO</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqno" value="${record.inqno}" readonly>
+               <input type="text" class="form-control" name="ussrno" value="${record.ussrno}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 제목</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqtitle" value="${record.inqtitle}" readonly>
+               <input type="text" class="form-control" name="ussrtitle" value="${record.ussrtitle}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 날짜</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqpostdate" value="${record.inqpostdate}" readonly>
+               <input type="text" class="form-control" name="ussrpostdate" value="${record.ussrpostdate}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 작성자</label>
             <div class="col-sm-4">
@@ -86,7 +86,7 @@
             </div>
             <label class="col-sm-2 control-label">신고글 내용</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="inqcontent" value="${record.inqcontent}" readonly>
+               <input type="text" class="form-control" name="ussrcontent" value="${record.ussrcontent}" readonly>
             </div>
     	</div>
    
@@ -96,7 +96,7 @@
             
             <div class="col-sm-4">
                <input type="text" class="form-control" name="email" value="${sessionScope.email}" readonly>
-               <input type="hidden" class="form-control" name="inqno" value="${record.inqno}">
+               <input type="hidden" class="form-control" name="inqno" value="${record.ussrno}">
             </div>
          </div>
          <div class="form-group">
@@ -138,7 +138,7 @@
          
          <div class="btns1">
                <button class="btn btn-warning" id="submit" onclick="submit()">신고하기</button>
-               <button class="btn btn-secondary" onclick="location.href='OBOList.do'">취소</button>
+               <button class="btn btn-secondary" onclick="location.href='recommandList.do?ussrcategoryname=recommand'">취소</button>
          </div>
       </form>
    </div>

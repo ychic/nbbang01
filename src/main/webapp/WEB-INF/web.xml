@@ -79,4 +79,9 @@
 	<welcome-file-list>
 		<welcome-file>first.do</welcome-file>
 	</welcome-file-list>
+	
+	<!-- 세션 시간 24시간으로 설정 -->
+	<session-config>
+		<session-timeout>1440</session-timeout>
+	</session-config>
 </web-app>
