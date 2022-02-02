@@ -82,10 +82,10 @@ public class IndexController {
 	
 	/************************      ****************************/
 	//내 스케쥴
-	@RequestMapping("/mySchedule.do")
+	/*@RequestMapping("/mySchedule.do")
 	public String mySchedule() {
 		return "schedule/MySchedule.tiles";
-	}
+	}*/
 
 	/*
 	//내 리포트
@@ -169,6 +169,7 @@ public class IndexController {
 	public String oneByOneBbsModify() {
 		return "guide/onebyoneqna/OneByOneBbsModify.tiles";
 	}
+	
 	/*
 	@RequestMapping("/oneByOneBbsView.do")
 	public String oneByOneBbsView() {

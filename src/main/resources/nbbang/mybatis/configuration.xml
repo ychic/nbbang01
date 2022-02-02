@@ -58,7 +58,7 @@
 		<typeAlias type="com.kosmo.nbbang.service.ReportDTO" alias="reportDTO"/>
 		<typeAlias type="com.kosmo.nbbang.myreport.service.MyReportDTO" alias="myreportDTO"/>
 		<typeAlias type="com.kosmo.nbbang.service.InquiryCommentDTO" alias="inquiryCommentDTO"/>
-
+		<typeAlias type="com.kosmo.nbbang.mycal.service.CalDTO" alias="calDTO"/>
 		<!-- LineCommentDTO는 별칭 불필요. SELECT결과를 Map에 저장하기때문에 -->
 	</typeAliases>
 	
@@ -95,6 +95,7 @@
 		<mapper resource="nbbang/mybatis/mapper/inquirycomment.xml" />
 		<!-- banking -->	
 		<mapper resource="nbbang/mybatis/mapper/banktoken.xml"/>
-
+		
+		<mapper resource="nbbang/mybatis/mapper/mycal.xml" />
 	</mappers>	
 </configuration>
