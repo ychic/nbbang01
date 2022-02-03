@@ -60,6 +60,7 @@ let social = {
 		},
 		init: function(elId) {
 			gapi.load('auth2', function() {
+      //gapi.auth2.init({ client_id: social.google.data.clientId });
 				gapi.auth2.getAuthInstance({ client_id: social.google.data.clientId });
 				let options = new gapi.auth2.SigninOptionsBuilder();
 				options.setPrompt('select_account');
