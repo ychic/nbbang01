@@ -76,4 +76,8 @@ public class PartyChatDAO {
 	public void matchSuccess(String partyNo) {
 		template.update("matchSuccess", partyNo);
 	}
+
+	public int chatExist(Map map) {
+		return template.selectOne("chatExist", map);
+	}
 }
