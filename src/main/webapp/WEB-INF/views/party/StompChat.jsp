@@ -18,7 +18,22 @@
 	src="<c:url value="resources/party/sockjs.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="resources/party/stomp.js"/>"></script>
-
+<style>
+.account-container::-webkit-scrollbar {
+    width: 15px;
+}
+.account-container::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+.account-container::-webkit-scrollbar-track {
+    background-color: #f38181;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+</style>
 
 <div class="container" style="height: 730px; padding-top: 25px;">
 	<div class="page-header">
@@ -26,9 +41,8 @@
 	</div>
 	<div class="row">
 
-		<ul class="nav nav-pills nav-stacked col-sm-3"
-			style="overflow: auto; height: 457px;">
-
+		<ul class="nav nav-pills nav-stacked col-sm-3 account-container"
+			style="height: 457px; overflow: auto;">
 			<!--
 		<ul class="list-group col-sm-offset-3 col-sm-6">
 			<li class="list-group-item">채팅 리스트</li>
@@ -75,7 +89,7 @@
 			</div>
 			<div class="col-sm-12">
 				<div id="chatArea">
-					<div id="chatMessage"
+					<div id="chatMessage" class="account-container"
 						style="height: 350px; border: 1px pink solid; overflow: auto"></div>
 				</div>
 			</div>
@@ -141,9 +155,12 @@
 			$('#chatMessage').append(
 					message.nickname + ">>" + message.message + "<br/>");
 			//}
-			if (message.message == '파티원으로 확정되셨습니다.') {
+			if(message.message == '파티원으로 확정되셨습니다.') {
 				$('#confirm').prop("disabled", "disabled");
 				$('#quit').prop("disabled", "disabled");
+			}
+			if(message.message == '채팅을 나갔습니다.'){
+				$('#confirm').prop("disabled", "disabled");
 			}
 			$.ajax({
 				url : "<c:url value="/message/saveMessage.do"/>",
@@ -348,49 +365,19 @@
 												if (data.partyBbs.email == '${email}') {
 													isBbsWriter = true;
 												}
-												console
-														.log(data.isMePartyMember)
-												if (data.partnerIsPartyMember == null) {
-													$('#quit').removeAttr(
-															"disabled");
-												} else if (data.partnerIsPartyMember
-														.indexOf("아니다") == -1 ? false
-														: true) {
-													if (data.isMePartyMember
-															.indexOf('맞다_파티장') == -1 ? false
-															: true) {
-														$('#confirm')
-																.removeAttr(
-																		"disabled");
-														$('#quit').removeAttr(
-																"disabled");
+												console.log(data.isMePartyMember)
+												console.log(data.partnerIsPartyMember)
+												if(data.isMePartyMember == '맞다_파티장'){
+													if(data.partnerIsPartyMember == '아니다'){
+														$('#confirm').removeAttr("disabled");
+														$('#quit').removeAttr("disabled");
+													}else{
+														return;														
 													}
-												} else if (data.partnerIsPartyMember
-														.indexOf("맞다_멤버") == -1 ? false
-														: true) {
-													$('#confirm').prop(
-															"disabled",
-															"disabled");
-													$('#quit').prop("disabled",
-															"disabled");
-												} else if (data.partnerIsPartyMember
-														.indexOf("맞다_파티장") == -1 ? false
-														: true) {
-													$('#confirm').prop(
-															"disabled",
-															"disabled");
-													if (data.isMePartyMember
-															.indexOf('아니다') == -1 ? false
-															: true) {
-														$('#quit').removeAttr(
-																"disabled");
-													} else if (data.isMePartyMember
-															.indexOf('맞다_멤버') == -1 ? false
-															: true) {
-														$('#quit').prop(
-																"disabled",
-																"disabled");
-													}
+												}else if(data.isMePartyMember == '맞다_멤버'){
+													return;													
+												}else{
+													$('#quit').removeAttr("disabled");
 												}
 											})
 									.fail(
