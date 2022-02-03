@@ -1,6 +1,7 @@
 package com.kosmo.nbbang.vbank.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kosmo.nbbang.util.MyUtils;
 import com.kosmo.nbbang.vbank.service.BankingService;
 import com.kosmo.nbbang.vbank.service.InnerService;
 import com.kosmo.nbbang.vbank.service.ResponeCode;
@@ -44,6 +46,8 @@ public class BankingController {
 	BankingService bankingservice;
 	@Autowired
 	InnerService innerservice;
+	@Autowired
+	MyUtils myutils;
 	
 	/*
 	 * 
@@ -141,6 +145,10 @@ public class BankingController {
 		res.put("fintech_use_num", map.get("fintech_use_num"));
 		JSONArray test = bankingservice.getTradingStatement(res);
 		System.out.println(test);
+		List<String> check =  myutils.getRegularTransaction(test);
+		for(String data : check) {
+			System.out.println(data);
+		}
 		return test.toString();
 	}
 	
