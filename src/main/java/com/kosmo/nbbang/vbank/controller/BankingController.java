@@ -59,8 +59,7 @@ public class BankingController {
 		map.put("email", session.getAttribute("email").toString());
 		Map<String,String> res = innerservice.getAuth(map);
 //		res.put("email", session.getAttribute("email").toString());
-		System.out.println(map.get("location"));
-		
+
 		if( res !=null) {
 			res.put("location",map.get("location").toString());
 			for(Map.Entry<String, String> entry : res.entrySet()) {
@@ -71,6 +70,8 @@ public class BankingController {
 			res.put("location",map.get("location").toString());
 		}
 		
+
+		res.put("location",map.get("location").toString());
 		System.out.println("getUrl메소드 진입");
 		System.out.println("res: "+res.get("location"));
 		Map test = bankingservice.requestAuthUrl(res);
@@ -115,7 +116,7 @@ public class BankingController {
 	 * 	Method : 계좌 하나 조회 
 	 *  condition : dao에 등록된 사람만 조회 가능
 	 *  Scenario : 사용자 전체조회 계좌 요청-> vbankServer 전체 계좌 요청 및 응답 -> 브라우저로 응답[JSON] - object 형식 
-	 *  필수 파라미터 : 사용자 ID(email), 사용자 fintech(서버에 저장 안되어있음. )
+	 *  필수 파라미터 : 사용자 ID(email), 사용자 fintech(서버에 저장 안되어있음. ),single ="true"
 	 */
 	@GetMapping("/user/account/{fin_num}.do")
 	public Map getUseraccount(@RequestParam Map map,@PathVariable("fin_num") String  fin_num) {
