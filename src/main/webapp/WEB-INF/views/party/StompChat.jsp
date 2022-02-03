@@ -76,7 +76,7 @@
 			<div class="col-sm-12">
 				<div id="chatArea">
 					<div id="chatMessage"
-						style="height: 450px; border: 1px pink solid; overflow: auto"></div>
+						style="height: 350px; border: 1px pink solid; overflow: auto"></div>
 				</div>
 			</div>
 			<div class="col-sm-12">

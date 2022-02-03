@@ -3,13 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	</div>
 </header>
-
+<!--  
 <script>
 	$(function() {
 		$('body').css('backgroundColor', '#F69E8F');
 		$('footer').css('backgroundColor', '#F69E8F');
 	});
 </script>
+-->
 <div class="container" style="height: 730px; padding-top: 25px;">
 	<div class="row">
 		<h1>
