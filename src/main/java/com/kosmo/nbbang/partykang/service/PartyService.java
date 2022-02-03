@@ -15,4 +15,5 @@ public interface PartyService {
 	public String addMember(Map map);
 	String getMember(String partyNo, String partnerId);
 	void createChat(Map map);
+	int chatExist(Map map);
 }

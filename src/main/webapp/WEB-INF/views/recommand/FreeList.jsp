@@ -8,6 +8,10 @@ tr {
 	color: black;
 }
 
+.container{
+	width: 60%;
+}
+
 /* 광고 영역 */
 .ad_one, .ad_two{
 	background-color:red;
