@@ -24,9 +24,9 @@ public class MyUtils {
 	 * 예측 메소드 정기 결제 조건 officialContent 인 경우 or 혹은 데이터 간격이 27~ 32 정도 차이가 나는 경우
 	 */
 
-	public List<String> getRegularTransaction(JSONArray data) {
+	public List<RegularData> getRegularTransaction(JSONArray data) {
 //		System.out.println(data.getJSONObject(0));
-		List<String> result = new ArrayList<String>();
+		List<RegularData> result = new ArrayList();
 		Map<String,Pair> info = new HashMap();
 		for (int i = 0; i < data.length(); i++) {
 			System.out.println(data.getJSONObject(i));
@@ -44,7 +44,8 @@ public class MyUtils {
 		for (Entry<String, Pair> entry : info.entrySet()) {
 			
 			if (entry.getValue().getCount() > 1 && (entry.getValue()).getIsReqular()) {
-				result.add(entry.getKey());
+				System.out.println(entry.getValue().getData().get(0));
+				result.add(new RegularData(entry.getKey(), String.valueOf((entry.getValue().getData().get(0).get("TRAN_AMT")))));
 			}
 		}
 
@@ -127,5 +128,11 @@ class Pair {
 	public boolean getIsReqular() {
 		return isRegular;
 	}
+
+	@Override
+	public String toString() {
+		return "Pair [count=" + count + ", data=" + data.toArray().toString() + ", isRegular=" + isRegular + "]";
+	}
+	
 
 }

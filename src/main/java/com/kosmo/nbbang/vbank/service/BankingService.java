@@ -28,6 +28,8 @@ public interface BankingService {
 	
 	public Map getUserAccount(Map map);
 	
+	public Map getFixedAccount(Map map);
+	
 	public JSONArray getTradingStatement(Map map);
 	
 	
