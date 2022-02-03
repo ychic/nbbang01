@@ -16,6 +16,7 @@ ALTER TABLE ussrbbs ADD NAVCATEGORY nvarchar2(30) NOT NULL;
 ALTER TABLE report ADD inqno number;
 ALTER TABLE report ADD partyno number;
 ALTER TABLE report RENAME COLUMN reportbbsno TO reportbbs;
+ALTER TABLE report ADD ussrno number;
 
 /* Drop Tables */
 
