@@ -89,7 +89,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label">제목</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="ussrtitle" placeholder="제목을 입력하세요">
+               <input type="text" class="form-control" name="ussrtitle" id="ussrtitle" placeholder="제목을 입력하세요">
             </div>
             <label class="col-sm-2 control-label">주제</label>
             <div class="col-sm-4">
@@ -123,7 +123,7 @@
          		<%} else{%>
          		location.href='FreeList.do'
          		<%}%>" >취소</button>
-         	<button class="btn btn-primary" onclick="submit()">등록</button>
+         	<button class="btn btn-primary" id="submit" onclick="submit()">등록</button>
          </div>
       </form>
    </div>
@@ -136,25 +136,36 @@
 
 <!-- 카테고리 선택 Ajax -->
 <script>
-$('#ussrcategoryname').change(function(){
-	$.ajax({
-			url:"<c:url value="/categoryChange.do"/>",
-			data:{ussrcategoryname:$(this).val()},
-			dataType:'json'
-		}).done(function(data){
-			var options="";
-			$.each(data,function(key,value){
-				options+="<option value='"+key+"'>"+value+"</option>";
+	$('#ussrcategoryname').change(function(){
+		$.ajax({
+				url:"<c:url value="/categoryChange.do"/>",
+				data:{ussrcategoryname:$(this).val()},
+				dataType:'json'
+			}).done(function(data){
+				var options="";
+				$.each(data,function(key,value){
+					options+="<option value='"+key+"'>"+value+"</option>";
+				});
+				$('#navcategory').html(options);
+				
+			}).fail(function(req,error){
+				console.log('응답코드:%s,에러 메시지:%s,error:%s',
+						req.status,
+						req.responseText,
+						error);
 			});
-			$('#navcategory').html(options);
-			
-		}).fail(function(req,error){
-			console.log('응답코드:%s,에러 메시지:%s,error:%s',
-					req.status,
-					req.responseText,
-					error);
-		});
-});
+	});
+	
+	$('#submit').on('click',function(){
+		if($('#ussrtitle').val() == ''){
+			alert('제목을 입력하세요.');
+			return false;
+		}
+		if($('.summernote').val() == ''){
+			alert('내용을 입력하세요.');
+			return false;
+		}
+	})
 </script>
 <!-- 섬머노트 스크립트 -->
 <script>

@@ -104,8 +104,12 @@ public class UssrController {
 	@RequestMapping(value = "/ussrWrite.do", method = RequestMethod.POST)
 	public String WiteOk(@ModelAttribute("email") String email, @RequestParam Map map, HttpServletRequest req) throws Exception {
 		map.put("email", email);
+		String url = "forward:/recommandList.do";
+		if(!map.get("ussrcategoryname").equals("recommand")) {
+			url = "forward:/freeList.do";
+		}
 		ussrService.insert(map);
-		return "forward:/recommandList.do";
+		return url;
 	}
 
 	// 상세보기
