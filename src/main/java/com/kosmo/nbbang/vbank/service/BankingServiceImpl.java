@@ -140,6 +140,7 @@ public class BankingServiceImpl implements BankingService {
 
 		// Test
 
+		
 		String authorization = map.get("ACCESS_TOKEN").toString();
 		String user_seq_no = map.get("USER_SEQ_NO").toString();
 
