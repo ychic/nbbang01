@@ -84,4 +84,9 @@ public class PartyServiceImpl implements PartyService{
 		dao.createChat(map);		
 	}
 
+	@Override
+	public int chatExist(Map map) {		
+		return dao.chatExist(map);
+	}
+
 }
