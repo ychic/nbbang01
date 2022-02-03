@@ -248,4 +248,13 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 		return dao.nowPartyMemberReport(map);
 	}
 
+	public int categoryCheck(Map map) {
+		return dao.categoryCheck(map);
+	}
+	
+//	// 생성된 파티 정보 리스트
+//	public List<PartyBbsDTO> getPartyAllList() {
+//		return dao.getPartyAllList();
+//	}
+
 } // end PartyBbsServiceImpl

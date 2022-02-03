@@ -135,4 +135,15 @@
 		bbswriter= #{bbswriter}
 	</select>
 	
+	<!-- 카테고리 중복 체크 -->
+	<select id="categoryCheck" resultType="int">
+		SELECT COUNT(*) FROM partybbs
+		WHERE partycategoryname = #{partyCategoryName} and email = #{email}
+	</select>
+	
+<!-- 	<select id="getPartyList" parameterType="String">
+		SELECT p.partymatchdate, pm.* FROM
+		partybbs p JOIN partymember pm ON pm.partyno = p.partyno
+	</select> -->
+	
 </mapper> 

@@ -166,9 +166,9 @@ public class BankingController {
 		String dps_fin = map.get("dps_fin").toString();
 		String cost = map.get("cost").toString();
 		String print = map.get("print").toString();
-//		auth.put("access_token", session.getAttribute(SESSION_UID));
+		auth.put("access_token", session.getAttribute(SESSION_UID));
 		//test
-		auth.put("email", "jsik@naver.com");
+//		auth.put("email", "jsik@naver.com");
 		auth = innerservice.getAuth(auth);
 		auth.put("wd_fin", wd_fin);
 		auth.put("dps_fin", dps_fin);

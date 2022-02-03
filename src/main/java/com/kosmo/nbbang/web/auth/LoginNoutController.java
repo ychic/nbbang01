@@ -65,10 +65,13 @@ public class LoginNoutController {
 	
 	@RequestMapping("/sociallogin.do")
 	public String socialProcess(@RequestParam Map map, Model model,SessionStatus status,HttpSession session,HttpServletRequest req) {
-		String nickname = memberService.getNickname(map);
 		int flag = memberService.socialLogin(map);
-		String loginType = (String)map.get("loginType");
-		String email = (String) map.get("email");
+		String nickname = map.get("nickname").toString();
+		String loginType = map.get("loginType").toString();
+		String email = map.get("email").toString();
+		System.out.println("nickname:"+nickname);
+		System.out.println("loginType:"+loginType);
+		System.out.println("email:"+email);
 		model.addAttribute("email",email);
 		model.addAttribute("password",map.get("password"));
 		model.addAttribute("nickname",nickname);
@@ -112,12 +115,12 @@ public class LoginNoutController {
 		int affected = memberService.setBlackMember(map);
 		
 		if(affected == 1) {
-			return "admin/AdminMain";
+			return "forward:/adminmember.do";
 		}
 		
 		return "first";
 	}
-	
+	/*
 	//관리자페이지 - 회원관리에서 회원정지시 : 해결중
 	@RequestMapping("/blackMember.do")
 	public @ResponseBody String blackMember(@ModelAttribute("emailAdmin") String emailAdmin,@RequestParam Map map,Model model,SessionStatus status) {
@@ -138,7 +141,7 @@ public class LoginNoutController {
 		
 		return "auth/404";
 	}
-	
+	*/
 	//회원탈퇴 페이지
 	@RequestMapping("/resignPage.do")
 	public String resignPage(@RequestParam Map map,Model model,SessionStatus status) {

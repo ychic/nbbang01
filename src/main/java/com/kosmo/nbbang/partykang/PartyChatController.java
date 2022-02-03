@@ -51,7 +51,9 @@ public class PartyChatController {
 	public String partyChat(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 		//System.out.println(email);
 		if(map.containsKey("partyNo")) {
-			partyService.createChat(map);
+			if(partyService.chatExist(map) == 0) {
+				partyService.createChat(map);
+			}
 		}
 		List<PartyChatDTO> chatList = partyService.getMyChatList(email);
 		String myNickName = partyService.getNickName(email);
@@ -97,8 +99,12 @@ public class PartyChatController {
 		PartyBbsDTO partyBbs = partyService.getPartyBbs(partyNo);
 		PartyChatDTO dto = partyService.getMyChat(roomNo);
 		String partnerId = email.equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
-		String partnerIsPartyMember = partyService.getMember(partyNo, partnerId);
-		String isMePartyMember = partyService.getMember(partyNo, email);
+		String partnerIsPartyMember = null;
+		String isMePartyMember = null;
+		if(partnerId != null) {
+			partnerIsPartyMember = partyService.getMember(partyNo, partnerId);
+			isMePartyMember = partyService.getMember(partyNo, email);
+		}
 		map.put("partnerIsPartyMember", partnerIsPartyMember);
 		map.put("isMePartyMember", isMePartyMember);
 		map.put("message", message);

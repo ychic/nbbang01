@@ -18,4 +18,20 @@
 	<!-- 해당계정의 All폴더의 정보 가져오기 -->
 		SELECT * FROM subfolder WHERE email=#{email} AND sfname='All' <!-- {#sfname} -->
 	</select>
+	
+	<update id="mysubUpdate" parameterType="editSubDTO">
+	<!-- 기존 데이터로 맵핑해야함...미친다 
+		파라미터총 8개+1(email혹시몰라서) 넘어오고 sfno는 안넘어옴(watch or life로 넘어와서 컨트롤러에서 변화해서 넘기기)
+	-->
+		UPDATE SUBSCRIPTION 
+		SET SUBSERVICE=#{subservice}, PAYMENTDAY=#{paymentday},money=#{money},SFNO=#{sfno}
+		WHERE SUBSERVICE=#{orisubname} AND paymentday=#{oripayday} AND money=#{orimoney} AND SFNO=#{orisfno}
+	</update>
+	
+	<delete id="mysubDelete" parameterType="Map">
+		DELETE FROM subscription
+		WHERE subno=#{subno}
+	</delete>
+	
+	
 </mapper> 

@@ -5,190 +5,208 @@
 </header>
 
 <style>
-	table{
-		color:black;
+	.row{
+		margin-top: 80px;
+		font-size: 15px;
+		color: black;
 	}
-	#frm{
-		margin-top: 10px;
-		margin-bottom: 50px;
+	
+	th, td{
+		height:40px;
+	}
+	.btns1{
+		width:755px;
+		display:inline-block;
+		text-align:right;
+		margin:auto;
+	}
+	
+	th{
+		background-color:#95e1d3;
+		color:#FFF;
+	}
+	td{
+		background-color:#fff;
+	}
+	.showComments{
+		margin-left:200px;
+		margin-bottom:200px;
+		width:100%;
+	}
+	.textarea{
+		width: 60%;
+	    height: 6.25em;
+	    resize: none;
+	    border:1px solid #ddd;
+	    margin-left:240px;
+	    margin-bottom:100px;
+	}
+	.resultComment{
+		margin-bottom:20px;
+	}
+	#pillMenu{
+		width: 200px;
+		margin-bottom: 10px;
+		text-align: right;
+	}
+	
+	/* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
+	.scollDesign::-webkit-scrollbar {
+	    width: 15px;
+	}
+	.scollDesign::-webkit-scrollbar-thumb {
+	    background-color: #fff;
+	    border-radius: 10px;
+	    background-clip: padding-box;
+	    border: 2px solid transparent;
+	  }
+	.scollDesign::-webkit-scrollbar-track {
+	    background-color: #f38181;
+	    border-radius: 10px;
+	    box-shadow: inset 0px 0px 5px white;
+	  }
+	
+	.update{
+		cursor: pointer;
+		margin-left:685px;
+		font-size:12px;
+	}
+	.delete{
+		cursor: pointer;
+		font-size:12px;
+	}	
+
+	/* 광고 영역 */
+	.ad_one, .ad_two{
+		background-color:red;
+		width: 188.5px;
+		height:377px;
+		display: inline-block;
+		position: fixed;
+		top:150px;
+		background-size: cover;
+		background-position: center;
+		background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+		animation: ad_one_ani 16s infinite;
+	}
+	
+	.ad_one{
+		left:30px;
+	}
+	
+	.ad_two{
+		right:30px;
+	}
+	
+	@keyframes ad_one_ani {
+		33%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")}
+		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
+		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
 	}
 </style>
+
 <%String referer = request.getHeader("referer");%>
+
+<!-- 광고 1 -->
+<div class="ad_one">
+	
+</div>
+
 <div class="container">
-	<div>
-		<h1 class="col-md-offset-2">${record.ussrtitle}</h1>
-	</div>
-	<hr class="col-md-offset-2 col-md-8" style="width:725px"/>
-	<div class="row">
-		<div class="col-md-offset-2 col-md-8" align="right">
-			<table class="table table-bordered" style="width:300px">
-				<tr>
-					<th class="text-center col-md-2">작성자</th>
-					<td class="text-center col-md-2">${record.nickname}</td>
-				</tr>
-				<tr>
-					<th class="text-center">등록일</th>
-					<td class="text-center">${record.ussrpostdate}</td>
-				</tr>
-				<tr>
-					<th class="text-center">주제</th>
-					<td class="text-center">
-						<c:if test="${record.navcategory=='freeNormal'}">일반</c:if>
-						<c:if test="${record.navcategory=='freeReview'}">리뷰</c:if>
-						<c:if test="${record.navcategory=='freeInfo'}">정보</c:if>
-					</td>
-				</tr>
-			</table>
-			<table class="table table-bordered">
-				<tr>
-					<th class="text-center" colspan="2">내용</th>
-				</tr>
-				<tr>
-					<td colspan="2">
-						${record.ussrcontent}
-					</td>
-				</tr>
-			</table>
-			<br/>
-			
-				<div class="form-group" style="height: 50px; line-height: 50px;">
-					<div class="col-sm-offset-2 col-sm-4">
-						<button type="button" class="btm_image" id="likeInsert">
-							<img src="<%=request.getContextPath()%>/resources/images/recommend/Icon_recommend.png" alt="추천" style="height: 50px; width: 50px;">
-						</button>
-					</div>
-					<div class="col-sm-4" style="color: black; text-align: left; line-height: 57px; font-size: 2em;" id="lcount">
-						${record.likeCount}
-					</div>
-				</div>
-			
-			<!--
-			<table style="width:200px; height:60px; line-height:60px; margin-left:auto; margin-right:auto;">
-				<tr style="border:1px solid;">
-					<td class="text-center col-md-2" style="line-height:60px; padding: 10px 0px 10px 10px;">
-						<button type="button" class="btm_image">
-							<img src="<%=request.getContextPath()%>/resources/images/recommend/Icon_recommend.png" alt="추천">
-						</button>
-					</td>
-					<td class="text-center col-md-2" style="text-align:center; line-height:60px; font-size: 3em; padding: 10px 10px 10px 0px;">
-						${record.likeCount}
-					</td>
-				</tr>
-			</table>
-			-->
-		</div>
-	</div>
 	<br/>
-	<br/>
+	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;"><%if(referer.contains("recommand")){%> 추천게시판 <%} else{%> 자유게시판 <%}%></h1>
+	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 	<div class="row">
-		<div class="col-md-offset-2 col-md-8">
-			<ul id="pillMenu" class="nav nav-pills center-block" style="width: 200px; margin-bottom: 10px">
-				<c:if test="${sessionScope.email==record.email}">
-					<li><a href="<c:url value='/ussrEdit.do?ussrno=${record.ussrno}'/>" class="btn btn-info">수정</a></li>
-					<li><a href="javascript:isDelete();" class="btn btn-info">삭제</a></li>
-				</c:if>
-				<li>
-					<a href="<%if(referer.contains("recommand")){%>
+		<!-- 버튼과 거리두기 스타일 -->
+		<div class="col-md-offset-2 col-md-8" style="margin-bottom: 50px;">
+			<!-- 제목 -->
+			<div style="font-size: 30px; font-weight: bold;">${record.ussrtitle}</div>
+			<!-- 작성자 및 게시일 -->
+			<div  style="text-align: right">${record.nickname}</div>
+			<div style="float: right">${record.ussrpostdate}</div>
+			<!-- 버튼 위치 스타일 -->
+			<div class="btns1">
+				<a href="<%if(referer.contains("recommand")){%>
 						<c:url value='/recommandList.do?nowPage=${param.nowPage}'/>
 					<%} else{%>
 						<c:url value='/freeList.do?nowPage=${param.nowPage}'/>
-					<%}%>" class="btn btn-info">목록</a>
-				</li>
-			</ul>
+					<%}%>">목록  |  </a>
+				<a href="javascript:isReport();">신고</a>
+			
+				<c:if test="${sessionScope.email == record.email or sessionScope.email=='nbbang@nbbang.com'}">
+					<a href="<c:url value='/ussrEdit.do?ussrno=${record.ussrno}'/>">  |  수정</a>
+					<a href="javascript:isDelete();">  |  삭제</a>
+				</c:if>
+				<c:if test="${sessionScope.email=='nbbang@nbbang.com'}">
+					<a href="javascript:setBlackMember();">  |  회원정지</a>
+				</c:if>
+			</div>
+			<!-- 구분선  -->
+			<hr class="col-md-offset-2 col-md-8" style="width: 725px; margin-left: 0px;" />
+			<br/>
+			<!-- 내용 -->
+			<div class="scollDesign" style="font-size: 20px; height: 290px; overflow: auto; width: 770px;">${record.ussrcontent}</div>
 		</div>
+
+		<div class="form-group" style="height: 50px; line-height: 50px;">
+			<div class="col-sm-offset-2 col-sm-4" style="text-align: right">
+				<button type="button" class="btm_image" id="likeInsert">
+					<img src="<%=request.getContextPath()%>/resources/images/recommend/Icon_recommend.png" alt="추천" style="height: 50px; width: 50px;">
+				</button>
+			</div>
+			<div class="col-sm-4" style="color: black; text-align: left; line-height: 57px; font-size: 2em;" id="lcount">${record.likeCount}</div>
+		</div>
+		
+		<br/>
+		
+		
 	</div>
 	
-	<!-- 한줄 코멘트 입력 폼-->
-	<div class="row">
-		<div class="col-md-12">
-			<div class="text-center">
-				<hr class="col-md-offset-2 col-md-8" style="width:725px"/>
-				<div class="row">
-					<div id="comments" class="col-md-offset-3 col-md-6">
-						<c:if test="${not empty record.comments }">
-							<h2>댓글 목록</h2>
-							<table class='table table-bordered'>
-								<tr>
-									<th class='text-center col-md-2'>작성자</th>
-									<th class='text-center'>코멘트</th>
-									<th class='text-center col-md-2'>작성일</th>
-									<th class='text-center col-md-2'>삭제</th>
-								</tr>
-								<tbody class="comment-title">
-									<c:forEach var="comment" items="${record.comments}">
-										<tr class="comment${comment.comno}">
-											<td>${record.nickname}</td>
-											<td style='cursor:pointer' class="title" title="${comment.comno}">${comment.comcontent}</td>
-											<td>${comment.compostDate}</td>
-											<td>
-												<c:if test="${sessionScope.email==comment.email}" var="isOwn">
-													<span class='delete' title='${comment.comno}' style="cursor: pointer">삭제</span>
-												</c:if>
-												<c:if test="${not isOwn}">
-													삭제불가
-												</c:if>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</c:if>
+	<hr class="col-md-offset-2 col-md-8" style="width:725px"/>
+		
+	<!-- 코멘트 출력 폼-->
+	<div class="row showComments">
+		<c:if test="${not empty record.comments }">
+			<c:forEach var="comment" items="${record.comments}">
+				<div class="card mb-3 resultComment${comment.comno }">
+					<h5 class="card-header">${record.nickname}</h5>
+					<div class="card-body">
+						<div>
+							<span id="comcontentInput" title="${comment.comno}">${comment.comcontent}</span>
+							<div style="margin-left:668px;">${comment.compostDate}</div>
+						</div>
+						<div>
+							<c:if test="${sessionScope.email==comment.email}" var="isOwn">
+								<span class='update' title='${comment.comno }'>수정</span> | 
+								<span class='delete' title='${comment.comno }'>삭제</span>
+							</c:if>
+						</div>
 					</div>
 				</div>
-				
-				<form class="form-inline" id="frm" action="<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>">
+			</c:forEach>
+		</c:if>
+		<div class="card mb-3">
+			<h5 class="card-header">Leave a Comment:</h5>
+			<div class="card-body">
+				<form name="comment-form" id="frm" action="<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>" method="post" autocomplete="off">
 					<input type="hidden" name="ussrno" value="${record.ussrno}" />
-					<input type="hidden" name="comno" /> 
-					<input placeholder="댓글을 입력하세요" id="title" class="form-control" type="text" size="50" name="comcontent" /> 
-					<input class="btn btn-success" id="submit" type="button" value="등록" onclick="submit()"/>
+					<input type="hidden" name="comno"/>
+					<textarea name="comcontent" id="comcontent" cols="97" rows="3"></textarea>
+					</div>
+					<input class="btn btn-primary" id="submit" type="button" value="등록" onclick="submit"/>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
 
-<script>
-/*
-	//ajax를 이용해서 페이지 로딩후 다시 서버에 현재 글번호에 대한 한줄 댓글 목록 요청
-	showComments();
+<!-- 광고 2 -->
+<div class="ad_two">
 	
-	function showComments(){
-		$.ajax({
-			url:'<c:url value="/commentList.do"/>',
-			data:{"ussrno":"${record.ussrno}"},{"comno":"${comno}"}
-			dataType:"json",
-			type:"post",
-			success:showComments_,
-			error:function(e){console.log(e);}
-		});
-	}
-	//실제 댓글 목록을 뿌려주는 함수]
-	function showComments_(data){
-		var comments ="<br/><h2>댓글 목록</h2>";
-		comments+="<table class='table table-bordered'>";
-		comments+="<tr><th class='text-center col-md-2'>작성자</th><th class='text-center'>댓글 내용</th><th class='text-center col-md-2'>작성일</th><th class='text-center col-md-2'>삭제</th></tr>";
-		comments+="<tbody class=\"comment-title\">";
-		
-		if(data.length ==0){
-			comments+="<tr><td colspan='4'>등록된 댓글이 없어요</td></tr>"
-		}
-		
-		$.each(data,function(index,element){
-			comments+="<tr class='comment"+element["COMNO"]+"'><td>"+element["NAME"]+"</td>";
-			comments+="<td style='cursor:pointer' class='title' title='"+element["COMNO"]+"'>"+element["COMCONTENT"]+"</td>";
-			comments+="<td>"+element["COMPOSTDATE"]+"</td>";
-			
-			if("${sessionScope.email}"==element['EMAIL'])
-				comments+="<td><span href=\"#\" style='cursor:pointer' class='delete' title='"+element["COMNO"]+"'>삭제</span></td></tr>";
-			else
-				comments+="<td>삭제불가</td></tr>";
-		});
-		comments+="</tbody></table>";
-		$('#comments').html(comments);
-		
-	}//////////
-	*/
-	//코멘트 입력 및 수정처리]
+</div>
+
+<script>
+	//코멘트 등록/수정처리
 	var action;
 	$("#submit").click(function(){
 		console.log("클릭 이벤트 발생:",$(this).val());
@@ -199,62 +217,71 @@
 		else{
 			action="<c:url value="/commentEdit.do"/>";
 		}
-		console.log("한줄 댓글 키값(comno):",$('input[name=comno]').val());
-		//ajax로 요청]
+		console.log("댓글 키값(comno):",$('input[name=comno]').val());
 		$.ajax({
 			url:action,
 			data:$("#frm").serialize(),
 			dataType:"text",
 			type:"post",
 			success:function(data){
-				console.log("서버로부터 받은 데이타:",data);				
-				//showComments();이래도 된다. 하지만 서버에 또 현재글에 대한 댓글 전체목록 요청하게 된다
-				
+				console.log("서버로부터 받은 데이타:",data);	
 				if($('#submit').val()=='등록'){
 					var comno = data.split(":")[0];
 					var nickname = data.split(":")[1];
 					var date = new Date();
 					var compostdate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
 					console.log(comno,name)
-					var newComment ="<tr class='comment"+comno+"'><td>"+nickname+"</td><td style='cursor:pointer' class='title' title='"+comno+"'>"+$("#title").val()+"</td><td>"+compostdate+"</td><td style='cursor:pointer' class='delete' title='"+data+"'>삭제</td></tr>";
-					$(".comment-title").prepend(newComment);
+					var newComment ="<h5 class='card-header'>"+nickname+"</h5><div class='card-body'><div><span id='comcontentInput' title='"+comno+"'>"+$('#comcontent').val()+"</span><div style='margin-left:600px;'>"+compostdate+"</div></div><div><span class='update' title='"+comno+"'>수정</span> | <span class='delete' title='"+comno+"'>삭제</span></div></div>";
+					$(".showComments").prepend(newComment);
 				}
 				else{
-					//코멘트 제목 클릭시 설정한 comno값
-					//$('.title[title='+$('input[name=comno]').val()+']').html($("#title").val());
-					$('.title[title='+data+']').html($("#title").val());
+					$('#comcontentInput[title='+data+']').html($('#comcontent').val());
 					$('#submit').val("등록");
 				}
-				$('#title').val("");
-				$('#title').focus();
+				$('#comcontent').val("");
 			}
 		});
-	});//click
-	
-	//코멘트 제목 클릭시 수정처리하기(UI변경)
-	$(document).on('click','.title',function(){
-		$('#title').val($(this).html());
-		$('#submit').val("수정");
-		$('input[name=comno]').val($(this).attr('title'));
 	});
 	
-	//삭제 클릭시 삭제처리하기
+	//수정 클릭시 수정처리하기(UI변경)
+	$(document).on('click','.update',function(){
+		console.log('수정스크립트 진입');
+		var comno = $(this).attr('title');
+		$('#comcontent').focus();
+		$('#comcontent').val($("#comcontentInput[title='"+comno+"']").html());
+		$('#submit').val("수정");
+		$('input[name=comno]').val(comno);
+	});
+	
+	//삭제 클릭시 삭제처리하기	
 	$(document).on('click','.delete',function(){
 		var comno = $(this).attr('title').split(":")[0];
 		if(confirm("정말로 삭제 하시겠습니까?")){
-			//삭제 처리]
 			$.ajax({
 				url:"<c:url value="/commentDelete.do"/>",
 				type:"post",
 				data:"comno="+comno,
 				dataType:"text"
 			}).done(function(data){
-				$('.comment'+comno).remove();
+				$('.resultComment'+comno).remove();
+				location.replace("<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>");
 			}).fail(function(e){
 				console.log(e)
 			});
 		}
 	});
+	
+	function isReport(){
+		if(confirm("정말로 신고하시겠습니까?")){
+			location.replace("<c:url value='/ussrReport.do?ussrno=${record.ussrno}&ussrtitle=${record.ussrtitle}&email=${record.email}&ussrpostdate=${record.ussrpostdate}&ussrcontent=${record.ussrcontent}'/>");
+		}
+	}
+	
+	function setBlackMember(){
+		if(confirm("정말로 회원 정지를 하시겠습니까?")){
+			location.replace("<c:url value='/partyBlackMember.do?email=${record.email}'/>");
+		}
+	}
 	
 	function isDelete(){
 		if(confirm("정말로 삭제 하시겠습니까?")){
@@ -272,7 +299,7 @@
 			success:function(data){
 				if(data == "추천하셨습니다"){
 					alert(data);
-					$("#lcount").html((parseInt($("#lcount").text())+1));
+					location.replace("<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>");
 				}else{
 					alert(data);					
 				}

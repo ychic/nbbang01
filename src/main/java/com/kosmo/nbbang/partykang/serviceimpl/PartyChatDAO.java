@@ -72,4 +72,12 @@ public class PartyChatDAO {
 	public void createChat(Map map) {
 		template.insert("createChat", map);
 	}
+
+	public void matchSuccess(String partyNo) {
+		template.update("matchSuccess", partyNo);
+	}
+
+	public int chatExist(Map map) {
+		return template.selectOne("chatExist", map);
+	}
 }

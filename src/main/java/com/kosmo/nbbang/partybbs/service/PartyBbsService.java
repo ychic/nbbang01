@@ -1,5 +1,6 @@
 package com.kosmo.nbbang.partybbs.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,5 +59,9 @@ public interface PartyBbsService {
 	
 	// 채팅 유무 확인
 	public String chatCheck(Map map);
+	
+	public int categoryCheck(Map map);
+	
+//	public List<PartyBbsDTO> getPartyAllList();
 
 } // end PartyBbsService 

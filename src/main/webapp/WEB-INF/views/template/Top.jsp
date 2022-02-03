@@ -117,7 +117,7 @@
 				<a href="<c:url value='resignPage.do'/>">
 					<button type="button" id="savebutton" class="btn btn-primary">회원탈퇴</button>
 				</a>
-				<button type="button" id="closebutton" class="btn btn-secondary"
+				<button type="button" id="closebtn" class="btn btn-secondary"
 					data-bs-dismiss="small-modal" >취소</button>
 			</div>
 		</div>
@@ -141,7 +141,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="<c:url value="/index.do"/>" >Nbbang</a>
+						<a href="<c:url value="/index.do"/>" ><img src="<%=request.getContextPath()%>/resources/logo/Nbread_01_2_cut.png" style="height:40px;"/></a>
 					</div>
 					
 					
@@ -157,38 +157,36 @@
 									<a class="dropbtn" onclick="location.href='partyBbs.do'">파티</a>
 									  <div class="dropdown-content">
 									    <a onclick="location.href='partyChat.do'">채팅</a>
-									    <a onclick="location.href='reportPage.do'">신고test</a>
+									    
 									  </div>
 								</li>
 								<li class="dropdown">
 									<a class="dropbtn" onclick="location.href='mySub.do'">My</a>
 									  <div class="dropdown-content">
-									    <a onclick="location.href='mySchedule.do'">my스케쥴</a>
-									    <a onclick="location.href='myReport.do'">my리포트</a>
-									    <a onclick="location.href='myParty.do'">my파티</a>
-									    <a onclick="location.href='myAccounts.do'">내 계좌 조회</a>
-									    <a onclick="location.href='databaseTest.do'">db test용</a>
+									    <a onclick="location.href='mySchedule.do'">my 스케쥴</a>
+									    <a onclick="location.href='myReport.do'">my 리포트</a>
+									    <a onclick="location.href='myParty.do'">my 파티</a>
+									    <a onclick="location.href='myAccounts.do'">my 계좌 조회</a>
 									  </div>
 								</li>
 								<li class="dropdown">
-									<a class="dropbtn" onclick="location.href='recommand.do'">추천</a>
+									<a class="dropbtn" onclick="location.href='imageAnalysis.do'">추천</a>
 									  <div class="dropdown-content">
 									    <a onclick="location.href='recommandList.do?ussrcategoryname=recommand'">추천게시판</a>
 									    <a onclick="location.href='freeList.do?ussrcategoryname=free'">자유게시판</a>
-									    <a onclick="location.href='imageAnalysis.do'">이미지분석TEST</a>
 									  </div>
 								</li>
 								<li class="guide_menu dropdown" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a>
 									<div class="dropdown-content">
-									    <a onclick="location.href='OBOList.do'">1:1문의</a>
+									    <a onclick="location.href='OBOList.do'">1:1 문의</a>
 									  </div>
 								</li>
 							</ul>							
 							
 							
 							
-							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${sessionScope.nickname}${param.nickname} 님</a>
+							<a class="navbar-brand" href="#" style="font-family: 'Jua', sans-serif; margin-left:10px">${sessionScope.nickname} 님</a>
 							
 							
 							
@@ -203,6 +201,7 @@
 								<div class="dropdown-content">
 									<a id="memberlogout">로그아웃</a>
 									<a id="memberResign">회원탈퇴</a>
+									<a onclick="location.href='reportPage.do'">신고하기</a>
 								</div>
 							</li>
 								
@@ -229,6 +228,10 @@
 			
 			$('#closebutton').on('click',function(){
 				$('#small-modal').css('display','none');
+			});
+			
+			$('#closebtn').on('click',function(){
+				$('.resignModal').css('display','none');
 			});
 			
 			$('#memberResign').on('click',function(){

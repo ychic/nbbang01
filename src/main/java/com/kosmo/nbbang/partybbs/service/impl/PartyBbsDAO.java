@@ -127,4 +127,12 @@ public class PartyBbsDAO {
 		return template.selectOne("nowPartyMemberReport", map);
 	}
 
+	public int categoryCheck(Map map) {
+		return template.selectOne("categoryCheck", map);
+	}
+
+//	public List<PartyBbsDTO> getPartyAllList() {
+//		return template.selectOne("getPartyAllList");
+//	}
+
 } // end PartyBbsDAO

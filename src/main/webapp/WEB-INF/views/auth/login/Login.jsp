@@ -62,6 +62,9 @@
 	 .contents{
 	 	position: relative;
 	 }
+	 .abcRioButton.abcRioButtonLightBlue {
+	 	margin: 0 auto;
+	 }
 </style>
 
 
@@ -125,18 +128,20 @@
 									</label>
 								</div>
 								<div class="w-50 text-md-right">
-									<a href="<c:url value='/findmember.do'/>" style="color: #fff">비밀번호를 잊으셨나요?</a>
+									<a href="<c:url value='/findmember.do'/>" style="color: #fff">이메일을 잊으셨나요?</a>
 								</div>
 							</div>
 						</form>
 						<form action="<c:url value='/sociallogin.do'/>" class="signin-form" method="post" id="form">
-							<!-- 소셜 로그인 영역 -->
-							<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-							<a href="#" onclick="social.kakao.login()"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_medium_wide.png" alt="카카오로그인"></a>
-							<div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn" data-width="300px" data-height="45px;" data-longtitle="true"></div>
-							<input type="hidden" name="loginType" id="loginType">
-							<input type="hidden" name="nickname" id="nickname">
-							<input type="hidden" name="email" id="email">
+							<div style="text-align: center;">
+								<!-- 소셜 로그인 영역 -->
+								<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+								<a href="#" onclick="social.kakao.login()"><img src="<%=request.getContextPath()%>/resources/images/social_login_logo/kakao_login_btn.png" alt="카카오로그인"></a>
+								<div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn" data-width="300px" data-height="45px;" data-longtitle="true"></div>
+								<input type="hidden" name="loginType" id="loginType">
+								<input type="hidden" name="nickname" id="nickname">
+								<input type="hidden" name="email" id="email">
+							</div>
 						</form>
 					</div>
 				</div>
@@ -144,25 +149,8 @@
 		</div>
 	</section>
 	<script>
-	/*
-	function onSignIn(googleUser) {
-		  var profile = googleUser.getBasicProfile();
-		  var id_token = googleUser.getAuthResponse().id_token;
-		  var xhr = new XMLHttpRequest();
-		  console.log('ID: ' + profile.getId());
-		  console.log('Full Name: ' + profile.getName());
-		  console.log('Email: ' + profile.getEmail());		  
-		  xhr.open('POST', 'http://localhost:9575/nbbang/login/oauth2/code/google/tokensignin');
-		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		  xhr.onload = function() {
-		    console.log('Signed in as: ' + xhr.responseText);
-		  };
-		  console.log('idtoken=' + id_token);
-		  xhr.send('idtoken=' + id_token);
-	}
-	*/
 	$(function () {
-		social.kakao.init();
+		//social.kakao.init();
 		social.google.init("googleBtn");
 	});
 	
@@ -170,9 +158,12 @@
 		console.log("info.type:",info.type);
 		console.log("info.nm:",info.nm);
 		console.log("info.email:",info.email);
-		$('#loginType').val(info.type);
-		$('#nickname').val(info.nm);
-		$('#email').val(info.email);
+		var loginType = info.type;
+		var nickname = info.nm;
+		var email = info.email;
+		$('#loginType').val(loginType);
+		$('#nickname').val(nickname);
+		$('#email').val(email);
 		setTimeout($('#form').submit(), 2000);
 	}
 	</script>
