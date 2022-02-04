@@ -25,7 +25,7 @@ public class MyUtils {
 	 */
 
 	public List<RegularData> getRegularTransaction(JSONArray data) {
-//		System.out.println(data.getJSONObject(0));
+		System.out.println(data.getJSONObject(0));
 		List<RegularData> result = new ArrayList();
 		Map<String,Pair> info = new HashMap();
 		for (int i = 0; i < data.length(); i++) {

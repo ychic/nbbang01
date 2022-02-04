@@ -59,7 +59,7 @@
 		display:block;
 		margin:auto;
 		width:300px;
-		height:300px;
+		height:400px;
 		border: 1px solid grey;
 	}
 	#test_image{
@@ -110,7 +110,7 @@
 	    text-align: center;
 	    transition: all .15s ease-in-out;
 	    width: 300px;
-	    height: 300px;
+	    height: 400px;
 	    background-color: gray;
 	}
 </style>
@@ -124,7 +124,7 @@
 	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">당신의 취향을 추천해 드립니다.</h1>
 	<h2 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">챗봇 엔빵이에게 오늘의 취향을 말해 보세요. 엔빵이를 클릭하시면 챗봇이 시작됩니다.</h2>
 	<!-- 챗봇 적용 -->
-	<div style="text-align:center;">
+	<div style="text-align:center;padding-bottom:100px;">
 		<img id="nbbang_chatbot" src="<%=request.getContextPath()%>/resources/logo/Nbread_02_2_cut.png" style="width:80px;height:100px;cursor:pointer;"/>
 	</div>
 	<hr class="col-md-12" style="width:1080px;margin-left:50px;"/>

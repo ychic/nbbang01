@@ -218,7 +218,59 @@ public class BankingServiceImpl implements BankingService {
 		return result;
 	}
 
+	
+	@Override
+	   public Map getFixedAccount(Map map) {
+	      // TODO Auto-generated method stub
+	      // TODO Auto-generated method stub
+	      
+	         // DAO를 통해서 가져와야할것
+	         // email을 통해 user_seq, access_token
+	         Map sendData = new HashMap();
 
+//	         String authorization = sendData.get("access_token").toString();
+//	         String user_seq_no = sendData.get("user_seq").toString();
+
+	         // Test
+
+	         String authorization = map.get("ACCESS_TOKEN").toString();
+	         String user_seq_no = map.get("USER_SEQ_NO").toString();
+
+	         Map result = new HashMap();
+	         String url = "http://localhost:9125/user/account";
+
+	         HttpHeaders headers = new HttpHeaders();
+	         headers.setContentType(MediaType.APPLICATION_JSON);
+	         headers.setAccessControlAllowOrigin("*");
+	         headers.setAccessControlAllowCredentials(true);
+	         headers.add("Authorization", String.format("%s %s", "Bearer", authorization));
+	         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+	         headers.add("user_seq_no", user_seq_no);
+
+	         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(params, headers);
+
+	         RestTemplate rt = new RestTemplate();
+	         ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+	         
+	         JSONObject tmp = new JSONObject(response.getBody());
+	         String resp_code = tmp.get("resp_code").toString();
+	         JSONArray arr = (JSONArray) tmp.get("res_list");
+	         tmp = (JSONObject)arr.get(arr.length()-1);
+	         result = tmp.toMap();
+	         Set<String> keys = result.keySet();
+	         for (String entry : keys) {
+	            System.out.println(entry + " - " + result.get(entry));
+	         }
+	         
+	         if (!resp_code.equals(ResponeCode.OK)) {
+	            // 실패시 추가로 반환할게 있다면 이쪽으로
+
+	         }
+
+	         return result;
+	   }
+	
+/*
 	@Override
 	public Map getFixedAccount(Map map) {
 		// TODO Auto-generated method stub
@@ -269,6 +321,7 @@ public class BankingServiceImpl implements BankingService {
 
 			return result;
 	}
+*/
 	@Override
 	public JSONArray getTradingStatement(Map map) {
 		// TODO Auto-generated method stub

@@ -5794,39 +5794,92 @@
 <script>
 	//계좌 내역 시나리오
 	window.onload=function(){
-		getAccountInfo()
+		
+		getAccount('111222333')
+		//getAccountInfo()
 	}
 	
-	function getAccountInfo(){
+	//마지막 계좌번호 가져오기
+	function getAccount(fin){
+		
+		
+		$.ajax({
+            url: '<c:url value="/user/account/'+String(fin)+'.do"/>',
+            type: 'GET',
+            cache : false,
+            contentType:"application/json;charset=UTF-8",
+            data:{'email':'${sessionScope.email}','single':true},
+            dataType: 'json',
+            success:function(data){
+                    
+                    console.log('=============');
+                    console.log(data);
+                    console.log(data['FINTECH_USE_NUM']);
+                    console.log('=============');
+                    
+                    //데이터 보내기
+                    getAccountInfo(data)
+                    
+                    
+
+            },
+            error:function(e){
+                    console.log(e)
+            }
+                              
+        })
+	}
+	
+	//계좌 내역 긁어오기
+	function getAccountInfo(fin){
+ 		
+		console.log('==============================');
+		console.log('타입',typeof fin);
+		console.log('값',fin.FINTECH_USE_NUM);
+		console.log('계좌번호:',fin);
+		console.log('계좌번호:',fin['FINTECH_USE_NUM']);
+        console.log('============================');
+        
+        var FINTECH_USE_NUM = fin['FINTECH_USE_NUM']
+        
 		$.ajax({
 			url: '<c:url value="/user/account/trading.do"/>',
             type: 'GET',
             cache : false,
-            data:{'email':'${sessionScope.email}','fintech_use_num':'120211378588932341780469'},
+            data:{'email':'${sessionScope.email}','fintech_use_num':FINTECH_USE_NUM},
             dataType: 'json',
             success:function(data){
          	   		console.log('success진입');
                     console.log(data);
                     
-                     	//var list = data.res_list;
+                    var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
+                		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
+                		,"핸드폰비", "관리비", "보험료","신용결제","월세","청약","헬스","적금"
+                		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
+                     	
                          data.forEach(function(element){
-                        	 var dt = new Date(element.TRAN_DATE);
-                         	//console.log(element)
-                         	console.log('element.TRAN_AMT',element.TRAN_AMT)
-                         	console.log('element.WD_PRINT_CONTENT',element.WD_PRINT_CONTENT)
-                         	console.log('element.TRAN_DATE',element.TRAN_DATE)
-                         	console.log('dt',dt)
-                         	console.log('dt',dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate());
-                         	//$('#trading_statement').text(dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate())
+                        	
+                        	//날짜 예쁘게 변환
+                        	var dt = new Date(element.TRAN_DATE);
                          	
-                         	//3개 중 1개만 출력.. 이 방법이 아닌거 같은..
-                         	if((dt.getMonth()+1) == '09'){
-                         		data.forEach(function(element){
-                         			$('#trading_statement').text(element.WD_PRINT_CONTENT)
-                         		})
-                         	}
+                         	//월 하드코딩
+                         	if((dt.getMonth()+1) == '01'){
+                         		//값을 보여줄 div 객체 얻기
+                         		var trading_statement = document.getElementById('trading_statement');
+                         		
+                         		//리스트 검사
+                         		accountList.forEach(function(item){
+                         			//계좌 출금 내역에 해당 리스트 객체가 있다면 브라우저에 출력
+                         			if(element['WD_PRINT_CONTENT'] == item){
+                         				//WD_PRINT_CONTENT : 계좌거래 정보, TRAN_AMT : 금액(임의 금액)
+                         				trading_statement.innerHTML += element['WD_PRINT_CONTENT']+': '+element['TRAN_AMT']+',';	
+                         			}//if
+                         			
+                         		})//forEach
+                         		
+                         	}//if
 
-                         })
+                         })//forEach
             },
             error:function(e){
                     console.log(e)

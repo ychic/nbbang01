@@ -116,7 +116,7 @@
         console.log('입력메시지:',message)
 
 
-        $.ajax({url:"http://192.168.0.41:10001/message",data:{'message': message,'session_id':'<%=session.getId()%>'},type:'post',success:receiveResponse})
+        $.ajax({url:"http://192.168.0.17:10001/message",data:{'message': message,'session_id':'<%=session.getId()%>'},type:'post',success:receiveResponse})
 
         //flask서버로부터 응답을 받으면 receiveResponse콜백함수가 호출됨
         function receiveResponse(data) {//data는 flask로부터 받은 응답 {'message':'다이얼로그플로우가 보내준값'}
@@ -151,7 +151,7 @@
 	function crawling(genre){
 		 $.ajax(
 				 {
-					 url:"http://192.168.0.41:10001/crawling",				 
+					 url:"http://192.168.0.17:10001/crawling",				 
 				     data:{'genre':genre}
 				 }
 				 ).done(function(data){
@@ -163,7 +163,7 @@
 						 })
 						 
 					 });
-					 $('.chat-container').append('<div id="nbbang" style="display:block;width:420px;" class="chat-message col-md-5 bot-message"><iframe width="400" height="315" src="https://www.youtube.com/embed/f5goq56eCyY?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
+					 $('.chat-container').append('<div id="nbbang" style="display:block;max-width:420px;" class="chat-message col-md-5 bot-message"><iframe width="400" height="315" src="https://www.youtube.com/embed/f5goq56eCyY?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
 					 
 					 $('.chat-container').append('<div id="nbbang" style="display:block;" class="chat-message col-md-5 bot-message"><ul>'+list+'</ul><br/>또다른 취향을 원하세요?</div>')
 					 
@@ -183,7 +183,7 @@
 	function crawling_watcha(genre){
 		 $.ajax(
 				 {
-					 url:"http://192.168.0.41:10001/crawling_watcha",				 
+					 url:"http://192.168.0.17:10001/crawling_watcha",				 
 				     data:{'genre':genre}
 				 }
 				 ).done(function(data){
@@ -195,7 +195,11 @@
 						 })
 						 
 					 });
+					 $('.chat-container').append('<div id="nbbang" style="display:block;max-width:420px;" class="chat-message col-md-5 bot-message"><iframe width="400" height="315" width="560" height="315" src="https://www.youtube.com/embed/KnnC1_0cYOo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
+					 
 					 $('.chat-container').append('<div id="nbbang" style="display:block;" class="chat-message col-md-5 bot-message"><ul>'+list+'</ul><br/>또다른 취향을 원하세요?</div>')
+					 
+					 
 					 //스크롤바 아래로
 				     $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
 					 
