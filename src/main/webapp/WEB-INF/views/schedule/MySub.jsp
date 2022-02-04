@@ -5365,6 +5365,7 @@
 					
 					
 					<!-- 실험중 -->
+					<div id="trading_statement">테스트</div>
 					
 		<c:if test="${empty folder.mysubs}">
 					<!-- lecture sub list -->
@@ -5602,9 +5603,9 @@
 				<!-- 사용자 등록 Modal -->
 				<div class="modal" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
 				  	  <div class="modal-dialog">  
-		<!--		    <div class="modal-content">   -->
+		<!--		    <div class="modal-content">onclick = "location.href = 'myAccounts.do'"   -->
 						<div class="row modal-backdrop">
-					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" onclick = "location.href = 'myAccounts.do'" ><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" id="auto_sublist" onclick = "location.href = 'myAccounts.do'"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
 					        <h3>Auto</h3></button>
 					        <button type="button" class=" mdlbtnManual col-md-6 btn-lg" data-toggle="modal" data-dismiss="modal" data-target="#mdlNwSub2" ><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
 					        <h3>Manual</h3></button>
@@ -5791,6 +5792,49 @@
 
 
 <script>
+	//계좌 내역 시나리오
+	window.onload=function(){
+		getAccountInfo()
+	}
+	
+	function getAccountInfo(){
+		$.ajax({
+			url: '<c:url value="/user/account/trading.do"/>',
+            type: 'GET',
+            cache : false,
+            data:{'email':'${sessionScope.email}','fintech_use_num':'120211378588932341780469'},
+            dataType: 'json',
+            success:function(data){
+         	   		console.log('success진입');
+                    console.log(data);
+                    
+                     	//var list = data.res_list;
+                         data.forEach(function(element){
+                        	 var dt = new Date(element.TRAN_DATE);
+                         	//console.log(element)
+                         	console.log('element.TRAN_AMT',element.TRAN_AMT)
+                         	console.log('element.WD_PRINT_CONTENT',element.WD_PRINT_CONTENT)
+                         	console.log('element.TRAN_DATE',element.TRAN_DATE)
+                         	console.log('dt',dt)
+                         	console.log('dt',dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate());
+                         	//$('#trading_statement').text(dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate())
+                         	
+                         	//3개 중 1개만 출력.. 이 방법이 아닌거 같은..
+                         	if((dt.getMonth()+1) == '09'){
+                         		data.forEach(function(element){
+                         			$('#trading_statement').text(element.WD_PRINT_CONTENT)
+                         		})
+                         	}
+
+                         })
+            },
+            error:function(e){
+                    console.log(e)
+            }          
+		});
+	}
+
+
 	//insert시 유효성검사
 	// 공백확인 함수
     function checkExistData(value, dataName) {

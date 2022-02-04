@@ -181,7 +181,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 	    var accountContainer = document.getElementById("accountContainer");
 	    var accoundCard = `
 	    				
-	    	<%--<div class="account-card" id="accoundCard">--%>
+	    			<div class="account-card" id="accoundCard">
 	                      <div class="account-card" id="accoundCard"><img src="<%=request.getContextPath()%>/resources/account/credit1.png" style="width:48px; left:10px; top:10px; position:absolute;"></div>
 	                            
 	                            <div class="bankName" style="float:right" id="bank_name">`+data.bank_name+`</div>
@@ -191,7 +191,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 	                            <div class="accountNickname" style="float:left" id="bank_alias">`+data.alias+`</div>
 	                            <input type='hidden' id='fintech_use_num' value='`+data.fintech_use_num+`'/>
 	                            
-	                      <%--<div><img src="<%=request.getContextPath()%>/resources/account/credit2.png" style="width:60px; right:10px; bottom:10px; position:absolute;"></div>--%>   
+	                      <div><img src="<%=request.getContextPath()%>/resources/account/credit2.png" style="width:60px; right:10px; bottom:10px; position:absolute;"></div>
 	                   </div>`
 	    
 	    //accountContainer.innerHTML += accoundCard;
