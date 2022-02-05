@@ -64,6 +64,7 @@ public class BankingServiceImpl implements BankingService {
 		
 		}
 		
+		headers.add("callbackUrl", map.get("location").toString());
 	
 		HttpEntity<String> entity = new HttpEntity("",headers);
 		System.out.println("entity 확인 : " + entity.getBody());
@@ -142,7 +143,6 @@ public class BankingServiceImpl implements BankingService {
 
 		// Test
 
-		
 		String authorization = map.get("ACCESS_TOKEN").toString();
 		String user_seq_no = map.get("USER_SEQ_NO").toString();
 
@@ -305,16 +305,16 @@ public class BankingServiceImpl implements BankingService {
 			ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
 			
 			JSONObject tmp = new JSONObject(response.getBody());
-			System.out.println(tmp);
+			String resp_code = tmp.get("resp_code").toString();
 			JSONArray arr = (JSONArray) tmp.get("res_list");
-			tmp = (JSONObject)arr.get(0);
+			tmp = (JSONObject)arr.get(arr.length()-1);
 			result = tmp.toMap();
 			Set<String> keys = result.keySet();
 			for (String entry : keys) {
 				System.out.println(entry + " - " + result.get(entry));
 			}
-
-			if (tmp.get("resp_code").toString() != ResponeCode.OK) {
+			
+			if (!resp_code.equals(ResponeCode.OK)) {
 				// 실패시 추가로 반환할게 있다면 이쪽으로
 
 			}
@@ -427,7 +427,7 @@ public class BankingServiceImpl implements BankingService {
 
 		if (result.get("resp_code").toString() != ResponeCode.OK) {
 			// 실패시 추가로 반환할게 있다면 이쪽으로
-
+			
 		}
 
 		return result;
