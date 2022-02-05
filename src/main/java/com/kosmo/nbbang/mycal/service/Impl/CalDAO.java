@@ -42,7 +42,10 @@ public class CalDAO {
    public List<CalDTO> selectList(String email) {
       return template.selectList("getCals",email);
    }
-   
+
+   public List<String> selectList(Map map) {
+      return template.selectList("andSelect",map);
+   }
 
    
 

@@ -112,6 +112,8 @@
                   console.log(req);
                });
             }
+            alert("저장했습니다");
+      	  	location.reload("<c:url value="/schedule/MySchedule.do"/>");
             
          }
          
