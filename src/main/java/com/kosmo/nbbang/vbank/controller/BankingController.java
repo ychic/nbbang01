@@ -120,8 +120,9 @@ public class BankingController {
 	public Map getUseraccount(@RequestParam Map map,@PathVariable("fin_num") String  fin_num) {
 		
 		System.out.println(map.get("email"));
-		System.out.println("fin : "+fin_num);
-		System.out.println("");
+
+		System.out.println("=======================fin================= : "+fin_num);
+
 		Map res = innerservice.getAuth(map);
 		res.put("fintech_use_num", fin_num);
 		Set<String> keys =res.keySet();

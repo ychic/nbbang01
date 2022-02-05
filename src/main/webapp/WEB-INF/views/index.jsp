@@ -584,27 +584,23 @@
     	<div class="container">
     		<div layout="row" class="verticalStretch">
     			<div class="item">
-    				<div class="number">42</div>
-    				<div class="text">구독 서비스수</div>
+    				<div class="number">N</div>
     			</div>
     			<div class="item">
-    				<div class="number">123</div>
-    				<div class="text">회원수</div>
+    				<div class="number">B</div>
     			</div>
     			<div class="item">
-    				<div class="number">15</div>
-    				<div class="text">파티 매칭수</div>
-    			</div>
-    			<!-- 
-    			<div class="item">
-    				<div class="number">99</div>
-    				<div class="text">cup of coffee</div>
+    				<div class="number">B</div>
     			</div>
     			<div class="item">
-    				<div class="number">24</div>
-    				<div class="text">members</div>
+    				<div class="number">A</div>
     			</div>
-    			-->
+    			<div class="item">
+    				<div class="number">N</div>
+    			</div>
+    			<div class="item">
+    				<div class="number">G</div>
+    			</div>
     		</div>
     	</div>
     </section><!--/#nino-counting-->
