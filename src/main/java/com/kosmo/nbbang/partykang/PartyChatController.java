@@ -51,7 +51,9 @@ public class PartyChatController {
 	public String partyChat(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 		//System.out.println(email);
 		if(map.containsKey("partyNo")) {
-			partyService.createChat(map);
+			if(partyService.chatExist(map) == 0) {
+				partyService.createChat(map);
+			}
 		}
 		List<PartyChatDTO> chatList = partyService.getMyChatList(email);
 		String myNickName = partyService.getNickName(email);
