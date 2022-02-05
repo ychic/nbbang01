@@ -84,12 +84,13 @@
 
 				<c:if test="${empty listPagingData.lists}" var="isEmpty">
 					<tr>
-						<td colspan="4">등록된 게시물이 없어요</td>
+						<td colspan="4">게시물을 등록해 주세요.</td>
 					</tr>
 				</c:if>
-
-				<c:if test="${not isEmpty}">
-					<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
+				
+				<c:forEach var="item" items="${listPagingData.lists}" varStatus="loop">
+					<c:if test="${not isEmpty and sessionScope.nickname eq item.nickname}">
+					
 						<tr>
 							<td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
 
@@ -99,8 +100,9 @@
 							<td>${item.nickname }</td>
 							<td>${item.inqpostdate }</td>
 						</tr>
-					</c:forEach>
-				</c:if>
+					
+					</c:if>
+				</c:forEach>
 			</tbody>
 		</table>
 

@@ -1,5 +1,6 @@
 package com.kosmo.nbbang.partybbs.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,5 +61,7 @@ public interface PartyBbsService {
 	public String chatCheck(Map map);
 	
 	public int categoryCheck(Map map);
+	
+	public List<PartyBbsDTO> getPartyAllList(Map map);
 
 } // end PartyBbsService 

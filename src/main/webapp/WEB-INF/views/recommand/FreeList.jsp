@@ -8,6 +8,11 @@ tr {
 	color: black;
 }
 
+.containerFreeList{
+	width: 60%;
+	margin:auto;
+}
+
 /* 광고 영역 */
 .ad_one, .ad_two{
 	background-color:red;
@@ -44,7 +49,7 @@ tr {
 
 <h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:240px;color:#BEBEBE;">자유게시판</h1>
 <h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:240px;color:#BEBEBE;">자유롭게 의견을 공유하세요!</h4>
-<div class="container">
+<div class="containerFreeList">
 	<br/>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">

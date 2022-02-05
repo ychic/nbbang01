@@ -138,15 +138,12 @@
 	}
 	
 	#bbsList {
+		border: 1px solid #D3D3D3;
 		width: 600px;
 		color: black
 	}
 	
 	#addBt {
-		position: fixed;
-		right: 400px;
-		top: 600px;
-		z-index: 10000;
 	}
 	
 	.listBox {
@@ -271,6 +268,21 @@
 		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
 		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
 	}
+	/* 스크롤바 */
+	.scollDesign::-webkit-scrollbar {
+    width: 15px;
+	}
+	.scollDesign::-webkit-scrollbar-thumb {
+	    background-color: #fff;
+	    border-radius: 10px;
+	    background-clip: padding-box;
+	    border: 2px solid transparent;
+	}
+	.scollDesign::-webkit-scrollbar-track {
+	    background-color: #f38181;
+	    border-radius: 10px;
+	    box-shadow: inset 0px 0px 5px white;
+	} 
 </style>
 <!-- 광고 1 -->
 <div class="ad_one">
@@ -280,6 +292,7 @@
 <div id="bbs" class="container">
 <h1 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집 게시판</h1>
 <h4 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집하여 구독료를 아껴보세요!</h4>
+<h5 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:black;padding-bottom:20px;">파티는 최대 6개월 간 유지되며 이후로는 모든 송금이 정지됩니다. 이점에 유념하시길 바랍니다.</h5>
 	<div class="ottBox">
 		<a class="ottIcon" href="<c:url value="/netflixList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 			<div>
@@ -331,9 +344,10 @@
 	<!-- 작성하기 버튼 -->
 	<div class="row">
 		<div class="col-md-12 text-right">
-			<a href="<c:url value="/partyBbsWrite.do"/>" id="addBt" class="btn btn-warning">등록</a>
+			<a href="<c:url value="/partyBbsWrite.do"/>" id="addBt" class="btn btn-warning">파티 모집하기</a>
 		</div>
 	</div>
+	<hr/>
 
 	<div class="blankSpace"></div>
 	
@@ -398,17 +412,17 @@
 					<div class="col-md-12 text-right">
 						<div class="blankSpace"></div>
 						<c:if test="${email eq 'nbbang@nbbang.com'}">
-							<a href="javascript:isDelete(${item.partyNo });"
-								class="btn btn-warning">삭제</a>
+							<form style="display: inline-flex;"><a href="javascript:isDelete(${item.partyNo });"
+								class="btn btn-warning">삭제</a></form>
 						</c:if>
 						<c:if
 							test="${email eq item.email }">
-							<a href="javascript:isDelete(${item.partyNo });"
+							<form style="display: inline-flex;"><a href="javascript:isDelete(${item.partyNo });"
 								class="btn btn-warning"
-								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>삭제</a>
+								<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>삭제</a></form>
 						</c:if>
-						<a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>" class="btn btn-warning"
-							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>신고</a>		
+						<form style="display: inline-flex;"><a href="<c:url value="/partyReport.do?partyNo=${item.partyNo}&partyTitle=${item.partyTitle}&email=${item.email}&partyPostdate=${item.partyPostdate}&partyContent=${item.partyContent}"/>" class="btn btn-warning"
+							<c:if test="${item.partyActivation eq 'false'}">disabled</c:if>>신고</a></form>		
 						<c:if test="${email ne item.email}">				
 							<form style="display: inline-flex;" action="<c:url value='/partyChat.do'/>" method="post">
 								<input hidden="hidden" name="partyNo" value="${item.partyNo}"/>							
@@ -443,6 +457,7 @@
 	
 	<div class="blankSpace"></div>
 </div>
+<div class="blankSpace"></div>
 
 <!-- 광고 2 -->
 <div class="ad_two">

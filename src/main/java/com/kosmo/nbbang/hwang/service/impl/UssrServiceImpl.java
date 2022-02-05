@@ -41,9 +41,11 @@ public class UssrServiceImpl implements UssrService {
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;
+		System.out.println(end);
 		map.put("start", start);
 		map.put("end", end);
 		List lists= dao.recommandList(map);
+		System.out.println(lists.size());
 		String pagingString=PagingUtil.recommandBbsPaging(totalRecordCount,pageSize, blockPage, nowPage,req.getContextPath()+"/recommandList.do?");
 		
 		//Lombok 미 사용시
@@ -85,12 +87,13 @@ public class UssrServiceImpl implements UssrService {
 	
 	@Override
 	public ListPagingData<UssrDTO> recommandServiceList(Map map, HttpServletRequest req, int nowPage) {
+		map.put("nav", "recommandService");
 		int totalRecordCount = dao.getTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;
 		map.put("start", start);
-		map.put("end", end);
+		map.put("end", end);		
 		List lists= dao.recommandServiceList(map);
 		String pagingString=PagingUtil.recommandBbsPaging(totalRecordCount,pageSize, blockPage, nowPage,req.getContextPath()+"/recommandServiceList.do?");
 		
@@ -108,6 +111,7 @@ public class UssrServiceImpl implements UssrService {
 	}
 	
 	public ListPagingData<UssrDTO> recommandContentsList(Map map, HttpServletRequest req, int nowPage) {
+		map.put("nav", "recommandContents");
 		int totalRecordCount = dao.getTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
@@ -131,6 +135,7 @@ public class UssrServiceImpl implements UssrService {
 	}
 
 	public ListPagingData<UssrDTO> recommandTipsList(Map map, HttpServletRequest req, int nowPage) {
+		map.put("nav", "recommandTips");
 		int totalRecordCount = dao.getTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
@@ -178,7 +183,7 @@ public class UssrServiceImpl implements UssrService {
 	}
 
 	public ListPagingData<UssrDTO> freeLikeSortList(Map map, HttpServletRequest req, int nowPage) {
-		int totalRecordCount = dao.getTotalRowCount(map);
+		int totalRecordCount = dao.getFreeTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;
@@ -201,7 +206,9 @@ public class UssrServiceImpl implements UssrService {
 	}
 
 	public ListPagingData<UssrDTO> freeNormalList(Map map, HttpServletRequest req, int nowPage) {
-		int totalRecordCount = dao.getTotalRowCount(map);
+		map.put("nav", "freeNormal");
+		int totalRecordCount = dao.getFreeTotalRowCount(map);
+		System.out.println(totalRecordCount);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;
@@ -224,7 +231,8 @@ public class UssrServiceImpl implements UssrService {
 	}
 
 	public ListPagingData<UssrDTO> freeReviewList(Map map, HttpServletRequest req, int nowPage) {
-		int totalRecordCount = dao.getTotalRowCount(map);
+		map.put("nav", "freeReview");
+		int totalRecordCount = dao.getFreeTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;
@@ -247,7 +255,8 @@ public class UssrServiceImpl implements UssrService {
 	}
 
 	public ListPagingData<UssrDTO> freeInfoList(Map map, HttpServletRequest req, int nowPage) {
-		int totalRecordCount = dao.getTotalRowCount(map);
+		map.put("nav", "freeInfo");
+		int totalRecordCount = dao.getFreeTotalRowCount(map);
 		int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);	
 		int start= (nowPage-1)*pageSize+1;
 		int end = nowPage*pageSize;

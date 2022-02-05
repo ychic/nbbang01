@@ -1,5 +1,6 @@
 package com.kosmo.nbbang.vbank.service;
 
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,7 @@ public class BankingServiceImpl implements BankingService {
 		
 		}
 		
+		headers.add("callbackUrl", map.get("location").toString());
 	
 		HttpEntity<String> entity = new HttpEntity("",headers);
 		System.out.println("entity 확인 : " + entity.getBody());
@@ -131,7 +133,7 @@ public class BankingServiceImpl implements BankingService {
 	@Override
 	public Map getUserAccounts(Map map) {
 		// TODO Auto-generated method stub
-
+	
 		// DAO를 통해서 가져와야할것
 		// email을 통해 user_seq, access_token
 		Map sendData = new HashMap();
@@ -141,7 +143,6 @@ public class BankingServiceImpl implements BankingService {
 
 		// Test
 
-		
 		String authorization = map.get("ACCESS_TOKEN").toString();
 		String user_seq_no = map.get("USER_SEQ_NO").toString();
 
@@ -217,6 +218,110 @@ public class BankingServiceImpl implements BankingService {
 		return result;
 	}
 
+	
+	@Override
+	   public Map getFixedAccount(Map map) {
+	      // TODO Auto-generated method stub
+	      // TODO Auto-generated method stub
+	      
+	         // DAO를 통해서 가져와야할것
+	         // email을 통해 user_seq, access_token
+	         Map sendData = new HashMap();
+
+//	         String authorization = sendData.get("access_token").toString();
+//	         String user_seq_no = sendData.get("user_seq").toString();
+
+	         // Test
+
+	         String authorization = map.get("ACCESS_TOKEN").toString();
+	         String user_seq_no = map.get("USER_SEQ_NO").toString();
+
+	         Map result = new HashMap();
+	         String url = "http://localhost:9125/user/account";
+
+	         HttpHeaders headers = new HttpHeaders();
+	         headers.setContentType(MediaType.APPLICATION_JSON);
+	         headers.setAccessControlAllowOrigin("*");
+	         headers.setAccessControlAllowCredentials(true);
+	         headers.add("Authorization", String.format("%s %s", "Bearer", authorization));
+	         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+	         headers.add("user_seq_no", user_seq_no);
+
+	         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(params, headers);
+
+	         RestTemplate rt = new RestTemplate();
+	         ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+	         
+	         JSONObject tmp = new JSONObject(response.getBody());
+	         String resp_code = tmp.get("resp_code").toString();
+	         JSONArray arr = (JSONArray) tmp.get("res_list");
+	         tmp = (JSONObject)arr.get(arr.length()-1);
+	         result = tmp.toMap();
+	         Set<String> keys = result.keySet();
+	         for (String entry : keys) {
+	            System.out.println(entry + " - " + result.get(entry));
+	         }
+	         
+	         if (!resp_code.equals(ResponeCode.OK)) {
+	            // 실패시 추가로 반환할게 있다면 이쪽으로
+
+	         }
+
+	         return result;
+	   }
+	
+/*
+	@Override
+	public Map getFixedAccount(Map map) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		
+			// DAO를 통해서 가져와야할것
+			// email을 통해 user_seq, access_token
+			Map sendData = new HashMap();
+
+//			String authorization = sendData.get("access_token").toString();
+//			String user_seq_no = sendData.get("user_seq").toString();
+
+			// Test
+
+			String authorization = map.get("ACCESS_TOKEN").toString();
+			String user_seq_no = map.get("USER_SEQ_NO").toString();
+
+			Map result = new HashMap();
+			String url = "http://localhost:9125/user/account";
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			headers.setAccessControlAllowOrigin("*");
+			headers.setAccessControlAllowCredentials(true);
+			headers.add("Authorization", String.format("%s %s", "Bearer", authorization));
+			MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+			headers.add("user_seq_no", user_seq_no);
+
+			HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(params, headers);
+
+			RestTemplate rt = new RestTemplate();
+			ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+			
+			JSONObject tmp = new JSONObject(response.getBody());
+			String resp_code = tmp.get("resp_code").toString();
+			JSONArray arr = (JSONArray) tmp.get("res_list");
+			tmp = (JSONObject)arr.get(arr.length()-1);
+			result = tmp.toMap();
+			Set<String> keys = result.keySet();
+			for (String entry : keys) {
+				System.out.println(entry + " - " + result.get(entry));
+			}
+			
+			if (!resp_code.equals(ResponeCode.OK)) {
+				// 실패시 추가로 반환할게 있다면 이쪽으로
+
+			}
+
+			return result;
+	}
+*/
 	@Override
 	public JSONArray getTradingStatement(Map map) {
 		// TODO Auto-generated method stub
@@ -280,26 +385,39 @@ public class BankingServiceImpl implements BankingService {
 //		Map sendData = 
 		String authorization = map.get("ACCESS_TOKEN").toString();
 		String user_seq_no = map.get("USER_SEQ_NO").toString();
-		String wd_fintech = map.get("wd_fintech").toString();
-		String dps_fintech = map.get("dps_fintech").toString();
-
+		String wd_fintech = map.get("wd_fin").toString();
+		String dps_fintech = map.get("dps_fin").toString();
+		String cost =map.get("cost").toString();
+		String print = map.get("print").toString();
 		Map result = new HashMap();
-		String url = "http://localhost:9125/user/account/trading";
+		String url = "http://localhost:9125/transfer/fin_num";
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
 		headers.setAccessControlAllowOrigin("*");
 		headers.setAccessControlAllowCredentials(true);
 		headers.add("Authorization", String.format("%s %s", "Bearer", authorization));
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-		params.add("user_seq_no", user_seq_no);
-		params.add("wd_fintech", wd_fintech);
-		params.add("dps_fintech", dps_fintech);
-
-		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity(params, headers);
+//		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+//		params.add("user_seq_no", user_seq_no);
+//		params.add("wd_fintech", wd_fintech);
+//		params.add("dps_fintech", dps_fintech);
+//		params.add("cost",cost );
+//		params.add("wd_print_content",print + " 입금");
+//		params.add("dps_print_content",print+ " 출금");
+//		
+		JSONObject body = new JSONObject();
+		
+		body.put("user_seq_no", user_seq_no);
+		body.put("wd_fintech", wd_fintech);
+		body.put("dps_fintech", dps_fintech);
+		body.put("cost",cost );
+		body.put("wd_print_content",print + " 입금");
+		body.put("dps_print_content",print+ " 출금");
+		System.out.println(body.toString());
+		HttpEntity<String> entity = new HttpEntity(body.toString(), headers);
 
 		RestTemplate rt = new RestTemplate();
-		ResponseEntity<Map> response = rt.exchange(url, HttpMethod.POST, entity, Map.class);
+		ResponseEntity<Map> response =  rt.exchange(url, HttpMethod.POST, entity, Map.class);
 
 		result = response.getBody();
 		Set<String> keys = result.keySet();
@@ -309,12 +427,13 @@ public class BankingServiceImpl implements BankingService {
 
 		if (result.get("resp_code").toString() != ResponeCode.OK) {
 			// 실패시 추가로 반환할게 있다면 이쪽으로
-
+			
 		}
 
 		return result;
 
 	}
+
 
 //	@Override
 //	public Map requestAuthUrl(boolean authorized,Map map) {
