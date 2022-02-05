@@ -10,5 +10,8 @@
 		VALUES(#{email},#{password},#{name},#{nickname},#{birthdate},#{gender},#{tel},#{usertype, jdbcType=VARCHAR},
 		#{preference, jdbcType=VARCHAR}, #{authority, jdbcType=VARCHAR},SYSDATE,#{oringinprofile, jdbcType=VARCHAR},null)
 	</insert>
-
+	
+	<select id="selectmemberInfo" parameterType="Map" resultType="com.kosmo.nbbang.service.MemberDTO">
+		SELECT * FROM member WHERE email = #{email}
+	</select>
 </mapper> 

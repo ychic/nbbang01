@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,10 +93,41 @@ public class BankingCallbackController {
 			
 			return "<script>"
 					+ "\n var data = String(\"" + fintech_use_num + "\")"
-					+ "\n alert(data)"
+//					+ "\n alert(data)"
 					+ "\n opener.getAccount(data)\n"
 					+ "this.close()\n</script>";
 
+		}
+		
+		@GetMapping(value = "/callback/android.do")
+		@ResponseBody
+		public String getMyCallbackForAndroid(@RequestParam Map<String,String> map) {
+			
+			for(Map.Entry<String, String> entry : map.entrySet()) {
+				System.out.println(entry.getKey()+" - " + entry.getValue());
+			}
+			
+	
+			//callback Eventhanlder
+			Map res  =bankingservice.setAuthToken(map);
+			String fintech_use_num = res.get("fintech_use_num").toString();
+			
+			//안드로이드는 이쪽을 저기서 해야됨 
+//			if(res.get("resp_code").toString().equals(ResponeCode.OK)) {
+//				//dao를 통해 등록해야할 것 > 
+//				String email = session.getAttribute(SESSION_UID).toString();
+//				System.out.println("Email:" +email);
+//				//Test
+////				String email = "jsik@naver.com";
+//				res.put("email", email);
+//				int remove = innerservice.deleteToken(res);
+//				int affect = innerservice.setAuth(res);
+//		
+//			}
+			
+			JSONObject result =new JSONObject();
+			result.put("resp_code", "success");
+			return result.toString();
 		}
 		
 }

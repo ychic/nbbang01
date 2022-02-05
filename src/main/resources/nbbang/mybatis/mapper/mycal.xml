@@ -39,4 +39,11 @@
       SELECT * FROM calendarinfo WHERE email = #{email}
    </select>
    
+   <select id="andSelect" parameterType="Map" resultType="Map">
+      SELECT * FROM calendarinfo 
+      WHERE email = #{email} 
+      AND startdate = #{start}
+   </select>
+   
+   
 </mapper> 
