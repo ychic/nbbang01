@@ -62,6 +62,6 @@ public interface PartyBbsService {
 	
 	public int categoryCheck(Map map);
 	
-//	public List<PartyBbsDTO> getPartyAllList();
+	public List<PartyBbsDTO> getPartyAllList(Map map);
 
 } // end PartyBbsService 
