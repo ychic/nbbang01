@@ -724,8 +724,8 @@
 								</div>
 								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 									<div class="panel-body" style="font-style:normal; font-size:15px; font-weight:bold;">
-										파티원은 매 달 귀찮게 송금하지 않아도 돼요.</br> 엔빵에 등록된 카드를 통해 요금이 매 달 자동 결제됩니다.</br>
-										파티장은 매 달 귀찮게 송금해달라고 하지 않아도 돼요.</br> 피클플러스가 등록된 계좌로 매 달 자동 정산된 금액을 보내줍니다.
+										파티원은 매 달 귀찮게 송금하지 않아도 돼요.</br> 엔빵에 등록된 계좌를 통해 요금이 매 달 자동 결제됩니다.</br>
+										파티장은 매 달 귀찮게 송금해달라고 하지 않아도 돼요.</br> 엔빵이 등록된 계좌로 매 달 자동 정산된 금액을 보내줍니다.
 									</div>
 								</div>
 							</div>
@@ -759,7 +759,7 @@
 								<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 									<div class="panel-body" style="font-style:normal; font-size:15px; font-weight:bold;">
 										엔빵에는 사용자가 계좌 등록을 통해 본인 명의의 계좌를 등록하시면,</br> 구독 서비스와의 거래 내역을 자동으로 인식하는 기술이 있습니다.</br>
-										이 기술을 통해 사용자의 구독 중인 서비스의 금액,</br> 날짜를 알 수 있고 스케쥴에 저장하며, 매달 잊지 않도록 알려 주는 시스템입니다.
+										이 기술을 통해 사용자의 구독 중인 서비스의 금액, 날짜를 알 수 있습니다.
 									</div>
 								</div>
 							</div>

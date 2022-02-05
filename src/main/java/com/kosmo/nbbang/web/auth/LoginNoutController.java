@@ -46,7 +46,7 @@ public class LoginNoutController {
 		} else if(map.get("email").equals("nbbang@nbbang.com")) {
 			//관리자 로그인, 아래 modal 확인해서 필요없으면 지우기 
 			model.addAttribute("nickname",nickname);
-			return "admin/AdminMain";
+			return "forward:/admin.do";
 		} else if(blackMember.equals("black")) {
 			model.addAttribute("blackMember",blackMember);
 			System.out.println("blackMember확인:"+blackMember);

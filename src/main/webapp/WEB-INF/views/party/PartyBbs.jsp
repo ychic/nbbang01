@@ -292,6 +292,7 @@
 <div id="bbs" class="container">
 <h1 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집 게시판</h1>
 <h4 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집하여 구독료를 아껴보세요!</h4>
+<h5 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:black;padding-bottom:20px;">파티는 최대 6개월 간 유지되며 이후로는 모든 송금이 정지됩니다. 이점에 유념하시길 바랍니다.</h5>
 	<div class="ottBox">
 		<a class="ottIcon" href="<c:url value="/netflixList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 			<div>
