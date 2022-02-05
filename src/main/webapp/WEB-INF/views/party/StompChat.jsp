@@ -20,21 +20,88 @@
 	src="<c:url value="resources/party/stomp.js"/>"></script>
 <style>
 .account-container::-webkit-scrollbar {
-    width: 15px;
+	width: 15px;
 }
-.account-container::-webkit-scrollbar-thumb {
-    background-color: #fff;
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-  }
-.account-container::-webkit-scrollbar-track {
-    background-color: #f38181;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 5px white;
-  }
-</style>
 
+.account-container::-webkit-scrollbar-thumb {
+	background-color: #fff;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.account-container::-webkit-scrollbar-track {
+	background-color: #f38181;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+
+.message-you {
+	position: relative;
+	font-size: 1.4em;
+	background-color: pink;
+	padding-left: 10px;
+	width: 45%;
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-left: 2%;
+	text-align: left;
+	color: black;
+}
+
+.message-you::after {
+	content: '';
+	position: absolute;
+	left: -20px;
+	top: 33%;
+	border-top: 10px solid transparent;
+	border-right: 10px solid pink;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+.message-me {
+	position: relative;
+	font-size: 1.4em;
+	background-color: #FA58F4;
+	padding-right: 10px;
+	width: 45%;
+	border-radius: 10px;
+	margin-left: 50%;
+	margin-top: 5px;
+	text-align: right;
+	color: black;
+}
+
+.message-me::after {
+	content: '';
+	position: absolute;
+	right: -20px;
+	top: 33%;
+	border-top: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid #FA58F4;
+}
+</style>
+<!--  
+						<div class="message-you">
+							<p>닉네임 <small>시간</small></p>
+							<p>왼쪽</p>							
+						</div>
+						<div class="message-me">
+							<p>닉네임 <small>시간</small></p>
+							<p>오른쪽</p>
+						</div>
+						<div class="message-you">
+							<p>닉네임 <small>시간</small></p>
+							<p>왼쪽</p>
+						</div>
+						<div class="message-me">
+							<p>닉네임 <small>시간</small></p>
+							<p>오른쪽</p>							
+						</div>
+						-->
 <div class="container" style="height: 730px; padding-top: 25px;">
 	<div class="page-header">
 		<h1>채팅</h1>
@@ -62,19 +129,22 @@
 		<div class="col-sm-9 row" id="chatDiv">
 			<!-- hidden="true" -->
 			<div class="col-sm-12">
-				<div class="col-sm-12" style="padding-bottom: 5px; border: 1px pink solid; border-bottom: none;">
+				<div class="col-sm-12"
+					style="padding-bottom: 5px; border: 1px pink solid; border-bottom: none;">
 					<div class="col-sm-3" style="padding-top: 5px;">
 						<h4>대화내용</h4>
 					</div>
 					<div class="col-sm-9 text-right" style="padding-top: 5px;">
-						<button id="report" type="button" class="btn btn-danger">신고</button>
+						<button id="report" type="button" class="btn btn-danger"
+							disabled="disabled">신고</button>
 						<button id="confirm" type="button" class="btn btn-success"
 							disabled="disabled">확정</button>
 						<button id="quit" type="button" class="btn btn-waring"
 							disabled="disabled">나가기</button>
 					</div>
 				</div>
-				<div class="col-sm-12" style="padding-top: 5px; padding-bottom: 5px; border: 1px pink solid; border-top: none;">
+				<div class="col-sm-12"
+					style="padding-top: 5px; padding-bottom: 5px; border: 1px pink solid; border-top: none;">
 					<div class="col-sm-2" style="width: 94px;">
 						<img id="ottimg" alt="64x64"
 							src="<c:url value="/resources/party/icons8-picture-64.png"/>"
@@ -82,15 +152,17 @@
 						<!-- hidden="true" -->
 					</div>
 					<div class="col-sm-9">
-						<h4 id="bbsTitle">채팅</h4>
-						<h4 id="leader">채팅</h4>
+						<h4 id="bbsTitle">왼쪽 리스트에서 원하는</h4>
+						<h4 id="leader">채팅을 눌러 채팅을 시작하세요</h4>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-12">
 				<div id="chatArea">
 					<div id="chatMessage" class="account-container"
-						style="height: 350px; border: 1px pink solid; overflow: auto"></div>
+						style="height: 350px; border: 1px pink solid; overflow-y: auto;">
+
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-12">
@@ -100,8 +172,9 @@
 							<input style="width: 100%; border: 1px pink solid" type="text"
 								class="form-control" id="message" placeholder="메시지를 입력해주세요"
 								disabled="disabled">
-							<div style="width: 10%; border: 1px pink solid;" disabled="disabled"
-								class="input-group-addon btn" type="button" id="sendBtn">전송</div>
+							<div style="width: 10%; border: 1px pink solid;"
+								disabled="disabled" class="input-group-addon btn" type="button"
+								id="sendBtn">전송</div>
 						</div>
 					</div>
 				</div>
@@ -148,25 +221,36 @@
 			}, 500);
 		}
 
-		function showChat(message) {
-			//console.log(message.nickname);
-			//console.log(nickname);
-			//if(! message.nickname == nickname){			
-			$('#chatMessage').append(
-					message.nickname + ">>" + message.message + "<br/>");
-			//}
-			if(message.message == '파티원으로 확정되셨습니다.') {
+		function showChat(message) {			
+			if(message.nickname == nickname){
+				$('#chatMessage').append(
+					'<div class="message-me">'+
+						'<p>'+message.nickname+' <small>'+message.time+'</small></p>'+
+						'<p>'+message.message+'</p>'+
+					'</div>'
+				);
+			}else{
+				$('#chatMessage').append(
+						'<div class="message-you">'+
+							'<p>'+message.nickname+' <small>'+message.time+'</small></p>'+
+							'<p>'+message.message+'</p>'+
+						'</div>'
+					);
+			}
+			if (message.message == '파티원으로 확정되셨습니다.') {
 				$('#confirm').prop("disabled", "disabled");
 				$('#quit').prop("disabled", "disabled");
 			}
-			if(message.message == '채팅을 나갔습니다.'){
+			if (message.message == '채팅을 나갔습니다.') {
 				$('#confirm').prop("disabled", "disabled");
 			}
 			$.ajax({
 				url : "<c:url value="/message/saveMessage.do"/>",
 				data : {
-					"roomNo" : roomNo,
-					"message" : $('#chatMessage').html()
+					"nickname" : message.nickname,
+					"message" : message.message,
+					"roomNo" : message.roomNo,
+					"time" : message.time
 				},
 				type : 'post',
 				dataType : 'text'
@@ -181,11 +265,14 @@
 
 		//서버로 메시지 전송하는 함수]
 		function sendMessage() {
+			var today = new Date();		
+			var sendTime = today.getHours()+':'+today.getMinutes();
 			//서버로 메시지 전송
 			client.send("/roomIn/" + roomNo, {}, JSON.stringify({
 				"nickname" : nickname,
 				"message" : $('#message').val(),
-				"roomNo" : '' + roomNo
+				"roomNo" : '' + roomNo,
+				"time" : sendTime
 			}));
 			//기존 메시지 클리어			
 			$('#message').val("");
@@ -200,7 +287,7 @@
 
 		//메시지 입력후 전송 버튼 클릭이 아닌 엔터키 처리]
 		$('#message').on('keypress', function(e) {
-			//console.log('e.keyCode:%s,e.which:%s', e.keyCode, e.which);		
+			console.log('e.keyCode:%s,e.which:%s', e.keyCode, e.which);
 			var keyCode = e.keyCode ? e.keyCode : e.which;
 			if (keyCode == 13) {//엔터 입력
 				sendMessage();
@@ -209,10 +296,13 @@
 
 		//채팅방 나가기
 		$('#quit').click(function(e) {
+			var today = new Date();			
+			var sendTime = today.getHours()+':'+today.getMinutes();
 			client.send("/roomIn/" + roomNo, {}, JSON.stringify({
 				"nickname" : nickname,
 				"message" : '채팅을 나갔습니다.',
-				"roomNo" : '' + roomNo
+				"roomNo" : '' + roomNo,
+				"time" : sendTime
 			}));
 			var sendData;
 			if (isBbsWriter) {
@@ -242,10 +332,13 @@
 		});
 
 		$('#confirm').click(function() {
+			var today = new Date();
+			var sendTime = today.getHours()+':'+today.getMinutes(); 
 			client.send("/roomIn/" + roomNo, {}, JSON.stringify({
 				"nickname" : nickname,
 				"message" : '파티원으로 확정되셨습니다.',
-				"roomNo" : '' + roomNo
+				"roomNo" : '' + roomNo,
+				"time" : sendTime
 			}));
 			$.ajax({
 				url : "<c:url value="/partybbs/addMember.do"/>",
@@ -256,6 +349,9 @@
 				type : 'post'
 			}).done(function(data) {
 				alert(data);
+				if (data == '파티원을 모두 모았습니다.') {
+					location.href = '<c:url value="/partyBbs.do"/>';
+				}
 			}).fail(function(e) {
 				console.log(e)
 			});
@@ -298,19 +394,33 @@
 												dataType : 'json'
 											})
 									.done(
-											function(data) {
-												//console.log(data);
-												if (data.message != "fail") {
-													$('#chatMessage').append(data.message);
-													$("#chatMessage").scrollTop($("#chatMessage")[0].scrollHeight); 
+											function(data) {												
+												if (data.message != "fail") {														
+													var jsonStr = JSON.parse(data.message);
+													$.each(jsonStr, function(index, element) {
+														console.log(element)
+														if(element.nickname == nickname){
+															$('#chatMessage').append(
+																'<div class="message-me">'+
+																	'<p>'+element.nickname+' <small>'+element.time+'</small></p>'+
+																	'<p>'+element.message+'</p>'+
+																'</div>'
+															);
+														}else{
+															$('#chatMessage').append(
+																	'<div class="message-you">'+
+																		'<p>'+element.nickname+' <small>'+element.time+'</small></p>'+
+																		'<p>'+element.message+'</p>'+
+																	'</div>'
+																);
+														}
+													});
+													$("#chatMessage").scrollTop($("#chatMessage")[0].scrollHeight);
 												}
-													
+
 												console.log(data.partyBbs);
-												$('#bbsTitle')
-														.text(
-																data.partyBbs.partyTitle);
-												$('#leader').text(
-														data.partyBbs.nickname);
+												$('#bbsTitle').text('글 제목:'+data.partyBbs.partyTitle);
+												$('#leader').text('글작성자:'+data.partyBbs.nickname);
 												switch (data.partyBbs.partyCategoryName) {
 												case 'netflix':
 													$('#ottimg')
@@ -359,25 +469,35 @@
 																		"src" : '<c:url value="/resources/party/006_icon_wavve.png"/>',
 																		"hidden" : false
 																	})
-												}												
-												$('#sendBtn').removeAttr("disabled");
-												$('#message').removeAttr("disabled");
+												}
+												$('#sendBtn').removeAttr(
+														"disabled");
+												$('#message').removeAttr(
+														"disabled");
+												$('#report').removeAttr(
+													"disabled");
 												if (data.partyBbs.email == '${email}') {
 													isBbsWriter = true;
 												}
-												console.log(data.isMePartyMember)
-												console.log(data.partnerIsPartyMember)
-												if(data.isMePartyMember == '맞다_파티장'){
-													if(data.partnerIsPartyMember == '아니다'){
-														$('#confirm').removeAttr("disabled");
-														$('#quit').removeAttr("disabled");
-													}else{
-														return;														
+												console
+														.log(data.isMePartyMember)
+												console
+														.log(data.partnerIsPartyMember)
+												if (data.isMePartyMember == '맞다_파티장') {
+													if (data.partnerIsPartyMember == '아니다') {
+														$('#confirm')
+																.removeAttr(
+																		"disabled");
+														$('#quit').removeAttr(
+																"disabled");
+													} else {
+														return;
 													}
-												}else if(data.isMePartyMember == '맞다_멤버'){
-													return;													
-												}else{
-													$('#quit').removeAttr("disabled");
+												} else if (data.isMePartyMember == '맞다_멤버') {
+													return;
+												} else {
+													$('#quit').removeAttr(
+															"disabled");
 												}
 											})
 									.fail(

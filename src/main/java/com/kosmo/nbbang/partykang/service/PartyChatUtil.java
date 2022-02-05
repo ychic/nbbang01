@@ -16,9 +16,8 @@ public class PartyChatUtil {
 				dir.mkdirs();
 			}
 			File file = new File(path + File.separator + filename+".txt");
-			PrintWriter pw = new PrintWriter(new FileWriter(file, false));			
-			pw.write(message);
-			
+			PrintWriter pw = new PrintWriter(new FileWriter(file, true));			
+			pw.write(message+",");			
 			pw.close();
 			return "success";			
 		}catch (Exception e) { 
