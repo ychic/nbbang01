@@ -141,9 +141,8 @@
 		WHERE partycategoryname = #{partyCategoryName} and email = #{email}
 	</select>
 	
-<!-- 	<select id="getPartyList" parameterType="String">
-		SELECT p.partymatchdate, pm.* FROM
+ 	<select id="getPartyAllList" parameterType="Map" resultType="partyBbsDTO">
+		SELECT p.partymatchdate, p.partyallotmentprice, p.partymaxcapacity, pm.* FROM
 		partybbs p JOIN partymember pm ON pm.partyno = p.partyno
-	</select> -->
-	
+	</select>	
 </mapper> 
