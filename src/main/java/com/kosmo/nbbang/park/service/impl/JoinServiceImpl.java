@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.kosmo.nbbang.park.service.JoinService;
+import com.kosmo.nbbang.service.MemberDTO;
 
 @Service("joinService")
 public class JoinServiceImpl implements JoinService {
@@ -16,6 +17,11 @@ public class JoinServiceImpl implements JoinService {
 	@Override
 	public int memberInsert(Map map) {
 		return dao.memberInsert(map);
+	}
+
+	public MemberDTO getMemeberInfo(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectOneMember(map);
 	}
 	
 }
