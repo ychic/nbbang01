@@ -156,9 +156,9 @@ td{
 		
 		<!-- 코멘트 출력 폼-->
 		<div class="row showComments">
-			<c:if test="${not empty record.comments}">
+			<c:if test="${not empty record.comments }">
 				<c:forEach var="comment" items="${record.comments}">
-					<div class="card mb-3 resultComment${comment.comno}">
+					<div class="card mb-3 resultComment${comment.comno }">
 						<h5 class="card-header">${comment.nickname}</h5>
 						<div class="card-body">
 							<div>
@@ -167,8 +167,8 @@ td{
 							</div>
 							<div>
 								<c:if test="${sessionScope.email==comment.email}" var="isOwn">
-									<span class='update' title='${comment.comno}'>수정</span> | 
-									<span class='delete' title='${comment.comno}'>삭제</span>
+									<span class='update' title='${comment.comno }'>수정</span> | 
+									<span class='delete' title='${comment.comno }'>삭제</span>
 								</c:if>
 							</div>
 						</div>

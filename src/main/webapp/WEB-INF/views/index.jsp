@@ -36,7 +36,7 @@
 							<span class="nino-subHeading">구독 일정이 너무 복잡해!</span>
 							깔끔하게 <br><span style="color:#8B4513;">n빵</span> 하자!
 						</h2>
-						<a href="<c:url value='/mySchedule.do'/>" class="nino-btn">내 스케쥴 보기</a>
+						<a href="<c:url value='/mySchedule.do'/>" class="nino-btn">내 캘린더 보기</a>
 					</div>
 				</div>
 
@@ -59,7 +59,7 @@
 					</li>
 					<li data-target="#nino-slider" data-slide-to="3">
 						<div class="inner">
-							<span class="number">04</span> 스케쥴
+							<span class="number">04</span> 캘린더
 						</div>
 					</li>
 				</ol>

@@ -116,7 +116,7 @@
 							</div>
 							<span style="font-family:'Jua', sans-serif;">
 								<img src="<%=request.getContextPath()%>/resources/images/nbbang/find_email_warning.png" style="width:24px;height:24px;"/>
-								 010-1234-5678 형식으로 입력해 주세요.
+								 01012345678 형식으로 입력해 주세요.
 							</span>
 							<div class="form-group">
 								<input type="text" class="form-control" id="tel" name="tel" placeholder="010-1234-5678" required>

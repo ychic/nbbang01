@@ -61,15 +61,19 @@ public class BankingController {
 		map.put("email", session.getAttribute("email").toString());
 		Map<String,String> res = innerservice.getAuth(map);
 //		res.put("email", session.getAttribute("email").toString());
+		System.out.println(map.get("location"));
 		if( res !=null) {
+			res.put("location",map.get("location").toString());
 			for(Map.Entry<String, String> entry : res.entrySet()) {
 				System.out.println(entry.getKey() + " - " + String.valueOf(entry.getValue()));
 			}
 		}else {
 			res = new HashMap<String, String>();
+			res.put("location",map.get("location").toString());
 		}
 
 		res.put("location",map.get("location").toString());
+		
 		System.out.println("getUrl메소드 진입");
 		System.out.println("res: "+res.get("location"));
 		Map test = bankingservice.requestAuthUrl(res);

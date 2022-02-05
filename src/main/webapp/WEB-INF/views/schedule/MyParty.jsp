@@ -33,7 +33,7 @@
 <div class="ad_one">
 	
 </div>
-<div class="container" style="width: 750px; color: black">
+<div class="container" style="width: 750px; height:1000px; color: black">
 	<h1 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">My 파티</h1>
 	<h4 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">내가 현재 참여중인 파티</h4>
 	<br>
@@ -70,7 +70,7 @@
 		   			</div>
 				</div>
 			</div>
-			<div>
+			<div style="border:1px solid #bebebe;width:80%">
 				<div style="display: inline-block; width: 270px; height: 55px; padding-left: 20px;">
 					<label style="color: gray;">모집인원</label><br>
 					<label>${item.count }/${item.partyMaxCapacity }</label>
