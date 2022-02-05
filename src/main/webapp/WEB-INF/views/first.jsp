@@ -137,8 +137,8 @@
 				<h3>세상의 수많은 구독 서비스들을 손쉽게 관리하세요.</h3>
 				<h4>이체 일정 및 알림 설정으로 잊지말고 챙기세요.</h4>
 			</div>
-			<div id="first-navbar-logo">
-				<a href="<c:url value="/index.do"/>">Nbbang</a>
+			<div id="first-navbar-logo" style="color:black;">
+				Nbbang
 			</div>
 			<div id="first-navbar-login">
 				<a href="<c:url value='/login.do'/>">로그인</a>
@@ -211,7 +211,7 @@
 				<div class="nino-copyright">
 					Copyright &copy; 2021 <a style="color:black;">Nbbang.com</a>.
 					All Rights Reserved. <br /> by 강현수 | 김수연 | 김준형 | 김형태 | 박재현 | 정윤식 |
-					최주원 | 황태환
+					최주원 | 황태환 | 김혜란
 				</div>
 			</div>
 		</footer>

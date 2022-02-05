@@ -29,7 +29,6 @@
   	top: 0px;
   	left: -40px;
   	position:absolute;
-  	border: 1px solid grey;
   	border-radius: 25px;
   	background-color:#fff;
   }
@@ -52,6 +51,14 @@
     text-align:center;
     font-size:20px;
     background-color:#548f66;
+  }
+  a{
+  	color:#fff;
+  	text-decoration-line: none;
+  }
+  a:hover{
+  	color:pink;
+  	text-decoration-line: none;
   }
   /* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
 	.chat-container{
@@ -104,6 +111,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <!--<script src="/ChatbotApp/static/chatbot.js"></script>-->
 	<script>
+	//append안에 비디오태그 넣어서 영상도 보게끔?
 	function sendMessage(message) {
         console.log('입력메시지:',message)
 
@@ -151,16 +159,23 @@
 					 var list="";
 					 $.each(data, function(index,item){
 						 $.each(item,function(key,value){
-							 list+="<li>"+value+"</li>";
+							 list+="<li><a id='crawlingList' href='https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query="+value+"' target='_blank'>"+value+"</a></li>";
 						 })
 						 
 					 });
-					 $('.chat-container').append('<div id="customer" class="chat-message col-md-5 bot-message"><ul>'+list+'</ul><br/>또다른 정보를 원하세요?</div>')
+					 $('.chat-container').append('<div id="nbbang" style="display:block;max-width:420px;" class="chat-message col-md-5 bot-message"><iframe width="400" height="315" src="https://www.youtube.com/embed/f5goq56eCyY?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
+					 
+					 $('.chat-container').append('<div id="nbbang" style="display:block;" class="chat-message col-md-5 bot-message"><ul>'+list+'</ul><br/>또다른 취향을 원하세요?</div>')
+					 
+					 
+					 
 					 //스크롤바 아래로
 				     $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
 					 
 					 
 				 })
+				 
+				 //https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query="+list+"
 			 
 		
 	}
@@ -176,11 +191,15 @@
 					 var list="";
 					 $.each(data, function(index,item){
 						 $.each(item,function(key,value){
-							 list+="<li>"+value+"</li>";
+							 list+="<li><a id='crawlingList' href='https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query="+value+"' target='_blank'>"+value+"</a></li>";
 						 })
 						 
 					 });
-					 $('.chat-container').append('<div id="customer" class="chat-message col-md-5 bot-message"><ul>'+list+'</ul><br/>또다른 정보를 원하세요?</div>')
+					 $('.chat-container').append('<div id="nbbang" style="display:block;max-width:420px;" class="chat-message col-md-5 bot-message"><iframe width="400" height="315" width="560" height="315" src="https://www.youtube.com/embed/KnnC1_0cYOo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
+					 
+					 $('.chat-container').append('<div id="nbbang" style="display:block;" class="chat-message col-md-5 bot-message"><ul>'+list+'</ul><br/>또다른 취향을 원하세요?</div>')
+					 
+					 
 					 //스크롤바 아래로
 				     $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
 					 

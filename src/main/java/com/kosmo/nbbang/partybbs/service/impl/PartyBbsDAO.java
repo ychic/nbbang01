@@ -131,4 +131,8 @@ public class PartyBbsDAO {
 		return template.selectOne("categoryCheck", map);
 	}
 
+//	public List<PartyBbsDTO> getPartyAllList() {
+//		return template.selectOne("getPartyAllList");
+//	}
+
 } // end PartyBbsDAO

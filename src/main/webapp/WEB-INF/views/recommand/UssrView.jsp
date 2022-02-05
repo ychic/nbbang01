@@ -169,7 +169,7 @@
 		<c:if test="${not empty record.comments }">
 			<c:forEach var="comment" items="${record.comments}">
 				<div class="card mb-3 resultComment${comment.comno }">
-					<h5 class="card-header">${record.nickname}</h5>
+					<h5 class="card-header">${comment.nickname}</h5>
 					<div class="card-body">
 						<div>
 							<span id="comcontentInput" title="${comment.comno}">${comment.comcontent}</span>
@@ -273,13 +273,13 @@
 	
 	function isReport(){
 		if(confirm("정말로 신고하시겠습니까?")){
-			location.replace("<c:url value='/oboReport.do?ussrno=${record.ussrno}&ussrtitle=${record.ussrtitle}&email=${record.email}&ussrpostdate=${record.ussrpostdate}&ussrcontent=${record.ussrcontent}'/>");
+			location.replace("<c:url value='/ussrReport.do?ussrno=${record.ussrno}&ussrtitle=${record.ussrtitle}&email=${record.email}&ussrpostdate=${record.ussrpostdate}&ussrcontent=${record.ussrcontent}'/>");
 		}
 	}
 	
 	function setBlackMember(){
 		if(confirm("정말로 회원 정지를 하시겠습니까?")){
-			
+			location.replace("<c:url value='/partyBlackMember.do?email=${record.email}'/>");
 		}
 	}
 	
@@ -297,7 +297,7 @@
 			dataType:"text",
 			type:"post",
 			success:function(data){
-				if(data == "추천하셨습니다"){
+				if(data == "추천하셨습니다."){
 					alert(data);
 					location.replace("<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>");
 				}else{

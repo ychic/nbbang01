@@ -33,8 +33,6 @@ public class MyPartyController {
 	@RequestMapping("/myParty.do")
 	public String myParty(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 		
-
-		
 		List<PartyBbsDTO> partyBbsList = partyBbsService.getList(email);
 		List<PartyBbsDTO> temp = new Vector();
 		for (PartyBbsDTO dto : partyBbsList) {
@@ -60,5 +58,17 @@ public class MyPartyController {
 		model.addAttribute("partyBbsList", temp);
 		return "schedule/MyParty.tiles";
 	}
-
+	
+//	// 파티 결제 테스트 페이지
+//	@RequestMapping("/party.do")
+//	public String party(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
+//		String leader_email;
+//		List<String> member_emails;
+//		List<PartyBbsDTO> partyAllList = partyBbsService.getPartyAllList();
+//		for (PartyBbsDTO dto : partyAllList) {
+//			System.out.println("dto.getPartyNo(); : " + dto.getPartyNo());
+//			System.out.println("dto.getPartyLeader(); : " + dto.getPartyLeader());
+//		}
+//		return "party/party.tiles";
+//	}
 } // end MyPartyController
