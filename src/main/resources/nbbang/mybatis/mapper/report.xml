@@ -24,19 +24,24 @@
 
 	<insert id="reportInsert" parameterType="Map" >
 		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
-		#{inqno},null,null)
+		#{inqno},null,null,null)
 	</insert>
 	<insert id="reportInsertParty" parameterType="Map" >
 		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
-		null,#{partyNo},null)
+		null,#{partyNo},null,null)
 	</insert>
 	<insert id="reportInsert404" parameterType="Map" >
 		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
-		null,null,null)
+		null,null,null,null)
 	</insert>
 	<insert id="reportInsertUssr" parameterType="Map" >
 		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
-		null,null,#{ussrno})
+		null,null,#{ussrno},null)
+	</insert>
+	
+	<insert id="reportInsertChat" parameterType="Map" >
+		INSERT INTO report VALUES(SEQ_report_reportno.NEXTVAL,#{reportbbs},#{reportcontent},#{reporttype},SYSDATE,#{email},
+		null,null,null,#{chatno})
 	</insert>
 	
 	<select id="reportSelectList" parameterType="Map" resultType="reportDTO">

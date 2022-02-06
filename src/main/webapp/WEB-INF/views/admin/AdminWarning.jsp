@@ -61,11 +61,11 @@
 	                                            <td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
 	                                            <td>${item.email }</td>
 	                                            <td>${item.reportbbs }</td>
-	                                            <td>${item.inqno }${item.partyNo }${item.ussrno}</td>
+	                                            <td>${item.inqno }${item.partyNo }${item.ussrno}${item.chatno}</td>
 	                                            <td>${item.reporttype }</td>
 	                                            <td>${item.reportcontent}</td>
 	                                            <td>${item.reportregistdate}</td>
-	                                            <td><a href="<c:url value='/findReport.do?reportbbs=${item.reportbbs }&inqno=${item.inqno }&partyNo=${item.partyNo }&ussrno=${item.ussrno }'/>" class="btn btn-info btn-circle btn-sm">
+	                                            <td><a href="<c:url value='/findReport.do?reportbbs=${item.reportbbs }&inqno=${item.inqno }&partyNo=${item.partyNo }&ussrno=${item.chatno }&chatno=${item.chatno }&email=${item.email }'/>" class="btn btn-info btn-circle btn-sm">
 	                                            	<i class="fas fa-info-circle"></i> 
 	                                            	</a>
 	                                            </td>
@@ -77,29 +77,10 @@
                                 </table>
                             </div>
                             
-                            <div id="dataTable_wapper" class="dataTables_wapper dt-bootstrap4">
-                                	<div class="row">
-                                		<div class="col-sm-12 col-md-5">
-                                			<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-                                				Showing 1 to 10 of all entries
-                                			</div>
-                                		
-                                		</div>
-                                		
-                                		<c:if test="${listPagingData.lists.size() !=0 }">
-                                		<div class="col-sm-12 col-md-7">
-                                			<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                				<ul>
-                                					<li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                					<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">${listPagingData.pagingString}</a></li>
-                                					<li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                                				 
-                                				</ul>
-                                			</div>
-                                		</div>
-                                		</c:if>
-                                	</div>
-                                </div><!-- 페이지네이션 끝 -->
+                            <c:if test="${listPagingData.lists.size() !=0 }">
+								${listPagingData.pagingString}
+							</c:if>
+							<!-- 페이지네이션 끝 -->
                             
                             
                         </div>

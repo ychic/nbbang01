@@ -16,6 +16,8 @@ import com.kosmo.nbbang.hwang.service.UssrDTO;
 import com.kosmo.nbbang.hwang.service.impl.UssrServiceImpl;
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
 import com.kosmo.nbbang.partybbs.service.impl.PartyBbsServiceImpl;
+import com.kosmo.nbbang.partykang.service.PartyChatDTO;
+import com.kosmo.nbbang.partykang.serviceimpl.PartyServiceImpl;
 import com.kosmo.nbbang.service.InquiryBbsDTO;
 import com.kosmo.nbbang.service.InquiryBbsService;
 import com.kosmo.nbbang.service.ReportDTO;
@@ -23,7 +25,7 @@ import com.kosmo.nbbang.service.ReportService;
 
 @Controller
 public class ReportController {
-	
+
 	@Autowired
 	private ReportService reportService;
 	@Autowired
@@ -32,41 +34,42 @@ public class ReportController {
 	private PartyBbsServiceImpl partyBbsService;
 	@Autowired
 	private UssrServiceImpl ussrService;
-	
-	
+	@Autowired
+	private PartyServiceImpl chatService;
+
 	@RequestMapping("/reportInsert.do")
 	public String reportInsert(@RequestParam Map map) {
 		int affected = reportService.insert(map);
-		
+
 		return "report/ReportOk.tiles";
 	}
-	
-	//신고 list 출력 관리자페이지
+
+	// 신고 list 출력 관리자페이지
 	@RequestMapping("/adminReport.do")
-	public String adminReportlist(@RequestParam Map map, @RequestParam(required = false, defaultValue = "1") int nowPage,
-								   HttpServletRequest req,Model model) {
-	
+	public String adminReportlist(@RequestParam Map map,
+			@RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req, Model model) {
+
 		ListPagingData<ReportDTO> listPagingData = reportService.selectList(map, req, nowPage);
 		model.addAttribute("listPagingData", listPagingData);
-	
-	return "admin/AdminWarning";
+
+		return "admin/AdminWarning";
 	}
-	
-	//404페이지 신고받아오기
+
+	// 404페이지 신고받아오기
 	@RequestMapping("/reportPage.do")
 	public String report404Page(@RequestParam Map map, Model model) {
 		return "report/Report.tiles";
 	}
 
-	//404페이지 신고처리
+	// 404페이지 신고처리
 	@RequestMapping("/reportInsert404.do")
 	public String report404PageOk(@RequestParam Map map, Model model) {
 		int affected = reportService.insert404(map);
 
 		return "report/ReportOk.tiles";
 	}
-	
-	//추천/자유 게시판 신고받아오기(카테고리 나눠야함..)
+
+	// 추천/자유 게시판 신고받아오기(카테고리 나눠야함..)
 	@RequestMapping("/ussrReport.do")
 	public String ussrReport(@RequestParam Map map, Model model) {
 
@@ -75,7 +78,8 @@ public class ReportController {
 
 		return "recommand/Report.tiles";
 	}
-	//추천/자유 게시판 신고처리 (카테고리 나눠야함..)
+
+	// 추천/자유 게시판 신고처리 (카테고리 나눠야함..)
 	@RequestMapping("/ussrReportOk.do")
 	public String ussrReportOk(@ModelAttribute("ussrno") String ussrno, @RequestParam Map map, Model model) {
 
@@ -86,29 +90,30 @@ public class ReportController {
 
 		return "report/ReportOk.tiles";
 	}
-	
-	//문의 게시판 신고받아오기
+
+	// 문의 게시판 신고받아오기
 	@RequestMapping("/oboReport.do")
-	public String OBOreport(@RequestParam Map map,Model model){
-		
+	public String OBOreport(@RequestParam Map map, Model model) {
+
 		InquiryBbsDTO record = inquiryBbsService.inqSelectOne(map);
 		model.addAttribute("record", record);
 
 		return "guide/onebyoneqna/Report.tiles";
 	}
-	//문의 게시판 신고처리 
+
+	// 문의 게시판 신고처리
 	@RequestMapping("/oboReportOk.do")
-	public String OBOreportOk(@ModelAttribute("inqno") String inqno,@RequestParam Map map,Model model){
-		
-		System.out.println("OBOreportOk의 이메일"+map.get("email"));
-		
+	public String OBOreportOk(@ModelAttribute("inqno") String inqno, @RequestParam Map map, Model model) {
+
+		System.out.println("OBOreportOk의 이메일" + map.get("email"));
+
 		int affected = reportService.insert(map);
-		model.addAttribute("inqno:"+inqno);
-		
+		model.addAttribute("inqno:" + inqno);
+
 		return "report/ReportOk.tiles";
 	}
-	
-	//파티원 게시판 신고받아오기
+
+	// 파티원 게시판 신고받아오기
 	@RequestMapping("/partyReport.do")
 	public String partyReport(@ModelAttribute("email") String email, @RequestParam Map map, Model model) {
 
@@ -118,44 +123,72 @@ public class ReportController {
 		return "party/Report.tiles";
 	}
 
-	//파티원 게시판 신고처리
+	// 파티원 게시판 신고처리
 	@RequestMapping("/partyReportOk.do")
-	public String partyReportOk(@ModelAttribute("partyNo") String partyNo, @RequestParam Map map,Model model) {
-		//report.xml에 컬럼 추가, dto수정, db실제에도 컬럼 추가
-		//신고테이블에 insert
-		
+	public String partyReportOk(@ModelAttribute("partyNo") String partyNo, @RequestParam Map map, Model model) {
+		// report.xml에 컬럼 추가, dto수정, db실제에도 컬럼 추가
+		// 신고테이블에 insert
+
 		int affected = reportService.insertParty(map);
 		model.addAttribute("partyNo:" + partyNo);
 
+		return "report/ReportOk.tiles";
+	}
+
+	// 채팅 신고받아오기
+	@RequestMapping("/chatReport.do")
+	public String chatReport(@RequestParam String chatno, Model model) {
+
+		PartyChatDTO record = chatService.getMyChat(chatno);
+		model.addAttribute("record", record);
+		model.addAttribute("reportbbs", "채팅");
+
+		return "party/ChatReport.tiles";
+	}
+
+	// 채팅 신고처리
+	@RequestMapping("/chatReportOk.do")
+	public String chatReportOk(@RequestParam Map map, Model model) {
+		// report.xml에 컬럼 추가, dto수정, db실제에도 컬럼 추가
+		// 신고테이블에 insert
+
+		int affected = reportService.insertChat(map);
+		model.addAttribute("chatno:" + map.get("chatno"));
 
 		return "report/ReportOk.tiles";
 	}
-		
-	
-	
-	//관리자에서 클릭시 해당 신고물로 넘어가기 
+
+	// 관리자에서 클릭시 해당 신고물로 넘어가기
 	@RequestMapping("/findReport.do")
-	public String findReport(@ModelAttribute("reportbbs") String reportbbs,@ModelAttribute("inqno") String inqno,@ModelAttribute("ussrno") String ussrno,
-			@ModelAttribute("partyNo") String partyNo,@RequestParam Map map,Model model) {
+	public String findReport(@ModelAttribute("reportbbs") String reportbbs, @ModelAttribute("inqno") String inqno,
+			@ModelAttribute("ussrno") String ussrno, @ModelAttribute("partyNo") String partyNo, @RequestParam Map map,
+			Model model) {
+
+		// 넘어오는 게시판 키값 받기
+		model.addAttribute("reportbbs:" + reportbbs);
+		model.addAttribute("inqno:" + inqno);
+		model.addAttribute("partyNo:" + partyNo);
+		model.addAttribute("ussrno:" + ussrno);
+		model.addAttribute("chatno:" + map.get("chatno"));
+		model.addAttribute("email:" + map.get("email"));
 		
-		//넘어오는 게시판 키값 받기
-		model.addAttribute("reportbbs:"+reportbbs);
-		model.addAttribute("inqno:"+inqno);
-		model.addAttribute("partyNo:"+partyNo);
-		model.addAttribute("ussrno:"+ussrno);
-		
-		//문의게시판
-		if(reportbbs.equals("문의게시판")) {
-			String url = "forward:/oneByOneBbsView.do?inqno="+inqno;
+		System.out.println(map.get("chatno"));
+		System.out.println(map.get("email"));
+		// 문의게시판
+		if (reportbbs.equals("문의게시판")) {
+			String url = "forward:/oneByOneBbsView.do?inqno=" + inqno;
 			return url;
-		} else if(reportbbs.equals("파티원게시판")) {
-			String url = "forward:/partyBbsView.do?partyNo="+partyNo;
+		} else if (reportbbs.equals("파티원게시판")) {
+			String url = "forward:/partyBbsView.do?partyNo=" + partyNo;
 			return url;
-		} else if(reportbbs.equals("추천게시판") || reportbbs.equals("자유게시판")) {
-			String url = "forward:/ussrView.do?ussrno="+ussrno;
+		} else if (reportbbs.equals("추천게시판") || reportbbs.equals("자유게시판")) {
+			String url = "forward:/ussrView.do?ussrno=" + ussrno;
+			return url;
+		} else if (reportbbs.equals("채팅")) {
+			String url = "forward:/chatView.do?chatno=" + map.get("chatno").toString() + "&reportId=" + map.get("email").toString();
 			return url;
 		}
-		
+
 		return "admin/AdminWarning";
 	}
 

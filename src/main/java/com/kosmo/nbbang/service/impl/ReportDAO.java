@@ -49,6 +49,10 @@ public class ReportDAO {
 		
 		return lists;
 	}
+
+	public int insertChat(Map map) {
+		return template.insert("reportInsertChat", map);
+	}
 	
 
 	
