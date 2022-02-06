@@ -179,6 +179,7 @@ public class BankingController {
 		auth.put("cost", cost);
 		auth.put("print", print);
 		return bankingservice.doTransactionStatement(auth);
+		
 	}
 	
 	
