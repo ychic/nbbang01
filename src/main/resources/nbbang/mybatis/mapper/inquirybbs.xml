@@ -40,8 +40,9 @@
 	
 	<select id="inquiryTotalRowCount" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM inquirybbs i JOIN member m ON m.email=i.email
+		WHERE i.email=#{email}
 		<if test="searchWord != null">
-			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+			AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 		</if>
 	</select>
 	

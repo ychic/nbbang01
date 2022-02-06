@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo.nbbang.park.service.impl.AllCostServiceImpl;
@@ -192,6 +193,31 @@ public class MySubinitViewController {
 		
 		return "schedule/MySub3.tiles";
 	}
+	//
+	@RequestMapping("/fourthFold.do")
+	public String fourthFoldView(@ModelAttribute(value = "email") String email, MySubFldrCountDTO watchCmd,
+			@RequestParam Map map, Model model, Model model2) {
+		map.put("email", email);
+		
+		
+		return "schedule/MySub4.tiles";
+	}
+	///
+	//계좌에서 긁어온 정기지출총액 모델에 저장해서 넘겨주기
+	@RequestMapping(value="mysub/getMoneyVar.do", produces = "application/json; charset=UTF-8")	//"text/plain; charset=UTF-8"
+	public @ResponseBody int getMoneyVar(@RequestParam Map map, Model model) {
+		
+		int intMoney=Integer.parseInt(map.get("sumMoney").toString());
+		System.out.println(intMoney);
+		model.addAttribute("intMoney",intMoney);
+		return intMoney;
+		//return map.get("sfname").toString();
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("/mysub/edit.do")
 	public String edit(@ModelAttribute(value = "email") String email,@RequestParam Map map, EditSubDTO cmdEdit, Model model) {
 		map.put("email", email);	//map으로 이메일 넘김

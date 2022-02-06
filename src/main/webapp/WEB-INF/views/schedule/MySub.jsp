@@ -40,11 +40,10 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 -->
-
 <div class="container">
 	<div class="row">
-		<div class="col-sm-3">
-			<div class="row">
+		<div class="col-sm-3" >
+			<div class="row" style="padding-top:20px;">
 				<div class="col-sm-12"></div>
 				<div class="col-sm-10">
 					<div class="list-group">
@@ -61,7 +60,11 @@
 					   <!-- 필수 폴더(수정/삭제 불가)--> 
 					   <a href="<c:url value='/mySub.do' />" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span>${folderName.sfname}</span><span class="badge bg-primary rounded-pill">${badgeAll.count}</span></a>
+					   <span>${folderName.sfname}</span>
+					   <%-- <span id="newBadge" style="display: none;">00</span>
+					   <span id="originBadge" style="display: none;">${badgeAll.count}</span>
+					   <span id="totalBadge" class="badge bg-primary rounded-pill">00</span> --%>
+					   </a>
 					   
 					   
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
@@ -71,15 +74,10 @@
 						   <form id="frmEditname1">
 						   <input type="text" id="inp1" name="dfldrName2" style="width:90px; border: none; display: none;">
 						   </form>
-					   <span id="hvDotDFolder2" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">${mysubBadgeWatch.count}</span></a>
+					   <%-- <span id="hvDotDFolder2" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span class="badge bg-primary rounded-pill">${mysubBadgeWatch.count}</span></a> --%>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder2" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
-					   	<div class="row" style="padding: 0px; margin: 0px;">
-					   		<div class="col-sm-4" style="background-color: blue; padding: 0px; margin-right: 0px;"><button id="btnComp1" type="button" class="btn btn-primary" style="width: 100%; height: 100%;">완료</button></div>
-					   		<div class="col-sm-4" style="background-color: gold; padding: 0px; margin-right: 0px;"><button 		type="button" class="btn btn-danger" style="width: 100%; height: 100%;">삭제</button></div>
-					   		<div class="col-sm-4" style="background-color: lime; padding: 0px; margin-right: 0px;"><button id="btnEdit1" type="button" class="btn btn-warning" style="width: 100%; height: 100%;">수정</button></div>
-					   	</div>
  					   </a>
 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
 					   <a href="<c:url value='/thirdFold.do' />" class="list-group-item" id="dFolder3">
@@ -88,16 +86,24 @@
 						   <form id="frmEditname2">
 						   <input type="text" id="inp2" name="dfldrName3" style="width:90px; border: none; display: none;">
 						   </form>
-					   <span id="hvDotDFolder3" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">${mysubBadgeLife.count}</span></a>
+					   <%-- <span id="hvDotDFolder3" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span class="badge bg-primary rounded-pill">${mysubBadgeLife.count}</span></a> --%>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder3" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
-					   	<div class="row" style="padding: 0px; margin: 0px;">
-					   		<div class="col-sm-4" style="background-color: blue; padding: 0px; margin-right: 0px;"><button id="btnComp2" type="button" class="btn btn-primary" style="width: 100%; height: 100%;">완료</button></div>
-					   		<div class="col-sm-4" style="background-color: gold; padding: 0px; margin-right: 0px;"><button 		type="button" class="btn btn-danger" style="width: 100%; height: 100%;">삭제</button></div>
-					   		<div class="col-sm-4" style="background-color: lime; padding: 0px; margin-right: 0px;"><button id="btnEdit2" type="button" class="btn btn-warning" style="width: 100%; height: 100%;">수정</button></div>
-					   	</div>
+					   	
  					   </a>
+ 					   
+ 					   <!-- 자동등록 폴더 실험중 -->
+ 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
+					   <a href="<c:url value='/fourthFold.do' />" class="list-group-item" id="dFolder4">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   <span id="dfdn3" style="padding: 0px; margin: 0px;">Account</span>
+					   <!-- <span id="hvDotDFolder4" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span id="accountBadge" class="badge bg-primary rounded-pill"></span> -->
+					   </a>
+					  
+ 					   
+ 					   
 					   <!-- 생성 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="#" class="list-group-item" id="hidFldr1" style="visibility: hidden;">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
@@ -277,32 +283,24 @@
 		<div class="col-sm-9">
 		 
 		<!-- 목록 최상단 (폴더명 , 총합계) -->
-		<div class="col-sm-11">
+		<div class="col-sm-11" style="padding-top:20px;">
 			<c:if test="${not empty allCost.allCost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 이번 달 정기지출 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${allCost.allCost}</span>&nbsp 원 입니다</span>
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span> 
+			<span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은
+			<span id="hiddenCost" style="display: none;">0</span><span id="basicAllCost" style="display: none;">${allCost.allCost}</span>
+			<span id="totalCost" Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;"></span>&nbsp 원 입니다
+			</span>
+			<!--style="display: none;"  -->
 			</h4>
 			</c:if>
 			<c:if test="${empty allCost.allCost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 이번 달 정기지출 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
 			</h4>
 			</c:if>
 			<hr>
 			<div class="col-sm-12">
 			
 					<div class="row">
-					<!-- sortable적용 
-					<ul id="sortable">
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					</ul>
-					-->
-					
-					
 							
 					<!-- 목록 -->
 					<!-- 마이바티스 resultMap의 collection 태그사용 -->
@@ -4425,7 +4423,7 @@
 								
 								<c:if test="${mysub.subservice eq '필리'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
-									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/004_pilly2.png" alt="로고이미지">
+									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/004_pilly2_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
@@ -4826,7 +4824,7 @@
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/016_willa_e.png" alt="로고이미지">
 								  </div>
-								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  <ul class="list-group list-group-flush" id="so" style="border-top: hidden;">
 								  
 								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditwilla" aria-hidden="true" id="btnSubEdit"
@@ -5360,14 +5358,11 @@
 						</c:forEach>
 					</c:if>
 					
-					
-					
-					
-					
+				
 					<!-- 실험중 -->
-					<div id="trading_statement">테스트</div>
+					<div id="trading_statement"></div>
 					
-		<c:if test="${empty folder.mysubs}">
+		<%-- <c:if test="${empty folder.mysubs}">
 					<!-- lecture sub list -->
 		<!-- <div class="container"> -->
 		<h2 class="nino-sectionHeading"></h2>
@@ -5584,7 +5579,7 @@
 		
 					<!-- </div> -->
 					
-					</c:if>
+					</c:if> --%>
 			
 					
 					<!-- 실험중 -->
@@ -5598,8 +5593,8 @@
 		
 		<div class="row col-sm-1">
 			
-				<div class="col-sm-3 col-md-offset-11">
-				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub1" style="background-color:#5BC0DE; color: white; font-family: 'Gugi', sans-serif;"><strong>+ New</strong></button>
+				<div class="col-sm-3 col-md-offset-11" >
+				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub1" style="background-color:#5BC0DE; color: white; font-family: 'Gugi', sans-serif;margin-top:20px"><strong>+ New</strong></button>
 				<!-- 사용자 등록 Modal -->
 				<div class="modal" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
 				  	  <div class="modal-dialog">  
@@ -5728,7 +5723,9 @@
 				
 				
 			</div>
+
 		</div> <!-- row 꽉차면내려간다? -->
+		
 		
 		<%-- <div class="row">
 							  <div class="col-sm-6 col-md-4">
@@ -5791,6 +5788,7 @@
 
 
 
+
 <script>
 	//계좌 내역 시나리오
 	window.onload=function(){
@@ -5819,9 +5817,6 @@
                     
                     //데이터 보내기
                     getAccountInfo(data)
-                    
-                    
-
             },
             error:function(e){
                     console.log(e)
@@ -5849,42 +5844,187 @@
             data:{'email':'${sessionScope.email}','fintech_use_num':FINTECH_USE_NUM},
             dataType: 'json',
             success:function(data){
-         	   		console.log('success진입');
-                    console.log(data);
-                    
-                    var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
-                		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
-                		,"핸드폰비", "관리비", "보험료","신용결제","월세","청약","헬스","적금"
-                		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
+     	   		console.log('success진입');
+                console.log(data);
+                console.log(Object.keys(data).length);
+                var badgcount=0;
+                var sumMoney=0;
+                var newBadgeCount=0;
+                var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
+            		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
+            		,"핸드폰비", "관리비", "보험료","월세","청약","헬스","적금"
+            		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
+                 	
+                     data.forEach(function(element){
+                    	console.log(element);
+                    	console.log(typeof(element));
+                    	//날짜 예쁘게 변환
+                    	var dt = new Date(element.TRAN_DATE);
+                    	console.log(dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate());
+                        //
+                    	var date = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
+                    	
                      	
-                         data.forEach(function(element){
-                        	
-                        	//날짜 예쁘게 변환
-                        	var dt = new Date(element.TRAN_DATE);
-                         	
-                         	//월 하드코딩
-                         	if((dt.getMonth()+1) == '01'){
-                         		//값을 보여줄 div 객체 얻기
-                         		var trading_statement = document.getElementById('trading_statement');
-                         		
-                         		//리스트 검사
-                         		accountList.forEach(function(item){
-                         			//계좌 출금 내역에 해당 리스트 객체가 있다면 브라우저에 출력
-                         			if(element['WD_PRINT_CONTENT'] == item){
-                         				//WD_PRINT_CONTENT : 계좌거래 정보, TRAN_AMT : 금액(임의 금액)
-                         				trading_statement.innerHTML += element['WD_PRINT_CONTENT']+': '+element['TRAN_AMT']+',';	
-                         			}//if
-                         			
-                         		})//forEach
-                         		
-                         	}//if
+                     	//월 하드코딩
+                     	if(dt.getFullYear() == '2022' && (dt.getMonth()+1) == '01'){
+                     		//변수에 저장
+                     		//값을 보여줄 div 객체 얻기
+                     		var trading_statement = document.getElementById('trading_statement');
+                     		badgcount += 1;
+							sumMoney += element['TRAN_AMT'];
+							console.log(sumMoney);
+                     		//리스트 검사
+                     		accountList.forEach(function(item){
+                     			//계좌 출금 내역에 해당 리스트 객체가 있다면 브라우저에 출력
+                     			if(element['WD_PRINT_CONTENT'] == item){
+                     				//총액구하기
+                     				
 
-                         })//forEach
-            },
+                     				console.log(typeof(element['WD_PRINT_CONTENT']));
+                     				//WD_PRINT_CONTENT : 계좌거래 정보, TRAN_AMT : 금액(임의 금액)
+                     				trading_statement.innerHTML += //element['WD_PRINT_CONTENT']+': '+element['TRAN_AMT']+':'+ date+',';
+                     				'<div class="col-md-3" style="padding-left: 0px;">'+
+                     				'<div class="thumbnail"'+
+                     					'style="margin-bottom: 0px; border-bottom: hidden;">'+
+                     					'<img id="" src="'+imageMap(element['WD_PRINT_CONTENT'])+'"'+
+                     						'alt="로고이미지">'+
+                     				'</div>'+
+                     				'<ul class="list-group list-group-flush" style="border-top: hidden;">'+
+                     					'<li class="list-group-item" style="color: #5BC0DE">'+element['WD_PRINT_CONTENT']+'<img style="padding-left:20px; margin:0px; border: none;" src="'+imageMap("아이콘")+'"'+
+                     					'</li>'+
+                     					'<li class="list-group-item" style="color: #5BC0DE">'+date+'</li>'+
+                     					'<li class="list-group-item" style="color: #5BC0DE">'+element['TRAN_AMT']+'원</li>'+
+                     				'</ul>'+
+                     			'</div>'
+                     			
+                     			
+                     			
+                     			}//if
+                     			
+                     			
+                     		})//forEach
+                     		
+                     	}//if
+
+                     })//forEach
+                     //총액(수동등록 총액+자동등록 총액) 구해서 뿌려주기
+                     getMoneyVar(sumMoney);
+                     console.log(sumMoney);
+                     console.log(typeof sumMoney);
+                     
+   
+                   	 $('#hiddenCost').html(sumMoney);
+                     var sum = parseInt($("#hiddenCost").html()) + parseInt($("#basicAllCost").html())
+                     console.log(sum);
+                     $("#totalCost").html(sum);
+                     
+                     
+                     //배지 카운트 구해서 부려주기
+                     console.log(badgcount);
+                     $('#newBadge').html(badgcount);
+                     var sumBadge = parseInt($("#newBadge").html()) + parseInt($("#originBadge").html())
+                     console.log(sumBadge);
+                     $("#totalBadge").html(sumBadge);
+                     $("#accountBadge").html(badgcount);
+                     
+                     
+        },
             error:function(e){
                     console.log(e)
             }          
 		});
+	}
+	
+	function getMoneyVar(sumMoney){
+		$.ajax({
+			url: '<c:url value="/mysub/getMoneyVar.do"/>',
+            type: 'post',
+            data:{'sumMoney':sumMoney},
+            dataType: 'text',
+            success:function(data00){
+            	console.log(data00);
+            },
+            error:function(e){
+                console.log(e)
+       		}
+		});
+            
+	}
+
+	function imageMap(subtitle) {
+		/*
+		var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
+            		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
+            		,"핸드폰비", "관리비", "보험료","신용결제","월세","청약","헬스","적금"
+            		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
+		*/
+		switch (subtitle) {
+		case '웨이브':
+			return '<c:url value="/resources/images_sub/media/007_wave.png"/>';
+		case '카카오이모티콘+':
+			return '<c:url value="/resources/images_sub/lifestyle/014_kakaoplus.jpg"/>';
+		case '잡플래닛':
+			return '<c:url value="/resources/images_sub/lifestyle/015_jobplanet.jpg"/>';
+		case '런드리고':
+			return '<c:url value="/resources/images_sub/lifestyle/003_laundrygo.png"/>';
+		case '필리':
+			return '<c:url value="/resources/images_sub/lifestyle/004_pilly2_e.png"/>';
+		case '해피문데이':
+			return '<c:url value="/resources/images_sub/lifestyle/005_happymoonday.png"/>';
+		case '와이즐리':
+			return '<c:url value="/resources/images_sub/lifestyle/006_wisely.png"/>';
+		case '꾸까':
+			return '<c:url value="/resources/images_sub/lifestyle/007_kukka.png"/>';
+		case '네이버+멤버십':
+			return '<c:url value="/resources/images_sub/lifestyle/008_naverplus.png"/>';
+		case '쏘카':
+			return '<c:url value="/resources/images_sub/lifestyle/009_socar.png"/>';
+		case '하비인더박스':
+			return '<c:url value="/resources/images_sub/lifestyle/011_hobbyinthebox.png"/>';
+		case '위클리셔츠':
+			return '<c:url value="/resources/images_sub/lifestyle/011_weeklyshirts.png"/>';
+		case '쿠팡와우':
+			return '<c:url value="/resources/images_sub/lifestyle/018_coupang.jpg"/>';
+		case '더 반찬':
+			return '<c:url value="/resources/images_sub/lifestyle/016_thebanchan.jpg"/>';
+		case '월간 과자':
+			return '<c:url value="/resources/images_sub/lifestyle/017_monthlysnack.png"/>';
+		case '밀리의서재':
+			return '<c:url value="/resources/images_sub/lecture/028_millie_e.png"/>';
+		case '퍼블리':
+			return '<c:url value="/resources/images_sub/lecture/024_publy_e.png"/>';
+		case '윌라':
+			return '<c:url value="/resources/images_sub/lecture/016_willa_e.png"/>';
+		case '빅이슈':
+			return '<c:url value="/resources/images_sub/lecture/021_bigissue_e.png"/>';
+		case '리디셀렉트':
+			return '<c:url value="/resources/images_sub/lecture/032_ridiselect_e.png"/>';
+		case '매경e신문':
+			return '<c:url value="/resources/images_sub/lecture/008_meailnews_e.png"/>';
+		case 'bbc사이언스':
+			return '<c:url value="/resources/images_sub/lecture/010_bbc_e.png"/>';
+		case '조인스프라임':
+			return '<c:url value="/resources/images_sub/lecture/018_joinsprime_e.png"/>';
+		case '예스24북클럽':
+			return '<c:url value="/resources/images_sub/lecture/020_yes24_e.png"/>';
+		case '핀즐':
+			return '<c:url value="/resources/images_sub/lecture/033_pinzle.jpeg"/>';
+		case '넷플릭스':
+			return '<c:url value="/resources/images_sub/media/003_netflix.jpeg"/>';
+		case '왓챠':
+			return '<c:url value="/resources/images_sub/media/004_watcha.png"/>';
+		case '왓차':
+			return '<c:url value="/resources/images_sub/media/004_watcha.png"/>';
+		case '디즈니':
+			return '<c:url value="/resources/images_sub/media/005_disney.png"/>';
+		case '티빙':
+			return '<c:url value="/resources/images_sub/media/006_tving.png"/>';
+		case '아이콘':
+			return '<c:url value="/resources/images_sub/lecture/card4.png"/>';
+			
+		default:
+			return '<c:url value="/resources/images_sub/lecture/Nbread_02.png"/>';
+		}
 	}
 
 
@@ -8100,6 +8240,7 @@
 		});
 		$('#subListKsy38').css("display", "none");
 	});//
+	
 	
 	
 	

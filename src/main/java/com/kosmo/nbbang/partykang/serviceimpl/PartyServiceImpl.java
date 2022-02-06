@@ -69,7 +69,7 @@ public class PartyServiceImpl implements PartyService{
 	public String getMember(String partyNo, String partnerId) {
 		String isMember = dao.getMember(partyNo, partnerId);
 		if(isMember != null) {
-			if(isMember.equals("Y")) {
+			if(isMember.equalsIgnoreCase("Y")) {
 				return "맞다_파티장";
 			}else {
 				return "맞다_멤버";

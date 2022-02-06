@@ -9,6 +9,8 @@ public interface MyReportService {
 	
 	List<MyReportDTO> getMyReport2(Map map);
 	
+	List<MyReportDTO> getMyReport3(Map map);
+	
 	MyReportDTO getYearSum(Map map);
 	
 	MyReportDTO getMonthSum(Map map);

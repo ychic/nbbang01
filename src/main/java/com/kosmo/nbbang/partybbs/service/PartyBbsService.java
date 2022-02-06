@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.kosmo.nbbang.partykang.service.PartyChatDTO;
-
 public interface PartyBbsService {
 	
 	// 목록
@@ -62,6 +60,10 @@ public interface PartyBbsService {
 	
 	public int categoryCheck(Map map);
 	
-//	public List<PartyBbsDTO> getPartyAllList();
+	public List<PartyBbsDTO> getPartyAllList(Map map);
+	
+	public String getLeaderEmail(String partyNo);
+	
+	public String endDelete(String partyNo);
 
 } // end PartyBbsService 

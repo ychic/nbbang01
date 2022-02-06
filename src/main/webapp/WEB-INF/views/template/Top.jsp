@@ -152,7 +152,12 @@
 						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
 							<ul class="nav navbar-nav">
 								<!-- <li><a id="home" href="<c:url value='/index.do'/>">Home <span class="sr-only">(current)</span></a></li> -->
-								<li><a id="admin" href="<c:url value='/admin.do'/>">admin</a></li>
+								
+								
+								<c:if test="${sessionScope.email eq 'nbbang@nbbang.com'}">
+			                           <li><a id="admin" href="<c:url value='/admin.do'/>">admin</a></li>
+			                        </c:if>
+                        
 								<li class="dropdown">
 									<a class="dropbtn" onclick="location.href='partyBbs.do'">파티</a>
 									  <div class="dropdown-content">
@@ -163,23 +168,24 @@
 								<li class="dropdown">
 									<a class="dropbtn" onclick="location.href='mySub.do'">My</a>
 									  <div class="dropdown-content">
-									    <a onclick="location.href='mySchedule.do'">my 스케쥴</a>
+									    <a onclick="location.href='mySchedule.do'">my 캘린더</a>
 									    <a onclick="location.href='myReport.do'">my 리포트</a>
 									    <a onclick="location.href='myParty.do'">my 파티</a>
 									    <a onclick="location.href='myAccounts.do'">my 계좌 조회</a>
 									  </div>
 								</li>
 								<li class="dropdown">
-									<a class="dropbtn" onclick="location.href='imageAnalysis.do'">추천</a>
+									<a class="dropbtn">추천</a>
 									  <div class="dropdown-content">
 									    <a onclick="location.href='recommandList.do?ussrcategoryname=recommand'">추천게시판</a>
 									    <a onclick="location.href='freeList.do?ussrcategoryname=free'">자유게시판</a>
+									    <a onclick="location.href='imageAnalysis.do'">취향 추천</a>
 									  </div>
 								</li>
 								<li class="guide_menu dropdown" style="float:right">
 									<a id="guide" href="<c:url value='/guide.do'/>">가이드</a>
 									<div class="dropdown-content">
-									    <a onclick="location.href='OBOList.do'">1:1 문의</a>
+									    <a onclick="location.href='OBOList.do'">문의게시판</a>
 									  </div>
 								</li>
 							</ul>							

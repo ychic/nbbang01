@@ -8,8 +8,9 @@ tr {
 	color: black;
 }
 
-.container{
+.containerRecommList{
 	width: 60%;
+	margin:auto;
 }
 
 /* 광고 영역 */
@@ -47,7 +48,7 @@ tr {
 </div>
 <h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:240px;color:#BEBEBE;">추천게시판</h1>
 <h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:240px;color:#BEBEBE;">재밌는건 같이 봐요!</h4>
-<div class="container">
+<div class="containerRecommList">
 	<br/>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">

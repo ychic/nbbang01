@@ -142,6 +142,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 <div class="container">
 	<h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">계좌등록</h1>
 	<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">계좌를 등록하고 편하게 이용하세요.</h4>
+	<h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;color:#BEBEBE;">자동 입출금시 가장 최근의 계좌가 자동으로 설정됩니다.</h4>
 	<hr class="col-md-12" style="width:900px;margin-left:50px;"/>
 
 	<c:if test="${not empty sessionScope.email}" var="isLogin">
@@ -181,13 +182,13 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 	    var accountContainer = document.getElementById("accountContainer");
 	    var accoundCard = `
 	    				
-	    			<div class="account-card" id="accoundCard">
-	                      <div class="account-card" id="accoundCard"><img src="<%=request.getContextPath()%>/resources/account/credit1.png" style="width:48px; left:10px; top:10px; position:absolute;"></div>
+	    			<div class="account-card" id="accoundCard" style="font-family:'Jua', sans-serif; color:black;">
+	                      <div><img src="<%=request.getContextPath()%>/resources/account/credit1.png" style="width:48px; left:10px; top:10px; position:absolute;"></div>
 	                            
 	                            <div class="bankName" style="float:right" id="bank_name">`+data.bank_name+`</div>
 	                            
 	                            <div class="accountNum" id="bank_num_masked">`+data.account_num_masked+`</div>
-	                            <div class="balance" id ="balance_amt">`+ numberWithCommas(data.balance_amt)+` 원</div>
+	                            <div class="balance" id ="balance_amt">`+`잔액 : `+ numberWithCommas(data.balance_amt)+` 원</div>
 	                            <div class="accountNickname" style="float:left" id="bank_alias">`+data.alias+`</div>
 	                            <input type='hidden' id='fintech_use_num' value='`+data.fintech_use_num+`'/>
 	                            

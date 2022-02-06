@@ -46,7 +46,7 @@ public class LoginNoutController {
 		} else if(map.get("email").equals("nbbang@nbbang.com")) {
 			//관리자 로그인, 아래 modal 확인해서 필요없으면 지우기 
 			model.addAttribute("nickname",nickname);
-			return "admin/AdminMain";
+			return "forward:/admin.do";
 		} else if(blackMember.equals("black")) {
 			model.addAttribute("blackMember",blackMember);
 			System.out.println("blackMember확인:"+blackMember);
@@ -66,7 +66,8 @@ public class LoginNoutController {
 	@RequestMapping("/sociallogin.do")
 	public String socialProcess(@RequestParam Map map, Model model,SessionStatus status,HttpSession session,HttpServletRequest req) {
 		int flag = memberService.socialLogin(map);
-		String nickname = map.get("nickname").toString();
+		//String nickname = map.get("nickname").toString();
+		String nickname = memberService.getNickname(map);
 		String loginType = map.get("loginType").toString();
 		String email = map.get("email").toString();
 		System.out.println("nickname:"+nickname);

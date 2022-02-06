@@ -40,34 +40,28 @@
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>Chat No</th>
-											<th>Party No</th>
-											<th>Title</th>
-											<th>Conversation Id-1</th>
-											<th>Conversation Id-2</th>
-											<th>Join</th>											
+											<th>파티모집 번호</th>
+											<th>채팅방 번호</th>											
+											<th>파티모집 제목</th>
+											<th>파티참가 신청자</th>
+											<th>파티모집 작성자</th>
+											<th>참여</th>	
+											<th>파티모집 인원</th>
+											<th>파티모집 마감</th>
 										</tr>
 									</thead>
-									<tbody>
-										<!-- 중간발표용 데이터 수동입력 - 나중에 삭제해 주세요 -->
-										<!--  
-													<td>12</td>
-													<td>57</td>
-													<td>디즈니 함께봐요</td>
-													<td>kim@naver.com</td>
-													<td>park@google.com</td>
-													<td>33</td>
-													<td>24</td>
-										-->			
+									<tbody>		
 										<c:if test="${! empty listPagingData.lists}" var="isEmpty">
 											<c:forEach items="${listPagingData.lists}" var="dto">
 												<tr>
-													<td>${dto.chatno}</td>
 													<td>${dto.partyno}</td>
+													<td>${dto.chatno}</td>													
 													<td>${dto.partytitle}</td>
 													<td>${dto.participant}</td>
 													<td>${dto.bbswriter}</td>
-													<td>${dto.member eq '1' ? 'Y' : 'N'}</td>
+													<td>${dto.confirm eq '1' ? 'Y' : 'N'}</td>
+													<td>${dto.maxcapacity}</td>
+													<td>${dto.match eq '1' ? 'Y' : 'N'}</td>
 												</tr>
 											</c:forEach>
 										</c:if>

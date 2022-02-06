@@ -181,6 +181,4 @@ public class BankingController {
 		return bankingservice.doTransactionStatement(auth);
 		
 	}
-	
-	
 }

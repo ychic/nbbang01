@@ -199,14 +199,14 @@ public class PagingUtil {
 		String pagingStr = "<div id=\"dataTable_wapper\"\r\n"
 				+ "								class=\"dataTables_wapper dt-bootstrap4\">\r\n"
 				+ "								<div class=\"row\">\r\n"
-				+ "									<div class=\"col-sm-12 col-md-5\">\r\n"
-				+ "										<div class=\"dataTables_info\" id=\"dataTable_info\" role=\"status\"\r\n"
-				+ "											aria-live=\"polite\">Showing 1 to 10 of all entries</div>\r\n"
-				+ "\r\n" + "									</div>\r\n"
+				//+ "									<div class=\"col-sm-12 col-md-5\">\r\n"
+				//+ "										<div class=\"dataTables_info\" id=\"dataTable_info\" role=\"status\"\r\n"
+				//+ "											aria-live=\"polite\">Showing 1 to 10 of all entries</div>\r\n"
+				//+ "\r\n" + "									</div>\r\n"
 				+ "									<div class=\"col-sm-12 col-md-7\">\r\n"
 				+ "										<div class=\"dataTables_paginate paging_simple_numbers\"\r\n"
 				+ "											id=\"dataTable_paginate\">\r\n"
-				+ "											<ul class=\"pagination\">";
+				+ "											<ul class=\"pagination\" style=\"text-align: center;\">";
 
 		// 1.전체 페이지 구하기
 		int totalPage = (int) (Math.ceil(((double) totalRecordCount / pageSize)));

@@ -135,7 +135,7 @@
 		<div id="contents1" class="contents">
 			<div id="inner-word">
 				<h3>세상의 수많은 구독 서비스들을 손쉽게 관리하세요.</h3>
-				<h4>이체 일정 및 알림 설정으로 잊지말고 챙기세요.</h4>
+				<h4>이체 일정을 한눈에 확인하는 캘린더로 잊지말고 챙기세요.</h4>
 			</div>
 			<div id="first-navbar-logo" style="color:black;">
 				Nbbang
@@ -162,7 +162,7 @@
 		<div id="contents4" class="contents">
 			<div id="inner-word">
 				<h3>세상의 수많은 구독 서비스들을 손쉽게 관리하세요.</h3>
-				<h4>이체 일정 및 알림 설정으로 잊지말고 챙기세요.</h4>
+				<h4>이체 일정을 한눈에 확인하는 캘린더로 잊지말고 챙기세요.</h4>
 			</div>
 			<img src="<%=request.getContextPath()%>/resources/images/firstpage/first04.jpg"/>
 		</div>

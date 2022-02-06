@@ -268,9 +268,21 @@
 		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
 		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
 	}
-	/* 스크롤바 */
+	/* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
+	.scollDesign{
+		overflow: auto;
+		overflow: auto;
+		padding-left: 10px;
+		width: 100%;
+		height: 200px;
+		float: left;
+		font-size: 17px;
+		line-height: 1.6;
+		letter-spacing: -0.6px;
+	}
+	
 	.scollDesign::-webkit-scrollbar {
-    width: 15px;
+	    width: 15px;
 	}
 	.scollDesign::-webkit-scrollbar-thumb {
 	    background-color: #fff;
@@ -282,16 +294,14 @@
 	    background-color: #f38181;
 	    border-radius: 10px;
 	    box-shadow: inset 0px 0px 5px white;
-	} 
+	}
+
 </style>
-<!-- 광고 1 -->
-<div class="ad_one">
-	
-</div>
 
 <div id="bbs" class="container">
 <h1 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집 게시판</h1>
 <h4 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집하여 구독료를 아껴보세요!</h4>
+<h5 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:black;padding-bottom:20px;">파티는 최대 6개월 간 유지되며 이후로는 모든 송금이 정지됩니다. 이점에 유념하시길 바랍니다.</h5>
 	<div class="ottBox">
 		<a class="ottIcon" href="<c:url value="/netflixList.do"/>" onmouseover="this.style.backgroundColor='#FFE6D0'" onmouseout="this.style.backgroundColor=''">
 			<div>
@@ -406,7 +416,7 @@
 					원
 				</div>
 				<div class="detailBlank"></div>
-				<div class="partyContent">${item.partyContent }</div>
+				<div class="scollDesign">${item.partyContent }</div>
 				<div id="buttonArea" class="row">
 					<div class="col-md-12 text-right">
 						<div class="blankSpace"></div>
@@ -458,10 +468,7 @@
 </div>
 <div class="blankSpace"></div>
 
-<!-- 광고 2 -->
-<div class="ad_two">
-	
-</div>
+
 <script>
 	function isDelete(partyNo) {
 		if (confirm("정말로 삭제 하시겠습니까?")) {

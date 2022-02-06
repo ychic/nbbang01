@@ -1,5 +1,7 @@
 package com.kosmo.nbbang.partykang;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,7 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -22,7 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonArray;
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
 import com.kosmo.nbbang.partykang.service.MessageDTO;
 import com.kosmo.nbbang.partykang.service.PartyChatDTO;
@@ -85,17 +90,20 @@ public class PartyChatController {
 	
 	@RequestMapping(value = "/message/saveMessage.do", produces = "text/plain; charset=UTF-8")
 	@ResponseBody
-	public String saveMessage(@RequestParam String roomNo, @RequestParam String message,HttpServletRequest req) {
+	public String saveMessage(MessageDTO message,HttpServletRequest req){
 		String path=req.getServletContext().getRealPath("/chatList");		
-		return PartyChatUtil.saveMessage(path, roomNo, message);
+		return PartyChatUtil.saveMessage(path, message.getRoomNo(), message.toString());
 	}
 	
-	@RequestMapping(value = "/message/getData.do", produces = "text/plain; charset=UTF-8")
+	@RequestMapping(value = "/message/getData.do", produces = "json/application; charset=UTF-8")
 	@ResponseBody
 	public String getData(@ModelAttribute("email") String email, @RequestParam String roomNo, @RequestParam String partyNo, HttpServletRequest req) throws JsonProcessingException {
 		Map map = new HashMap();
 		String path=req.getServletContext().getRealPath("/chatList");		
 		String message = PartyChatUtil.getMessage(path, roomNo);
+		if(!message.equals("fail")) {
+			message = "["+message.substring(0, message.length()-1)+"]";
+		}
 		PartyBbsDTO partyBbs = partyService.getPartyBbs(partyNo);
 		PartyChatDTO dto = partyService.getMyChat(roomNo);
 		String partnerId = email.equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
@@ -131,6 +139,26 @@ public class PartyChatController {
 		map.put("partnerId", partnerId);
 		String message = partyService.addMember(map);
 		return message;
+	}
+	
+	@RequestMapping("/chatView.do")
+	public String chatView(@RequestParam Map map, Model model, HttpServletRequest req) {
+		String path=req.getServletContext().getRealPath("/chatList");	
+		System.out.println(map.values());
+		System.out.println(map.get("chatno").toString());
+		String message = PartyChatUtil.getMessage(path, map.get("chatno").toString());
+		if(!message.equals("fail")) {
+			message = "["+message.substring(0, message.length()-1)+"]";
+		}
+		System.out.println(map.get("chatno").toString());
+		PartyChatDTO dto = partyService.getMyChat(map.get("chatno").toString());
+		String reportId = map.get("reportId").toString().equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
+		String reportIdNick = partyService.getNickName(reportId);
+		model.addAttribute("record", dto);
+		model.addAttribute("message", message);
+		model.addAttribute("map", map);
+		model.addAttribute("reportIdNick", reportIdNick);
+		return "party/ChatReportView.tiles";
 	}
 	
 }

@@ -1,6 +1,6 @@
 
 /* 0101 데이터 추가_로그인 테스트용_김수연 */
-INSERT INTO member VALUES('kim@naver.com', '1234', '김길동', '길동짱', '19930901', '남', '010-1234-1234', 'home', null, 'normal', DEFAULT, profile_image.png, gildong.jpg);
+INSERT INTO member VALUES('kim@naver.com', '1234', '김길동', '길동짱', '19930901', '남', '010-1234-1234', 'home', null, 'normal', DEFAULT, 'profile_image.png', 'gildong.jpg');
 /* member테이블의 USERTYPE, authority을 null허용 가능으로 수정하기_박재현 */
 ALTER TABLE member MODIFY USERTYPE NULL;
 ALTER TABLE member MODIFY authority NULL;

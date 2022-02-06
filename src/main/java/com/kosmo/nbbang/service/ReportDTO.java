@@ -22,6 +22,7 @@ public class ReportDTO {
 	private String inqno;
 	private String partyNo;
 	private String ussrno;
+	private String chatno;
 	private String email;
 	
 	public ReportDTO() {
@@ -31,7 +32,7 @@ public class ReportDTO {
 	
 	public ReportDTO(String reportno, String reportbbs, String reportcontent, String reporttype, Date reportregistdate, String inqno,
 			String partyNo,String ussrno,
-			String email) {
+			String email, String chatno) {
 		super();
 		this.reportno = reportno;
 		this.reportbbs = reportbbs;
@@ -42,6 +43,7 @@ public class ReportDTO {
 		this.partyNo = partyNo;
 		this.ussrno = ussrno;
 		this.email = email;
+		this.chatno = chatno;
 	}
 	public String getReportno() {
 		return reportno;
@@ -101,8 +103,11 @@ public class ReportDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
-	
+	public String getChatno() {
+		return chatno;
+	}
+	public void setChatno(String chatno) {
+		this.chatno = chatno;
+	}
+		
 }
