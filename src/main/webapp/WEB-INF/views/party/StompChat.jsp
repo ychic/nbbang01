@@ -277,6 +277,7 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 						'</div>'
 					);
 			}
+			$("#chatMessage").scrollTop($("#chatMessage")[0].scrollHeight);
 			if (message.message == '파티원으로 확정되셨습니다.') {
 				$('#confirm').prop("disabled", "disabled");
 				$('#quit').prop("disabled", "disabled");
@@ -310,12 +311,14 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 			var today = new Date();		
 			var sendTime = today.getHours()+':'+today.getMinutes();
 			//서버로 메시지 전송
-			client.send("/roomIn/" + roomNo, {}, JSON.stringify({
-				"nickname" : nickname,
-				"message" : $('#message').val(),
-				"roomNo" : '' + roomNo,
-				"time" : sendTime
-			}));
+			if($('#message').val() != ''){
+				client.send("/roomIn/" + roomNo, {}, JSON.stringify({
+					"nickname" : nickname,
+					"message" : $('#message').val(),
+					"roomNo" : '' + roomNo,
+					"time" : sendTime
+				}));
+			}
 			//기존 메시지 클리어			
 			$('#message').val("");
 			//포커스 주기
@@ -395,6 +398,10 @@ url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
 			}).fail(function(e) {
 				console.log(e)
 			});
+		});
+		
+		$('#report').click(function(e) {
+			location.href = '<c:url value="/chatReport.do"/>?chatno='+roomNo;
 		});
 
 		//입장버튼 클릭시 ]-서버와 연결된 웹소켓 클라이언트 생성

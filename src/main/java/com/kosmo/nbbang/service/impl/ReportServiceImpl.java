@@ -88,6 +88,11 @@ public class ReportServiceImpl implements ReportService {
 		return 0;
 	}
 	
+	@Override
+	public int insertChat(Map map) {
+		return dao.insertChat(map);
+	}
+	
 
 	
 	

@@ -61,11 +61,11 @@
 	                                            <td>${listPagingData.totalRecordCount - (((listPagingData.nowPage - 1) * listPagingData.pageSize) + loop.index)}</td>
 	                                            <td>${item.email }</td>
 	                                            <td>${item.reportbbs }</td>
-	                                            <td>${item.inqno }${item.partyNo }${item.ussrno}</td>
+	                                            <td>${item.inqno }${item.partyNo }${item.ussrno}${item.chatno}</td>
 	                                            <td>${item.reporttype }</td>
 	                                            <td>${item.reportcontent}</td>
 	                                            <td>${item.reportregistdate}</td>
-	                                            <td><a href="<c:url value='/findReport.do?reportbbs=${item.reportbbs }&inqno=${item.inqno }&partyNo=${item.partyNo }&ussrno=${item.ussrno }'/>" class="btn btn-info btn-circle btn-sm">
+	                                            <td><a href="<c:url value='/findReport.do?reportbbs=${item.reportbbs }&inqno=${item.inqno }&partyNo=${item.partyNo }&ussrno=${item.chatno }&chatno=${item.chatno }&email=${item.email }'/>" class="btn btn-info btn-circle btn-sm">
 	                                            	<i class="fas fa-info-circle"></i> 
 	                                            	</a>
 	                                            </td>
@@ -80,6 +80,7 @@
                             <c:if test="${listPagingData.lists.size() !=0 }">
 								${listPagingData.pagingString}
 							</c:if>
+							<!-- 페이지네이션 끝 -->
                             
                             
                         </div>

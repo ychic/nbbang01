@@ -141,4 +141,24 @@ public class PartyChatController {
 		return message;
 	}
 	
+	@RequestMapping("/chatView.do")
+	public String chatView(@RequestParam Map map, Model model, HttpServletRequest req) {
+		String path=req.getServletContext().getRealPath("/chatList");	
+		System.out.println(map.values());
+		System.out.println(map.get("chatno").toString());
+		String message = PartyChatUtil.getMessage(path, map.get("chatno").toString());
+		if(!message.equals("fail")) {
+			message = "["+message.substring(0, message.length()-1)+"]";
+		}
+		System.out.println(map.get("chatno").toString());
+		PartyChatDTO dto = partyService.getMyChat(map.get("chatno").toString());
+		String reportId = map.get("reportId").toString().equals(dto.getParticipant()) ? dto.getBbswriter() : dto.getParticipant();
+		String reportIdNick = partyService.getNickName(reportId);
+		model.addAttribute("record", dto);
+		model.addAttribute("message", message);
+		model.addAttribute("map", map);
+		model.addAttribute("reportIdNick", reportIdNick);
+		return "party/ChatReportView.tiles";
+	}
+	
 }
