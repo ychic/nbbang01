@@ -61,7 +61,7 @@
 					   <!-- 필수 폴더(수정/삭제 불가)--> 
 					   <a href="<c:url value='/mySub.do' />" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span>${folder.sfname}</span>
+					   <span>All</span>
 					   <%-- <span class="badge bg-primary rounded-pill">${badgeAll.count}</span> --%>
 					   </a>
 					   
@@ -69,20 +69,20 @@
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="<c:url value='/secondFold.do' />" class="list-group-item" id="dFolder2">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span id="dfdn1" style="padding: 0px; margin: 0px;">${folderName.sfname}</span>
+					   <span id="dfdn1" style="padding: 0px; margin: 0px;">Watch</span>
 						   <form id="frmEditname1">
 						   <input type="text" id="inp1" name="dfldrName2" style="width:90px; border: none; display: none;">
 						   </form>
 					   <%-- <span id="hvDotDFolder2" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">${fldrCount.count}</span> --%>
+					   <span class="badge bg-primary rounded-pill">${mysubBadgeWatch.count}</span> --%>
 					   </a>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder2" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
-					   	<div class="row" style="padding: 0px; margin: 0px;">
+					   	<!-- <div class="row" style="padding: 0px; margin: 0px;">
 					   		<div class="col-sm-4" style="background-color: blue; padding: 0px; margin-right: 0px;"><button id="btnComp1" type="button" class="btn btn-primary" style="width: 100%; height: 100%;">완료</button></div>
 					   		<div class="col-sm-4" style="background-color: gold; padding: 0px; margin-right: 0px;"><button 		type="button" class="btn btn-danger" style="width: 100%; height: 100%;">삭제</button></div>
 					   		<div class="col-sm-4" style="background-color: lime; padding: 0px; margin-right: 0px;"><button id="btnEdit1" type="button" class="btn btn-warning" style="width: 100%; height: 100%;">수정</button></div>
-					   	</div>
+					   	</div> -->
  					   </a>
 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
 					   <a href="<c:url value='/thirdFold.do' />" class="list-group-item" id="dFolder3">
@@ -96,11 +96,11 @@
 					   </a>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder3" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
-					   	<div class="row" style="padding: 0px; margin: 0px;">
+					   	<!-- <div class="row" style="padding: 0px; margin: 0px;">
 					   		<div class="col-sm-4" style="background-color: blue; padding: 0px; margin-right: 0px;"><button id="btnComp2" type="button" class="btn btn-primary" style="width: 100%; height: 100%;">완료</button></div>
 					   		<div class="col-sm-4" style="background-color: gold; padding: 0px; margin-right: 0px;"><button 		type="button" class="btn btn-danger" style="width: 100%; height: 100%;">삭제</button></div>
 					   		<div class="col-sm-4" style="background-color: lime; padding: 0px; margin-right: 0px;"><button id="btnEdit2" type="button" class="btn btn-warning" style="width: 100%; height: 100%;">수정</button></div>
-					   	</div>
+					   	</div> -->
  					   </a>
  					   
  					   <!-- 자동등록 폴더 실험중 -->
@@ -108,9 +108,18 @@
 					   <a href="<c:url value='/fourthFold.do' />" class="list-group-item" id="dFolder4">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
 					   <span id="dfdn3" style="padding: 0px; margin: 0px;">Account</span>
-					   <!-- <span id="hvDotDFolder4" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span id="accountBadge" class="badge bg-primary rounded-pill"></span> -->
+					   <%-- <span id="newBadge" style="display: none;">00</span>
+					   <span id="originBadge" style="display: none;">${badgeAll.count}</span>
+					   <span id="totalBadge" class="badge bg-primary rounded-pill">00</span> --%>
 					   </a>
+					   <%-- <span id="hvDotDFolder4" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span class="badge bg-primary rounded-pill">${mysubBadgeLife.count}</span> --%>
+					   
+					   <!-- </a> ??????-->
+					  
+ 					   
+ 					   
+ 					   
  					   
  					   
 					   <!-- 생성 폴더1(수정/삭제 가능)================================================================--> 
@@ -290,46 +299,36 @@
 		</div>
 		<!-- 작업중 -->
 		<div class="col-sm-9">
-		
+		 
 		<!-- 목록 최상단 (폴더명 , 총합계) -->
 		<div class="col-sm-11">
-			<c:if test="${not empty folderCost.foldercost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp 등록된 정기결제 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${folderCost.foldercost}</span>&nbsp 원 입니다</span>
+			
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">Account</span> 
+			<span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp 등록된 정기결제 총액은
+			<span id="hiddenCost" style="display: none;">00</span><span id="basicAllCost" style="display: none;">${allCost.allCost}</span>
+			<span id="totalCost" Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp </span>&nbsp 원 입니다
+			</span>
+			<!--style="display: none;"  -->
 			</h4>
-			</c:if>
-			<c:if test="${empty folderCost.foldercost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp 등록된 정기결제 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
-			</h4>
-			</c:if>
+			
 			<hr>
 			<div class="col-sm-12">
+			
 					<div class="row">
-					<!-- sortable적용 
-					<ul id="sortable">
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					  <li class="ui-state-default"></li>
-					</ul>
-					-->
-					
 							
 					<!-- 목록 -->
 					<!-- 마이바티스 resultMap의 collection 태그사용 -->
-					<c:if test="${not empty secondRecord}">
-						<c:forEach items="${secondRecord}" var="mysub2">
+					<c:if test="${not empty folder.mysubs}">
+						<c:forEach items="${folder.mysubs}" var="mysub">
 						
 							<div class="col-md-3" style="padding-left: 0px;">
 							
-								<c:if test="${mysub2.subservice eq '멜론'}">
+								<c:if test="${mysub.subservice eq '멜론'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/010_melon.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
-								    <li class="list-group-item">${mysub2.subservice}
+								    <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditSub" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -349,7 +348,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName2" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName2" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn2"/>
 									            
@@ -411,11 +410,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker2" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker2" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay2" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay2" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -426,17 +425,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -449,17 +448,17 @@
 									</div>
 								      <!-- modal 끝 -->
 								     
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								
-								<c:if test="${mysub2.subservice eq '넷플릭스'}">
+								<c:if test="${mysub.subservice eq '넷플릭스'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/003_netflix.jpeg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
-								    <li class="list-group-item">${mysub2.subservice}
+								    <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditNetflix" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -479,7 +478,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName3" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName3" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn3"/>
 									            
@@ -541,11 +540,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker3" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker3" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay3" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay3" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -556,17 +555,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -579,18 +578,18 @@
 									</div>
 								      <!-- modal 끝 -->
 								     
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								
-								<c:if test="${mysub2.subservice eq '웨이브'}">
+								<c:if test="${mysub.subservice eq '웨이브'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/007_wave.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditWave" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -610,7 +609,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName4" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName4" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn4"/>
 									            
@@ -672,11 +671,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker4" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker4" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay4" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay4" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -687,17 +686,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -710,18 +709,18 @@
 									</div>
 								      <!-- modal 끝 -->
 								 
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>   
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>   
 								  </ul>
 								</c:if> 
 								
-								<c:if test="${mysub2.subservice eq '디즈니+'}">
+								<c:if test="${mysub.subservice eq '디즈니+'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/005_disney.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								    
-								    <li class="list-group-item">${mysub2.subservice}
+								    <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditDisney" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -741,7 +740,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName5" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName5" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn5"/>
 									            
@@ -803,11 +802,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker5" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker5" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay5" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay5" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -818,17 +817,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -841,18 +840,18 @@
 									</div>
 								      <!-- modal 끝 -->
 	
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if> 
 								
-								<c:if test="${mysub2.subservice eq '월간과자'}">
+								<c:if test="${mysub.subservice eq '월간과자'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/017_monthlysnack.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditWarganGuaza" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -872,7 +871,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName6" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName6" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn6"/>
 									            
@@ -934,11 +933,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker6" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker6" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay6" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay6" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -949,17 +948,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -973,18 +972,18 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								
-								<c:if test="${mysub2.subservice eq '닌텐도스위치'}">
+								<c:if test="${mysub.subservice eq '닌텐도스위치'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/014_nintendo.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditNintendoswitch" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1004,7 +1003,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName7" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName7" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn7"/>
 									            
@@ -1066,11 +1065,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker7" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker7" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay7" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay7" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1081,17 +1080,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1105,19 +1104,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '벅스'}">
+								<c:if test="${mysub.subservice eq '벅스'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/011_bugs.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditbucks" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1137,7 +1136,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName8" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName8" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn8"/>
 									            
@@ -1199,11 +1198,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker8" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker8" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay8" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay8" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1214,17 +1213,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1238,19 +1237,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '스포티비나우'}">
+								<c:if test="${mysub.subservice eq '스포티비나우'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/001_spotvnow.jpg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditspotvnow" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1270,7 +1269,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName9" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName9" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn9"/>
 									            
@@ -1332,11 +1331,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker9" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker9" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay9" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay9" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1347,17 +1346,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1371,19 +1370,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '아이클라우드'}">
+								<c:if test="${mysub.subservice eq '아이클라우드'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/009_icloud.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditiclude" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1403,7 +1402,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName10" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName10" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn10"/>
 									            
@@ -1465,11 +1464,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker10" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker10" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay10" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay10" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1480,17 +1479,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1504,19 +1503,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '유튜브프리미엄'}">
+								<c:if test="${mysub.subservice eq '유튜브프리미엄'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/002_youtube.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdityoutube" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1536,7 +1535,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName11" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName11" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn11"/>
 									            
@@ -1598,11 +1597,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker11" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker11" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay11" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay11" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1613,17 +1612,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1637,19 +1636,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '애플뮤직'}">
+								<c:if test="${mysub.subservice eq '애플뮤직'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/013_apple_e.jpg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditapplemusic" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1669,7 +1668,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName12" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName12" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn12"/>
 									            
@@ -1731,11 +1730,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker12" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker12" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay12" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay12" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1746,17 +1745,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1770,19 +1769,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '카카오이모티콘+'}">
+								<c:if test="${mysub.subservice eq '카카오이모티콘+'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/014_kakaoplus.jpg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditkakaoimoticon" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1802,7 +1801,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName13" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName13" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn13"/>
 									            
@@ -1864,11 +1863,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker13" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker13" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay13" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay13" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -1879,17 +1878,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -1903,19 +1902,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '꾸까'}">
+								<c:if test="${mysub.subservice eq '꾸까'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/007_kukka.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditkokka" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -1935,7 +1934,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName14" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName14" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn14"/>
 									            
@@ -1997,11 +1996,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker14" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker14" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay14" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay14" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2012,17 +2011,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2036,19 +2035,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '네이버+'}">
+								<c:if test="${mysub.subservice eq '네이버+'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/008_naverplus.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditnaverplus" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2068,7 +2067,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName15" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName15" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn15"/>
 									            
@@ -2130,11 +2129,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker15" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker15" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay15" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay15" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2145,17 +2144,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2169,19 +2168,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '더반찬'}">
+								<c:if test="${mysub.subservice eq '더반찬'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/016_thebanchan.jpg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditthebanchan" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2201,7 +2200,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName16" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName16" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn16"/>
 									            
@@ -2263,11 +2262,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker16" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker16" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay16" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay16" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2278,17 +2277,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2302,19 +2301,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '런드리고'}">
+								<c:if test="${mysub.subservice eq '런드리고'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/003_laundrygo.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditlaundrygo" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2334,7 +2333,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName17" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName17" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn17"/>
 									            
@@ -2396,11 +2395,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker17" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker17" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay17" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay17" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2411,17 +2410,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2435,19 +2434,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq 'BBC사이언스'}">
+								<c:if test="${mysub.subservice eq 'BBC사이언스'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/010_bbc_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditbbc" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2467,7 +2466,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName18" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName18" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn18"/>
 									            
@@ -2529,11 +2528,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker18" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker18" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay18" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay18" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2544,17 +2543,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2568,19 +2567,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '리디셀렉트'}">
+								<c:if test="${mysub.subservice eq '리디셀렉트'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/032_ridiselect_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditlidiselect" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2600,7 +2599,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName19" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName19" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn19"/>
 									            
@@ -2662,11 +2661,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker19" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker19" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay19" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay19" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2677,17 +2676,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2701,19 +2700,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '밀리의 서재'}">
+								<c:if test="${mysub.subservice eq '밀리의 서재'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/028_millie_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditmilly" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2733,7 +2732,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName20" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName20" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn20"/>
 									            
@@ -2795,11 +2794,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker20" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker20" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay20" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay20" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2810,17 +2809,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2834,19 +2833,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '매경e신문'}">
+								<c:if test="${mysub.subservice eq '매경e신문'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/008_meailnews_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditmegyung" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2866,7 +2865,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName21" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName21" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn21"/>
 									            
@@ -2928,11 +2927,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker21" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker21" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay21" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay21" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -2943,17 +2942,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -2967,19 +2966,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '빅이슈'}">
+								<c:if test="${mysub.subservice eq '빅이슈'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/021_bigissue_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditbigisue" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -2999,7 +2998,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName22" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName22" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn22"/>
 									            
@@ -3061,11 +3060,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker22" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker22" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay22" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay22" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3076,17 +3075,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3100,19 +3099,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '예스24북클럽'}">
+								<c:if test="${mysub.subservice eq '예스24북클럽'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/020_yes24_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdityes24" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3132,7 +3131,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName23" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName23" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn23"/>
 									            
@@ -3194,11 +3193,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker23" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker23" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay23" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay23" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3209,17 +3208,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3233,19 +3232,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '왓챠'}">
+								<c:if test="${mysub.subservice eq '왓챠'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/004_watcha.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditwatch" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3265,7 +3264,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName24" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName24" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn24"/>
 									            
@@ -3327,11 +3326,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker24" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker24" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay24" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay24" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3342,17 +3341,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3366,19 +3365,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '티빙'}">
+								<c:if test="${mysub.subservice eq '티빙'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/006_tving.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdittiving" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3398,7 +3397,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName25" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName25" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn25"/>
 									            
@@ -3460,11 +3459,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker25" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker25" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay25" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay25" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3475,17 +3474,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3499,19 +3498,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '플로'}">
+								<c:if test="${mysub.subservice eq '플로'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/008_flo_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditflo" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3531,7 +3530,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName26" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName26" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn26"/>
 									            
@@ -3593,11 +3592,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker26" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker26" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay26" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay26" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3608,17 +3607,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3632,19 +3631,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 
-								<c:if test="${mysub2.subservice eq '플레이스테이션'}">
+								<c:if test="${mysub.subservice eq '플레이스테이션'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/media/012_playstation.jpg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditplaystation" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3664,7 +3663,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName27" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName27" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn27"/>
 									            
@@ -3726,11 +3725,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker27" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker27" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay27" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay27" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3741,17 +3740,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3765,19 +3764,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '쏘카'}">
+								<c:if test="${mysub.subservice eq '쏘카'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/009_socar.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditsocar" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3797,7 +3796,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName28" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName28" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn28"/>
 									            
@@ -3859,11 +3858,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker28" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker28" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay28" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay28" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -3874,17 +3873,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -3898,19 +3897,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '와이즐리'}">
+								<c:if test="${mysub.subservice eq '와이즐리'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/006_wisely.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditwisely" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -3930,7 +3929,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName29" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName29" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn29"/>
 									            
@@ -3992,11 +3991,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker29" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker29" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay29" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay29" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4007,17 +4006,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4031,19 +4030,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '위클리 셔츠'}">
+								<c:if test="${mysub.subservice eq '위클리 셔츠'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/011_weeklyshirts.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditweeklyshirts" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4063,7 +4062,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName30" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName30" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn30"/>
 									            
@@ -4125,11 +4124,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker30" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker30" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay30" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay30" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4140,17 +4139,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4164,19 +4163,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '잡플래닛'}">
+								<c:if test="${mysub.subservice eq '잡플래닛'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/015_jobplanet.jpg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditjobplanet" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4196,7 +4195,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName31" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName31" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn31"/>
 									            
@@ -4258,11 +4257,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker31" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker31" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay31" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay31" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4273,17 +4272,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4297,19 +4296,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '쿠팡 와우'}">
+								<c:if test="${mysub.subservice eq '쿠팡 와우'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/018_coupang.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditcoupangwow" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4329,7 +4328,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName32" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName32" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn32"/>
 									            
@@ -4391,11 +4390,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker32" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker32" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay32" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay32" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4406,17 +4405,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4430,19 +4429,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '필리'}">
+								<c:if test="${mysub.subservice eq '필리'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/004_pilly2_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditpilly" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4462,7 +4461,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName33" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName33" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn33"/>
 									            
@@ -4524,11 +4523,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker33" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker33" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay33" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay33" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4539,17 +4538,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4563,19 +4562,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '하비인더박스'}">
+								<c:if test="${mysub.subservice eq '하비인더박스'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/011_hobbyinthebox.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdithobbyinthebox" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4595,7 +4594,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName34" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName34" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn34"/>
 									            
@@ -4657,11 +4656,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker34" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker34" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay34" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay34" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4672,17 +4671,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4696,19 +4695,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '해피문데이'}">
+								<c:if test="${mysub.subservice eq '해피문데이'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/005_happymoonday.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdithappymoonday" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4728,7 +4727,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName35" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName35" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn35"/>
 									            
@@ -4790,11 +4789,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker35" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker35" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay35" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay35" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4805,17 +4804,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4829,19 +4828,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '윌라'}">
+								<c:if test="${mysub.subservice eq '윌라'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/016_willa_e.png" alt="로고이미지">
 								  </div>
-								  <ul class="list-group list-group-flush" style="border-top: hidden;">
+								  <ul class="list-group list-group-flush" id="so" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditwilla" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4861,7 +4860,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName36" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName36" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn36"/>
 									            
@@ -4923,11 +4922,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker36" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker36" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay36" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay36" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -4938,17 +4937,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -4962,18 +4961,18 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
-								<c:if test="${mysub2.subservice eq '조인스 프라임'}">
+								<c:if test="${mysub.subservice eq '조인스 프라임'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/018_joinsprime_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditjoinsprime" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -4993,7 +4992,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName37" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName37" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn37"/>
 									            
@@ -5055,11 +5054,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker37" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker37" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay37" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay37" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -5070,17 +5069,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -5094,19 +5093,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '퍼블리'}">
+								<c:if test="${mysub.subservice eq '퍼블리'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/024_publy_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditpubly" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -5126,7 +5125,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName38" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName38" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn38"/>
 									            
@@ -5188,11 +5187,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker38" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker38" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay38" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay38" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -5203,17 +5202,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -5227,19 +5226,19 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
 								
-								<c:if test="${mysub2.subservice eq '핀즐'}">
+								<c:if test="${mysub.subservice eq '핀즐'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
 									<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/033_pinzle.jpeg" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  
-								  <li class="list-group-item">${mysub2.subservice}
+								  <li class="list-group-item">${mysub.subservice}
 								    <button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEditpinzle" aria-hidden="true" id="btnSubEdit"
 								     style="background:none; border: none;"></button></li>
 								     
@@ -5259,7 +5258,7 @@
 									         
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">구독서비스명</label>
-									            <input type="text" class="form-control" id="subName39" name="subservice" value="${mysub2.subservice}" style="width:450px;display: inline-block;">
+									            <input type="text" class="form-control" id="subName39" name="subservice" value="${mysub.subservice}" style="width:450px;display: inline-block;">
 									            <!-- 구독 리스트 클릭 버튼 -->
 									            <img src="<%=request.getContextPath()%>/resources/account/dropdown_icon.png" alt="구독 리스트" id="subListbtn39"/>
 									            
@@ -5321,11 +5320,11 @@
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">결제일</label>
-									            <input type="text" class="form-control" id="datepicker39" name="paymentday">기존 결제일: ${mysub2.paymentday}
+									            <input type="text" class="form-control" id="datepicker39" name="paymentday">기존 결제일: ${mysub.paymentday}
 									          </div>
 									          <div class="form-group">
 									            <label for="recipient-name" class="control-label">월 구독료</label>
-									            <input type="text" class="form-control" id="subPay39" name="money" value="${mysub2.money}">
+									            <input type="text" class="form-control" id="subPay39" name="money" value="${mysub.money}">
 									          </div>
 									          
 									          <div>
@@ -5336,17 +5335,17 @@
 													</select>
 									          </div>
 									          <!-- 기존 데이터 넘기기(쿼리문때문에) -->
-									          <input type="hidden" name="orisubname" value="${mysub2.subservice}" />
-									          <input type="hidden" name="oripayday" value="${mysub2.paymentday}" />
-									          <input type="hidden" name="orimoney" value="${mysub2.money}" />
-									          <input type="hidden" name="orisfno" value="${mysub2.sfno}" />
-									          <input type="hidden" name="subno" value="${mysub2.subno}" />
+									          <input type="hidden" name="orisubname" value="${mysub.subservice}" />
+									          <input type="hidden" name="oripayday" value="${mysub.paymentday}" />
+									          <input type="hidden" name="orimoney" value="${mysub.money}" />
+									          <input type="hidden" name="orisfno" value="${mysub.sfno}" />
+									          <input type="hidden" name="subno" value="${mysub.subno}" />
 									          
 									          
 									          <div class="modal-footer">
 										        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 										        <button type="submit" class="btn btn-primary">수정</button>
-										        <a href="<c:url value='/mysub/delete.do?subno=${mysub2.subno}'/>"
+										        <a href="<c:url value='/mysub/delete.do?subno=${mysub.subno}'/>"
 													class="btn btn-danger">삭제</a>
 										        
 										      </div>
@@ -5360,8 +5359,8 @@
 								      <!-- modal 끝 -->
 								  
 								  
-								    <li class="list-group-item">${mysub2.paymentday}</li>
-								    <li class="list-group-item">${mysub2.money}원</li>
+								    <li class="list-group-item">${mysub.paymentday}</li>
+								    <li class="list-group-item">${mysub.money}원</li>
 								  </ul>
 								</c:if>
 								<!-- 여기까지 -->
@@ -5373,232 +5372,10 @@
 						</c:forEach>
 					</c:if>
 					
-					
-					
-					
-					
-					<!-- 실험중 -->
-					
-		<c:if test="${empty secondRecord}">
-					<!-- lecture sub list -->
-		<!-- <div class="container"> -->
-		<h2 class="nino-sectionHeading"></h2>
-			<h2 class="nino-sectionHeading">
-			<p class="nino-sectionDesc">등록된 구독서비스가 없습니다</p>
-				<span class="nino-subHeading">추천 구독서비스들을 먼저 만나보세요</span>
 				
-			</h2>
-			<div class="sectionContent">
-				<div class="row nino-hoverEffect">
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay" href="https://www.millie.co.kr/company/company.html" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									밀리의 서재
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/028_millie.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay" href="https://publy.co/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									퍼블리
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/024_publy.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://publy.co/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									뉴닉
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/001_newneek.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.welaaa.com/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									윌라
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/016_willa.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay" href="https://bigissue.kr/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									빅이슈
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/021_bigissue.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay" href="http://m.yes24.com/BookClub/Main" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									예스24 북클럽
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/020_yes24.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.spotv.net/main.asp" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									스포티비
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/001_spotvnow.jpg" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.youtube.com/premium" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									유튜브프리미엄
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/002_youtube.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.netflix.com/kr/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									넷플릭스
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/003_netflix.jpeg" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.wavve.com/index.html" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									웨이브
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/007_wave.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.tving.com/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									티빙
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/006_tving.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.disneyplus.com/ko-kr" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									디즈니
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/005_disney.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://watcha.com/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									왓챠
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/004_watcha.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.nintendo.co.kr/hardware/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									닌텐도
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/014_nintendo.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.melon.com/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									멜론
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/010_melon.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://music.bugs.co.kr/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									벅스
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/011_bugs.png" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://www.playstation.com/ko-kr/" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									플레이스테이션
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/media/012_playstation.jpg" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-2">
-						<div class="item">
-							<a class="overlay"  href="https://digital.mk.co.kr/intro/intro.php" target="_blank">
-								<span class="content">
-									<i class="mdi mdi-airplay nino-icon"></i>
-									매경e신문
-								</span>
-								<img src="<%=request.getContextPath()%>/resources/images_sub/lecture/008_meailnews.png" alt="">
-							</a>
-						</div>
-					</div>
-					
-					
-					
-				</div>
-			</div>		
-		
-					<!-- </div> -->
-					
-					</c:if>
+					<!-- 실험중 -->
+					<div id="trading_statement"></div>
 			
-					
 					<!-- 실험중 -->
 					
 						
@@ -5615,9 +5392,9 @@
 				<!-- 사용자 등록 Modal -->
 				<div class="modal" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
 				  	  <div class="modal-dialog">  
-		<!--		    <div class="modal-content">   -->
+		<!--		    <div class="modal-content">onclick = "location.href = 'myAccounts.do'"   -->
 						<div class="row modal-backdrop">
-					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" onclick = "location.href = 'myAccounts.do'" ><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+					        <button type="button" class=" mdlbtnAuto col-md-6 btn-lg" id="auto_sublist" onclick = "location.href = 'myAccounts.do'"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
 					        <h3>Auto</h3></button>
 					        <button type="button" class=" mdlbtnManual col-md-6 btn-lg" data-toggle="modal" data-dismiss="modal" data-target="#mdlNwSub2" ><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
 					        <h3>Manual</h3></button>
@@ -5636,7 +5413,7 @@
 				        <h4 class="modal-title" id="mdlNwSubLabel">구독 서비스 등록</h4>
 				      </div>
 				      <div class="modal-body">
-					      	<form name="insertForm" onsubmit="return checkAll()" action="<c:url value='/manual.do'/>" method="post">
+					      	<form name="insertForm" onsubmit="return checkAll()" action="<c:url value='/manual.do'/>" method="post" >
 					          <div class="form-group" style="padding-left: 165px;">
 					            <img src="..." alt="alt:로고이미지" class="img-thumbnail" style="display: none;"> <!-- visibility: hidden; --> <!-- id="subLogo" -->
 					          </div>
@@ -5740,7 +5517,9 @@
 				
 				
 			</div>
+
 		</div> <!-- row 꽉차면내려간다? -->
+		
 		
 		<%-- <div class="row">
 							  <div class="col-sm-6 col-md-4">
@@ -5804,72 +5583,287 @@
 
 
 <script>
+	//계좌 내역 시나리오
+	window.onload=function(){
+		
+		getAccount('111222333')
+		//getAccountInfo()
+	}
+	
+	//마지막 계좌번호 가져오기
+	function getAccount(fin){
+		
+		
+		$.ajax({
+            url: '<c:url value="/user/account/'+String(fin)+'.do"/>',
+            type: 'GET',
+            cache : false,
+            contentType:"application/json;charset=UTF-8",
+            data:{'email':'${sessionScope.email}','single':true},
+            dataType: 'json',
+            success:function(data){
+                    
+                    console.log('=============');
+                    console.log(data);
+                    console.log(data['FINTECH_USE_NUM']);
+                    console.log('=============');
+                    
+                    //데이터 보내기
+                    getAccountInfo(data)
+            },
+            error:function(e){
+                    console.log(e)
+            }
+                              
+        })
+	}
+	
+	//계좌 내역 긁어오기
+	function getAccountInfo(fin){
+ 		
+		console.log('==============================');
+		console.log('타입',typeof fin);
+		console.log('값',fin.FINTECH_USE_NUM);
+		console.log('계좌번호:',fin);
+		console.log('계좌번호:',fin['FINTECH_USE_NUM']);
+        console.log('============================');
+        
+        var FINTECH_USE_NUM = fin['FINTECH_USE_NUM']
+        
+		$.ajax({
+			url: '<c:url value="/user/account/trading.do"/>',
+            type: 'GET',
+            cache : false,
+            data:{'email':'${sessionScope.email}','fintech_use_num':FINTECH_USE_NUM},
+            dataType: 'json',
+            success:function(data){
+     	   		console.log('success진입');
+                console.log(data);
+                var badgcount=0;
+                var sumMoney=0;
+                var newBadgeCount=0;
+                var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
+            		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
+            		,"핸드폰비", "관리비", "보험료","신용결제","월세","청약","헬스","적금"
+            		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
+                 	
+                     data.forEach(function(element){
+                    	console.log(element);
+                    	//날짜 예쁘게 변환
+                    	var dt = new Date(element.TRAN_DATE);
+                    	console.log(dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate());
+                        //
+                    	var date = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
+                    	
+                     	
+                     	//월 하드코딩
+                     	if((dt.getMonth()+1) == '01'){
+                     		//변수에 저장
+                     		//값을 보여줄 div 객체 얻기
+                     		var trading_statement = document.getElementById('trading_statement');
+                     		badgcount += 1;
+							sumMoney += element['TRAN_AMT'];
+							console.log(sumMoney);
+                     		//리스트 검사
+                     		accountList.forEach(function(item){
+                     			//계좌 출금 내역에 해당 리스트 객체가 있다면 브라우저에 출력
+                     			if(element['WD_PRINT_CONTENT'] == item){
+                     				//총액구하기
+                     				
+
+                     				console.log(typeof(element['WD_PRINT_CONTENT']));
+                     				//WD_PRINT_CONTENT : 계좌거래 정보, TRAN_AMT : 금액(임의 금액)
+                     				trading_statement.innerHTML += //element['WD_PRINT_CONTENT']+': '+element['TRAN_AMT']+':'+ date+',';
+                     				'<div class="col-md-3" style="padding-left: 0px;">'+
+                     				'<div class="thumbnail"'+
+                     					'style="margin-bottom: 0px; border-bottom: hidden;">'+
+                     					'<img id="" src="'+imageMap(element['WD_PRINT_CONTENT'])+'"'+
+                     						'alt="로고이미지">'+
+                     				'</div>'+
+                     				'<ul class="list-group list-group-flush" style="border-top: hidden;">'+
+                     					'<li class="list-group-item" style="color: #5BC0DE">'+element['WD_PRINT_CONTENT']+'<img style="padding-left:20px; margin:0px; border: none;" src="'+imageMap("아이콘")+'"'+
+                     					'</li>'+
+                     					'<li class="list-group-item" style="color: #5BC0DE">'+date+'</li>'+
+                     					'<li class="list-group-item" style="color: #5BC0DE">'+element['TRAN_AMT']+'원</li>'+
+                     				'</ul>'+
+                     			'</div>'
+                     			
+                     			
+                     			
+                     			}//if
+                     			
+                     			
+                     		})//forEach
+                     		
+                     	}//if
+
+                     })//forEach
+                    //총액(수동등록 총액+자동등록 총액) 구해서 뿌려주기
+	                console.log(sumMoney);
+	                console.log(typeof sumMoney);
+	                $('#hiddenCost').html(sumMoney);
+	                console.log(parseInt($("#hiddenCost").html()));
+	                var sum = parseInt($("#hiddenCost").html())
+	                console.log(sum);
+	                $("#totalCost").html(sum);
+	              	//배지 카운트 구해서 부려주기
+                    console.log(badgcount);
+                    $('#newBadge').html(badgcount);
+                    var sumBadge = parseInt($("#newBadge").html());
+                    console.log(sumBadge);
+                    $("#totalBadge").html(sumBadge);
+	                
+        },
+            error:function(e){
+                    console.log(e)
+            }          
+		});
+	}
+	
+
+	function imageMap(subtitle) {
+		/*
+		var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
+            		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
+            		,"핸드폰비", "관리비", "보험료","신용결제","월세","청약","헬스","적금"
+            		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
+		*/
+		switch (subtitle) {
+		case '웨이브':
+			return '<c:url value="/resources/images_sub/media/007_wave.png"/>';
+		case '카카오이모티콘+':
+			return '<c:url value="/resources/images_sub/lifestyle/014_kakaoplus.jpg"/>';
+		case '잡플래닛':
+			return '<c:url value="/resources/images_sub/lifestyle/015_jobplanet.jpg"/>';
+		case '런드리고':
+			return '<c:url value="/resources/images_sub/lifestyle/003_laundrygo.png"/>';
+		case '필리':
+			return '<c:url value="/resources/images_sub/lifestyle/004_pilly2_e.png"/>';
+		case '해피문데이':
+			return '<c:url value="/resources/images_sub/lifestyle/005_happymoonday.png"/>';
+		case '와이즐리':
+			return '<c:url value="/resources/images_sub/lifestyle/006_wisely.png"/>';
+		case '꾸까':
+			return '<c:url value="/resources/images_sub/lifestyle/007_kukka.png"/>';
+		case '네이버+멤버십':
+			return '<c:url value="/resources/images_sub/lifestyle/008_naverplus.png"/>';
+		case '쏘카':
+			return '<c:url value="/resources/images_sub/lifestyle/009_socar.png"/>';
+		case '하비인더박스':
+			return '<c:url value="/resources/images_sub/lifestyle/011_hobbyinthebox.png"/>';
+		case '위클리셔츠':
+			return '<c:url value="/resources/images_sub/lifestyle/011_weeklyshirts.png"/>';
+		case '쿠팡와우':
+			return '<c:url value="/resources/images_sub/lifestyle/018_coupang.jpg"/>';
+		case '더 반찬':
+			return '<c:url value="/resources/images_sub/lifestyle/016_thebanchan.jpg"/>';
+		case '월간 과자':
+			return '<c:url value="/resources/images_sub/lifestyle/017_monthlysnack.png"/>';
+		case '밀리의서재':
+			return '<c:url value="/resources/images_sub/lecture/028_millie_e.png"/>';
+		case '퍼블리':
+			return '<c:url value="/resources/images_sub/lecture/024_publy_e.png"/>';
+		case '윌라':
+			return '<c:url value="/resources/images_sub/lecture/016_willa_e.png"/>';
+		case '빅이슈':
+			return '<c:url value="/resources/images_sub/lecture/021_bigissue_e.png"/>';
+		case '리디셀렉트':
+			return '<c:url value="/resources/images_sub/lecture/032_ridiselect_e.png"/>';
+		case '매경e신문':
+			return '<c:url value="/resources/images_sub/lecture/008_meailnews_e.png"/>';
+		case 'bbc사이언스':
+			return '<c:url value="/resources/images_sub/lecture/010_bbc_e.png"/>';
+		case '조인스프라임':
+			return '<c:url value="/resources/images_sub/lecture/018_joinsprime_e.png"/>';
+		case '예스24북클럽':
+			return '<c:url value="/resources/images_sub/lecture/020_yes24_e.png"/>';
+		case '핀즐':
+			return '<c:url value="/resources/images_sub/lecture/033_pinzle.jpeg"/>';
+		case '넷플릭스':
+			return '<c:url value="/resources/images_sub/media/003_netflix.jpeg"/>';
+		case '왓챠':
+			return '<c:url value="/resources/images_sub/media/004_watcha.png"/>';
+		case '왓차':
+			return '<c:url value="/resources/images_sub/media/004_watcha.png"/>';
+		case '디즈니':
+			return '<c:url value="/resources/images_sub/media/005_disney.png"/>';
+		case '티빙':
+			return '<c:url value="/resources/images_sub/media/006_tving.png"/>';
+		case '아이콘':
+			return '<c:url value="/resources/images_sub/lecture/card4.png"/>';
+			
+		default:
+			return '<c:url value="/resources/images_sub/lecture/Nbread_02.png"/>';
+		}
+	}
+
+
 	//insert시 유효성검사
 	// 공백확인 함수
-	function checkExistData(value, dataName) {
-	    if (value == "") {
-	        alert(dataName + " 입력해주세요!");
-	        return false;
-	    }
-	    return true;
-	}
+    function checkExistData(value, dataName) {
+        if (value == "") {
+            alert(dataName + " 입력해주세요!");
+            return false;
+        }
+        return true;
+    }
 	//form의 모든 내용을 각각의 형식(정규표현식)에 맞게 검사하는 유효성검사함수 호출
 	function checkAll() {
-	    if (!checksubName(insertForm.subservice.value)) {
-	        return false;
-	    }
-	    if (!checkPayDay(insertForm.paymentday.value)) {
-	        return false;
-	    }
-	    if (!checkMoney(insertForm.money.value)) {
-	        return false;
-	    }
-	
-	    return true;
-	}//checkAll
-	
-	function checksubName(subNameValue) {
-	    //구독서비스명 유효성
-	    if (!checkExistData(subNameValue, "등록할 구독서비스명을"))
-	        return false;
-	
-	    var subNameRegExp = /^[가-힣a-zA-z0-9\s_+.-]{2,12}$/; //구독서비스명 유효성 검사:	한글/영문/띄워쓰기/특수문자 가능, 2자~12자
-	    if (!subNameRegExp.test(subNameValue)) {
-	        alert("구독서비스명은 영문/한글/숫자 입력이 가능하며, 반드시 2~12자 이내로 입력하셔야 합니다");
-	        insertForm.subservice.value = "";
-	        insertForm.subservice.focus();
-	        return false;
-	    }
-	    return true; //확인이 완료되었을 때
-	}
-	function checkPayDay(payDayValue) {
-	    //결제일 유효성
-	    if (!checkExistData(payDayValue, "결제일을"))
-	        return false;
-	
-	    var payDayRegExp = /^(((20\d{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])))|((20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]))$/; //결제일 유효성 검사: 20xx년~ (20\d{2}[0-9]{4})
-	    if (!payDayRegExp.test(payDayValue)) {
-	        alert("올바른 날짜 형식이 아닙니다 (ex. 20210101 혹은 2021-01-01의 형식으로 입력해주세요)");
-	        insertForm.paymentday.value = "";
-	        insertForm.paymentday.focus();
-	        return false;
-	    }
-	    return true; //확인이 완료되었을 때
-	}
-	function checkMoney(moneyValue) {
-	    //구독료 유효성
-	    if (!checkExistData(moneyValue, "구독료를"))
-	        return false;
-	
-	    var moneyRegExp = /^[0-9]{2,7}$/; //구독료 유효성 검사: 숫자만
-	    if (!moneyRegExp.test(moneyValue)) {
-	        alert("숫자만 입력해주세요( (ex. 15000))");
-	        insertForm.money.value = "";
-	        insertForm.money.focus();
-	        return false;
-	    }
-	    return true; //확인이 완료되었을 때
-	}
+        if (!checksubName(insertForm.subservice.value)) {
+            return false;
+        }
+        if (!checkPayDay(insertForm.paymentday.value)) {
+            return false;
+        }
+        if (!checkMoney(insertForm.money.value)) {
+            return false;
+        }
+ 
+        return true;
+    }//checkAll
+
+    function checksubName(subNameValue) {
+        //구독서비스명 유효성
+        if (!checkExistData(subNameValue, "등록할 구독서비스명을"))
+            return false;
+ 
+        var subNameRegExp = /^[가-힣a-zA-z0-9\s_+.-]{2,12}$/; //구독서비스명 유효성 검사:	한글/영문/띄워쓰기/특수문자 가능, 2자~12자
+        if (!subNameRegExp.test(subNameValue)) {
+            alert("구독서비스명은 영문/한글/숫자 입력이 가능하며, 반드시 2~12자 이내로 입력하셔야 합니다");
+            insertForm.subservice.value = "";
+            insertForm.subservice.focus();
+            return false;
+        }
+        return true; //확인이 완료되었을 때
+    }
+    function checkPayDay(payDayValue) {
+        //결제일 유효성
+        if (!checkExistData(payDayValue, "결제일을"))
+            return false;
+ 
+        var payDayRegExp = /^(((20\d{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])))|((20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]))$/; //결제일 유효성 검사: 20xx년~ (20\d{2}[0-9]{4})
+        if (!payDayRegExp.test(payDayValue)) {
+            alert("올바른 날짜 형식이 아닙니다 (ex. 20210101 혹은 2021-01-01의 형식으로 입력해주세요)");
+            insertForm.paymentday.value = "";
+            insertForm.paymentday.focus();
+            return false;
+        }
+        return true; //확인이 완료되었을 때
+    }
+    function checkMoney(moneyValue) {
+        //구독료 유효성
+        if (!checkExistData(moneyValue, "구독료를"))
+            return false;
+ 
+        var moneyRegExp = /^[0-9]{2,7}$/; //구독료 유효성 검사: 숫자만
+        if (!moneyRegExp.test(moneyValue)) {
+            alert("숫자만 입력해주세요( (ex. 15000))");
+            insertForm.money.value = "";
+            insertForm.money.focus();
+            return false;
+        }
+        return true; //확인이 완료되었을 때
+    }
 
 	//sortable 적용해보기
 	$( "#sortable" ).sortable();
@@ -8018,7 +8012,11 @@
 	});//
 	
 	
-
+	
+	
+	
+	/* console.log(${secondRecord.mysubs});
+	console.log(${tmp}); */
 </script>
 <style>
 	#mdlNwSub1{
