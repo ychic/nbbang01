@@ -159,7 +159,7 @@ td{
 			<c:if test="${not empty record.comments }">
 				<c:forEach var="comment" items="${record.comments}">
 					<div class="card mb-3 resultComment${comment.comno }">
-						<h5 class="card-header">${record.nickname}</h5>
+						<h5 class="card-header">${comment.nickname}</h5>
 						<div class="card-body">
 							<div>
 								<span id="comcontentInput" title="${comment.comno}">${comment.comcontent}</span>

@@ -42,13 +42,15 @@ public class OneByOneController {
 	
 	//신고 list 출력(프론트)
 	@RequestMapping("/OBOList.do")
-	public String OBOlist(@RequestParam Map map,
+	public String OBOlist(@RequestParam Map map, @ModelAttribute("email") String email,
 						  @RequestParam(required = false, defaultValue = "1") int nowPage,
 						  HttpServletRequest req,
 						  Model model) {
 		
+		map.put("email", email);
 		ListPagingData<InquiryBbsDTO> listPagingData = inquiryBbsService.selectList(map, req, nowPage);
 		model.addAttribute("listPagingData", listPagingData);
+		System.out.println("==============------------------===================="+map.get("email"));
 		
 		return "guide/onebyoneqna/OneByOneBbsList.tiles";
 	}

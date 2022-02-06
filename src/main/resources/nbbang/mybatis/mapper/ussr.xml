@@ -27,11 +27,12 @@
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='recommand'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='recommand'
+		WHERE R BETWEEN #{start} AND #{end}
 			<!-- <if test='navcategoryData.equals("구독서비스 추천")'> AND navcategory='recommandService'</if>
 			<if test="navcategoryData=='컨텐츠 추천'"> AND navcategory='recommandContents'</if>
 			<if test="navcategoryData=='꿀팁 추천'"> AND navcategory='recommandTips'</if> -->
@@ -41,44 +42,48 @@
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='recommand'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY likeCount DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='recommand'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="recommandServiceList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='recommand' AND navcategory='recommandService'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='recommand' AND navcategory='recommandService'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="recommandContentsList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='recommand' AND navcategory='recommandContents'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='recommand' AND navcategory='recommandContents'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="recommandTipsList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='recommand' AND navcategory='recommandTips'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
-				</if>
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+				</if>			
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='recommand' AND navcategory='recommandTips'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="ussrFreeSelectList" parameterType="Map" resultType="UssrDTO">
@@ -86,60 +91,68 @@
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='free'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='free'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="freeLikeSortList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='free'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
-				</if>
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+				</if>			
 				ORDER BY likeCount DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='free'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="freeNormalList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='free' AND navcategory='freeNormal'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='free' AND navcategory='freeNormal'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="freeReviewList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='free' AND navcategory='freeReview'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='free' AND navcategory='freeReview'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	<select id="freeInfoList" parameterType="Map" resultType="UssrDTO">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM
 			(SELECT u.*,m.nickname,(SELECT COUNT(*) FROM ussrcomment WHERE ussrno=u.ussrno) as commentCount, (SELECT COUNT(*) FROM ussrlike l WHERE l.ussrno = u.ussrno) likeCount FROM 
 				ussrbbs u JOIN member m ON m.email=u.email
+				WHERE ussrcategoryname='free' AND navcategory='freeInfo'
 				<if test="searchWord !=null">
-					WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+					AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 				</if>
 				ORDER BY ussrno DESC) T)
-		WHERE R BETWEEN #{start} AND #{end} AND ussrcategoryname='free' AND navcategory='freeInfo'
+		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="ussrTotalRowCount" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM ussrbbs u JOIN member m ON m.email=u.email
 		WHERE ussrcategoryname='recommand'
+		<if test="nav != null">
+			AND navcategory = #{nav}
+		</if>		
 		<if test="searchWord !=null">
 			AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 		</if>
@@ -147,6 +160,9 @@
 	<select id="freeTotalRowCount" parameterType="Map" resultType="int">
   		SELECT COUNT(*) FROM ussrbbs u JOIN member m ON m.email=u.email
 		WHERE ussrcategoryname='free'
+		<if test="nav != null">
+			AND navcategory = #{nav}
+		</if>		
 		<if test="searchWord !=null">
 			AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
 		</if>

@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.kosmo.nbbang.partybbs.service.PartyBbsListPagingData;
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
+import com.kosmo.nbbang.partybbs.service.PartyBbsListPagingData;
 import com.kosmo.nbbang.partybbs.service.PartyBbsService;
-import com.kosmo.nbbang.partykang.service.PartyChatDTO;
 import com.kosmo.nbbang.service.PagingUtil;
 
 @Service
@@ -252,9 +251,18 @@ public class PartyBbsServiceImpl implements PartyBbsService {
 		return dao.categoryCheck(map);
 	}
 	
-//	// 생성된 파티 정보 리스트
-//	public List<PartyBbsDTO> getPartyAllList() {
-//		return dao.getPartyAllList();
-//	}
+	// 생성된 파티 정보 리스트
+	public List<PartyBbsDTO> getPartyAllList(Map map) {
+		return dao.getPartyAllList(map);
+	}
+
+	public String getLeaderEmail(String partyNo) {
+		return dao.getLeaderEmail(partyNo);
+	}
+	
+	// 게시글 기간 종료 삭제
+	public String endDelete(String partyNo) {
+		return dao.endDelete(partyNo);
+	}
 
 } // end PartyBbsServiceImpl

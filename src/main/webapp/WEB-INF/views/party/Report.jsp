@@ -69,23 +69,23 @@
    		<div class="form-group">
             <label class="col-sm-2 control-label">신고글 NO</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="partyNo" value="${record.partyNo}" disabled>
+               <input type="text" class="form-control" name="partyNo" value="${record.partyNo}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 제목</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="partyTitle" value="${record.partyTitle}" disabled>
+               <input type="text" class="form-control" name="partyTitle" value="${record.partyTitle}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 날짜</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="partyPostdate" value="${record.partyPostdate}" disabled>
+               <input type="text" class="form-control" name="partyPostdate" value="${record.partyPostdate}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 작성자</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="email" value="${record.email}" disabled>
+               <input type="text" class="form-control" name="email" value="${record.email}" readonly>
             </div>
             <label class="col-sm-2 control-label">신고글 내용</label>
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="partyContent" value="${record.partyContent}" disabled>
+               <input type="text" class="form-control" name="partyContent" value="${record.partyContent}" readonly>
             </div>
     	</div>
    
@@ -94,7 +94,7 @@
             <label class="col-sm-2 control-label">신고자 ID</label>
             
             <div class="col-sm-4">
-               <input type="text" class="form-control" name="email" value="${sessionScope.email}">
+               <input type="text" class="form-control" name="email" value="${sessionScope.email}" readonly>
                <input type="hidden" class="form-control" name="partyNo" value="${record.partyNo}">
             </div>
          </div>
