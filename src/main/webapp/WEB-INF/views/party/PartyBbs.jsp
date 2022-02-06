@@ -268,9 +268,21 @@
 		66%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")}
 		100%{background-image: url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")}
 	}
-	/* 스크롤바 */
+	/* 스크롤바 영역 : 스크롤바가 사용되는 영역의 클래스지정 */
+	.scollDesign{
+		overflow: auto;
+		overflow: auto;
+		padding-left: 10px;
+		width: 100%;
+		height: 200px;
+		float: left;
+		font-size: 17px;
+		line-height: 1.6;
+		letter-spacing: -0.6px;
+	}
+	
 	.scollDesign::-webkit-scrollbar {
-    width: 15px;
+	    width: 15px;
 	}
 	.scollDesign::-webkit-scrollbar-thumb {
 	    background-color: #fff;
@@ -282,7 +294,8 @@
 	    background-color: #f38181;
 	    border-radius: 10px;
 	    box-shadow: inset 0px 0px 5px white;
-	} 
+	}
+
 </style>
 <!-- 광고 1 -->
 <div class="ad_one">
@@ -407,7 +420,7 @@
 					원
 				</div>
 				<div class="detailBlank"></div>
-				<div class="partyContent">${item.partyContent }</div>
+				<div class="scollDesign">${item.partyContent }</div>
 				<div id="buttonArea" class="row">
 					<div class="col-md-12 text-right">
 						<div class="blankSpace"></div>

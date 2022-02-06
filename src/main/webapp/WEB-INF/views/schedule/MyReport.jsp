@@ -8,19 +8,19 @@
    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.prettyPhoto.js"></script>
    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
  
-     
+   <!--   
    <script src="<%=request.getContextPath()%>/resources/admin/vendor/chart.js/Chart.min.js"></script>
-   <!-- 
+   
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
- 	-->
+    -->
    <!-- 제이쿼리 -->
    <!-- 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
-    -->
+   <!--
    <!-- chart.js -->
-   <!--  
+     
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-   -->
+    
    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
    <!-- jQuery사용을 위한 라이브러리 임베딩-->
    <!-- 1]다운받은  .js파일 임베디드 -->
@@ -48,28 +48,49 @@
 .h3, h3 {
     font-size: 1.75rem;
 }
+.conReport{
+   
+}
 
 </style>
 
       <!-- Begin Page Content -->
-            <div class="container-fluid">
-
-               <!-- Page Heading -->
+      <div class="container conReport" style="padding-top: 50px">
+            <!-- Page Heading -->
                <div
-                  class="d-sm-flex align-items-center justify-content-between mb-4">
-                  <h1 class="h3 mb-0 text-gray-800">[${sessionScope.nickname}]님의 My 리포트</h1>
-                  <br>
+                  class="d-sm-flex align-items-center justify-content-between mb-4">           
+                  <h1 class="h3 mb-0 text-gray-800" style="padding-bottom: 50px"><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;"><span class="label label-info" style="text-align: left; margin: 0px;">[${sessionScope.nickname}]</span>님의 My 리포트</div></h1>
+                  
                </div>
-      <div class="col-sm-9">
-         <div class="card border-left-primary shadow h-100 py-2" >
+               
+             
+      <div class="col-sm-11">
+         <div class="card border-left-primary shadow h-100 py-2" style="width: 100%">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
+                  <div class="col mr-3">
                      <!-- <input type="hidden" name="email"> -->
-                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">   Average Cost(KRW)</div>
-                     <div class="h5 mb-0 font-weight-bold text-gray-800">Years ₩ ${yearSum}</div>
-                     <div class="h5 mb-0 font-weight-bold text-gray-800">Month ₩ ${monthSum} </div>
-                     <div class="h5 mb-0 font-weight-bold text-gray-800">Week ₩ ${weekSum} </div>                     
+                     <h5><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">   Average Cost(KRW)</div></h5>
+                     <div class="row">
+                     <c:if test="${not empty yearSum}">
+                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Years <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${yearSum}</span>&nbsp 원</span></div></h4>
+                     </c:if>
+                     <c:if test="${empty yearSum}">
+                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Years <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
+                     </c:if>
+                     <c:if test="${not empty monthSum}">
+                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Month <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${monthSum}</span>&nbsp 원</span></div></h4>
+                     </c:if>
+                     <c:if test="${empty monthSum}">
+                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Month <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
+                     </c:if>
+                     <c:if test="${not empty weekSum}">
+                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Week <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${weekSum}</span>&nbsp 원</span></div></h4>
+                     </c:if>
+                     <c:if test="${empty weekSum}">
+                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Week <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
+                     </c:if>
+                    
                   </div>
                   <div class="col-auto">
                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -77,12 +98,15 @@
                </div>
             </div>
       </div>
-   
+      <hr style="padding-left: 20px">
    <!-- Content Row -->
-               <hr>
+               <br>
+               <c:if test="${not empty yearSum}">
+               <c:if test="${not empty monthSum}">
                <div class="row">
                
                <!-- Bar Chart 월별 총계(향후 12개월) -->
+              
                <div class="col-xl-8 col-lg-7">
                           <div class="card shadow mb-4">
                                 <div class="card-header py-3">
@@ -90,11 +114,13 @@
                                  </div>
                                  <div class="card-body">
                                     <div class="chart-bar">
-                                       <canvas id="myBarChart"></canvas>
+                                       <canvas id="myBarChart" width="800px" height="200px"></canvas>
                                     </div>
                                  </div>
                            </div>
                         </div>
+                        
+                        
                          <!-- Pie Chart 폴더 총계(향후 12개월) -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
@@ -104,7 +130,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart3"></canvas>
+                                        <canvas id="myPieChart3" width="250px" height="200px"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
@@ -131,7 +157,7 @@
                         </div>
                    </div><!-- row -->
                    <br/>
-               <div class="row">
+               <div class="row" style="padding-bottom: 80px">
                   <!-- Area Chart 월별 총계(향후 12개월) -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
@@ -140,7 +166,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart2"></canvas>
+                                        <canvas id="myAreaChart2" width="800px" height="200px"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +180,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart4"></canvas>
+                                        <canvas id="myPieChart4" width="250px" height="200px"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
@@ -183,6 +209,16 @@
                         
                </div><!-- row -->
                
+               </c:if>
+               </c:if>
+               <c:if test="${empty yearSum}">
+                <c:if test="${empty monthSum}">
+                <h2 class="nino-sectionHeading">
+            <p class="nino-sectionDesc">등록된 구독서비스가 없습니다</p>
+               <span class="nino-subHeading">구독서비스들을 먼저 등록하세요</span>
+            </h2>
+            </c:if>
+               </c:if>
                
             </div><!-- container-fluid -->
          </div>
