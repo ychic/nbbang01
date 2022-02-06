@@ -57,11 +57,11 @@ public class OneByOneController {
 	
 	//문의 list 출력 관리자페이지
 	@RequestMapping("/adminOneByOne.do")
-	public String adminOBOlist(@RequestParam Map map,
+	public String adminOBOlist(@RequestParam Map map, @ModelAttribute("email") String email,
 							   @RequestParam(required = false, defaultValue = "1") int nowPage,
 							   HttpServletRequest req,
 							   Model model) {
-		
+		map.put("email", email);
 		ListPagingData<InquiryBbsDTO> listPagingData = inquiryBbsService.selectList(map, req, nowPage);
 		model.addAttribute("listPagingData", listPagingData);
 		

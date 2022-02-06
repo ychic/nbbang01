@@ -61,7 +61,9 @@
 					   <!-- 필수 폴더(수정/삭제 불가)--> 
 					   <a href="<c:url value='/mySub.do' />" class="list-group-item" id="dFolder1">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
-					   <span>${folder.sfname}</span><span class="badge bg-primary rounded-pill">${badgeAll.count}</span></a>
+					   <span>${folder.sfname}</span>
+					   <%-- <span class="badge bg-primary rounded-pill">${badgeAll.count}</span> --%>
+					   </a>
 					   
 					   
 					   <!-- 기본 폴더1(수정/삭제 가능)================================================================--> 
@@ -71,8 +73,9 @@
 						   <form id="frmEditname1">
 						   <input type="text" id="inp1" name="dfldrName2" style="width:90px; border: none; display: none;">
 						   </form>
-					   <span id="hvDotDFolder2" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">${mysubBadgeWatch.count}</span></a>
+					   <%-- <span id="hvDotDFolder2" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span class="badge bg-primary rounded-pill">${mysubBadgeWatch.count}</span> --%>
+					   </a>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder2" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
 					   	<div class="row" style="padding: 0px; margin: 0px;">
@@ -88,8 +91,9 @@
 						   <form id="frmEditname2">
 						   <input type="text" id="inp2" name="dfldrName3" style="width:90px; border: none; display: none;">
 						   </form>
-					   <span id="hvDotDFolder3" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
-					   <span class="badge bg-primary rounded-pill">${fldrCount.count}</span></a>
+					   <%-- <span id="hvDotDFolder3" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span class="badge bg-primary rounded-pill">${fldrCount.count}</span> --%>
+					   </a>
 					   <!-- optionBtn -->
 					   <a href="#" id="btnDFolder3" class="list-group-item optionBtn" style="background-color: silver; display: none; padding: 0px; margin: 0px;">
 					   	<div class="row" style="padding: 0px; margin: 0px;">
@@ -98,6 +102,16 @@
 					   		<div class="col-sm-4" style="background-color: lime; padding: 0px; margin-right: 0px;"><button id="btnEdit2" type="button" class="btn btn-warning" style="width: 100%; height: 100%;">수정</button></div>
 					   	</div>
  					   </a>
+ 					   
+ 					   <!-- 자동등록 폴더 실험중 -->
+ 					   <!-- 기본 폴더2(수정/삭제 가능)================================================================--> 
+					   <a href="<c:url value='/fourthFold.do' />" class="list-group-item" id="dFolder4">
+					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
+					   <span id="dfdn3" style="padding: 0px; margin: 0px;">Account</span>
+					   <!-- <span id="hvDotDFolder4" class="glyphicon glyphicon-option-horizontal" aria-hidden="true" style="padding-left: 15px; color:aqua; visibility:hidden;"></span>
+					   <span id="accountBadge" class="badge bg-primary rounded-pill"></span> -->
+					   </a>
+ 					   
 					   <!-- 생성 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="#" class="list-group-item" id="hidFldr1" style="visibility: hidden;">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
@@ -280,11 +294,11 @@
 		<!-- 목록 최상단 (폴더명 , 총합계) -->
 		<div class="col-sm-11">
 			<c:if test="${not empty folderCost.foldercost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 이번 달 정기지출 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${folderCost.foldercost}</span>&nbsp 원 입니다</span>
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${folderCost.foldercost}</span>&nbsp 원 입니다</span>
 			</h4>
 			</c:if>
 			<c:if test="${empty folderCost.foldercost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 이번 달 정기지출 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">${folderName.sfname}</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
 			</h4>
 			</c:if>
 			<hr>
@@ -4424,7 +4438,7 @@
 								
 								<c:if test="${mysub3.subservice eq '필리'}">
 								  <div class="thumbnail" style="margin-bottom: 0px; border-bottom: hidden;"> <!-- dotted -->
-									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/004_pilly2.png" alt="로고이미지">
+									<img src="<%=request.getContextPath()%>/resources/images_sub/lifestyle/004_pilly2_e.png" alt="로고이미지">
 								  </div>
 								  <ul class="list-group list-group-flush" style="border-top: hidden;">
 								  

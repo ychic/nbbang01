@@ -135,14 +135,25 @@
 		bbswriter= #{bbswriter}
 	</select>
 	
-	<!-- 카테고리 중복 체크 -->
+	<!-- 移댄뀒怨좊━ 以묐났 泥댄겕 -->
 	<select id="categoryCheck" resultType="int">
 		SELECT COUNT(*) FROM partybbs
 		WHERE partycategoryname = #{partyCategoryName} and email = #{email}
 	</select>
 	
  	<select id="getPartyAllList" parameterType="Map" resultType="partyBbsDTO">
-		SELECT p.partymatchdate, p.partyallotmentprice, p.partymaxcapacity, pm.* FROM
+		SELECT p.partymatchdate, p.partyallotmentprice, 
+		p.partymaxcapacity, p.partycategoryname, pm.* FROM
 		partybbs p JOIN partymember pm ON pm.partyno = p.partyno
-	</select>	
+	</select>
+	
+	<select id="getLeaderEmail" parameterType="Map" resultType="String">
+		SELECT pmmember FROM
+		partymember WHERE
+		partyno = #{partyNo} AND partyleader = 'y'
+	</select>
+	
+	<delete id="endDelete" parameterType="String">
+		DELETE partybbs WHERE partyno = #{partyNo}
+	</delete>
 </mapper> 
