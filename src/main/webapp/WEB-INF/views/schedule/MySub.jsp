@@ -297,7 +297,7 @@
 			</h4>
 			</c:if>
 			<c:if test="${empty allCost.allCost}">
-			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 이번 달 정기지출 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
+			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span>  <span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은 <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원 입니다</span>
 			</h4>
 			</c:if>
 			<hr>
