@@ -29,6 +29,12 @@ public class MyReportServiceImpl implements MyReportService{
 	}
 	
 	@Override
+	public List<MyReportDTO> getMyReport3(Map map) {
+		
+		return dao.getMyReport3(map);
+	}
+	
+	@Override
 	public MyReportDTO getYearSum(Map map) {
 		
 		return dao.getYearSum(map);

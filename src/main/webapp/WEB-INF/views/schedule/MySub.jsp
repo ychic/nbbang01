@@ -42,8 +42,8 @@
 -->
 <div class="container">
 	<div class="row">
-		<div class="col-sm-3">
-			<div class="row">
+		<div class="col-sm-3" >
+			<div class="row" style="padding-top:20px;">
 				<div class="col-sm-12"></div>
 				<div class="col-sm-10">
 					<div class="list-group">
@@ -283,12 +283,12 @@
 		<div class="col-sm-9">
 		 
 		<!-- 목록 최상단 (폴더명 , 총합계) -->
-		<div class="col-sm-11">
+		<div class="col-sm-11" style="padding-top:20px;">
 			<c:if test="${not empty allCost.allCost}">
 			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span> 
 			<span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은
-			<span id="hiddenCost" style="display: none;">00</span><span id="basicAllCost" style="display: none;">${allCost.allCost}</span>
-			<span id="totalCost" Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp </span>&nbsp 원 입니다
+			<span id="hiddenCost" style="display: none;">0</span><span id="basicAllCost" style="display: none;">${allCost.allCost}</span>
+			<span id="totalCost" Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;"></span>&nbsp 원 입니다
 			</span>
 			<!--style="display: none;"  -->
 			</h4>
@@ -5362,7 +5362,7 @@
 					<!-- 실험중 -->
 					<div id="trading_statement"></div>
 					
-		<c:if test="${empty folder.mysubs}">
+		<%-- <c:if test="${empty folder.mysubs}">
 					<!-- lecture sub list -->
 		<!-- <div class="container"> -->
 		<h2 class="nino-sectionHeading"></h2>
@@ -5579,7 +5579,7 @@
 		
 					<!-- </div> -->
 					
-					</c:if>
+					</c:if> --%>
 			
 					
 					<!-- 실험중 -->
@@ -5593,8 +5593,8 @@
 		
 		<div class="row col-sm-1">
 			
-				<div class="col-sm-3 col-md-offset-11">
-				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub1" style="background-color:#5BC0DE; color: white; font-family: 'Gugi', sans-serif;"><strong>+ New</strong></button>
+				<div class="col-sm-3 col-md-offset-11" >
+				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mdlNwSub1" style="background-color:#5BC0DE; color: white; font-family: 'Gugi', sans-serif;margin-top:20px"><strong>+ New</strong></button>
 				<!-- 사용자 등록 Modal -->
 				<div class="modal" id="mdlNwSub1" tabindex="-1" role="dialog" aria-labelledby="mdlNwSubLabel" aria-hidden="true">
 				  	  <div class="modal-dialog">  
@@ -5852,7 +5852,7 @@
                 var newBadgeCount=0;
                 var accountList = ["카카오이모티콘+", "잡플래닛", "런드리고","필리","해피문데이","와이즐리","꾸까","네이버+멤버십","쏘카","하비인더박스","위클리셔츠","쿠팡와우","더 반찬","월간 과자"
             		,"밀리의서재","퍼블리","윌라","빅이슈","리디셀렉트","매경e신문","bbc사이언스","조인스프라임","예스24북클럽","핀즐"
-            		,"핸드폰비", "관리비", "보험료","신용결제","월세","청약","헬스","적금"
+            		,"핸드폰비", "관리비", "보험료","월세","청약","헬스","적금"
             		,"넷플릭스","왓챠","왓차","웨이브","디즈니","티빙"]
                  	
                      data.forEach(function(element){
@@ -5866,7 +5866,7 @@
                     	
                      	
                      	//월 하드코딩
-                     	if((dt.getMonth()+1) == '01'){
+                     	if(dt.getFullYear() == '2022' && (dt.getMonth()+1) == '01'){
                      		//변수에 저장
                      		//값을 보여줄 div 객체 얻기
                      		var trading_statement = document.getElementById('trading_statement');
@@ -5911,10 +5911,14 @@
                      getMoneyVar(sumMoney);
                      console.log(sumMoney);
                      console.log(typeof sumMoney);
-                     $('#hiddenCost').html(sumMoney);
+                     
+   
+                   	 $('#hiddenCost').html(sumMoney);
                      var sum = parseInt($("#hiddenCost").html()) + parseInt($("#basicAllCost").html())
                      console.log(sum);
                      $("#totalCost").html(sum);
+                     
+                     
                      //배지 카운트 구해서 부려주기
                      console.log(badgcount);
                      $('#newBadge').html(badgcount);

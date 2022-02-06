@@ -175,7 +175,7 @@
 												</div>
 											</div>
 											
-											<input type="hidden" name="loginType" value="${loginType}">
+											<input type="hidden" name="loginType" value="home">
 											<input type="hidden" name="authority" value="normal" />
                           					<input type="hidden" name="oringinprofile" value="profile_image.png" />
 											<!-- (DB순서상)usertype -->

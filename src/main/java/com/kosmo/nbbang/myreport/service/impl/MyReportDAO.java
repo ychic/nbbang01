@@ -37,6 +37,15 @@ public class MyReportDAO {
 		session.close();
 		return lists;
 	}
+	//구독한 거 가져오기
+	public List<MyReportDTO> getMyReport3(Map map) {
+		SqlSession session= sqlMapper.openSession();
+		List<MyReportDTO> lists=session.selectList("selectMyReport3", map);
+		
+
+		session.close();
+		return lists;
+	}
 	
 	//Years
 	public MyReportDTO getYearSum(Map map) {

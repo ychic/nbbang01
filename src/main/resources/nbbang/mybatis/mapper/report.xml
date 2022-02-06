@@ -44,6 +44,7 @@
 		null,null,null,#{chatno})
 	</insert>
 	
+	
 	<select id="reportSelectList" parameterType="Map" resultType="reportDTO">
 		SELECT * FROM 
 		(SELECT T.*,ROWNUM R FROM

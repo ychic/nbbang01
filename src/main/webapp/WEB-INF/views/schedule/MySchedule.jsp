@@ -4,14 +4,12 @@
 
 </div>
 </header>
-
+ <h1 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:500px;color:#BEBEBE;">결제일 스케줄러</h1>
+ <h4 style="margin:10px;font-family: 'Jua', sans-serif;margin-left:50px;margin-left:500px;color:#BEBEBE;">결제일 정리하기 힘드셨죠? 이젠 편리하게 하세요</h4>
+   
 <div class="container">
-   <div class="page-header">
-      <h1>
-         결제일 스케줄러 <small>결제일 정리하기 힘드셨죠? 이젠 편리하게 하세요</small>
-      </h1>
-
-   </div>
+   
+   	 
    <!DOCTYPE html>
    <html lang='en'>
    <style>
@@ -71,12 +69,11 @@
                    { 
                       title : '${item.calSubTitle}', 
                       start : '${item.startDate}', 
-                      end : '${item.endDate}' 
+                      end : '${item.endDate}'
                    }<c:if test="${not loop.last}">,</c:if>
                 </c:forEach>
-               ]
+               ],
              });
-
              calendar.render();
              
          });
@@ -107,6 +104,7 @@
                   else{
                      saveupdate(json);
                   }
+                  
                })
                .fail(function(req,error){
                   console.log(req);
@@ -132,6 +130,7 @@
             .fail(function(request, status, error){
                alert("저장했습니다:" + error);
             })//실패했을때
+            
          }
          
          function saveupdate(json)
@@ -150,6 +149,7 @@
                alert("저장했습니다:" + error);
             })//실패했을때
          }
+         
          
          
          
@@ -288,7 +288,7 @@
   </div>
      <div style="float:left; width:80%">
         <div style="height:30px; text-align:center; font-size:35px; color:orange; margin-bottom:30px; fint-weight:bold">
-           <div style="width:60%; float:left; text-align:right">결제일 관리 현황</div>
+           <div style="width:60%; font-family: 'Jua'; color:#BEBEBE; float:left; text-align:right">결제일 관리 현황</div>
            <div style="width:40%; float:left; text-align:right">
               <button style="width:120px; height:40px; background-color:hotpink; color:white; vertical-align:middle;
               font-size:17px; cursor:pointer" onclick="javascript:allSave();">전체 저장</button>             
