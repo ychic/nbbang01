@@ -215,6 +215,7 @@
                                         <canvas id="myPieChart3"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
+                                    <!-- 
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-primary"></i> 왓챠
                                         </span>
@@ -233,6 +234,8 @@
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-secondary"></i> 라프텔
                                         </span>
+                                         -->
+                                         <span class="mr-2"></span>
                                     </div>
                                 </div>
                             </div>
@@ -267,6 +270,7 @@
                                         <canvas id="myPieChart4"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
+                                    <!--  
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-primary"></i> 왓챠
                                         </span>
@@ -285,6 +289,8 @@
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-secondary"></i> 라프텔
                                         </span>
+                                        -->
+                                        <span class="mr-2"></span>
                                     </div>
                                 </div>
                             </div>

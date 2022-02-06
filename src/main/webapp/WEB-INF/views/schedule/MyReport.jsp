@@ -12,7 +12,7 @@
    <script src="<%=request.getContextPath()%>/resources/admin/vendor/chart.js/Chart.min.js"></script>
    
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    -->
+ 	-->
    <!-- 제이쿼리 -->
    <!-- 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
@@ -49,14 +49,14 @@
     font-size: 1.75rem;
 }
 .conReport{
-   
+	
 }
 
 </style>
 
       <!-- Begin Page Content -->
       <div class="container conReport" style="padding-top: 50px">
-            <!-- Page Heading -->
+			   <!-- Page Heading -->
                <div
                   class="d-sm-flex align-items-center justify-content-between mb-4">           
                   <h1 class="h3 mb-0 text-gray-800" style="padding-bottom: 50px"><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;"><span class="label label-info" style="text-align: left; margin: 0px;">[${sessionScope.nickname}]</span>님의 My 리포트</div></h1>
@@ -73,22 +73,22 @@
                      <h5><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">   Average Cost(KRW)</div></h5>
                      <div class="row">
                      <c:if test="${not empty yearSum}">
-                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Years <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${yearSum}</span>&nbsp 원</span></div></h4>
+                     	<h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Years <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${yearSum}</span>&nbsp 원</span></div></h4>
                      </c:if>
                      <c:if test="${empty yearSum}">
-                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Years <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
+                     	<h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Years <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
                      </c:if>
                      <c:if test="${not empty monthSum}">
-                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Month <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${monthSum}</span>&nbsp 원</span></div></h4>
+                     	<h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Month <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${monthSum}</span>&nbsp 원</span></div></h4>
                      </c:if>
                      <c:if test="${empty monthSum}">
-                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Month <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
+                     	<h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Month <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
                      </c:if>
                      <c:if test="${not empty weekSum}">
-                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Week <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${weekSum}</span>&nbsp 원</span></div></h4>
+                     	<h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Week <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp ${weekSum}</span>&nbsp 원</span></div></h4>
                      </c:if>
                      <c:if test="${empty weekSum}">
-                        <h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Week <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
+                     	<h4><div class="col-md-4" Style="font-family: 'IBM Plex Sans KR', sans-serif; color: black; font-weight: bold;">Week <span Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp 0</span>&nbsp 원</span></div></h4>
                      </c:if>
                     
                   </div>
@@ -130,28 +130,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart3" width="250px" height="200px"></canvas>
+                                        <canvas id="myPieChart3" width="300px" height="250px"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 왓챠
+                                            <h5><i class="fas fa-circle text-primary"></i>${subservice}</h5>
                                         </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 티빙
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 디즈니<br/>
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-warning"></i> 웨이브
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-danger"></i> 넷플릭스
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-secondary"></i> 라프텔
-                                        </span>
-                                    </div>
+                                   </div>
                                 </div>
                             </div>
                         </div>
@@ -171,41 +156,7 @@
                                 </div>
                             </div>
                         </div>
-                       <!-- Pie Chart 폴더 총계(향후 12개월) -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h4 class="m-0 font-weight-bold text-primary">월별 지출 건수</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart4" width="250px" height="200px"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 왓챠
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 티빙
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 디즈니<br/>
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-warning"></i> 웨이브
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-danger"></i> 넷플릭스
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-secondary"></i> 라프텔
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                   
                         
                </div><!-- row -->
                
@@ -213,11 +164,11 @@
                </c:if>
                <c:if test="${empty yearSum}">
                 <c:if test="${empty monthSum}">
-                <h2 class="nino-sectionHeading">
-            <p class="nino-sectionDesc">등록된 구독서비스가 없습니다</p>
-               <span class="nino-subHeading">구독서비스들을 먼저 등록하세요</span>
-            </h2>
-            </c:if>
+	             <h2 class="nino-sectionHeading">
+				<p class="nino-sectionDesc">등록된 구독서비스가 없습니다</p>
+					<span class="nino-subHeading">구독서비스들을 먼저 등록하세요</span>
+				</h2>
+				</c:if>
                </c:if>
                
             </div><!-- container-fluid -->

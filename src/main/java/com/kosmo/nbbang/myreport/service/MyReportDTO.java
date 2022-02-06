@@ -26,6 +26,7 @@ public class MyReportDTO {
    private String monthsum;
    private String weeksum;
    
+    
    public String getEmail() {
       return email;
    }
