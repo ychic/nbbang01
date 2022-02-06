@@ -39,6 +39,7 @@
 		null,null,#{ussrno})
 	</insert>
 	
+	
 	<select id="reportSelectList" parameterType="Map" resultType="reportDTO">
 		SELECT * FROM 
 		(SELECT T.*,ROWNUM R FROM
