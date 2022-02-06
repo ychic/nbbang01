@@ -287,8 +287,8 @@
 			<c:if test="${not empty allCost.allCost}">
 			<h4><span class="label label-info" style="text-align: left; margin: 0px;">All</span> 
 			<span Style="font-family: 'IBM Plex Sans KR', sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록된 정기결제 총액은
-			<span id="hiddenCost" style="display: none;">00</span><span id="basicAllCost" style="display: none;">${allCost.allCost}</span>
-			<span id="totalCost" Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;">&nbsp </span>&nbsp 원 입니다
+			<span id="hiddenCost" style="display: none;">0</span><span id="basicAllCost" style="display: none;">${allCost.allCost}</span>
+			<span id="totalCost" Style="font-family: 'Do Hyeon', sans-serif; color:#5BC0DE;"></span>&nbsp 원 입니다
 			</span>
 			<!--style="display: none;"  -->
 			</h4>
@@ -5362,7 +5362,7 @@
 					<!-- 실험중 -->
 					<div id="trading_statement"></div>
 					
-		<c:if test="${empty folder.mysubs}">
+		<%-- <c:if test="${empty folder.mysubs}">
 					<!-- lecture sub list -->
 		<!-- <div class="container"> -->
 		<h2 class="nino-sectionHeading"></h2>
@@ -5579,7 +5579,7 @@
 		
 					<!-- </div> -->
 					
-					</c:if>
+					</c:if> --%>
 			
 					
 					<!-- 실험중 -->
@@ -5911,10 +5911,14 @@
                      getMoneyVar(sumMoney);
                      console.log(sumMoney);
                      console.log(typeof sumMoney);
-                     $('#hiddenCost').html(sumMoney);
+                     
+   
+                   	 $('#hiddenCost').html(sumMoney);
                      var sum = parseInt($("#hiddenCost").html()) + parseInt($("#basicAllCost").html())
                      console.log(sum);
                      $("#totalCost").html(sum);
+                     
+                     
                      //배지 카운트 구해서 부려주기
                      console.log(badgcount);
                      $('#newBadge').html(badgcount);

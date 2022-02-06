@@ -1,5 +1,6 @@
 package com.kosmo.nbbang.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,11 +16,27 @@ import org.springframework.stereotype.Component;
 @Component(value = "myutils")
 public class MyUtils {
 
+	
+	
+	
+	
 	private static String[] unRegularContent = { "음식 구매", "사무 용품", "의류 구매", "화장품 구매" };
 	private static String[] regularContent = { "핸드폰비", "관리비", "보험료", "신용결제", "월세", "청약", "헬스", "적금" };
 	private static String[] officialContent = { "넷플릭스", "왓차", "웨이브", "디즈니", "티빙" };
 	private static Integer[] officialPrices = { 12000, 12000, 12000, 12000, 12000 };
 
+	
+	
+	 public static String convertCurrent(Object numdata){
+	        if(numdata instanceof String){
+	            return new DecimalFormat("###,###").format(Long.parseLong((String) numdata));
+	        }else{
+	            return new DecimalFormat("###,###").format(numdata);
+	        }
+	    }
+	
+	
+	
 	/*
 	 * 예측 메소드 정기 결제 조건 officialContent 인 경우 or 혹은 데이터 간격이 27~ 32 정도 차이가 나는 경우
 	 */
