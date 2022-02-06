@@ -7,7 +7,9 @@ public class AdminChatDTO {
 	private String partytitle;
 	private String participant;
 	private String bbswriter;
-	private int member;
+	private String match;
+	private String maxcapacity;
+	private int confirm;
 	
 	public String getChatno() {
 		return chatno;
@@ -39,11 +41,23 @@ public class AdminChatDTO {
 	public void setBbswriter(String bbswriter) {
 		this.bbswriter = bbswriter;
 	}
-	public int getMember() {
-		return member;
+	public String getMatch() {
+		return match;
 	}
-	public void setMember(int member) {
-		this.member = member;
+	public void setMatch(String match) {
+		this.match = match;
+	}	
+	public String getMaxcapacity() {
+		return maxcapacity;
+	}
+	public void setMaxcapacity(String maxcapacity) {
+		this.maxcapacity = maxcapacity;
+	}
+	public int getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(int confirm) {
+		this.confirm = confirm;
 	}	
 	
 }
