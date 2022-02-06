@@ -13,6 +13,12 @@
       <result column="mondata" property="mondata"/>
       <result column="email" property="email"/>   
    </resultMap>
+   <!-- 구독한거 보여주기 -->
+   <select id="selectMyReport3" parameterType="Map" resultType="myReportDTO">
+     select subservice
+      from subscription s JOIN subfolder f ON f.sfno = s.sfno
+      where email=#{email}
+   </select>
    <!-- 원그래프 -->
    <select id="selectMyReport" parameterType="Map" resultType="myReportDTO">
       select to_char(paymentday, 'yyyy-mm') as paymentmon 
