@@ -63,7 +63,7 @@ public class ReportServiceImpl implements ReportService {
 
 		// 글 전체 목록 얻기
 		List lists = dao.selectList(map);
-		String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,
+		String pagingString = PagingUtil.pagingMemberList(totalRecordCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/adminReport.do?");
 
 		System.out.println("pagingString" + pagingString);

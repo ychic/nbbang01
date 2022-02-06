@@ -17,11 +17,14 @@
 	<select id="selectAllChat" parameterType="Map" resultType="adminChat">
 		SELECT * FROM
 		(SELECT T.*,ROWNUM R FROM 
-		(SELECT c.chatno, b.partyno, b.partytitle, c.participant, c.bbswriter, 
+		(SELECT c.chatno, b.partyno, b.partytitle, c.participant, 
+		c.bbswriter, (select COUNT(*) FROM partybbs 
+		WHERE partyno = b.partyno AND NOT b.partymatchdate IS NULL) match, 
+		b.partymaxcapacity maxcapacity,
 		(SELECT COUNT(*) from partymember 
-		WHERE pmmember = c.participant AND partyno = c.partyno) member 
+		WHERE pmmember = c.participant AND partyno = c.partyno) confirm 
 		FROM partybbs b JOIN chat c ON b.partyno = c.partyno
-        ORDER BY c.chatno DESC) T)
+        ORDER BY c.partyno DESC) T)
         WHERE R BETWEEN #{start} AND #{end}		 
 	</select>
 </mapper>

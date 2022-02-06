@@ -71,7 +71,7 @@
 		  FROM ( SELECT TO_CHAR(ussrpostdate, 'YYYY-MM-DD') AS paymentmon
 		              , COUNT(*) cnt
 		           FROM ussrbbs
-		          WHERE ussrpostdate BETWEEN TO_DATE('2022-01-01', 'YYYY-MM-DD')
+		          WHERE ussrpostdate BETWEEN TO_DATE('2021-01-01', 'YYYY-MM-DD')
 		                             AND TO_DATE('2022-12-31', 'YYYY-MM-DD') 
 		          GROUP BY ussrpostdate
 		        ) a

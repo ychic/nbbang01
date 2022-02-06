@@ -83,25 +83,54 @@
 	border-bottom: 10px solid transparent;
 	border-left: 10px solid #FA58F4;
 }
+/* 광고 영역 */
+.ad_one, .ad_two {
+	background-color: red;
+	width: 188.5px;
+	height: 377px;
+	display: inline-block;
+	position: fixed;
+	top: 150px;
+	background-size: cover;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/account/ad_1.PNG");
+	animation: ad_one_ani 16s infinite;
+}
+
+.ad_one {
+	left: 30px;
+}
+
+.ad_two {
+	right: 30px;
+}
+
+@
+keyframes ad_one_ani { 33%{
+	background-image:
+		url("<%=request.getContextPath()%>/resources/account/ad_2.PNG")
+}
+66
+%
+{
+background-image
+:
+url("<%=request.getContextPath()%>/resources/account/ad_3.PNG")
+}
+100
+%
+{
+background-image
+:
+url("<%=request.getContextPath()%>/resources/account/ad_1.PNG")
+}
+}
 </style>
+<!-- 광고 1 -->
 <!--  
-						<div class="message-you">
-							<p>닉네임 <small>시간</small></p>
-							<p>왼쪽</p>							
-						</div>
-						<div class="message-me">
-							<p>닉네임 <small>시간</small></p>
-							<p>오른쪽</p>
-						</div>
-						<div class="message-you">
-							<p>닉네임 <small>시간</small></p>
-							<p>왼쪽</p>
-						</div>
-						<div class="message-me">
-							<p>닉네임 <small>시간</small></p>
-							<p>오른쪽</p>							
-						</div>
-						-->
+<div class="ad_one"></div>
+-->
 <div class="container" style="height: 730px; padding-top: 25px;">
 	<div class="page-header">
 		<h1>채팅</h1>
@@ -116,9 +145,16 @@
 		-->
 			<c:if test="${not empty chatList}" var="emptyList">
 				<c:forEach items="${chatList}" var="item" varStatus="loop">
-					<li class="list-group-item panel-danger"><a
-						id="p_${item.partyno}_${item.chatno}">
-							${pnickname.get(loop.index)}님과 채팅중입니다 </a></li>
+					<li class="list-group-item panel-danger">
+						<a id="p_${item.partyno}_${item.chatno}">
+							<c:if test="${not (pnickname.get(loop.index) eq 'null')}" var="ahtml">
+								${pnickname.get(loop.index)}님과 채팅중입니다.
+							</c:if>
+							<c:if test="${not ahtml}">
+								상대방이 나간 채팅입니다.
+							</c:if>
+						</a>
+					</li>
 				</c:forEach>
 			</c:if>
 			<c:if test="${!emptyList}">
@@ -182,6 +218,10 @@
 		</div>
 	</div>
 </div>
+<!-- 광고 2 -->
+<!--  
+<div class="ad_two"></div>
+-->
 <script>
 	$(function() {
 		//sockJS 객체 저장용
@@ -243,6 +283,8 @@
 			}
 			if (message.message == '채팅을 나갔습니다.') {
 				$('#confirm').prop("disabled", "disabled");
+				var str = '#p_'+partyNo+'_'+roomNo;
+				$(str).html('상대방이 나간 채팅입니다.');
 			}
 			$.ajax({
 				url : "<c:url value="/message/saveMessage.do"/>",
@@ -323,11 +365,9 @@
 			}).done(function() {
 				client.disconnect(function() {
 					console.log("연결종료");
+					location.replace('<c:url value="/partyChat.do"/>');
 				});
-				//setTimeout(function() {
-				location.reload();
-				//}, 1000000);
-
+				//location.reload();
 			});
 		});
 
@@ -491,13 +531,14 @@
 														$('#quit').removeAttr(
 																"disabled");
 													} else {
-														return;
+														$('#confirm').attr('disabled', "disabled");
+														$('#quit').attr('disabled', "disabled");
 													}
 												} else if (data.isMePartyMember == '맞다_멤버') {
-													return;
+													$('#confirm').attr('disabled', "disabled");
+													$('#quit').attr('disabled', "disabled");
 												} else {
-													$('#quit').removeAttr(
-															"disabled");
+													$('#quit').removeAttr("disabled");
 												}
 											})
 									.fail(
