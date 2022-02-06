@@ -17,13 +17,13 @@
 		SELECT email FROM member WHERE name=#{name} AND tel=#{tel}
 	</select>
 	<select id="getNickname" parameterType="Map" resultType="String">
-		SELECT nickname FROM member WHERE email=#{email} AND password=#{password, jdbcType=VARCHAR}
+		SELECT nickname FROM member WHERE email=#{email}
 	</select>
 	<delete id="memberDelete" parameterType="Map">
 		DELETE member WHERE email=#{email} AND password=#{password}
 	</delete>
 	<select id="getBlackMember" parameterType="Map" resultType="String">
-		SELECT authority FROM member WHERE email=#{email} AND password=#{password, jdbcType=VARCHAR}
+		SELECT authority FROM member WHERE email=#{email}
 	</select>
 	<update id="setBlackMember" parameterType="Map" >
 		UPDATE member SET authority='black' WHERE email=#{email}

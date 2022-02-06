@@ -49,6 +49,7 @@ public class OneByOneController {
 		
 		map.put("email", email);
 		ListPagingData<InquiryBbsDTO> listPagingData = inquiryBbsService.selectList(map, req, nowPage);
+		System.out.println(listPagingData.getLists().toString());
 		model.addAttribute("listPagingData", listPagingData);
 		System.out.println("==============------------------===================="+map.get("email"));
 		

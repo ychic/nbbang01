@@ -7,7 +7,7 @@
 
 	<insert id="memberInsert" parameterType="Map">
 		INSERT INTO member
-		VALUES(#{email},#{password},#{name},#{nickname},#{birthdate},#{gender},#{tel},#{usertype, jdbcType=VARCHAR},
+		VALUES(#{email},#{password},#{name},#{nickname},#{birthdate},#{gender},#{tel},'home',
 		#{preference, jdbcType=VARCHAR}, #{authority, jdbcType=VARCHAR},SYSDATE,#{oringinprofile, jdbcType=VARCHAR},null)
 	</insert>
 	

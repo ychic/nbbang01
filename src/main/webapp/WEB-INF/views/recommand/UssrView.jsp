@@ -299,7 +299,7 @@
 			success:function(data){
 				if(data == "추천하셨습니다."){
 					alert(data);
-					location.replace("<c:url value='/ussrView.do?ussrno=${record.ussrno}'/>");
+					$("#lcount").html(parseInt($("#lcount").text())+1)
 				}else{
 					alert(data);					
 				}

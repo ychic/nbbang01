@@ -297,10 +297,6 @@
 	}
 
 </style>
-<!-- 광고 1 -->
-<div class="ad_one">
-	
-</div>
 
 <div id="bbs" class="container">
 <h1 style="text-align:left; margin:10px;font-family: 'Jua', sans-serif;color:#BEBEBE;">파티 모집 게시판</h1>
@@ -472,10 +468,7 @@
 </div>
 <div class="blankSpace"></div>
 
-<!-- 광고 2 -->
-<div class="ad_two">
-	
-</div>
+
 <script>
 	function isDelete(partyNo) {
 		if (confirm("정말로 삭제 하시겠습니까?")) {

@@ -152,7 +152,12 @@
 						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
 							<ul class="nav navbar-nav">
 								<!-- <li><a id="home" href="<c:url value='/index.do'/>">Home <span class="sr-only">(current)</span></a></li> -->
-								<!--<li><a id="admin" href="<c:url value='/admin.do'/>">admin</a></li>-->
+								
+								
+								<c:if test="${sessionScope.email eq 'nbbang@nbbang.com'}">
+			                           <li><a id="admin" href="<c:url value='/admin.do'/>">admin</a></li>
+			                        </c:if>
+                        
 								<li class="dropdown">
 									<a class="dropbtn" onclick="location.href='partyBbs.do'">파티</a>
 									  <div class="dropdown-content">

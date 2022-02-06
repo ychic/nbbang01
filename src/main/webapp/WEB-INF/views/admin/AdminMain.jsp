@@ -222,7 +222,7 @@
                                             <i class="fas fa-circle text-success"></i> kakao
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> naver<br/>
+                                            <i class="fas fa-circle text-info"></i> google<br/>
                                         </span>
                                     <!-- 
                                         <span class="mr-2">
