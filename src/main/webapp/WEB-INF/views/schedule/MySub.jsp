@@ -104,9 +104,6 @@
 					  
  					   
  					   
- 					   
- 					   
- 					   
 					   <!-- 생성 폴더1(수정/삭제 가능)================================================================--> 
 					   <a href="#" class="list-group-item" id="hidFldr1" style="visibility: hidden;">
 					   <span class="glyphicon glyphicon-folder-open" aria-hidden="true" style="padding-right: 10px"></span>
