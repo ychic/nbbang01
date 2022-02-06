@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo.nbbang.partybbs.service.PartyBbsDTO;
-import com.kosmo.nbbang.partykang.service.PartyChatDTO;
 
 @Repository
 public class PartyBbsDAO {
@@ -133,6 +132,14 @@ public class PartyBbsDAO {
 
 	public List<PartyBbsDTO> getPartyAllList(Map map) {
 		return template.selectList("getPartyAllList", map);
+	}
+
+	public String getLeaderEmail(String partyNo) {
+		return template.selectOne("getLeaderEmail", partyNo);
+	}
+
+	public String endDelete(String partyNo) {
+		return template.selectOne("endDelete", partyNo);
 	}
 
 } // end PartyBbsDAO
